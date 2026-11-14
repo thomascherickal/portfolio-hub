@@ -1,0 +1,33 @@
+# Monthly broken-link check. Free on public repositories (standard GitHub-hosted runners).
+# Opens an issue if any demo, video or social link stops working.
+name: Monthly link check
+
+on:
+  schedule:
+    - cron: "17 3 1 * *"   # 03:17 UTC on the 1st of every month
+  workflow_dispatch:        # lets you run it by hand from the Actions tab
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check links in the hub and its data file
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --exclude-path media "index.html" "data/projects.js"
+          fail: false
+
+      - name: Open an issue when links are broken
+        if: steps.lychee.outputs.exit_code != 0
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: Broken links found by the monthly check
+          content-filepath: ./lychee/out.md
+          labels: links

@@ -1,0 +1,10 @@
+# Cloudflare Pages headers (free). Long cache for media and the logo, short cache for data so edits show quickly.
+/media/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/logo.jpg
+  Cache-Control: public, max-age=604800
+/data/*
+  Cache-Control: public, max-age=300
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

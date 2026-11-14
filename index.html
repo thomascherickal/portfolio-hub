@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thomas Cherickal | AI-First Engineering Portfolio | The Digital Futurist</title>
+<meta name="description" content="Live demos and recorded Claude agent runs from Thomas Cherickal, Generative AI Consultant: AI-first engineering systems in Rust, Go, Python, C++ and Julia.">
+<meta property="og:title" content="Thomas Cherickal | AI-First Engineering Portfolio">
+<meta property="og:description" content="Working proof that a software company can run AI-first: Claude automations, RAG, local LLMs and systems code.">
+<meta property="og:image" content="https://thedigitalfuturist.com/assets/og-card.png">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="assets/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Thomas Cherickal",
+  "jobTitle": "Generative AI Consultant",
+  "url": "https://thomascherickal.com",
+  "sameAs": [
+    "https://thedigitalfuturist.com",
+    "https://www.linkedin.com/in/thomascherickal",
+    "https://www.patreon.com/thomascherickal"
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="bar">
+  <a class="brand" href="#top" aria-label="The Digital Futurist, back to top">
+    <img src="assets/logo.jpg" alt="The Digital Futurist Logo" width="40" height="40">
+    <span>The Digital Futurist</span>
+  </a>
+  <nav aria-label="Sections">
+    <a href="#automations">Automations</a>
+    <a href="#demos">Demos</a>
+    <a href="#apps">Apps</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a class="btn btn-gold btn-small" id="book-top" href="#">Book a session</a>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="hero-copy">
+      <p class="byline"><span id="site-name"></span>, <span id="site-role"></span></p>
+      <h1 id="site-headline"></h1>
+      <p class="intro" id="site-intro"></p>
+      <div class="actions">
+        <a class="btn btn-gold" id="book-hero" href="#">Book a session</a>
+        <a class="btn btn-ghost" href="#automations">Watch the Claude runs</a>
+      </div>
+    </div>
+
+    <div class="index" aria-labelledby="index-title">
+      <h2 id="index-title" class="index-title">What is on this page</h2>
+      <ul id="lane-index"></ul>
+      <p class="legend">
+        <span class="pill pill-live">Live</span> working demo
+        <span class="pill pill-video">Video</span> recorded run
+        <span class="pill pill-building">Building</span> in progress
+      </p>
+    </div>
+  </section>
+
+  <section class="block" id="automations" aria-labelledby="automations-title">
+    <div class="block-head">
+      <h2 id="automations-title">Claude automations, recorded end to end</h2>
+      <p>Each recording shows one complete run against a real repository or workflow, start to finish.</p>
+    </div>
+    <div id="automation-list" class="automation-list"></div>
+  </section>
+
+  <section class="block" id="demos" aria-labelledby="demos-title">
+    <div class="block-head">
+      <h2 id="demos-title">Demos you can try</h2>
+      <p>Each demo solves one problem that engineering teams hit while moving to AI-first delivery.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filter demos by area" id="filters"></div>
+    <div id="demo-grid" class="demo-grid" aria-live="polite"></div>
+  </section>
+
+  <section class="block brain" aria-labelledby="brain-title">
+    <div>
+      <h2 id="brain-title">The Second Brain</h2>
+      <p>My working notes on agentic AI, local LLMs and AI-first engineering, published as a linked Markdown garden that people and coding agents can both read.</p>
+    </div>
+    <a class="btn btn-ghost" id="brain-link" href="#">Open the Second Brain</a>
+  </section>
+
+  <section class="block" id="apps" aria-labelledby="apps-title">
+    <div class="block-head">
+      <h2 id="apps-title">Installable web apps</h2>
+      <p>Progressive web apps in HTML, CSS and vanilla JavaScript. Open one and use your browser's install option to keep it on your device.</p>
+    </div>
+    <ul id="pwa-list" class="pwa-list"></ul>
+  </section>
+</main>
+
+<footer class="foot" id="contact">
+  <div>
+    <h2>Work with me</h2>
+    <p>Remote and async, available globally. Training for developers, engineering leads and executives, plus hands-on builds.</p>
+    <a class="btn btn-gold" id="book-foot" href="#">Book a session</a>
+  </div>
+  <ul class="foot-links" id="foot-links"></ul>
+  <p class="foot-note">This site runs on Cloudflare's free tier and is updated from a single data file.</p>
+</footer>
+
+<script src="data/projects.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
