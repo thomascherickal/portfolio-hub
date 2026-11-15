@@ -103,6 +103,46 @@
       '<p class="updated">Updated ' + esc(p.updated) + "</p></div></article>";
   }).join("");
 
+  /* ---------- screenshot carousel ---------- */
+  function carousel(p) {
+    var imgs = p.images || [];
+    if (!imgs.length) return "";
+    var slides = imgs.map(function (im, i) {
+      return '<figure class="car-slide" aria-label="' + (i + 1) + " of " + imgs.length + '">' +
+        '<img src="' + esc(im.src) + '" alt="' + esc(im.alt || "") + '" loading="lazy">' +
+        (im.caption ? "<figcaption>" + esc(im.caption) + "</figcaption>" : "") + "</figure>";
+    }).join("");
+    var controls = imgs.length < 2 ? "" :
+      '<button class="car-btn car-prev" aria-label="Previous image">&#8249;</button>' +
+      '<button class="car-btn car-next" aria-label="Next image">&#8250;</button>' +
+      '<div class="car-dots">' + imgs.map(function (_, i) {
+        return '<button class="car-dot" aria-label="Show image ' + (i + 1) + '"' + (i === 0 ? ' aria-current="true"' : "") + "></button>";
+      }).join("") + "</div>";
+    return '<div class="carousel" role="region" aria-roledescription="carousel" aria-label="Screenshots: ' + esc(p.title) + '">' +
+      '<div class="car-track" tabindex="0">' + slides + "</div>" + controls + "</div>";
+  }
+
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest(".car-prev, .car-next, .car-dot");
+    if (!b) return;
+    var c = b.closest(".carousel"), t = c.querySelector(".car-track"), w = t.clientWidth;
+    var n = t.children.length, i = Math.round(t.scrollLeft / w);
+    if (b.classList.contains("car-prev")) i -= 1;
+    else if (b.classList.contains("car-next")) i += 1;
+    else i = Array.prototype.indexOf.call(c.querySelectorAll(".car-dot"), b);
+    t.scrollTo({ left: ((i + n) % n) * w, behavior: "smooth" });
+  });
+
+  // scroll events do not bubble, so listen in the capture phase
+  document.addEventListener("scroll", function (e) {
+    var t = e.target;
+    if (!t.classList || !t.classList.contains("car-track")) return;
+    var i = Math.round(t.scrollLeft / t.clientWidth);
+    Array.prototype.forEach.call(t.parentElement.querySelectorAll(".car-dot"), function (d, k) {
+      if (k === i) d.setAttribute("aria-current", "true"); else d.removeAttribute("aria-current");
+    });
+  }, true);
+
   /* ---------- demos with filters ---------- */
   var demos = projects.filter(function (p) { return p.lane !== "claude"; });
   var grid = document.getElementById("demo-grid");
@@ -112,8 +152,10 @@
     grid.innerHTML = list.length ? list.map(function (p) {
       var hasVideo = p.links && p.links.video;
       return '<article class="demo ' + toneOf(p.lane) + '" id="' + esc(p.id) + '">' +
-        (hasVideo ? frame(p) : "") +
-        '<div class="demo-top"><span class="demo-lane">' + esc(laneLabel(p.lane)) + "</span>" + pill(p) + "</div>" +
+        (hasVideo ? frame(p) : "") + carousel(p) +
+        '<div class="demo-top"><span class="demo-lane">' +
+        (p.icon ? '<img class="demo-icon" src="' + esc(p.icon) + '" alt="" width="24" height="24">' : "") +
+        esc(laneLabel(p.lane)) + "</span>" + pill(p) + "</div>" +
         "<h3>" + esc(p.title) + "</h3>" +
         '<p class="problem"><strong>Problem:</strong> ' + esc(p.problem) + "</p>" +
         '<p class="summary">' + esc(p.summary) + "</p>" +

@@ -19,6 +19,9 @@
   - links.poster optional still image for the video (e.g. "media/pr-review.jpg")
   - links.source GitHub repo URL
   - links.writeup optional article URL
+  - icon        optional small image shown on the card next to its area name (e.g. "assets/ferrum/ferrum-icon.png")
+  - images      optional screenshot carousel shown on the card, in order:
+                [{ src: "assets/x/1.jpg", alt: "what the image shows", caption: "short label" }]
   - updated     YYYY-MM-DD, shown on the card
 */
 
@@ -90,26 +93,45 @@ window.PORTFOLIO = {
 
     /* ---------- Live demos ---------- */
     {
-      id: "rust-SLM-creation-training-export-engine for CPU",
+      id: "ferrum-cpu",
       lane: "systems",
       status: "building",
       title: "Ferrum SLM Studio (CPU)",
+      icon: "assets/ferrum/ferrum-icon.png",
       problem: "Teams need fast, private inference for small models without a GPU bill.",
-      summary: "A full Rust SLM Studio for creation, training, fine-tuning, and exporting to GGUF on CPUcompiled to WebAssembly, showing tokens per second and memory use live in the browser.",
-      stack: ["Rust", "WebAssembly", "Zero-Dependency"],
-      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-14"
+      summary: "A Rust studio to create, train, fine-tune and run small Transformer language models on the CPU, no GPU needed. Its GGUF exports run in llama.cpp, Ollama and LM Studio, and the engine compiles to WebAssembly for the browser.",
+      stack: ["Rust", "WebAssembly", "GGUF", "Tauri"],
+      images: [
+        { src: "assets/ferrum/ferrum-cpu/screenshots/app-datasets.jpg", alt: "Datasets tab for fetching and cleaning a training corpus", caption: "1. Fetch and clean a corpus" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/app-prepare.jpg", alt: "Prepare tab for turning raw text into training data", caption: "2. Prepare the training data" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/app-train.jpg", alt: "Train tab with corpus, model output and model shape settings", caption: "3. Train a transformer from scratch" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/app-generate.jpg", alt: "Generate tab with seed text, sampling settings and live streaming", caption: "4. Generate with live streaming" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/app-gguf.jpg", alt: "GGUF tab for importing and running a Llama or Qwen checkpoint", caption: "5. Import and run Llama and Qwen GGUF" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/app-export.jpg", alt: "Export tab for writing a GGUF that runs in llama.cpp, Ollama and LM Studio", caption: "6. Export GGUF for llama.cpp, Ollama and LM Studio" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/app-serve.jpg", alt: "Serve tab for running the model behind an HTTP server", caption: "7. Serve it over HTTP" },
+        { src: "assets/ferrum/ferrum-cpu/github.jpg", alt: "The ferrum-cpu repository page on GitHub", caption: "The code is open source on GitHub" }
+      ],
+      links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/ferrum-cpu", writeup: "" },
+      updated: "2026-11-15"
     },
     {
-      id: "rust-SLM-creation-training-export-engine for GPU",
+      id: "ferrum-gpu",
       lane: "systems",
       status: "building",
       title: "Ferrum SLM Studio (GPU)",
+      icon: "assets/ferrum/ferrum-icon.png",
       problem: "When larger SLMs need to be deployed, teams face challenges with resource allocation and performance.",
-      summary: "A full Rust SLM Studio for creation, training, fine-tuning, and exporting to GGUF on GPU compiled to WebAssembly, showing tokens per second and memory use live in the browser.",
-      stack: ["Rust", "WebAssembly", "Zero-Dependency"],
-      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-14"
+      summary: "Train, fine-tune and run small Transformer language models on any GPU in safe Rust with wgpu and WGSL. GGUF goes in and out, every kernel is checked against a CPU reference, and inference also runs in the browser on WebGPU.",
+      stack: ["Rust", "wgpu", "WGSL", "WebGPU", "GGUF"],
+      images: [
+        { src: "assets/ferrum/ferrum-gpu/app-device.jpg", alt: "Device tab listing the GPU adapters and WebGPU support in the browser", caption: "1. See every GPU adapter" },
+        { src: "assets/ferrum/ferrum-gpu/app-model.jpg", alt: "Model tab for creating or loading a model", caption: "2. Create or load a model" },
+        { src: "assets/ferrum/ferrum-gpu/app-train.jpg", alt: "Train tab with a live loss curve", caption: "3. Train with a live loss curve" },
+        { src: "assets/ferrum/ferrum-gpu/app-generate.jpg", alt: "Generate tab running on the server device or in this browser", caption: "4. Generate on the server or in the browser" },
+        { src: "assets/ferrum/ferrum-gpu/github.jpg", alt: "The ferrum-gpu repository page on GitHub", caption: "The code is open source on GitHub" }
+      ],
+      links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/ferrum-gpu", writeup: "" },
+      updated: "2026-11-15"
     },
     {
       id: "go-ai-traffic-control",
