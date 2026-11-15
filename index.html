@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Thomas Cherickal | AI-First Engineering Portfolio | The Digital Futurist</title>
-<meta name="description" content="Live demos and recorded Claude agent runs from Thomas Cherickal, Generative AI Consultant: AI-first engineering systems in Rust, Go, Python, C++ and Julia.">
-<meta property="og:title" content="Thomas Cherickal | AI-First Engineering Portfolio">
-<meta property="og:description" content="Working proof that a software company can run AI-first: Claude automations, RAG, local LLMs and systems code.">
-<meta property="og:image" content="https://thedigitalfuturist.com/assets/og-card.png">
-<meta name="theme-color" content="#000000">
-<link rel="icon" href="assets/logo.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css">
-<link rel="stylesheet" href="assets/footer.css">
-<script type="application/ld+json">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thomas Cherickal | AI-First Engineering Portfolio | The Digital Futurist</title>
+  <meta name="description"
+    content="Live demos and recorded Claude agent runs from Thomas Cherickal, Generative AI Consultant: AI-first engineering systems in Rust, Go, Python, Web, C++ and Julia.">
+  <meta property="og:title" content="Thomas Cherickal | AI-First Engineering Portfolio">
+  <meta property="og:description" content="AI-first: Claude automations, RAG, Local LLMs and Systems Code.">
+  <meta property="og:image" content="https://thedigitalfuturist.com/assets/og-card.png">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="assets/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/footer.css">
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -30,91 +33,102 @@
 }
 </script>
 </head>
+
 <body>
-<a class="skip" href="#main">Skip to content</a>
+  <a class="skip" href="#main">Skip to content</a>
 
-<header class="bar">
-  <a class="brand" href="#top" aria-label="The Digital Futurist, back to top">
-    <img src="assets/logo.jpg" alt="The Digital Futurist Logo" width="40" height="40">
-    <span>The Digital Futurist</span>
-  </a>
-  <nav aria-label="Sections">
-    <a href="#automations">Automations</a>
-    <a href="#demos">Demos</a>
-    <a href="#apps">Apps</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <a class="btn btn-gold btn-small" id="book-top" href="#">Book a session</a>
-</header>
-
-<main id="main">
-  <section class="hero" id="top">
-    <div class="hero-copy">
-      <p class="byline"><span id="site-name"></span>, <span id="site-role"></span></p>
-      <h1 id="site-headline"></h1>
-      <p class="intro" id="site-intro"></p>
-      <div class="actions">
-        <a class="btn btn-gold" id="book-hero" href="#">Book a session</a>
-        <a class="btn btn-ghost" href="#automations">Watch the Claude runs</a>
-      </div>
-    </div>
-
-    <div class="index" aria-labelledby="index-title">
-      <h2 id="index-title" class="index-title">What is on this page</h2>
-      <ul id="lane-index"></ul>
-      <p class="legend">
-        <span class="pill pill-live">Live</span> working demo
-        <span class="pill pill-video">Video</span> recorded run
-        <span class="pill pill-building">Building</span> in progress
-      </p>
-    </div>
-  </section>
-
-  <section class="block" id="automations" aria-labelledby="automations-title">
-    <div class="block-head">
-      <h2 id="automations-title">Claude automations, recorded end to end</h2>
-      <p>Each recording shows one complete run against a real repository or workflow, start to finish.</p>
-    </div>
-    <div id="automation-list" class="automation-list"></div>
-  </section>
-
-  <section class="block" id="demos" aria-labelledby="demos-title">
-    <div class="block-head">
-      <h2 id="demos-title">Demos you can try</h2>
-      <p>Each demo solves one problem that engineering teams hit while moving to AI-first delivery.</p>
-    </div>
-    <div class="filters" role="group" aria-label="Filter demos by area" id="filters"></div>
-    <div id="demo-grid" class="demo-grid" aria-live="polite"></div>
-  </section>
-
-  <section class="block brain" aria-labelledby="brain-title">
-    <div class="brain-copy">
-      <div class="brain-tag"><span class="demo-lane tone-violet" id="brain-lane">Knowledge</span></div>
-      <h2 id="brain-title">The Intelligence Repository</h2>
-      <p>A versioned registry of AI agent skills and prompt-engineering frameworks, built so a team can reuse what works instead of rewriting it. It holds 8 prompt frameworks (CO-STAR, RISEN, RTF, TIDD-EC, Chain-of-Thought, ReAct, Few-Shot and XML-Structured), each with 5 production-ready prompts and sample inputs, plus a public directory of open-source agent skills ranked by repository stars.</p>
-      <p>Every entry has an owner, a semantic version and a status that moves from draft to tested to approved to deprecated, and nothing reaches approved without passing its evaluation checks. Test coverage and link health are published as live metrics.</p>
-      <a class="btn btn-ghost" id="brain-link" href="#">Open the Intelligence Repository</a>
-    </div>
-    <a class="brain-shot" id="brain-shot" href="#" aria-label="Open the Intelligence Repository, the Skills and Prompt Registry">
-      <img src="assets/intelligence-repository.jpg" alt="Home page of the Skills and Prompt Registry: its sections for prompt frameworks, the public skills directory, versioning and governance, and software metrics, with the draft, tested, approved and deprecated lifecycle" width="1280" height="720" loading="lazy">
+  <header class="bar">
+    <a class="brand" href="#top" aria-label="The Digital Futurist, back to top">
+      <img src="assets/logo.jpg" alt="The Digital Futurist Logo" width="48" height="48">
+      <span>The Digital Futurist</span>
     </a>
-  </section>
+    <nav aria-label="Sections">
+      <a href="#demos">Demos</a>
+      <a href="#automations">Claude</a>
+      <a href="#skills">Skills</a>
+      <a href="#apps">Apps</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-  <section class="block" id="apps" aria-labelledby="apps-title">
-    <div class="block-head">
-      <h2 id="apps-title">Installable web apps</h2>
-      <p>Progressive web apps in HTML, CSS and vanilla JavaScript. Open one and use your browser's install option to keep it on your device.</p>
-    </div>
-    <ul id="pwa-list" class="pwa-list"></ul>
-  </section>
-</main>
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <img class="hero-logo" src="assets/logo.jpg" alt="The Digital Futurist" width="360" height="360">
+        <p class="byline"><span class="byline-name" id="site-name">Thomas Cherickal</span><span class="byline-role"
+            id="site-role">Generative AI Consultant</span></p>
+        <h1 id="site-headline"></h1>
+        <p class="intro" id="site-intro"></p>
+        <div class="actions">
+          <a class="btn btn-gold" id="book-hero" href="#">Book a session</a>
+          <a class="btn btn-ghost" href="#automations">Watch the Claude runs</a>
+        </div>
+      </div>
 
-<footer id="contact">
+      <div class="index" aria-labelledby="index-title">
+        <h2 id="index-title" class="index-title">What is on this page</h2>
+        <ul id="lane-index"></ul>
+        <p class="legend">
+          <span class="pill pill-live">Live</span> working demo
+          <span class="pill pill-video">Video</span> recorded run
+          <span class="pill pill-building">Building</span> in progress
+        </p>
+      </div>
+    </section>
+
+    <section class="block" id="demos" aria-labelledby="demos-title">
+      <div class="block-head">
+        <h2 id="demos-title">Demos you can try</h2>
+        <p>Each demo solves one problem that engineering teams hit while moving to AI-first delivery.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter demos by area" id="filters"></div>
+      <div id="demo-grid" class="demo-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="block" id="automations" aria-labelledby="automations-title">
+      <div class="block-head">
+        <h2 id="automations-title">Claude automations, recorded end to end</h2>
+        <p>Each recording shows one complete run against a real repository or workflow, start to finish.</p>
+      </div>
+      <div id="automation-list" class="automation-list"></div>
+    </section>
+
+    <section class="block brain" aria-labelledby="brain-title">
+      <div class="brain-copy">
+        <div class="brain-tag"><span class="demo-lane tone-violet" id="brain-lane">Knowledge</span></div>
+        <h2 id="brain-title">The Intelligence Repository</h2>
+        <p>A versioned registry of AI agent skills and prompt-engineering frameworks, built so a team can reuse what
+          works instead of rewriting it. It holds 8 prompt frameworks (CO-STAR, RISEN, RTF, TIDD-EC, Chain-of-Thought,
+          ReAct, Few-Shot and XML-Structured), each with 5 production-ready prompts and sample inputs, plus a public
+          directory of open-source agent skills ranked by repository stars.</p>
+        <p>Every entry has an owner, a semantic version and a status that moves from draft to tested to approved to
+          deprecated, and nothing reaches approved without passing its evaluation checks. Test coverage and link health
+          are published as live metrics.</p>
+        <a class="btn btn-ghost" id="brain-link" href="#">Open the Intelligence Repository</a>
+      </div>
+      <a class="brain-shot" id="brain-shot" href="#"
+        aria-label="Open the Intelligence Repository, the Skills and Prompt Registry">
+        <img src="assets/intelligence-repository.jpg"
+          alt="Home page of the Skills and Prompt Registry: its sections for prompt frameworks, the public skills directory, versioning and governance, and software metrics, with the draft, tested, approved and deprecated lifecycle"
+          width="1280" height="720" loading="lazy">
+      </a>
+    </section>
+
+    <section class="block" id="apps" aria-labelledby="apps-title">
+      <div class="block-head">
+        <h2 id="apps-title">Installable web apps</h2>
+        <p>Progressive web apps in HTML, CSS and vanilla JavaScript. Open one and use your browser's install option to
+          keep it on your device.</p>
+      </div>
+      <ul id="pwa-list" class="pwa-list"></ul>
+    </section>
+  </main>
+
+  <footer id="contact">
     <div class="footer-top">
       <div class="footer-brand">
         <a href="index.html" class="footer-brand-logo-link" aria-label="Thomas Cherickal - The Digital Futurist">
-          <img src="assets/logo.jpg" alt="The Digital Futurist Logo" class="footer-brand-logo"
-            width="46" height="46" />
+          <img src="assets/logo.jpg" alt="The Digital Futurist Logo" class="footer-brand-logo" width="46" height="46" />
         </a>
         <div>
           <p class="footer-brand-name">The Digital Futurist</p>
@@ -399,7 +413,8 @@
     </p>
   </footer>
 
-<script src="data/projects.js"></script>
-<script src="assets/app.js"></script>
+  <script src="data/projects.js"></script>
+  <script src="assets/app.js"></script>
 </body>
+
 </html>

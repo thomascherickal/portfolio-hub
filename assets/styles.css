@@ -50,17 +50,24 @@ a:hover { color: var(--gold-hi); }
 /* ---------- top bar ---------- */
 .bar {
   position: sticky; top: 0; z-index: 20;
-  display: flex; align-items: center; gap: 28px;
-  padding: 12px clamp(18px, 4vw, 48px);
+  display: flex; align-items: center; gap: 8px;
+  padding: 2.5px clamp(18px, 4vw, 48px);
   background: rgba(0,0,0,.9);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--rule);
 }
-.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-.brand img { border-radius: 6px; display: block; }
-.brand span { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 1.15rem; color: var(--ink); }
-.bar nav { display: flex; gap: 22px; margin-left: auto; }
-.bar nav a { text-decoration: none; color: var(--muted); font-size: .95rem; }
+.brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.brand img { width: 28px; height: 28px; border-radius: 5px; display: block; }
+.brand span { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 1.25rem; color: var(--ink); }
+.bar nav { display: flex; gap: 16px; margin-left: auto; }
+.bar nav a { text-decoration: none; color: var(--muted); font-size: 1.25rem; font-weight: 700; }
+.bar .btn-small { padding: 2.5px 6px; font-size: .375rem; }
+.hero-logo { width: 180px; max-width: 100%; height: auto; aspect-ratio: 1 / 1; border-radius: 16px; object-fit: cover; margin-bottom: 18px; display: block; }
+.byline { color: var(--gold); font-weight: 700; margin: 0 0 14px; line-height: 1.2; }
+.byline-name { display: block; font-size: clamp(0.55rem, 1.25vw, 1.125rem); }
+.byline-role { display: block; font-size: clamp(0.4rem, 0.875vw, 0.825rem); }
+.hero-copy h1 { color: var(--gold); font-weight: 700; font-size: clamp(0.2875rem, 0.55vw, 0.4375rem); }
+.hero-copy .intro { color: var(--gold); font-weight: 400; font-size: 1.4rem; }
 .bar nav a:hover { color: var(--gold); }
 
 /* ---------- buttons ---------- */
@@ -261,3 +268,19 @@ button.poster { cursor: pointer; }
 
 /* cards with a screenshot carousel get two columns so the screenshots stay readable */
 @media (min-width: 900px) { .demo:has(.carousel) { grid-column: span 2; } }
+
+/* ---------- mobile-first & tablet refinements ---------- */
+html, body { overflow-x: hidden; }
+@media (max-width: 600px) {
+  .hero { padding-top: 28px; gap: 28px; }
+  .hero-logo { width: 140px; margin-bottom: 14px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  .actions .btn { flex: 1 1 auto; text-align: center; }
+  .demo-grid { grid-template-columns: 1fr; }
+  .brain { flex-direction: column; align-items: flex-start; gap: 18px; }
+  .filters { gap: 8px; }
+  .filter { padding: 10px 14px; }
+}
+@media (min-width: 601px) and (max-width: 960px) {
+  .demo-grid { grid-template-columns: repeat(2, 1fr); }
+}

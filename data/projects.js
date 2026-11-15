@@ -30,15 +30,15 @@ window.PORTFOLIO = {
     name: "Thomas Cherickal",
     role: "Generative AI Consultant",
     brand: "The Digital Futurist",
-    headline: "Working proof that a software company can run AI-first. The Future is Now.",
+    headline: "The Future is Now.",
     intro:
       "Live demos and recorded runs of the systems I build for engineering teams moving to AI-first delivery: Claude agent automations, RAG, local LLMs and the Rust, Go, C++ and Julia underneath them.",
     links: {
-      book: "https://topmate.io/thomascherickal",            
+      book: "https://topmate.io/thomascherickal",
       site: "https://thomascherickal.com",
       consulting: "https://thedigitalfuturist.com",
       linkedin: "https://www.linkedin.com/in/thomascherickal",
-      x: "https://x.com/thomazcherickal",                    
+      x: "https://x.com/thomazcherickal",
       patreon: "https://www.patreon.com/thomascherickal",
       newsletter: "https://thomascherickal.kit.com",
       github: "https://github.com/thomascherickal",
@@ -47,50 +47,15 @@ window.PORTFOLIO = {
   },
 
   lanes: {
-    claude:    { label: "Automations",        tone: "gold" },
-    genai:     { label: "Gen AI",             tone: "magenta" },
-    rag:       { label: "RAG",                tone: "magenta" },
-    systems:   { label: "Systems",            tone: "cyan" },
-    science:   { label: "Scientific",         tone: "violet" },
-    knowledge: { label: "Knowledge",          tone: "violet" }
+    claude: { label: "Automations", tone: "gold" },
+    genai: { label: "Gen AI", tone: "magenta" },
+    rag: { label: "RAG", tone: "magenta" },
+    systems: { label: "Systems", tone: "cyan" },
+    science: { label: "Scientific", tone: "violet" },
+    knowledge: { label: "Knowledge", tone: "violet" }
   },
 
   projects: [
-    /* ---------- Claude automations (recorded runs) ---------- */
-    {
-      id: "claude-pr-review-test-gaps",
-      lane: "claude",
-      status: "video",
-      title: "PR review that writes the missing tests",
-      problem: "AI-written code is arriving faster than senior engineers can review it.",
-      summary: "A Claude Code GitHub Action reviews every pull request, flags risky changes, then opens a follow-up commit with the tests the change was missing.",
-      stack: ["Claude Code GitHub Actions", "Skills", "pytest", "cargo test"],
-      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-14"
-    },
-    {
-      id: "claude-incident-first-responder",
-      lane: "claude",
-      status: "video",
-      title: "Incident first responder",
-      problem: "On-call engineers lose the first 30 minutes of an incident gathering context.",
-      summary: "When an alert fires, a Claude agent pulls logs, recent deploys and similar past incidents through MCP, then posts a draft diagnosis and runbook steps for a human to act on.",
-      stack: ["Claude Agent SDK", "MCP", "GitHub Actions"],
-      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-14"
-    },
-    {
-      id: "claude-ai-spend-report",
-      lane: "claude",
-      status: "video",
-      title: "Weekly AI adoption and spend report",
-      problem: "Leadership cannot see which teams get value from AI tools and what it costs.",
-      summary: "A scheduled Claude routine turns usage exports into a one-page report per team: spend, wins, risks and the next three things to try.",
-      stack: ["Claude Code routines", "Claude Agent SDK", "Python"],
-      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-14"
-    },
-
     /* ---------- Live demos ---------- */
     {
       id: "ferrum-cpu",
@@ -132,6 +97,41 @@ window.PORTFOLIO = {
       ],
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/ferrum-gpu", writeup: "" },
       updated: "2026-11-15"
+    },
+
+    /* ---------- Claude automations (recorded runs) ---------- */
+    {
+      id: "claude-pr-review-test-gaps",
+      lane: "claude",
+      status: "video",
+      title: "PR review that writes the missing tests",
+      problem: "AI-written code is arriving faster than senior engineers can review it.",
+      summary: "A Claude Code GitHub Action reviews every pull request, flags risky changes, then opens a follow-up commit with the tests the change was missing.",
+      stack: ["Claude Code GitHub Actions", "Skills", "pytest", "cargo test"],
+      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
+      updated: "2026-11-14"
+    },
+    {
+      id: "claude-incident-first-responder",
+      lane: "claude",
+      status: "video",
+      title: "Incident first responder",
+      problem: "On-call engineers lose the first 30 minutes of an incident gathering context.",
+      summary: "When an alert fires, a Claude agent pulls logs, recent deploys and similar past incidents through MCP, then posts a draft diagnosis and runbook steps for a human to act on.",
+      stack: ["Claude Agent SDK", "MCP", "GitHub Actions"],
+      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
+      updated: "2026-11-14"
+    },
+    {
+      id: "claude-ai-spend-report",
+      lane: "claude",
+      status: "video",
+      title: "Weekly AI adoption and spend report",
+      problem: "Leadership cannot see which teams get value from AI tools and what it costs.",
+      summary: "A scheduled Claude routine turns usage exports into a one-page report per team: spend, wins, risks and the next three things to try.",
+      stack: ["Claude Code routines", "Claude Agent SDK", "Python"],
+      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
+      updated: "2026-11-14"
     },
     {
       id: "go-ai-traffic-control",
@@ -198,37 +198,12 @@ window.PORTFOLIO = {
       stack: ["Julia", "GitHub Actions", "Static JSON"],
       links: { demo: "", video: "", poster: "", source: "", writeup: "" },
       updated: "2026-11-14"
-    },
-    {
-      id: "intelligence-repository-handbook",
-      lane: "knowledge",
-      status: "building",
-      title: "Agent-readable engineering handbook",
-      problem: "People and coding agents follow different, drifting versions of the team's rules.",
-      summary: "One Markdown handbook published for people with Quartz and for agents with llms.txt, so both read the same source of truth.",
-      stack: ["Markdown", "Quartz", "Cloudflare Pages"],
-      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-14"
-    },
-    {
-      id: "intelligence-repository",
-      lane: "knowledge",
-      status: "live",
-      title: "The Intelligence Repository",
-      problem: "Teams rewrite the same prompts and agent skills, and nobody can say which version is trusted.",
-      summary: "A versioned registry of AI agent skills and prompt-engineering frameworks. It holds 8 prompt frameworks with 5 production-ready prompts each, a public directory of open-source agent skills, and an owner, a semantic version and a draft-to-approved status on every entry.",
-      stack: ["Markdown", "Semantic versioning", "Prompt frameworks", "Agent skills"],
-      images: [
-        { src: "assets/intelligence-repository.jpg", alt: "Home page of the Skills and Prompt Registry with its registry sections and the draft, tested, approved and deprecated lifecycle", caption: "The Skills and Prompt Registry home page" }
-      ],
-      links: { demo: "https://skills.thedigitalfuturist.com", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-15"
     }
   ],
 
   /* ---------- PWA apps on GitHub Pages (already built) ---------- */
   pwas: [
-    { name: "Budget Tracker", purpose: "Track personal income, expenses and savings offline in your browser.", url: "https://thomascherickal.github.io/Budget-Tracker/", icon: "https://raw.githubusercontent.com/thomascherickal/Budget-Tracker/master/icon.png" },
+    { name: "Budget Tracker", purpose: "Track personal income, expenses and savings offline in your browser.", url: "https://thomascherickal.github.io/Budget-Tracker/", icon: "assets/PWAs/Budget-Tracker.jpg" },
     { name: "LinkedIn Profile Score", purpose: "Audit and score your LinkedIn profile for recruiter visibility.", url: "https://thomascherickal.github.io/LinkedIn-Profile-Score-App/", icon: "assets/PWAs/LinkedIn Authority Suite.png" },
     { name: "Top 10 AI Tools Finder", purpose: "Discover the top 10 AI tools tailored to your workflow and role.", url: "https://github.com/thomascherickal/Top-10-AI-Tools-Finder-App", icon: "https://raw.githubusercontent.com/thomascherickal/Top-10-AI-Tools-Finder-App/master/Screenshot.png" },
     { name: "Tech Jobs Roadmap", purpose: "Interactive career roadmap for breaking into and advancing in tech roles.", url: "https://thomascherickal.github.io/Tech-Jobs-RoadMap-App/", icon: "https://raw.githubusercontent.com/thomascherickal/Tech-Jobs-RoadMap-App/master/Screenshot.png" },
