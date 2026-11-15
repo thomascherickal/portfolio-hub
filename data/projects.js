@@ -42,7 +42,7 @@ window.PORTFOLIO = {
       patreon: "https://www.patreon.com/thomascherickal",
       newsletter: "https://thomascherickal.kit.com",
       github: "https://github.com/thomascherickal",
-      brain: "https://brain.thedigitalfuturist.com"
+      brain: "https://skills.thedigitalfuturist.com"
     }
   },
 
@@ -200,7 +200,7 @@ window.PORTFOLIO = {
       updated: "2026-11-14"
     },
     {
-      id: "second-brain-engineering-handbook",
+      id: "intelligence-repository-handbook",
       lane: "knowledge",
       status: "building",
       title: "Agent-readable engineering handbook",
@@ -209,16 +209,30 @@ window.PORTFOLIO = {
       stack: ["Markdown", "Quartz", "Cloudflare Pages"],
       links: { demo: "", video: "", poster: "", source: "", writeup: "" },
       updated: "2026-11-14"
+    },
+    {
+      id: "intelligence-repository",
+      lane: "knowledge",
+      status: "live",
+      title: "The Intelligence Repository",
+      problem: "Teams rewrite the same prompts and agent skills, and nobody can say which version is trusted.",
+      summary: "A versioned registry of AI agent skills and prompt-engineering frameworks. It holds 8 prompt frameworks with 5 production-ready prompts each, a public directory of open-source agent skills, and an owner, a semantic version and a draft-to-approved status on every entry.",
+      stack: ["Markdown", "Semantic versioning", "Prompt frameworks", "Agent skills"],
+      images: [
+        { src: "assets/intelligence-repository.jpg", alt: "Home page of the Skills and Prompt Registry with its registry sections and the draft, tested, approved and deprecated lifecycle", caption: "The Skills and Prompt Registry home page" }
+      ],
+      links: { demo: "https://skills.thedigitalfuturist.com", video: "", poster: "", source: "", writeup: "" },
+      updated: "2026-11-15"
     }
   ],
 
   /* ---------- PWA apps on GitHub Pages (already built) ---------- */
   pwas: [
-    { name: "PWA app one",   purpose: "TODO: one-line purpose", url: "https://thedigitalfuturist.com/", icon: "" },
-    { name: "PWA app two",   purpose: "TODO: one-line purpose", url: "https://thedigitalfuturist.com/", icon: "" },
-    { name: "PWA app three", purpose: "TODO: one-line purpose", url: "https://thedigitalfuturist.com/", icon: "" },
-    { name: "PWA app one",   purpose: "TODO: one-line purpose", url: "https://thedigitalfuturist.com/", icon: "" },
-    { name: "PWA app two",   purpose: "TODO: one-line purpose", url: "https://thedigitalfuturist.com/", icon: "" },
-    { name: "PWA app three", purpose: "TODO: one-line purpose", url: "https://thedigitalfuturist.com/", icon: "" }
+    { name: "Budget Tracker", purpose: "Track personal income, expenses and savings offline in your browser.", url: "https://thomascherickal.github.io/Budget-Tracker/", icon: "https://raw.githubusercontent.com/thomascherickal/Budget-Tracker/master/icon.png" },
+    { name: "LinkedIn Profile Score", purpose: "Audit and score your LinkedIn profile for recruiter visibility.", url: "https://thomascherickal.github.io/LinkedIn-Profile-Score-App/", icon: "assets/PWAs/LinkedIn Authority Suite.png" },
+    { name: "Top 10 AI Tools Finder", purpose: "Discover the top 10 AI tools tailored to your workflow and role.", url: "https://github.com/thomascherickal/Top-10-AI-Tools-Finder-App", icon: "https://raw.githubusercontent.com/thomascherickal/Top-10-AI-Tools-Finder-App/master/Screenshot.png" },
+    { name: "Tech Jobs Roadmap", purpose: "Interactive career roadmap for breaking into and advancing in tech roles.", url: "https://thomascherickal.github.io/Tech-Jobs-RoadMap-App/", icon: "https://raw.githubusercontent.com/thomascherickal/Tech-Jobs-RoadMap-App/master/Screenshot.png" },
+    { name: "Inbound Signal Scorer", purpose: "Score and prioritize inbound recruiter and job-search signals.", url: "https://thomascherickal.github.io/inbound-signal-scorer/", icon: "assets/PWAs/LinkedIn Inbouund Scorer.png" },
+    { name: "ATS Resume Builder Pro", purpose: "Build an ATS-friendly resume and view your compatibility score live.", url: "https://thomascherickal.github.io/ats-resume-builder-pro/", icon: "assets/PWAs/ATS Resume Builder.png" }
   ]
 };

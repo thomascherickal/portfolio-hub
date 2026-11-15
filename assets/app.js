@@ -29,23 +29,31 @@
   document.getElementById("site-headline").textContent = site.headline;
   document.getElementById("site-intro").textContent = site.intro;
   ["book-top", "book-hero", "book-foot"].forEach(function (id) {
-    document.getElementById(id).href = site.links.book;
+    var el = document.getElementById(id);
+    if (el) el.href = site.links.book;
   });
   document.getElementById("brain-link").href = site.links.brain;
+  document.getElementById("brain-shot").href = site.links.brain;
+  var brainLane = document.getElementById("brain-lane");
+  brainLane.textContent = laneLabel("knowledge");
+  brainLane.className = "demo-lane " + toneOf("knowledge");
 
-  var footLinks = [
-    ["thomascherickal.com", site.links.site],
-    ["thedigitalfuturist.com", site.links.futurist],
-    ["LinkedIn", site.links.linkedin],
-    ["X", site.links.x],
-    ["GitHub", site.links.github],
-    ["Patreon", site.links.patreon],
-    ["Newsletter", site.links.newsletter]
-  ];
-  document.getElementById("foot-links").innerHTML = footLinks
-    .filter(function (l) { return l[1]; })
-    .map(function (l) { return '<li><a href="' + esc(l[1]) + '" rel="me noopener">' + esc(l[0]) + "</a></li>"; })
-    .join("");
+  var footLinksEl = document.getElementById("foot-links");
+  if (footLinksEl) {
+    var footLinks = [
+      ["thomascherickal.com", site.links.site],
+      ["thedigitalfuturist.com", site.links.futurist],
+      ["LinkedIn", site.links.linkedin],
+      ["X", site.links.x],
+      ["GitHub", site.links.github],
+      ["Patreon", site.links.patreon],
+      ["Newsletter", site.links.newsletter]
+    ];
+    footLinksEl.innerHTML = footLinks
+      .filter(function (l) { return l[1]; })
+      .map(function (l) { return '<li><a href="' + esc(l[1]) + '" rel="me noopener">' + esc(l[0]) + "</a></li>"; })
+      .join("");
+  }
 
   /* ---------- video frame ---------- */
   function frame(p) {
@@ -218,4 +226,20 @@
     return '<li><a href="' + esc(a.url) + '" rel="noopener"><span class="pwa-icon" aria-hidden="true">' + icon + "</span>" +
       '<span><span class="pwa-name">' + esc(a.name) + '</span><span class="pwa-purpose">' + esc(a.purpose) + "</span></span></a></li>";
   }).join("");
+
+  /* ---------- dynamic footer ---------- */
+  var contactFooter = document.getElementById("contact");
+  if (contactFooter && window.fetch) {
+    fetch("footer.html")
+      .then(function (res) { return res.ok ? res.text() : Promise.reject(res.status); })
+      .then(function (html) {
+        var doc = new DOMParser().parseFromString(html, "text/html");
+        var fetchedFooter = doc.querySelector("footer");
+        if (fetchedFooter) {
+          fetchedFooter.id = "contact";
+          contactFooter.replaceWith(fetchedFooter);
+        }
+      })
+      .catch(function () { /* Keep fallback footer if fetch fails (e.g. file://) */ });
+  }
 })();
