@@ -112,17 +112,6 @@ window.PORTFOLIO = {
       updated: "2026-11-14"
     },
     {
-      id: "claude-incident-first-responder",
-      lane: "claude",
-      status: "video",
-      title: "Incident first responder",
-      problem: "On-call engineers lose the first 30 minutes of an incident gathering context.",
-      summary: "When an alert fires, a Claude agent pulls logs, recent deploys and similar past incidents through MCP, then posts a draft diagnosis and runbook steps for a human to act on.",
-      stack: ["Claude Agent SDK", "MCP", "GitHub Actions"],
-      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-14"
-    },
-    {
       id: "claude-ai-spend-report",
       lane: "claude",
       status: "video",
@@ -141,28 +130,6 @@ window.PORTFOLIO = {
       problem: "Every team calls LLMs its own way, so spend, data leaks and audit are invisible.",
       summary: "A Go gateway every internal tool calls instead of the model directly: per-team budgets, personal-data redaction, model routing and a full audit log.",
       stack: ["Go", "TinyGo", "Workers", "D1", "Workers AI"],
-      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-14"
-    },
-    {
-      id: "genai-ticket-to-plan",
-      lane: "genai",
-      status: "building",
-      title: "Ticket to implementation plan",
-      problem: "Sprint planning stalls on vague tickets and guesswork estimates.",
-      summary: "Paste an issue and get affected files, an implementation plan, a test plan and an estimate with a stated confidence level.",
-      stack: ["Python Workers", "FastAPI", "Workers AI"],
-      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-14"
-    },
-    {
-      id: "rag-incident-memory",
-      lane: "rag",
-      status: "building",
-      title: "Incident memory",
-      problem: "The fix for today's outage is usually buried in a postmortem nobody remembers.",
-      summary: "Retrieval over past postmortems and runbooks that returns the three most similar incidents and what fixed them, with citations.",
-      stack: ["Python Workers", "Vectorize", "Workers AI"],
       links: { demo: "", video: "", poster: "", source: "", writeup: "" },
       updated: "2026-11-14"
     },

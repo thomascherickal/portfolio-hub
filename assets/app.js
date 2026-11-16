@@ -204,9 +204,11 @@
     return '<li><button class="lane-link ' + toneOf(k) + '" data-goto="' + esc(k) + '">' +
       '<span class="lane-name">' + esc(laneLabel(k)) + '</span><span class="lane-count">' + countText(k) + "</span></button></li>";
   });
+  indexHtml.push('<li><button class="lane-link tone-violet" data-goto="knowledge"><span class="lane-name">Knowledge</span>' +
+    '<span class="lane-count">1 live</span></button></li>');
   if (data.pwas && data.pwas.length) {
     indexHtml.push('<li><button class="lane-link tone-cyan" data-goto="apps"><span class="lane-name">Web apps</span>' +
-      '<span class="lane-count">' + data.pwas.length + " installable</span></button></li>");
+      '<span class="lane-count">' + data.pwas.length + " live</span></button></li>");
   }
   var laneIndex = document.getElementById("lane-index");
   laneIndex.innerHTML = indexHtml.join("");
@@ -215,6 +217,7 @@
     if (!b) return;
     var lane = b.getAttribute("data-goto");
     if (lane === "claude") return document.getElementById("automations").scrollIntoView();
+    if (lane === "knowledge") return document.getElementById("brain-title").scrollIntoView();
     if (lane === "apps") return document.getElementById("apps").scrollIntoView();
     setFilter(lane);
     document.getElementById("demos").scrollIntoView();
@@ -224,7 +227,7 @@
   document.getElementById("pwa-list").innerHTML = (data.pwas || []).map(function (a) {
     var icon = a.icon ? '<img src="' + esc(a.icon) + '" alt="">' : esc((a.name || "?").charAt(0));
     return '<li><a href="' + esc(a.url) + '" rel="noopener"><span class="pwa-icon" aria-hidden="true">' + icon + "</span>" +
-      '<span><span class="pwa-name">' + esc(a.name) + '</span><span class="pwa-purpose">' + esc(a.purpose) + "</span></span></a></li>";
+      '<span><span class="pwa-name">' + esc(a.name) + ' <span class="pill pill-live">Live</span></span><span class="pwa-purpose">' + esc(a.purpose) + "</span></span></a></li>";
   }).join("");
 
   /* ---------- dynamic footer ---------- */
