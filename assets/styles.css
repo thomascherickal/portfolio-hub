@@ -50,18 +50,17 @@ a:hover { color: var(--gold-hi); }
 /* ---------- top bar ---------- */
 .bar {
   position: sticky; top: 0; z-index: 20;
-  display: flex; align-items: center; gap: 8px;
-  padding: 2.5px clamp(18px, 4vw, 48px);
-  background: rgba(0,0,0,.9);
-  backdrop-filter: blur(8px);
+  display: flex; align-items: center; gap: 20px;
+  padding: 10px clamp(18px, 4vw, 48px);
+  background: #000000;
   border-bottom: 1px solid var(--rule);
 }
-.brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .brand img { width: 28px; height: 28px; border-radius: 5px; display: block; }
-.brand span { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 1.25rem; color: var(--ink); }
-.bar nav { display: flex; gap: 16px; margin-left: auto; }
-.bar nav a { text-decoration: none; color: var(--muted); font-size: 1.25rem; font-weight: 700; }
-.bar .btn-small { padding: 2.5px 6px; font-size: .375rem; }
+.brand span { font-family: var(--sans); font-style: normal; font-weight: 400; font-size: .95rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); }
+.bar nav { display: flex; gap: 22px; margin-left: auto; }
+.bar nav a { text-decoration: none; color: var(--gold); font-family: var(--sans); font-size: .85rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.08em; transition: color .15s; }
+.bar .btn-small { padding: 6px 14px; font-size: .85rem; }
 .hero-logo { width: 180px; max-width: 100%; height: auto; aspect-ratio: 1 / 1; border-radius: 16px; object-fit: cover; margin-bottom: 18px; display: block; }
 .byline { color: var(--gold); font-weight: 700; margin: 0 0 14px; line-height: 1.2; }
 .byline-name { display: block; font-size: clamp(0.55rem, 1.25vw, 1.125rem); }
