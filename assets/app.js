@@ -12,7 +12,7 @@
   }
 
   var site = data.site, lanes = data.lanes, projects = data.projects || [];
-  var STATUS = { live: "Live", video: "Video", building: "Building" };
+  var STATUS = { live: "Live", complete: "Complete", video: "Video", building: "Building" };
 
   // Escape text so data-file content can never break the page.
   function esc(s) {
@@ -90,7 +90,9 @@
     if (l.demo) out.push('<a href="' + esc(l.demo) + '" rel="noopener">Open the demo</a>');
     if (l.source) out.push('<a href="' + esc(l.source) + '" rel="noopener">Source code</a>');
     if (l.writeup) out.push('<a href="' + esc(l.writeup) + '" rel="noopener">Read the write-up</a>');
-    return out.length ? '<div class="links">' + out.join("") + "</div>" : "";
+    if (!out.length) return "";
+    return '<div class="links">' + out.join("") + "</div>" +
+      (l.source && p.useCases ? '<p class="source-uses">' + esc(p.useCases) + "</p>" : "");
   }
   function stackList(p) {
     return '<ul class="stack" aria-label="Built with">' +
@@ -117,7 +119,8 @@
     if (!imgs.length) return "";
     var slides = imgs.map(function (im, i) {
       return '<figure class="car-slide" aria-label="' + (i + 1) + " of " + imgs.length + '">' +
-        '<img src="' + esc(im.src) + '" alt="' + esc(im.alt || "") + '" loading="lazy">' +
+        '<a href="' + esc(im.src) + '" target="_blank" rel="noopener" class="car-zoom" aria-label="Open full image: ' + esc(im.alt || im.caption || "screenshot") + '">' +
+        '<img src="' + esc(im.src) + '" alt="' + esc(im.alt || "") + '" loading="lazy"></a>' +
         (im.caption ? "<figcaption>" + esc(im.caption) + "</figcaption>" : "") + "</figure>";
     }).join("");
     var controls = imgs.length < 2 ? "" :
@@ -176,22 +179,38 @@
     return k !== "claude" && demos.some(function (p) { return p.lane === k; });
   });
   var filters = document.getElementById("filters");
-  filters.innerHTML = ['<button class="chip" data-lane="all" aria-pressed="true">All</button>']
+  var filterButtons = ['<button class="chip" data-lane="all" aria-pressed="true">All</button>']
     .concat(demoLanes.map(function (k) {
       return '<button class="chip" data-lane="' + esc(k) + '" aria-pressed="false">' + esc(laneLabel(k)) + "</button>";
-    })).join("");
+    }));
+  filterButtons.push('<button class="chip" data-lane="claude" aria-pressed="false">Claude</button>');
+  filterButtons.push('<button class="chip" data-lane="knowledge" aria-pressed="false">Knowledge</button>');
+  if (data.pwas && data.pwas.length) {
+    filterButtons.push('<button class="chip" data-lane="apps" aria-pressed="false">Web Apps</button>');
+  }
+  filters.innerHTML = filterButtons.join("");
+
+  var subAutomations = document.getElementById("automations");
+  var subSkills = document.getElementById("skills");
+  var subApps = document.getElementById("apps");
 
   function setFilter(lane) {
     Array.prototype.forEach.call(filters.querySelectorAll(".chip"), function (c) {
       c.setAttribute("aria-pressed", String(c.getAttribute("data-lane") === lane));
     });
-    renderDemos(lane);
+    var isAll = lane === "all";
+    var showDemos = isAll || (lane !== "claude" && lane !== "knowledge" && lane !== "apps");
+    grid.hidden = !showDemos;
+    if (showDemos) renderDemos(lane);
+    if (subAutomations) subAutomations.hidden = !(isAll || lane === "claude");
+    if (subSkills) subSkills.hidden = !(isAll || lane === "knowledge");
+    if (subApps) subApps.hidden = !(isAll || lane === "apps");
   }
   filters.addEventListener("click", function (e) {
     var c = e.target.closest(".chip");
     if (c) setFilter(c.getAttribute("data-lane"));
   });
-  renderDemos("all");
+  setFilter("all");
 
   /* ---------- hero lane index (counts are computed, never typed) ---------- */
   function countText(lane) {
@@ -216,9 +235,6 @@
     var b = e.target.closest("[data-goto]");
     if (!b) return;
     var lane = b.getAttribute("data-goto");
-    if (lane === "claude") return document.getElementById("automations").scrollIntoView();
-    if (lane === "knowledge") return document.getElementById("brain-title").scrollIntoView();
-    if (lane === "apps") return document.getElementById("apps").scrollIntoView();
     setFilter(lane);
     document.getElementById("demos").scrollIntoView();
   });

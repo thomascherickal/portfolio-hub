@@ -60,7 +60,7 @@ window.PORTFOLIO = {
     {
       id: "ferrum-cpu",
       lane: "systems",
-      status: "building",
+      status: "complete",
       title: "Ferrum SLM Studio (CPU)",
       icon: "assets/ferrum/ferrum-icon.png",
       problem: "Teams need fast, private inference for small models without a GPU bill.",
@@ -77,6 +77,7 @@ window.PORTFOLIO = {
         { src: "assets/ferrum/ferrum-cpu/github.jpg", alt: "The ferrum-cpu repository page on GitHub", caption: "The code is open source on GitHub" }
       ],
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/ferrum-cpu", writeup: "" },
+      useCases: "Use cases: air-gapped enterprise environments, privacy-first local document Q&A, edge/workstation inference without GPUs, and deterministic CPU benchmarking.",
       updated: "2026-11-15"
     },
     {
@@ -96,7 +97,25 @@ window.PORTFOLIO = {
         { src: "assets/ferrum/ferrum-gpu/github.jpg", alt: "The ferrum-gpu repository page on GitHub", caption: "The code is open source on GitHub" }
       ],
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/ferrum-gpu", writeup: "" },
+      useCases: "Use cases: high-throughput on-prem LLM serving, private batch inference and code-generation pipelines, and GPU-accelerated local RAG without cloud API costs.",
       updated: "2026-11-15"
+    },
+    {
+      id: "go-ai-gateway",
+      lane: "systems",
+      status: "complete",
+      title: "Go AI Gateway — AI Traffic Control Plane",
+      problem: "Every team calls LLMs its own way, so spend, data leaks, and audit are invisible.",
+      summary: "A single Go gateway compiled with TinyGo to Cloudflare Workers, backed by D1 and Workers AI with native routing across Anthropic, Gemini, Grok, Llama, DeepSeek, Qwen, OpenAI, and Mistral. Enforces per-team micro-dollar budgets, PII/secret redaction, and immutable audit logs.",
+      stack: ["Go", "TinyGo", "Cloudflare Workers", "Cloudflare D1", "Workers AI"],
+      images: [
+        { src: "assets/go-ai-gateway/go-ai-gateway-dashboard.jpg", alt: "Go AI Gateway Control Plane Dashboard showing team budgets, model routing, and audit logs", caption: "1. Control Plane Dashboard" },
+        { src: "assets/go-ai-gateway/go-ai-gateway-explorer.jpg", alt: "Go AI Gateway interactive API explorer and multi-provider request tester", caption: "2. Interactive API Explorer" },
+        { src: "assets/go-ai-gateway/github.jpg", alt: "The go-ai-gateway repository page on GitHub", caption: "3. Open source on GitHub" }
+      ],
+      links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/go-ai-gateway", writeup: "" },
+      useCases: "Use cases: centralized multi-vendor LLM routing with fallbacks, per-team micro-dollar budget enforcement, automatic PII and secret redaction before prompts leave your network, and immutable compliance audit logging.",
+      updated: "2026-11-16"
     },
 
     /* ---------- Claude automations (recorded runs) ---------- */
@@ -104,56 +123,85 @@ window.PORTFOLIO = {
       id: "claude-pr-review-test-gaps",
       lane: "claude",
       status: "video",
-      title: "PR review that writes the missing tests",
-      problem: "AI-written code is arriving faster than senior engineers can review it.",
-      summary: "A Claude Code GitHub Action reviews every pull request, flags risky changes, then opens a follow-up commit with the tests the change was missing.",
-      stack: ["Claude Code GitHub Actions", "Skills", "pytest", "cargo test"],
+      title: "PR review that writes missing unit tests",
+      problem: "Pull requests often land without tests for new edge cases.",
+      summary: "Claude reads the diff on a pull request, spots untested branches, writes unit tests and pushes them to the branch.",
+      stack: ["Claude Code", "GitHub Actions", "pytest"],
       links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-14"
+      updated: "2026-11-16"
     },
     {
-      id: "claude-ai-spend-report",
+      id: "claude-commit-changelog",
       lane: "claude",
       status: "video",
-      title: "Weekly AI adoption and spend report",
-      problem: "Leadership cannot see which teams get value from AI tools and what it costs.",
-      summary: "A scheduled Claude routine turns usage exports into a one-page report per team: spend, wins, risks and the next three things to try.",
-      stack: ["Claude Code routines", "Claude Agent SDK", "Python"],
+      title: "Automated changelog & release notes",
+      problem: "Writing release notes from dozens of commits before a tag is tedious.",
+      summary: "Claude reads the commits since the last tag, groups changes into fixes and features, and updates CHANGELOG.md.",
+      stack: ["Claude Code", "GitHub Actions", "Markdown"],
       links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-14"
+      updated: "2026-11-16"
     },
     {
-      id: "go-ai-traffic-control",
+      id: "claude-readme-sync",
+      lane: "claude",
+      status: "video",
+      title: "Keep README & API docs in sync with code",
+      problem: "CLI flags and endpoints change in code while READMEs stay outdated.",
+      summary: "Claude compares the latest code changes against README.md and opens a PR with updated examples and flags.",
+      stack: ["Claude Code", "GitHub Actions", "Markdown"],
+      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
+      updated: "2026-11-16"
+    },
+    {
+      id: "claude-lint-type-fix",
+      lane: "claude",
+      status: "video",
+      title: "Auto-fix lint and type errors on push",
+      problem: "Small lint or type errors break CI and slow down merges.",
+      summary: "When CI fails on lint or type checks, Claude runs the linter locally, applies minimal fixes and pushes a clean commit.",
+      stack: ["Claude Code", "ESLint", "TypeScript"],
+      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
+      updated: "2026-11-16"
+    },
+    {
+      id: "claude-bug-repro-test",
+      lane: "claude",
+      status: "video",
+      title: "Turn a GitHub issue into a failing repro test",
+      problem: "Developers spend time reproducing bug reports before they can fix them.",
+      summary: "Claude reads a new bug issue, writes a minimal failing test that reproduces it and attaches it to a draft PR.",
+      stack: ["Claude Code", "GitHub Issues", "node:test"],
+      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
+      updated: "2026-11-16"
+    },
+    {
+      id: "claude-dep-bump-check",
+      lane: "claude",
+      status: "video",
+      title: "Dependency update & smoke-test check",
+      problem: "Routine dependency bumps pile up because nobody wants to verify them.",
+      summary: "Claude updates minor dependencies, runs the test suite, fixes any small breaking import and reports the result.",
+      stack: ["Claude Code", "GitHub Actions", "npm"],
+      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
+      updated: "2026-11-16"
+    },
+    /* ---------- AI Systems Projects ---------- */
+    {
+      id: "cpp-enterprise-data-guard",
       lane: "systems",
-      status: "building",
-      title: "AI traffic control plane",
-      problem: "Every team calls LLMs its own way, so spend, data leaks and audit are invisible.",
-      summary: "A Go gateway every internal tool calls instead of the model directly: per-team budgets, personal-data redaction, model routing and a full audit log.",
-      stack: ["Go", "TinyGo", "Workers", "D1", "Workers AI"],
-      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-14"
-    },
-    {
-      id: "rag-ai-policy-desk",
-      lane: "rag",
-      status: "building",
-      title: "AI policy desk",
-      problem: "Engineers keep asking whether they may paste client code into an AI tool.",
-      summary: "Answers questions about the company's AI usage policy and the standards behind it, quoting the exact clause every time.",
-      stack: ["AI Search", "Workers", "Workers AI"],
-      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-14"
-    },
-    {
-      id: "cpp-pii-secret-guard",
-      lane: "systems",
-      status: "building",
-      title: "Secret and personal-data guard",
-      problem: "Keys and customer data leak into prompts before anyone notices.",
-      summary: "A C++ scanner compiled to WebAssembly that checks text and code for secrets and personal data in the browser, before it reaches any AI tool.",
-      stack: ["C++", "Emscripten", "WebAssembly"],
-      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-14"
+      status: "complete",
+      title: "Enterprise Data Guard",
+      problem: "Developers and employees routinely paste stack traces, config files, database URIs and customer records into AI assistants.",
+      summary: "Client-side C++17 / WebAssembly secret and personal-data scanner (Emscripten data_guard.wasm) with a native GTK+ 3 Admin Control Centre and zero-trust web dashboard that redacts API keys, JWTs, credit cards, SSNs and IBANs before a single byte leaves the browser.",
+      stack: ["C++17", "Emscripten", "WebAssembly", "GTK+ 3", "Docker"],
+      images: [
+        { src: "assets/cpp-enterprise-data-guard/Enterprise Data Guard UI.jpg", alt: "Enterprise Data Guard web dashboard scanning and redacting secrets and PII in the browser", caption: "1. Zero-Trust Web Dashboard" },
+        { src: "assets/cpp-enterprise-data-guard/GUI-Admin.jpg", alt: "Native C++ GTK+ 3 Admin Control Centre for configuring policies, allowlists and custom rules", caption: "2. C++ Admin Control Centre" },
+        { src: "assets/cpp-enterprise-data-guard/github.jpg", alt: "The cpp-enterprise-data-guard repository page on GitHub", caption: "3. Open source on GitHub" }
+      ],
+      links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/cpp-enterprise-data-guard", writeup: "" },
+      useCases: "Use cases: zero-trust browser prompt interception before data reaches external LLMs, centralized security policy & allowlist management via native GTK3 GUI, and 100% client-side secret/PII redaction for regulated enterprises.",
+      updated: "2026-11-16"
     },
     {
       id: "julia-ai-roi-simulator",
@@ -172,7 +220,7 @@ window.PORTFOLIO = {
   pwas: [
     { name: "Budget Tracker", purpose: "Track personal income, expenses and savings offline in your browser.", url: "https://thomascherickal.github.io/Budget-Tracker/", icon: "assets/PWAs/Budget-Tracker.jpg" },
     { name: "LinkedIn Profile Score", purpose: "Audit and score your LinkedIn profile for recruiter visibility.", url: "https://thomascherickal.github.io/LinkedIn-Profile-Score-App/", icon: "assets/PWAs/LinkedIn Authority Suite.png" },
-    { name: "Top 10 AI Tools Finder", purpose: "Discover the top 10 AI tools tailored to your workflow and role.", url: "https://github.com/thomascherickal/Top-10-AI-Tools-Finder-App", icon: "https://raw.githubusercontent.com/thomascherickal/Top-10-AI-Tools-Finder-App/master/Screenshot.png" },
+    { name: "Top 10 AI Tools Finder", purpose: "Discover the top 10 AI tools tailored to your workflow and role.", url: "https://thomascherickal.github.io/Top-10-AI-Tools-Finder-App/", icon: "https://raw.githubusercontent.com/thomascherickal/Top-10-AI-Tools-Finder-App/master/Screenshot.png" },
     { name: "Tech Jobs Roadmap", purpose: "Interactive career roadmap for breaking into and advancing in tech roles.", url: "https://thomascherickal.github.io/Tech-Jobs-RoadMap-App/", icon: "https://raw.githubusercontent.com/thomascherickal/Tech-Jobs-RoadMap-App/master/Screenshot.png" },
     { name: "Inbound Signal Scorer", purpose: "Score and prioritize inbound recruiter and job-search signals.", url: "https://thomascherickal.github.io/inbound-signal-scorer/", icon: "assets/PWAs/LinkedIn Inbouund Scorer.png" },
     { name: "ATS Resume Builder Pro", purpose: "Build an ATS-friendly resume and view your compatibility score live.", url: "https://thomascherickal.github.io/ats-resume-builder-pro/", icon: "assets/PWAs/ATS Resume Builder.png" }
