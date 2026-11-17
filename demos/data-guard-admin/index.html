@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Enterprise Data Guard - Admin Control Centre</title>
+<link rel="stylesheet" href="admin.css"></head>
+<body>
+<div class="desk">
+<div class="window" id="window">
+  <div class="titlebar"><span class="wm"></span><span class="title">Enterprise Data Guard — Admin Control Centre</span><span class="wm close">×</span></div>
+  <div class="root">
+    <div class="header"><b>Enterprise Data Guard — C++ Admin Control Centre</b> <small>(Shared Core Engine v1.0.0)</small></div>
+    <div class="notebook">
+      <div class="tabs" role="tablist">
+        <button class="tab checked" role="tab" data-page="p0">Policy Configuration</button>
+        <button class="tab" role="tab" data-page="p1">Allowlist &amp; Custom Rules</button>
+        <button class="tab" role="tab" data-page="p2">Live Scanner Test Bench</button>
+      </div>
+      <div class="stack">
+        <section id="p0" class="page grid">
+          <label class="gl r0">Organization:</label><input id="org" class="c1 r0" type="text">
+          <label class="chk r1"><input id="secrets" type="checkbox"><span class="box"></span>Scan API Keys, Tokens &amp; Private Keys</label>
+          <label class="chk r2"><input id="pii" type="checkbox"><span class="box"></span>Scan Personal Data (Credit Cards, SSN, IBAN, Email)</label>
+          <label class="chk r3"><input id="entropy" type="checkbox"><span class="box"></span>Enable High-Entropy Bearer Detection</label>
+          <label class="chk r4"><input id="ip" type="checkbox"><span class="box"></span>Flag IPv4 Addresses</label>
+          <label class="chk r5"><input id="block" type="checkbox"><span class="box"></span>Block Prompt on Critical Finding</label>
+          <label class="gl r6">Minimum Severity:</label><select id="minsev" class="c1 r6"><option>LOW</option><option>MEDIUM</option><option>HIGH</option><option>CRITICAL</option></select>
+          <label class="gl r7">Redaction Mode:</label><select id="redact" class="c1 r7"><option>PLACEHOLDER</option><option>MASK</option><option>REMOVE</option></select>
+          <label class="gl r8">Entropy Threshold:</label><input id="ethr" class="c1 r8" type="number" min="2" max="6" step="0.1">
+          <label class="gl r9">Max Findings Before Block:</label><input id="maxf" class="c1 r9" type="number" min="0" max="100" step="1">
+        </section>
+        <section id="p1" class="page col" hidden>
+          <div class="row"><input id="allowEntry" class="grow" placeholder="Allowlist token or email..."><button id="addAllow">Add Allowlist Entry</button></div>
+          <textarea id="allowView" class="tv grow" readonly></textarea>
+          <div class="row"><input id="ruleId" placeholder="Rule ID (e.g. CUST-1)"><input id="rulePat" class="grow" placeholder="Regex pattern..."><select id="ruleSev"><option>LOW</option><option>MEDIUM</option><option selected>HIGH</option><option>CRITICAL</option></select><button id="addRule">Add Custom Rule</button></div>
+          <textarea id="ruleView" class="tv grow" readonly></textarea>
+        </section>
+        <section id="p2" class="page col" hidden>
+          <textarea id="testIn" class="tv grow" spellcheck="false"></textarea>
+          <button id="runScan" class="azure-primary">Run C++ Policy Scan</button>
+          <textarea id="testOut" class="tv grow" readonly></textarea>
+        </section>
+      </div>
+    </div>
+    <div class="row actions"><button id="load">Load Policy JSON...</button><button id="save" class="azure-primary">Export Policy JSON...</button><button id="reset">Reset Defaults</button></div>
+    <div id="status" class="status">Ready.</div>
+  </div>
+</div>
+</div>
+<div id="dialogWrap" class="dialogWrap" hidden><div class="dialog" role="dialog" aria-modal="true"><div class="titlebar"><span class="title" id="dlgTitle"></span></div><div class="dlgBody"><label>Name: <input id="dlgName" type="text"></label><p class="hint" id="dlgHint"></p><div class="row end"><button id="dlgCancel">Cancel</button><button id="dlgOk" class="azure-primary">Save</button></div></div></div></div>
+<input id="fileIn" type="file" accept=".json,application/json" hidden>
+<p class="foot">Browser edition: the policy engine and AdminController are the unmodified C++ sources compiled to WebAssembly; the GTK3 widgets are redrawn in HTML. File dialogs use your browser's file picker and downloads. <a href="../data-guard/index.html">Open the web dashboard</a>.</p>
+<script src="admin_core.js"></script><script src="admin.js"></script>
+</body></html>

@@ -38,7 +38,6 @@ window.PORTFOLIO = {
     intro:
       "Live demos and recorded runs of the systems I build for engineering teams moving to AI-first delivery: Claude agent automations, RAG, local LLMs and the Rust, Go, C++ and Julia underneath them.",
     links: {
-      book: "https://topmate.io/thomascherickal",
       site: "https://thomascherickal.com",
       consulting: "https://thedigitalfuturist.com",
       linkedin: "https://www.linkedin.com/in/thomascherickal",
@@ -46,17 +45,17 @@ window.PORTFOLIO = {
       patreon: "https://www.patreon.com/thomascherickal",
       newsletter: "https://thomascherickal.kit.com",
       github: "https://github.com/thomascherickal",
-      brain: "https://skills.thedigitalfuturist.com"
+      skills: "https://skills.thedigitalfuturist.com"
     }
   },
 
   lanes: {
     claude: { label: "Automations", tone: "gold" },
-    genai: { label: "Gen AI", tone: "magenta" },
-    rag: { label: "RAG", tone: "magenta" },
-    systems: { label: "Systems", tone: "cyan" },
-    science: { label: "Scientific", tone: "violet" },
-    knowledge: { label: "Knowledge", tone: "violet" }
+    genai: { label: "Gen AI", tone: "gold" },
+    rag: { label: "Gateways", tone: "gold" },
+    systems: { label: "Systems", tone: "gold" },
+    science: { label: "Scientific", tone: "gold" },
+    knowledge: { label: "Knowledge", tone: "gold" }
   },
 
   projects: [
@@ -83,7 +82,7 @@ window.PORTFOLIO = {
       ],
       run: { src: "demos/ferrum-cpu-studio/index.html", height: 760, note: "The real Ferrum SLM Studio UI running on a preloaded 620 KB model (507K params, 10 minutes of CPU training on TinyStories) via WebAssembly; Generate, Models, GGUF info, Datasets and System work, while training, fine-tuning, export and serving need the desktop app." },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/ferrum-cpu", writeup: "" },
-      useCases: "Use cases: air-gapped enterprise environments, privacy-first local document Q&A, edge/workstation inference without GPUs, and deterministic CPU benchmarking.",
+      useCases: "Built in Rust for air-gapped enterprise environments, privacy-first local document Q&A, and edge or developer workstation inference without GPUs. Teams can prepare datasets, train small transformer models from scratch, run deterministic CPU benchmarks, export standard GGUF checkpoints for llama.cpp or Ollama, and serve models over HTTP or WebAssembly.",
       updated: "2026-11-15"
     },
     {
@@ -105,7 +104,7 @@ window.PORTFOLIO = {
       ],
       run: { src: "demos/ferrum-gpu-studio/index.html", height: 760, note: "The real Ferrum GPU GUI on a preloaded 285 KB byte-level model (171K params, trained on TinyStories) with generation on this tab's WebGPU; model load/download and GGUF upload work, while training needs the desktop app." },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/ferrum-gpu", writeup: "" },
-      useCases: "Use cases: high-throughput on-prem LLM serving, private batch inference and code-generation pipelines, and GPU-accelerated local RAG without cloud API costs.",
+      useCases: "Built in safe Rust with wgpu and WGSL for high-throughput on-prem LLM serving, private batch inference, code-generation pipelines, and GPU-accelerated local RAG without recurring cloud API costs. Every custom GPU shader kernel is verified against a CPU reference, supporting GGUF import/export and zero-setup browser inference via WebGPU.",
       updated: "2026-11-15"
     },
     {
@@ -124,7 +123,7 @@ window.PORTFOLIO = {
       ],
       run: { src: "demos/go-ai-gateway/index.html", height: 900, note: "The real Go gateway runs as WebAssembly in this tab with mock providers and demo teams; live vendor calls, D1 storage and Cloudflare deployment need your own keys." },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/go-ai-gateway", writeup: "" },
-      useCases: "Use cases: centralized multi-vendor LLM routing with fallbacks, per-team micro-dollar budget enforcement, automatic PII and secret redaction before prompts leave your network, and immutable compliance audit logging.",
+      useCases: "Compiled with TinyGo for Cloudflare Workers to provide centralized multi-vendor LLM routing with automatic fallbacks, per-team micro-dollar budget enforcement in D1, and real-time PII and secret redaction before prompts leave your network. Compatible with OpenAI, Anthropic, and Gemini SDKs while recording immutable compliance audit logs and cost reconciliation.",
       updated: "2026-11-16"
     },
 
@@ -216,7 +215,7 @@ window.PORTFOLIO = {
         { src: "assets/cpp-enterprise-data-guard/GUI-Admin.jpg", alt: "Native C++ GTK+ 3 Admin Control Centre for configuring policies, allowlists and custom rules", caption: "2. C++ Admin Control Centre" },
         { src: "assets/cpp-enterprise-data-guard/github.jpg", alt: "The cpp-enterprise-data-guard repository page on GitHub", caption: "3. Open source on GitHub" }
       ],
-      run: { src: "demos/data-guard/index.html", height: 720, note: "Runs the real C++ scanner as WebAssembly in this tab; the native GTK+ 3 Admin app and the Chrome extension need a local install." },
+      run: { src: "demos/data-guard-admin/index.html", height: 780, note: "The Admin Control Centre (the C++ AdminController compiled to WebAssembly, GTK window redrawn in HTML); the web dashboard is linked below it, and the Chrome extension needs a local install." },
       extension: {
         title: "Chrome extension (Manifest V3)",
         text: "Brings the same C++ WebAssembly scanner into the AI chat sites you already use, so secrets and personal data are caught before a prompt is sent.",
@@ -231,7 +230,7 @@ window.PORTFOLIO = {
         source: "https://github.com/thomascherickal/cpp-enterprise-data-guard/tree/main/extension"
       },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/cpp-enterprise-data-guard", writeup: "" },
-      useCases: "Use cases: zero-trust browser prompt interception before data reaches external LLMs, centralized security policy & allowlist management via native GTK3 GUI, a Chrome extension that guards ChatGPT, Claude and Gemini prompts, and 100% client-side secret/PII redaction for regulated enterprises.",
+      useCases: "Built in C++17 and compiled with Emscripten to WebAssembly for zero-trust browser prompt interception before sensitive data reaches external LLMs. Includes a native GTK+ 3 Admin Control Centre for managing allowlists and custom rules, a local Chrome extension for AI chat apps, and 100% client-side secret and PII redaction.",
       updated: "2026-11-16"
     },
     {
@@ -258,18 +257,60 @@ window.PORTFOLIO = {
       ],
       run: { src: "demos/julia-roi/index.html", height: 760, note: "Runs on the pre-computed simulation results (static JSON); re-running the Julia models themselves needs a local Julia install." },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/julia-ai-roi-simulation", writeup: "" },
-      useCases: "Use cases: board-ready AI ROI business cases with P10/P50/P90 confidence bands, modeling AI champion adoption vs. shelfware risk, and 6-month Bayesian pilot checkpoint forecasting.",
+      useCases: "Written in Julia to model board-ready AI adoption business cases with honest P10, P50, and P90 confidence bands instead of single-point guesses. Simulates 325 employees across four departments over 36 months using Monte Carlo, agent-based, system dynamics, queueing, and Bayesian pilot checkpoint lenses exported to an interactive web lab.",
       updated: "2026-11-17"
     }
   ],
 
   /* ---------- PWA apps on GitHub Pages (already built) ---------- */
   pwas: [
-    { name: "Budget Tracker", purpose: "Track personal income, expenses and savings offline in your browser.", url: "https://thomascherickal.github.io/Budget-Tracker/", icon: "assets/PWAs/Budget-Tracker.jpg" },
-    { name: "LinkedIn Profile Score", purpose: "Audit and score your LinkedIn profile for recruiter visibility.", url: "https://thomascherickal.github.io/LinkedIn-Profile-Score-App/", icon: "assets/PWAs/LinkedIn Authority Suite.png" },
-    { name: "Top 10 AI Tools Finder", purpose: "Discover the top 10 AI tools tailored to your workflow and role.", url: "https://thomascherickal.github.io/Top-10-AI-Tools-Finder-App/", icon: "https://raw.githubusercontent.com/thomascherickal/Top-10-AI-Tools-Finder-App/master/Screenshot.png" },
-    { name: "Tech Jobs Roadmap", purpose: "Interactive career roadmap for breaking into and advancing in tech roles.", url: "https://thomascherickal.github.io/Tech-Jobs-RoadMap-App/", icon: "https://raw.githubusercontent.com/thomascherickal/Tech-Jobs-RoadMap-App/master/Screenshot.png" },
-    { name: "Inbound Signal Scorer", purpose: "Score and prioritize inbound recruiter and job-search signals.", url: "https://thomascherickal.github.io/inbound-signal-scorer/", icon: "assets/PWAs/LinkedIn Inbouund Scorer.png" },
-    { name: "ATS Resume Builder Pro", purpose: "Build an ATS-friendly resume and view your compatibility score live.", url: "https://thomascherickal.github.io/ats-resume-builder-pro/", icon: "assets/PWAs/ATS Resume Builder.png" }
+    {
+      name: "Budget Tracker",
+      purpose: "Track personal income, expenses and savings offline in your browser.",
+      url: "https://thomascherickal.github.io/Budget-Tracker/",
+      icon: "assets/PWAs/Budget-Tracker.jpg",
+      source: "https://github.com/thomascherickal/Budget-Tracker",
+      sourceDesc: "Vanilla HTML, CSS, and JavaScript progressive web app using browser localStorage and service workers for offline-first personal finance tracking. Users can log daily income and expenses, organize spending across custom categories, monitor monthly savings targets, and view instant balance summaries with zero backend servers, accounts, or external data sharing."
+    },
+    {
+      name: "LinkedIn Profile Score",
+      purpose: "Audit and score your LinkedIn profile for recruiter visibility.",
+      url: "https://thomascherickal.github.io/LinkedIn-Profile-Score-App/",
+      icon: "assets/PWAs/LinkedIn Authority Suite.png",
+      source: "https://github.com/thomascherickal/LinkedIn-Profile-Score-App",
+      sourceDesc: "Client-side profile scoring rubric and interactive audit checklist built in plain HTML, CSS, and JavaScript. Evaluates LinkedIn headlines, about sections, experience bullets, featured media, and keyword density against recruiter search criteria, giving professionals immediate, actionable feedback and a clear score breakdown without requiring login or storing personal data."
+    },
+    {
+      name: "Top 10 AI Tools Finder",
+      purpose: "Discover the top 10 AI tools tailored to your workflow and role.",
+      url: "https://thomascherickal.github.io/Top-10-AI-Tools-Finder-App/",
+      icon: "https://raw.githubusercontent.com/thomascherickal/Top-10-AI-Tools-Finder-App/master/Screenshot.png",
+      source: "https://github.com/thomascherickal/Top-10-AI-Tools-Finder-App",
+      sourceDesc: "Static client-side recommendation engine built with vanilla HTML, CSS, and JavaScript that matches user roles, goals, and daily workflows to ten curated AI tools. Evaluates productivity needs, budget constraints, and automation use cases in the browser with instant filtering, side-by-side comparisons, and zero backend servers or user tracking."
+    },
+    {
+      name: "Tech Jobs Roadmap",
+      purpose: "Interactive career roadmap for breaking into and advancing in tech roles.",
+      url: "https://thomascherickal.github.io/Tech-Jobs-RoadMap-App/",
+      icon: "https://raw.githubusercontent.com/thomascherickal/Tech-Jobs-RoadMap-App/master/Screenshot.png",
+      source: "https://github.com/thomascherickal/Tech-Jobs-RoadMap-App",
+      sourceDesc: "Interactive milestone and skill-tree web application built in vanilla HTML, CSS, and JavaScript to help engineers plan structured learning paths across modern software tracks. Users can explore role requirements, track core technical competencies, bookmark key resources, and prepare for career transitions with offline PWA support and local progress persistence."
+    },
+    {
+      name: "Inbound Signal Scorer",
+      purpose: "Score and prioritize inbound recruiter and job-search signals.",
+      url: "https://thomascherickal.github.io/inbound-signal-scorer/",
+      icon: "assets/PWAs/LinkedIn Inbouund Scorer.png",
+      source: "https://github.com/thomascherickal/inbound-signal-scorer",
+      sourceDesc: "Zero-dependency client-side scoring calculator built with vanilla HTML, CSS, and JavaScript for evaluating inbound recruiter outreach quality, role alignment, and compensation signals. Helps technical professionals quickly separate high-signal opportunities from generic templates using structured weighted criteria that run completely offline in the browser with zero data collection."
+    },
+    {
+      name: "ATS Resume Builder Pro",
+      purpose: "Build an ATS-friendly resume and view your compatibility score live.",
+      url: "https://thomascherickal.github.io/ats-resume-builder-pro/",
+      icon: "assets/PWAs/ATS Resume Builder.png",
+      source: "https://github.com/thomascherickal/ats-resume-builder-pro",
+      sourceDesc: "Browser-based resume editor built in plain HTML, CSS, and JavaScript with real-time applicant tracking keyword matching, live compatibility scoring, and structured section templates. Candidates can tailor bullet points to specific job descriptions, verify formatting compliance, save drafts locally via browser storage, and export clean print-ready PDF resumes offline."
+    }
   ]
 };

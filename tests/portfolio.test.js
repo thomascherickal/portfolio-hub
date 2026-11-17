@@ -62,7 +62,7 @@ function createMockDom(options = {}) {
   const defaultIds = [
     "main", "site-name", "site-role", "site-headline", "site-intro",
     "book-top", "book-hero", "book-foot", "brain-link", "brain-shot",
-    "brain-lane", "foot-links", "automation-list", "demos", "demo-grid", "filters",
+    "brain-lane", "foot-links", "hero-links", "automation-list", "demos", "demo-grid", "filters",
     "automations", "skills", "apps", "lane-index", "pwa-list", "contact"
   ];
   for (const id of defaultIds) {
@@ -220,7 +220,7 @@ describe("assets/app.js", () => {
     assert.match(ytParent.innerHTML, /youtube-nocookie\.com\/embed\/abc123/);
 
     // Run Project: real HTML carries the button and extension block
-    assert.match(dom.elements.get("demo-grid").innerHTML, /data-run="demos\/data-guard\/index\.html"/);
+    assert.match(dom.elements.get("demo-grid").innerHTML, /data-run="demos\/data-guard-admin\/index\.html"/);
     assert.match(dom.elements.get("demo-grid").innerHTML, /Chrome extension/);
     const stage = { innerHTML: "" };
     const runBtn = {

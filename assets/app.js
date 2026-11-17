@@ -55,6 +55,51 @@
       .join("");
   }
 
+  var heroLinksEl = document.getElementById("hero-links");
+  if (heroLinksEl) {
+    var ico = {
+      book: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
+      globe: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+      code: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+      user: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+      mail: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>',
+      doc: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
+      star: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>'
+    };
+    var heroLinks = [
+      ["Book a Session", site.links.book, ico.book],
+      ["thomascherickal.com", site.links.site, ico.globe],
+      ["The Digital Futurist", site.links.consulting, ico.globe],
+      ["Portfolio", site.links.portfolio, ico.globe],
+      ["Intelligence Repo", site.links.brain, ico.star],
+      ["Pricing", site.links.pricing, ico.doc],
+      ["GitHub", site.links.github, ico.code],
+      ["LinkedIn", site.links.linkedin, ico.user],
+      ["X (Twitter)", site.links.x, ico.user],
+      ["Newsletter", site.links.newsletter, ico.mail],
+      ["Substack", site.links.substack, ico.doc],
+      ["Medium", site.links.medium, ico.doc],
+      ["HackerNoon", site.links.hackernoon, ico.doc],
+      ["Hashnode", site.links.hashnode, ico.doc],
+      ["Kaggle", site.links.kaggle, ico.star],
+      ["LeetCode", site.links.leetcode, ico.code],
+      ["HackerRank", site.links.hackerrank, ico.code],
+      ["Exercism", site.links.exercism, ico.code],
+      ["Codewars", site.links.codewars, ico.code],
+      ["Deep-ML", site.links.deepml, ico.star],
+      ["Patreon", site.links.patreon, ico.star],
+      ["Gumroad", site.links.gumroad, ico.star],
+      ["Linktree", site.links.linktree, ico.globe],
+      ["Quora", site.links.quora, ico.doc],
+      ["Reddit", site.links.reddit, ico.user],
+      ["Email", site.links.email, ico.mail]
+    ];
+    heroLinksEl.innerHTML = heroLinks
+      .filter(function (l) { return l[1]; })
+      .map(function (l) { return '<li><a class="hero-link-btn" href="' + esc(l[1]) + '" rel="me noopener">' + l[2] + "<span>" + esc(l[0]) + "</span></a></li>"; })
+      .join("");
+  }
+
   /* ---------- video frame ---------- */
   function frame(p) {
     var v = (p.links && p.links.video) || "", poster = (p.links && p.links.poster) || "";
@@ -92,6 +137,7 @@
     if (l.writeup) out.push('<a href="' + esc(l.writeup) + '" rel="noopener">Read the write-up</a>');
     if (!out.length) return "";
     return '<div class="links">' + out.join("") + "</div>" +
+      (l.source && p.sourceAbout ? '<p class="source-about">' + esc(p.sourceAbout) + "</p>" : "") +
       (l.source && p.useCases ? '<p class="source-uses">' + esc(p.useCases) + "</p>" : "");
   }
   function stackList(p) {
@@ -163,7 +209,7 @@
     var r = p.run;
     if (!r || !safeSrc(r.src)) return "";
     return '<div class="run" data-height="' + esc(r.height || 640) + '">' +
-      '<div class="run-bar"><button type="button" class="btn btn-gold btn-small" data-run="' + esc(r.src) +
+      '<div class="run-bar"><button type="button" class="btn btn-gold" data-run="' + esc(r.src) +
       '" data-title="' + esc(p.title) + '" aria-expanded="false">&#9654; Run Project</button>' +
       '<p class="run-note">' + esc(r.note || "") + "</p></div>" +
       '<div class="run-stage"></div></div>';
@@ -204,13 +250,13 @@
     grid.innerHTML = list.length ? list.map(function (p) {
       var hasVideo = p.links && p.links.video;
       return '<article class="demo ' + toneOf(p.lane) + '" id="' + esc(p.id) + '">' +
-        (hasVideo ? frame(p) : "") + carousel(p) + runPanel(p) +
         '<div class="demo-top"><span class="demo-lane">' +
         (p.icon ? '<img class="demo-icon" src="' + esc(p.icon) + '" alt="" width="24" height="24">' : "") +
         esc(laneLabel(p.lane)) + "</span>" + pill(p) + "</div>" +
         "<h3>" + esc(p.title) + "</h3>" +
         '<p class="problem"><strong>Problem:</strong> ' + esc(p.problem) + "</p>" +
         '<p class="summary">' + esc(p.summary) + "</p>" +
+        (hasVideo ? frame(p) : "") + carousel(p) + runPanel(p) +
         stackList(p) + licenseBadge(p) + linksRow(p) + extensionBlock(p) +
         '<p class="updated">Updated ' + esc(p.updated) + "</p></article>";
     }).join("") : '<p class="empty">Nothing in this area yet.</p>';
@@ -287,9 +333,12 @@
       ? '<div class="pwa-source"><div class="links"><a href="' + esc(a.url) + '" rel="noopener">Open app</a><a href="' + esc(a.source) + '" rel="noopener">Source code</a></div>' +
         (a.sourceDesc ? '<p class="source-uses">' + esc(a.sourceDesc) + "</p>" : "") + "</div>"
       : "";
-    return '<li class="pwa-card"><a class="pwa-card-link" href="' + esc(a.url) + '" rel="noopener"><span class="pwa-icon" aria-hidden="true">' + icon + "</span></a>" +
-      '<div class="pwa-body"><span class="pwa-name">' + esc(a.name) + ' <span class="pill pill-live">Live</span></span>' +
-      '<p class="pwa-purpose">' + esc(a.purpose) + "</p>" + sourceHtml + "</div></li>";
+    return '<li class="pwa-card">' +
+      '<div class="demo-top"><span class="demo-lane tone-cyan">Web App</span><span class="pill pill-live">Live</span></div>' +
+      "<h3>" + esc(a.name) + "</h3>" +
+      '<p class="pwa-purpose">' + esc(a.purpose) + "</p>" +
+      '<a class="pwa-card-link" href="' + esc(a.url) + '" rel="noopener"><span class="pwa-icon" aria-hidden="true">' + icon + "</span></a>" +
+      sourceHtml + "</li>";
   }).join("");
 
   /* ---------- dynamic footer ---------- */
