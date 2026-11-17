@@ -1,40 +1,46 @@
-# Portfolio hub - The Digital Futurist
+# Portfolio Hub — The Digital Futurist
 
-Static site. No build step, no framework, no server. Hosted free on Cloudflare Pages.
+Live portfolio hub for **Thomas Cherickal** (`portfolio.thedigitalfuturist.com`) — working proof that a software company can run AI-first.
 
-## Update the site (the only file you edit)
+Static, zero-build, zero-dependency HTML, CSS, and vanilla JavaScript hosted on Cloudflare Pages.
 
-`data/projects.js` holds every project, video, link and the PWA list.
+## What Is Included
 
-1. Edit `data/projects.js` (copy an existing project object to add a new one).
-2. Commit and push.
-3. Cloudflare Pages redeploys in about a minute.
+- **Systems & Scientific Demos** (with interactive in-page WebAssembly / WebGPU / static JSON demos and screenshot carousels):
+  - **Ferrum SLM Studio (CPU & GPU)** — Rust + WebAssembly / wgpu / WGSL small language model studios
+  - **Go AI Gateway** — TinyGo + Cloudflare Workers AI traffic control plane with per-team budgets and PII redaction
+  - **Enterprise Data Guard** — C++17 / Emscripten WebAssembly secret & PII scanner with native GTK+ 3 Admin GUI and Chrome extension
+  - **AI Adoption Business Case Simulator** — Julia 5-lens forecasting suite (Monte Carlo, Agent-Based, System Dynamics, Queueing, Bayesian)
+- **Claude Automations** — Developer-focused Claude Code & GitHub Actions workflows
+- **Knowledge** — [The Intelligence Repository](https://skills.thedigitalfuturist.com) (versioned agent skills and prompt-engineering frameworks)
+- **Installable Web Apps (PWAs)** — 6 zero-backend PWAs on GitHub Pages with source code links
 
-Area counts in the hero, the filter buttons and the section layout all update by themselves.
+## Architecture
 
-## Add a recording
+- `index.html`: Main entry point. Loads `assets/styles.css`, `assets/footer.css`, `data/projects.js`, and `assets/app.js`.
+- `data/projects.js`: Single source of truth for `window.PORTFOLIO` (`site`, `lanes`, `projects`, and `pwas`).
+- `assets/app.js`: Vanilla JS renderer for the hero, summary index, filterable project cards, screenshot carousels, live demo iframes, and PWAs.
+- `assets/styles.css` & `assets/footer.css`: Single-column, mobile-first styling.
+- `demos/`: Self-contained live demos (`ferrum-cpu-studio`, `ferrum-gpu-studio`, `go-ai-gateway`, `data-guard`, `data-guard-admin`, `julia-roi`).
+- `tests/portfolio.test.js`: Zero-dependency `node:test` suite with V8 coverage (see `test-coverage.md`).
 
-See `media/README.md`. MP4 files must be 25 MiB or smaller; use YouTube (`yt:VIDEO_ID`) for anything longer.
+## Local Preview
 
-## Deploy (one time)
+```bash
+python3 -m http.server 8080
+```
 
-Cloudflare dashboard > Workers & Pages > Create > Pages > Connect to Git > pick this repo.
+Then open `http://localhost:8080`.
 
-- Framework preset: None
-- Build command: (leave empty)
-- Build output directory: /
+## Running Tests
 
-Then Custom domains > Set up a domain > `portfolio.thedigitalfuturist.com`.
+```bash
+node --test --experimental-test-coverage tests/portfolio.test.js
+```
 
-## Keep it free
+## Deploy (Cloudflare Pages)
 
-- Keep this repository public (GitHub Actions minutes are free for public repos).
-- Do not add a payment method to the Cloudflare account.
-- Do not add R2, Workers Paid or Advanced Certificate Manager.
-- Use only first-level subdomains (`name.thedigitalfuturist.com`).
-
-## Preview locally
-
-    python3 -m http.server 8080
-
-Then open http://localhost:8080
+- **Framework preset**: None
+- **Build command**: *(empty)*
+- **Build output directory**: `/`
+- **Custom domain**: `portfolio.thedigitalfuturist.com`

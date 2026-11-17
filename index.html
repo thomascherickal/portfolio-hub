@@ -27,19 +27,237 @@
   <link rel="stylesheet" href="assets/styles.css">
   <link rel="stylesheet" href="assets/footer.css">
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Thomas Cherickal",
-  "jobTitle": "Generative AI Consultant",
-  "url": "https://thomascherickal.com",
-  "sameAs": [
-    "https://thedigitalfuturist.com",
-    "https://www.linkedin.com/in/thomascherickal",
-    "https://www.patreon.com/thomascherickal"
-  ]
-}
-</script>
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://thomascherickal.com/#person",
+        "name": "Thomas Cherickal",
+        "alternateName": "The Digital Futurist",
+        "jobTitle": "Generative AI Consultant",
+        "description": "Generative AI Consultant and AI-First Systems Engineer building production software in Rust, Go, C++, Julia, Python, and WebAssembly.",
+        "url": "https://thomascherickal.com",
+        "image": "https://portfolio.thedigitalfuturist.com/assets/logo.jpg",
+        "email": "mailto:thomascherickal@gmail.com",
+        "knowsAbout": [
+          "Generative AI",
+          "Claude Agent SDK",
+          "Retrieval-Augmented Generation (RAG)",
+          "Local LLMs",
+          "Rust",
+          "Go",
+          "C++",
+          "Julia",
+          "WebAssembly",
+          "WebGPU",
+          "Cloudflare Workers"
+        ],
+        "sameAs": [
+          "https://thedigitalfuturist.com",
+          "https://portfolio.thedigitalfuturist.com",
+          "https://skills.thedigitalfuturist.com",
+          "https://github.com/thomascherickal",
+          "https://www.linkedin.com/in/thomascherickal",
+          "https://x.com/thomazcherickal",
+          "https://www.patreon.com/thomascherickal",
+          "https://thomascherickal.kit.com",
+          "https://thesingularitypoint.substack.com",
+          "https://thomascherickal.medium.com",
+          "https://hackernoon.com/u/thomascherickal",
+          "https://www.kaggle.com/thomascherickal",
+          "https://linktr.ee/thomascherickal"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://portfolio.thedigitalfuturist.com/#website",
+        "url": "https://portfolio.thedigitalfuturist.com",
+        "name": "Thomas Cherickal | AI-First Engineering Portfolio",
+        "description": "Live demos and automation runs from Thomas Cherickal, Generative AI Consultant: AI-first engineering systems in Rust, Go, Python, Web, C++ and Julia.",
+        "publisher": { "@id": "https://thomascherickal.com/#person" },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": "https://portfolio.thedigitalfuturist.com/#profilepage",
+        "url": "https://portfolio.thedigitalfuturist.com",
+        "name": "Thomas Cherickal | AI-First Engineering Portfolio | The Digital Futurist",
+        "isPartOf": { "@id": "https://portfolio.thedigitalfuturist.com/#website" },
+        "mainEntity": { "@id": "https://thomascherickal.com/#person" },
+        "about": { "@id": "https://thomascherickal.com/#person" },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://portfolio.thedigitalfuturist.com/assets/og-card.png",
+          "width": 1200,
+          "height": 630
+        }
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://portfolio.thedigitalfuturist.com/#projects",
+        "name": "AI-First Engineering Projects & Installable Web Apps",
+        "numberOfItems": 11,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Ferrum SLM Studio (CPU)",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "Linux, macOS, Windows, Web",
+              "description": "A Rust studio to create, train, fine-tune and run small Transformer language models on the CPU with GGUF export and WebAssembly browser execution.",
+              "url": "https://github.com/thomascherickal/ferrum-cpu",
+              "author": { "@id": "https://thomascherickal.com/#person" },
+              "license": "https://opensource.org/licenses/MIT",
+              "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Ferrum SLM Studio (GPU)",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "Linux, macOS, Windows, WebGPU",
+              "description": "Train, fine-tune and run small Transformer language models on any GPU in safe Rust with wgpu, WGSL, GGUF, and WebGPU.",
+              "url": "https://github.com/thomascherickal/ferrum-gpu",
+              "author": { "@id": "https://thomascherickal.com/#person" },
+              "license": "https://opensource.org/licenses/MIT",
+              "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Go AI Gateway — AI Traffic Control Plane",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Cloudflare Workers, Linux, macOS, Windows",
+              "description": "TinyGo AI gateway on Cloudflare Workers with D1 per-team micro-dollar budgets, multi-vendor LLM routing, PII/secret redaction, and audit logs.",
+              "url": "https://github.com/thomascherickal/go-ai-gateway",
+              "author": { "@id": "https://thomascherickal.com/#person" },
+              "license": "https://opensource.org/licenses/MIT",
+              "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "Enterprise Data Guard",
+              "applicationCategory": "SecurityApplication",
+              "operatingSystem": "WebAssembly, Linux, Chrome",
+              "description": "Client-side C++17 / WebAssembly secret and personal-data scanner with GTK+ 3 Admin Control Centre and zero-trust browser prompt guard.",
+              "url": "https://github.com/thomascherickal/cpp-enterprise-data-guard",
+              "author": { "@id": "https://thomascherickal.com/#person" },
+              "license": "https://opensource.org/licenses/MIT",
+              "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+              "@type": "SoftwareApplication",
+              "name": "AI Adoption Business Case Simulator",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, Julia",
+              "description": "Models a 325-employee AI rollout over 36 months using 5 forecasting lenses in Julia with P10/P50/P90 ranges and interactive What-If lab.",
+              "url": "https://github.com/thomascherickal/julia-ai-roi-simulation",
+              "author": { "@id": "https://thomascherickal.com/#person" },
+              "license": "https://opensource.org/licenses/MIT",
+              "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "item": {
+              "@type": "WebApplication",
+              "name": "The Intelligence Repository",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "Web",
+              "description": "Versioned registry of AI agent skills and 8 prompt-engineering frameworks with semantic versioning and evaluation checks.",
+              "url": "https://skills.thedigitalfuturist.com",
+              "author": { "@id": "https://thomascherickal.com/#person" },
+              "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "item": {
+              "@type": "WebApplication",
+              "name": "Budget Tracker",
+              "applicationCategory": "FinanceApplication",
+              "operatingSystem": "Web, PWA",
+              "url": "https://thomascherickal.github.io/Budget-Tracker/",
+              "author": { "@id": "https://thomascherickal.com/#person" },
+              "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 8,
+            "item": {
+              "@type": "WebApplication",
+              "name": "LinkedIn Profile Score",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, PWA",
+              "url": "https://thomascherickal.github.io/LinkedIn-Profile-Score-App/",
+              "author": { "@id": "https://thomascherickal.com/#person" },
+              "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 9,
+            "item": {
+              "@type": "WebApplication",
+              "name": "Top 10 AI Tools Finder",
+              "applicationCategory": "UtilitiesApplication",
+              "operatingSystem": "Web, PWA",
+              "url": "https://thomascherickal.github.io/Top-10-AI-Tools-Finder-App/",
+              "author": { "@id": "https://thomascherickal.com/#person" },
+              "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 10,
+            "item": {
+              "@type": "WebApplication",
+              "name": "Tech Jobs Roadmap",
+              "applicationCategory": "EducationalApplication",
+              "operatingSystem": "Web, PWA",
+              "url": "https://thomascherickal.github.io/Tech-Jobs-RoadMap-App/",
+              "author": { "@id": "https://thomascherickal.com/#person" },
+              "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 11,
+            "item": {
+              "@type": "WebApplication",
+              "name": "Inbound Signal Scorer",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web, PWA",
+              "url": "https://thomascherickal.github.io/inbound-signal-scorer/",
+              "author": { "@id": "https://thomascherickal.com/#person" },
+              "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
@@ -85,7 +303,7 @@
     <section class="block" id="demos" aria-labelledby="demos-title">
       <div class="block-head">
         <h2 id="demos-title">Projects</h2>
-        <p>Each project solves one problem that engineering teams hit while moving to AI-first delivery.</p>
+        <p>Each project solves problems that engineering teams hit while moving to AI-first delivery.</p>
       </div>
       <div class="filters" role="group" aria-label="Filter demos by area" id="filters"></div>
       <div id="demo-grid" class="demo-grid" aria-live="polite"></div>

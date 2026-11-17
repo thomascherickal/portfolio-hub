@@ -47,7 +47,6 @@
       ["X", site.links.x],
       ["GitHub", site.links.github],
       ["Patreon", site.links.patreon],
-      ["Newsletter", site.links.newsletter]
     ];
     footLinksEl.innerHTML = footLinks
       .filter(function (l) { return l[1]; })
@@ -76,7 +75,6 @@
       ["GitHub", site.links.github, ico.code],
       ["LinkedIn", site.links.linkedin, ico.user],
       ["X (Twitter)", site.links.x, ico.user],
-      ["Newsletter", site.links.newsletter, ico.mail],
       ["Substack", site.links.substack, ico.doc],
       ["Medium", site.links.medium, ico.doc],
       ["HackerNoon", site.links.hackernoon, ico.doc],
@@ -204,7 +202,7 @@
   }, true);
 
   /* ---------- Run Project: live GUI in the page ---------- */
-  function safeSrc(u) { return /^(https:\/\/|[a-z0-9_\-][a-z0-9_\-\/.]*$)/i.test(u || "") ; }
+  function safeSrc(u) { return /^(https:\/\/|[a-z0-9_\-][a-z0-9_\-\/.]*$)/i.test(u || ""); }
   function runPanel(p) {
     var r = p.run;
     if (!r || !safeSrc(r.src)) return "";
@@ -310,10 +308,10 @@
     return '<li><button class="lane-link ' + toneOf(k) + '" data-goto="' + esc(k) + '">' +
       '<span class="lane-name">' + esc(laneLabel(k)) + '</span><span class="lane-count">' + countText(k) + "</span></button></li>";
   });
-  indexHtml.push('<li><button class="lane-link tone-violet" data-goto="knowledge"><span class="lane-name">Knowledge</span>' +
+  indexHtml.push('<li><button class="lane-link tone-gold" data-goto="knowledge"><span class="lane-name">Knowledge</span>' +
     '<span class="lane-count">1 live</span></button></li>');
   if (data.pwas && data.pwas.length) {
-    indexHtml.push('<li><button class="lane-link tone-cyan" data-goto="apps"><span class="lane-name">Web apps</span>' +
+    indexHtml.push('<li><button class="lane-link tone-gold" data-goto="apps"><span class="lane-name">Web Apps</span>' +
       '<span class="lane-count">' + data.pwas.length + " live</span></button></li>");
   }
   var laneIndex = document.getElementById("lane-index");
@@ -331,7 +329,7 @@
     var icon = a.icon ? '<img src="' + esc(a.icon) + '" alt="' + esc(a.name) + ' preview">' : esc((a.name || "?").charAt(0));
     var sourceHtml = a.source
       ? '<div class="pwa-source"><div class="links"><a href="' + esc(a.url) + '" rel="noopener">Open app</a><a href="' + esc(a.source) + '" rel="noopener">Source code</a></div>' +
-        (a.sourceDesc ? '<p class="source-uses">' + esc(a.sourceDesc) + "</p>" : "") + "</div>"
+      (a.sourceDesc ? '<p class="source-uses">' + esc(a.sourceDesc) + "</p>" : "") + "</div>"
       : "";
     return '<li class="pwa-card">' +
       '<div class="demo-top"><span class="demo-lane tone-cyan">Web App</span><span class="pill pill-live">Live</span></div>' +
