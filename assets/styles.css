@@ -288,6 +288,7 @@ button.poster { cursor: pointer; }
 /* projects stay in one column at every screen size */
 
 .run-bar .btn { padding: 14px 30px; font-size: 1.1rem; font-weight: 700; }
+.btn:disabled, .btn-disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
 .car-zoom { display: block; cursor: zoom-in; width: 100%; }
 .block + .block, .project-sub { border-top: 1px solid rgba(255, 255, 255, 0.14); padding-top: 48px; }
 .project-sub { margin-top: 56px; }

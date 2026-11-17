@@ -202,10 +202,18 @@
   }, true);
 
   /* ---------- Run Project: live GUI in the page ---------- */
+  var ua = (window.navigator && window.navigator.userAgent) || "";
+  var isMobileOrTablet = /Android|iPhone|iPad|iPod/i.test(ua) ||
+    (/Macintosh/i.test(ua) && window.navigator && window.navigator.maxTouchPoints > 1);
   function safeSrc(u) { return /^(https:\/\/|[a-z0-9_\-][a-z0-9_\-\/.]*$)/i.test(u || ""); }
   function runPanel(p) {
     var r = p.run;
     if (!r || !safeSrc(r.src)) return "";
+    if (isMobileOrTablet && p.lane === "systems") {
+      return '<div class="run"><div class="run-bar">' +
+        '<button type="button" class="btn btn-gold btn-disabled" disabled aria-disabled="true">&#9654; Run Project</button>' +
+        '<p class="run-note">Live Systems demos only work on laptops and PCs.</p></div></div>';
+    }
     return '<div class="run" data-height="' + esc(r.height || 640) + '">' +
       '<div class="run-bar"><button type="button" class="btn btn-gold" data-run="' + esc(r.src) +
       '" data-title="' + esc(p.title) + '" aria-expanded="false">&#9654; Run Project</button>' +
