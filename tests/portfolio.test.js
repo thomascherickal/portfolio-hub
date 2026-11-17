@@ -219,6 +219,23 @@ describe("assets/app.js", () => {
     }
     assert.match(ytParent.innerHTML, /youtube-nocookie\.com\/embed\/abc123/);
 
+    // Run Project: real HTML carries the button and extension block
+    assert.match(dom.elements.get("demo-grid").innerHTML, /data-run="demos\/data-guard\/index\.html"/);
+    assert.match(dom.elements.get("demo-grid").innerHTML, /Chrome extension/);
+    const stage = { innerHTML: "" };
+    const runBtn = {
+      attrs: { "aria-expanded": "false", "data-run": "demos/x/index.html", "data-title": "T" },
+      innerHTML: "",
+      getAttribute(k) { return this.attrs[k]; },
+      setAttribute(k, v) { this.attrs[k] = v; },
+      closest: () => ({ getAttribute: () => "600", querySelector: () => stage })
+    };
+    const clickRun = () => { for (const h of dom.docListeners.click) h.fn({ target: { closest: (s) => (s === "button[data-run]" ? runBtn : null) } }); };
+    clickRun();
+    assert.match(stage.innerHTML, /<iframe[^>]+src="demos\/x\/index\.html"/);
+    clickRun();
+    assert.equal(stage.innerHTML, "");
+
     // Test carousel click handlers: prev, next, dot
     let scrolledTo = null;
     const dot1 = { classList: { contains: () => false } };

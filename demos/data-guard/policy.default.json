@@ -1,0 +1,20 @@
+{
+  "policyVersion": "1.0",
+  "organization": "Enterprise Default",
+  "enableSecrets": true,
+  "enablePii": true,
+  "enableEntropy": true,
+  "enableIpAddresses": false,
+  "minSeverity": "LOW",
+  "entropyThreshold": 3.8,
+  "redactionMode": "REMOVE",
+  "blockOnCritical": true,
+  "maxFindingsBeforeBlock": 1,
+  "allowlist": [
+    "AKIAIOSFODNN7EXAMPLE",
+    "test@example.com",
+    "user@example.org"
+  ],
+  "customRules": []
+}
+

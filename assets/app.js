@@ -98,6 +98,9 @@
     return '<ul class="stack" aria-label="Built with">' +
       (p.stack || []).map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul>";
   }
+  function licenseBadge(p) {
+    return p.license ? '<p class="license"><a href="LICENSE" rel="license">' + esc(p.license) + " License</a></p>" : "";
+  }
   function pill(p) { return '<span class="pill pill-' + esc(p.status) + '">' + esc(STATUS[p.status] || p.status) + "</span>"; }
 
   /* ---------- automations ---------- */
@@ -109,7 +112,7 @@
       "<h3>" + esc(p.title) + "</h3>" +
       '<p class="problem"><strong>Problem:</strong> ' + esc(p.problem) + "</p>" +
       '<p class="summary">' + esc(p.summary) + "</p>" +
-      stackList(p) + linksRow(p) +
+      stackList(p) + licenseBadge(p) + linksRow(p) +
       '<p class="updated">Updated ' + esc(p.updated) + "</p></div></article>";
   }).join("");
 
@@ -154,6 +157,44 @@
     });
   }, true);
 
+  /* ---------- Run Project: live GUI in the page ---------- */
+  function safeSrc(u) { return /^(https:\/\/|[a-z0-9_\-][a-z0-9_\-\/.]*$)/i.test(u || "") ; }
+  function runPanel(p) {
+    var r = p.run;
+    if (!r || !safeSrc(r.src)) return "";
+    return '<div class="run" data-height="' + esc(r.height || 640) + '">' +
+      '<div class="run-bar"><button type="button" class="btn btn-gold btn-small" data-run="' + esc(r.src) +
+      '" data-title="' + esc(p.title) + '" aria-expanded="false">&#9654; Run Project</button>' +
+      '<p class="run-note">' + esc(r.note || "") + "</p></div>" +
+      '<div class="run-stage"></div></div>';
+  }
+  function extensionBlock(p) {
+    var x = p.extension;
+    if (!x) return "";
+    return '<div class="ext"><h4>' + esc(x.title) + "</h4><p>" + esc(x.text) + "</p><ul>" +
+      (x.points || []).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>" +
+      '<p class="ext-links">' + (x.download ? '<a href="' + esc(x.download) + '" download>Download the extension (.zip)</a>' : "") +
+      (x.source ? '<a href="' + esc(x.source) + '" rel="noopener">Extension source</a>' : "") + "</p></div>";
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-run]");
+    if (!b) return;
+    var box = b.closest(".run"), stage = box.querySelector(".run-stage");
+    if (b.getAttribute("aria-expanded") === "true") {
+      stage.innerHTML = "";
+      b.setAttribute("aria-expanded", "false");
+      b.innerHTML = "&#9654; Run Project";
+      return;
+    }
+    var src = b.getAttribute("data-run");
+    stage.innerHTML = '<iframe class="run-frame" style="height:' + Number(box.getAttribute("data-height")) +
+      'px" src="' + src + '" title="Live project: ' + b.getAttribute("data-title") +
+      '" sandbox="allow-scripts allow-same-origin allow-forms allow-downloads allow-modals allow-popups"></iframe>' +
+      '<p class="run-open"><a href="' + src + '" target="_blank" rel="noopener">Open full screen in a new tab</a></p>';
+    b.setAttribute("aria-expanded", "true");
+    b.innerHTML = "&#9632; Close Project";
+  });
+
   /* ---------- demos with filters ---------- */
   var demos = projects.filter(function (p) { return p.lane !== "claude"; });
   var grid = document.getElementById("demo-grid");
@@ -163,14 +204,14 @@
     grid.innerHTML = list.length ? list.map(function (p) {
       var hasVideo = p.links && p.links.video;
       return '<article class="demo ' + toneOf(p.lane) + '" id="' + esc(p.id) + '">' +
-        (hasVideo ? frame(p) : "") + carousel(p) +
+        (hasVideo ? frame(p) : "") + carousel(p) + runPanel(p) +
         '<div class="demo-top"><span class="demo-lane">' +
         (p.icon ? '<img class="demo-icon" src="' + esc(p.icon) + '" alt="" width="24" height="24">' : "") +
         esc(laneLabel(p.lane)) + "</span>" + pill(p) + "</div>" +
         "<h3>" + esc(p.title) + "</h3>" +
         '<p class="problem"><strong>Problem:</strong> ' + esc(p.problem) + "</p>" +
         '<p class="summary">' + esc(p.summary) + "</p>" +
-        stackList(p) + linksRow(p) +
+        stackList(p) + licenseBadge(p) + linksRow(p) + extensionBlock(p) +
         '<p class="updated">Updated ' + esc(p.updated) + "</p></article>";
     }).join("") : '<p class="empty">Nothing in this area yet.</p>';
   }
@@ -241,9 +282,14 @@
 
   /* ---------- PWAs ---------- */
   document.getElementById("pwa-list").innerHTML = (data.pwas || []).map(function (a) {
-    var icon = a.icon ? '<img src="' + esc(a.icon) + '" alt="">' : esc((a.name || "?").charAt(0));
-    return '<li><a href="' + esc(a.url) + '" rel="noopener"><span class="pwa-icon" aria-hidden="true">' + icon + "</span>" +
-      '<span><span class="pwa-name">' + esc(a.name) + ' <span class="pill pill-live">Live</span></span><span class="pwa-purpose">' + esc(a.purpose) + "</span></span></a></li>";
+    var icon = a.icon ? '<img src="' + esc(a.icon) + '" alt="' + esc(a.name) + ' preview">' : esc((a.name || "?").charAt(0));
+    var sourceHtml = a.source
+      ? '<div class="pwa-source"><div class="links"><a href="' + esc(a.url) + '" rel="noopener">Open app</a><a href="' + esc(a.source) + '" rel="noopener">Source code</a></div>' +
+        (a.sourceDesc ? '<p class="source-uses">' + esc(a.sourceDesc) + "</p>" : "") + "</div>"
+      : "";
+    return '<li class="pwa-card"><a class="pwa-card-link" href="' + esc(a.url) + '" rel="noopener"><span class="pwa-icon" aria-hidden="true">' + icon + "</span></a>" +
+      '<div class="pwa-body"><span class="pwa-name">' + esc(a.name) + ' <span class="pill pill-live">Live</span></span>' +
+      '<p class="pwa-purpose">' + esc(a.purpose) + "</p>" + sourceHtml + "</div></li>";
   }).join("");
 
   /* ---------- dynamic footer ---------- */

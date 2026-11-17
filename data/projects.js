@@ -36,15 +36,26 @@ window.PORTFOLIO = {
     brand: "The Digital Futurist",
     headline: "The Future is Now.",
     intro:
-      "Live demos and recorded runs of the systems I build for engineering teams moving to AI-first delivery: Claude Automations, Gen AI Studios, System Tools, PWAs, and the Rust, Go, Python, C++, and Julia underneath them built with AI.",
+      "Live demos and recorded runs of the systems I build for engineering teams moving to AI-first delivery: Claude agent automations, RAG, local LLMs and the Rust, Go, C++ and Julia underneath them.",
+    links: {
+      book: "https://topmate.io/thomascherickal",
+      site: "https://thomascherickal.com",
+      consulting: "https://thedigitalfuturist.com",
+      linkedin: "https://www.linkedin.com/in/thomascherickal",
+      x: "https://x.com/thomazcherickal",
+      patreon: "https://www.patreon.com/thomascherickal",
+      newsletter: "https://thomascherickal.kit.com",
+      github: "https://github.com/thomascherickal",
+      brain: "https://skills.thedigitalfuturist.com"
+    }
   },
 
   lanes: {
-    claude: { label: "Automations", tone: "cyan" },
+    claude: { label: "Automations", tone: "gold" },
     genai: { label: "Gen AI", tone: "magenta" },
-    rag: { label: "PWAs", tone: "orange" },
-    systems: { label: "Systems", tone: "green" },
-    science: { label: "Scientific", tone: "blue" },
+    rag: { label: "RAG", tone: "magenta" },
+    systems: { label: "Systems", tone: "cyan" },
+    science: { label: "Scientific", tone: "violet" },
     knowledge: { label: "Knowledge", tone: "violet" }
   },
 
@@ -92,7 +103,7 @@ window.PORTFOLIO = {
         { src: "assets/ferrum/ferrum-gpu/app-generate.jpg", alt: "Generate tab running on the server device or in this browser", caption: "4. Generate on the server or in the browser" },
         { src: "assets/ferrum/ferrum-gpu/github.jpg", alt: "The ferrum-gpu repository page on GitHub", caption: "The code is open source on GitHub" }
       ],
-      run: { src: "demos/ferrum-gpu/index.html", height: 560, note: "Runs a preloaded 39 KB model on your GPU through WebGPU (Chrome or Edge); training and the server-side GPU engine need the desktop app." },
+      run: { src: "demos/ferrum-gpu-studio/index.html", height: 760, note: "The real Ferrum GPU GUI on a preloaded 285 KB byte-level model (171K params, trained on TinyStories) with generation on this tab's WebGPU; model load/download and GGUF upload work, while training needs the desktop app." },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/ferrum-gpu", writeup: "" },
       useCases: "Use cases: high-throughput on-prem LLM serving, private batch inference and code-generation pipelines, and GPU-accelerated local RAG without cloud API costs.",
       updated: "2026-11-15"

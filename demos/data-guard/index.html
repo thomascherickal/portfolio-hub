@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self';">
+  <title>Enterprise Data Guard — Browser Prompt &amp; Secret Scanner</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="shield" aria-hidden="true">🛡️</span>
+      <div>
+        <h1>Enterprise Data Guard</h1>
+        <p class="subtitle">C++ WebAssembly Pre-Flight Scanner • Zero Data Leaves Your Browser</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <span id="wasmStatusBadge" class="badge badge-neutral" aria-live="polite">Loading WASM…</span>
+      <button id="openInterceptorBtn" type="button" class="btn btn-secondary">AI Tool Interceptor</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="stats-bar" aria-label="Local browser scan statistics">
+      <div class="stat-card">
+        <span class="stat-label">Active Policy</span>
+        <strong id="policyOrgValue">Enterprise Default</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Local Scans</span>
+        <strong id="statScans">0</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Secrets Caught</span>
+        <strong id="statSecrets">0</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">PII Caught</span>
+        <strong id="statPii">0</strong>
+      </div>
+    </section>
+
+    <div class="workspace-grid">
+      <section class="panel" aria-labelledby="inputHeading">
+        <div class="panel-header">
+          <h2 id="inputHeading">1. Prompt or Code Input</h2>
+          <div class="sample-buttons">
+            <button type="button" class="btn btn-ghost" data-sample="safe">Safe Sample</button>
+            <button type="button" class="btn btn-ghost" data-sample="secrets">Leaked Keys</button>
+            <button type="button" class="btn btn-ghost" data-sample="pii">Customer PII</button>
+            <button type="button" id="clearBtn" class="btn btn-ghost">Clear</button>
+          </div>
+        </div>
+        <label for="promptInput" class="sr-only">Paste prompt or code to scan before sending to an AI tool</label>
+        <textarea id="promptInput" rows="12" spellcheck="false" placeholder="Paste your prompt, code, config, or customer log here before sending to any AI tool…"></textarea>
+        <div class="panel-footer">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="liveScanToggle" checked>
+            <span>Real-time scan while typing</span>
+          </label>
+          <button type="button" id="scanNowBtn" class="btn btn-primary">Scan Now</button>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="resultHeading">
+        <div class="panel-header">
+          <h2 id="resultHeading">2. Pre-Flight Verdict &amp; Redacted Output</h2>
+          <span id="verdictBadge" class="badge badge-safe" aria-live="polite">READY</span>
+        </div>
+
+        <div class="risk-meter-wrap">
+          <div class="risk-meter-labels">
+            <span>Risk Score</span>
+            <strong id="riskScoreText">0 / 100</strong>
+          </div>
+          <progress id="riskProgress" max="100" value="0"></progress>
+        </div>
+
+        <label for="redactedOutput" class="field-label">Safe Redacted Prompt (Ready to Paste into AI Tool)</label>
+        <textarea id="redactedOutput" rows="8" readonly placeholder="Redacted output appears here…"></textarea>
+        <div class="panel-footer">
+          <span id="findingSummary" class="muted" aria-live="polite">No findings yet.</span>
+          <button type="button" id="copyRedactedBtn" class="btn btn-primary" disabled>Copy Safe Prompt</button>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel" aria-labelledby="findingsHeading">
+      <div class="panel-header">
+        <h2 id="findingsHeading">3. Detected Secrets &amp; Personal Data</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Severity</th>
+              <th>Rule ID</th>
+              <th>Category</th>
+              <th>Location</th>
+              <th>Masked Match</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody id="findingsBody">
+            <tr>
+              <td colspan="6" class="empty-cell">Paste text above to run the C++ WebAssembly scanner.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="policyHeading">
+      <div class="panel-header">
+        <h2 id="policyHeading">4. Active Policy Configuration</h2>
+        <div class="sample-buttons">
+          <label class="btn btn-secondary file-btn">
+            Import policy.json
+            <input type="file" id="importPolicyInput" accept=".json,application/json" hidden>
+          </label>
+          <button type="button" id="resetPolicyBtn" class="btn btn-ghost">Reset Default</button>
+        </div>
+      </div>
+      <div class="policy-controls">
+        <label class="checkbox-inline"><input type="checkbox" id="polSecrets" checked> Secrets &amp; Keys</label>
+        <label class="checkbox-inline"><input type="checkbox" id="polPii" checked> Personal Data (PII)</label>
+        <label class="checkbox-inline"><input type="checkbox" id="polEntropy" checked> High-Entropy Bearer</label>
+        <label class="checkbox-inline"><input type="checkbox" id="polIp"> IPv4 Addresses</label>
+        <label class="select-inline">
+          Redaction:
+          <select id="polRedactionMode">
+            <option value="REMOVE" selected>Remove</option>
+            <option value="PLACEHOLDER">Placeholder ([REDACTED:RULE])</option>
+            <option value="MASK">Mask (AKIA****CDEF)</option>
+          </select>
+        </label>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="interceptorDialog" aria-labelledby="dialogTitle">
+    <div class="dialog-header">
+      <h2 id="dialogTitle">AI Tool Prompt Interceptor</h2>
+      <button type="button" id="closeDialogBtn" class="btn btn-ghost" aria-label="Close dialog">✕</button>
+    </div>
+    <p>Protect prompts directly inside web AI tools by loading <code>interceptor.js</code> as a browser userscript or DevTools/extension content script. All scanning runs locally via <code>data_guard.wasm</code>.</p>
+    <pre id="interceptorSnippet" class="code-block"></pre>
+    <div class="dialog-footer">
+      <button type="button" id="copyInterceptorBtn" class="btn btn-primary">Copy Interceptor Script</button>
+    </div>
+  </dialog>
+
+  <script src="wasm/data_guard.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
+

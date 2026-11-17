@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- MANDATORY: Declare support for both light and dark themes -->
+  <meta name="color-scheme" content="light dark">
+  <title>AI Adoption Business Case Simulator — Plain-English Executive Guide</title>
+  <link rel="stylesheet" href="styles.css?v=20261117">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-group">
+        <div class="eyebrow">
+          <span class="badge-pill">Executive Decision Tool</span>
+          <span class="badge-pill">5 Practical Lenses</span>
+          <span class="badge-pill">Hover Any Gold Underline for Plain English</span>
+        </div>
+        <div class="title-row">
+          <h1>AI Adoption Business Case Simulator</h1>
+          <button type="button" id="theme-toggle-btn" class="theme-toggle-btn" aria-pressed="false" aria-label="Switch to dark mode" title="Toggle Light / Dark Mode">🌙 Dark Mode</button>
+        </div>
+        <p class="subtitle">
+          Boards want an AI business case with honest ranges (<span tabindex="0" role="button" class="gold-term" data-term-key="p10">Cautious P10</span>, <span tabindex="0" role="button" class="gold-term" data-term-key="p50">Typical P50</span>, and <span tabindex="0" role="button" class="gold-term" data-term-key="p90">Best-Case P90</span>), not a single optimistic number. Explore the same <strong>325-employee rollout</strong> across five plain-English forecasting methods.
+        </p>
+      </div>
+      <nav aria-label="Primary Page Navigation" class="header-actions">
+        <a href="index.html" aria-current="page" class="btn-primary-nav">5-Method Explorer</a>
+        <a href="lab.html" class="btn-secondary">Interactive What-If Sliders →</a>
+        <a href="data/scenarios.json" download="scenarios.json" class="btn-secondary">Download Data (JSON)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-layout">
+    <!-- 1. Rollout Strategy Selector -->
+    <section aria-labelledby="scenario-picker-heading" class="scenario-section">
+      <div class="section-header-row">
+        <h2 id="scenario-picker-heading">1. Choose a Company Rollout Strategy (Shared Across All 5 Tabs)</h2>
+        <span class="meta-note" id="model-provenance">3-Year Outlook • 325 Staff Across 4 Departments</span>
+      </div>
+      <div class="scenario-cards" id="scenario-selector" role="radiogroup" aria-label="Precomputed AI rollout strategies"></div>
+    </section>
+
+    <!-- Board Memo Banner -->
+    <section aria-label="Boardroom Takeaway" class="summary-section">
+      <div class="board-memo-banner" id="board-memo-banner">
+        <div class="memo-main">
+          <span class="memo-label">Boardroom Takeaway &amp; Funding Advice</span>
+          <p id="scenario-recommendation">Loading rollout strategy...</p>
+        </div>
+        <div class="memo-assumptions" id="scenario-assumptions-pills"></div>
+      </div>
+    </section>
+
+    <!-- 2. Five Practical Forecasting Tabs -->
+    <section aria-labelledby="paradigm-tabs-heading" class="tabs-section">
+      <div class="section-header-row">
+        <div>
+          <h2 id="paradigm-tabs-heading">2. View Your Rollout Through 5 Practical Lenses</h2>
+          <p class="card-desc">Click any tab below—or hover over any <span tabindex="0" role="button" class="gold-term" data-term-key="roi">light-gold underlined term</span>—for a brief, plain-English explanation.</p>
+        </div>
+        <div class="interactive-controls">
+          <label for="headcount-scale-slider" class="slider-label">
+            <span>Company Size Scale:</span>
+            <strong id="scale-multiplier-val">1.00x (325 Staff)</strong>
+          </label>
+          <input type="range" id="headcount-scale-slider" name="headcount_scale" min="0.5" max="3.0" step="0.25" value="1.0">
+        </div>
+      </div>
+
+      <div class="science-tabs">
+        <!-- Accessible single-row scrolling tablist -->
+        <div role="tablist" focusgroup="tablist nomemory" aria-label="Five AI Forecasting Lenses" class="science-tablist scroller">
+          <button type="button" role="tab" id="tab-mc" class="gold-term-tab" data-term-key="monte_carlo" aria-selected="true" focusgroupstart data-paradigm-tab="panel-mc">
+            <span class="tab-num">Tab 1 • Financial Range</span>
+            <span class="tab-label-main">10,000 What-If Futures (Monte Carlo)</span>
+            <span class="tab-sub">Cautious, Typical &amp; Best-Case Returns</span>
+          </button>
+          <button type="button" role="tab" id="tab-abm" class="gold-term-tab" data-term-key="abm" aria-selected="false" tabindex="-1" data-paradigm-tab="panel-abm">
+            <span class="tab-num">Tab 2 • People &amp; Habits</span>
+            <span class="tab-label-main">Team Behavior (Agent-Based)</span>
+            <span class="tab-sub">Champions vs. Frustrated Quitters</span>
+          </button>
+          <button type="button" role="tab" id="tab-sd" class="gold-term-tab" data-term-key="system_dynamics" aria-selected="false" tabindex="-1" data-paradigm-tab="panel-sd">
+            <span class="tab-num">Tab 3 • Multi-Year Strategy</span>
+            <span class="tab-label-main">Flywheels &amp; Brakes (System Dynamics)</span>
+            <span class="tab-sub">Skill Gains vs. Rising Usage Bills</span>
+          </button>
+          <button type="button" role="tab" id="tab-des" class="gold-term-tab" data-term-key="des" aria-selected="false" tabindex="-1" data-paradigm-tab="panel-des">
+            <span class="tab-num">Tab 4 • Daily Operations</span>
+            <span class="tab-label-main">Workflow Waiting Lines (Discrete Event)</span>
+            <span class="tab-sub">Time Saved &amp; Reviewer Bottlenecks</span>
+          </button>
+          <button type="button" role="tab" id="tab-bn" class="gold-term-tab" data-term-key="bayesian_network" aria-selected="false" tabindex="-1" data-paradigm-tab="panel-bn">
+            <span class="tab-num">Tab 5 • Pilot Checkpoints</span>
+            <span class="tab-label-main">Pilot Scorecard (Bayesian Network)</span>
+            <span class="tab-sub">Updating Forecasts with 6-Month Data</span>
+          </button>
+        </div>
+
+        <div class="tabpanels-stack" id="tabpanels-stack">
+          <!-- ============================================================ -->
+          <!-- TAB PANEL 1: 10,000 WHAT-IF FUTURES (MONTE CARLO)            -->
+          <!-- ============================================================ -->
+          <div role="tabpanel" id="panel-mc" aria-labelledby="tab-mc" tabindex="0">
+            <div class="panel-inner">
+              <div class="science-explainer-card">
+                <div class="explainer-grid">
+                  <div>
+                    <span class="memo-label">Lens 1 • Honest Financial Ranges Instead of One Guess</span>
+                    <h3><span tabindex="0" role="button" class="gold-term" data-term-key="monte_carlo">10,000 What-If Futures (Monte Carlo Simulation)</span></h3>
+                    <p class="card-desc">
+                      Rather than betting on one best-case spreadsheet number, the computer tests your plan <strong>10,000 times</strong>—varying how fast staff adopt AI (<span tabindex="0" role="button" class="gold-term" data-term-key="s_curve">Rollout S-Curve</span>), the <span tabindex="0" role="button" class="gold-term" data-term-key="j_curve">Early Learning Dip</span>, <span tabindex="0" role="button" class="gold-term" data-term-key="rework_drag">Cleanup &amp; Fact-Checking Time</span>, and IT setup costs.
+                    </p>
+                  </div>
+                  <div class="layperson-callout">
+                    <strong>Everyday Analogy:</strong> Like checking GPS arrival times across 10,000 simulated drives with random traffic and weather so you can give the Board a Cautious (P10), Typical (P50), and Best-Case (P90) forecast.
+                    <div class="explainer-actions">
+                      <button type="button" class="btn-secondary" data-open-md="monte_carlo">📖 Pop-Out Modal</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="kpi-grid" id="kpi-grid"></div>
+
+              <div class="charts-grid">
+                <article class="chart-card">
+                  <div class="card-header">
+                    <div>
+                      <h3>3-Year Month-by-Month Range (P10–P50–P90)</h3>
+                      <p class="card-desc">Shows the early spending dip, when the project breaks even, and the range of likely outcomes over 36 months.</p>
+                    </div>
+                    <div class="tab-group" role="group" aria-label="Trajectory Metric">
+                      <button type="button" class="tab-btn active" data-traj="cumulative_cashflow_usd">Total Net Cash ($)</button>
+                      <button type="button" class="tab-btn" data-traj="adoption_pct">Staff Using AI (%)</button>
+                      <button type="button" class="tab-btn" data-traj="effective_productivity_uplift_pct">Net Time Saved (%)</button>
+                    </div>
+                  </div>
+                  <div class="svg-container" id="trajectory-chart-container"></div>
+                  <div class="chart-legend">
+                    <span class="legend-item"><span class="swatch swatch-p50"></span> Typical Path (P50)</span>
+                    <span class="legend-item"><span class="swatch swatch-iqr"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="iqr">Middle 50% Band (P25–P75)</span></span>
+                    <span class="legend-item"><span class="swatch swatch-outer"></span> Cautious (P10) to Best-Case (P90)</span>
+                  </div>
+                </article>
+
+                <article class="chart-card">
+                  <div class="card-header">
+                    <div>
+                      <h3>Spread of 10,000 Possible Outcomes</h3>
+                      <p class="card-desc">Taller bars show the most likely outcomes; red bars on the left show the chance of losing money.</p>
+                    </div>
+                    <div class="tab-group" role="group" aria-label="Distribution Metric">
+                      <button type="button" class="tab-btn active" data-dist="roi_pct_histogram">3-Year Return (ROI %)</button>
+                      <button type="button" class="tab-btn" data-dist="npv_k_usd_histogram">3-Year Net Profit ($k)</button>
+                    </div>
+                  </div>
+                  <div class="svg-container" id="distribution-chart-container"></div>
+                  <div class="chart-legend">
+                    <span class="legend-item"><span class="swatch swatch-neg"></span> Money-Losing Futures (&lt; 0)</span>
+                    <span class="legend-item"><span class="swatch swatch-pos"></span> Profitable Futures</span>
+                    <span class="legend-item"><span class="swatch swatch-marker"></span> P10 / P50 / P90 Markers</span>
+                  </div>
+                </article>
+              </div>
+
+              <div class="charts-grid">
+                <article class="chart-card">
+                  <div class="card-header">
+                    <div>
+                      <h3><span tabindex="0" role="button" class="gold-term" data-term-key="tornado">What Moves Your Profit the Most? (Risk Drivers)</span></h3>
+                      <p class="card-desc">Shows which everyday factors cause the biggest swing in 3-year profit when they go better or worse than expected.</p>
+                    </div>
+                  </div>
+                  <div class="svg-container" id="tornado-chart-container"></div>
+                </article>
+
+                <article class="chart-card">
+                  <div class="card-header">
+                    <div>
+                      <h3>Where Do Raw Time Savings Go? (Gross-to-Net Bridge)</h3>
+                      <p class="card-desc">Starts with raw time saved, subtracts Cleanup Time and <span tabindex="0" role="button" class="gold-term" data-term-key="tco">Total 3-Year Cost</span>, and shows true net profit.</p>
+                    </div>
+                  </div>
+                  <div class="svg-container" id="waterfall-chart-container"></div>
+                </article>
+              </div>
+
+              <div class="table-section">
+                <div class="section-header-row">
+                  <div>
+                    <h3>Department-by-Department Costs, Time Saved &amp; Returns</h3>
+                    <p class="card-desc">Honest P10 / P50 / P90 ranges for each team.</p>
+                  </div>
+                </div>
+                <div tabindex="0" role="region" aria-labelledby="team-table-caption" class="table-wrapper">
+                  <table id="team-breakdown-table">
+                    <caption id="team-table-caption" class="sr-only">Department breakdown across 10,000 simulated futures</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Department</th>
+                        <th scope="col">Team Size &amp; AI-Ready Work</th>
+                        <th scope="col">All-In Cost / Person / Mo</th>
+                        <th scope="col">Net Speed Gain (P10 / P50 / P90)</th>
+                        <th scope="col">Hours Saved / Person / Mo</th>
+                        <th scope="col">3-Yr Net Gain / Person</th>
+                        <th scope="col">3-Yr Team Return (P10 / P50 / P90)</th>
+                        <th scope="col">Odds of Making a Profit</th>
+                      </tr>
+                    </thead>
+                    <tbody id="team-table-body"></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="tab-inline-md-card" id="md-inline-monte_carlo"></div>
+            </div>
+          </div>
+
+          <!-- ============================================================ -->
+          <!-- TAB PANEL 2: TEAM BEHAVIOR (AGENT-BASED MODELING)            -->
+          <!-- ============================================================ -->
+          <div role="tabpanel" id="panel-abm" aria-labelledby="tab-abm" hidden="until-found">
+            <div class="panel-inner">
+              <div class="science-explainer-card">
+                <div class="explainer-grid">
+                  <div>
+                    <span class="memo-label">Lens 2 • How Real Employees Adopt or Quit New Tools</span>
+                    <h3><span tabindex="0" role="button" class="gold-term" data-term-key="abm">Team Behavior Simulation (Agent-Based Modeling)</span></h3>
+                    <p class="card-desc">
+                      Follows all <strong>325 individual employees</strong> talking to their desk neighbors. Shows how <span tabindex="0" role="button" class="gold-term" data-term-key="champions">AI Champions</span> help coworkers succeed, while rushing licenses out without training creates frustrated staff and <span tabindex="0" role="button" class="gold-term" data-term-key="shelfware">Paid But Unused Seats (Shelfware)</span>.
+                    </p>
+                  </div>
+                  <div class="layperson-callout">
+                    <strong>Everyday Analogy:</strong> People rarely change how they work because of a corporate memo—they try AI when a trusted teammate shows them a time-saving trick, and they quit if the tool keeps making mistakes.
+                    <div class="explainer-actions">
+                      <button type="button" class="btn-secondary" data-open-md="agent_based">📖 Pop-Out Modal</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="kpi-grid" id="abm-kpi-grid"></div>
+
+              <div class="charts-grid">
+                <article class="chart-card">
+                  <div class="card-header">
+                    <div>
+                      <h3>How Employee Habits Shift Over 36 Months</h3>
+                      <p class="card-desc">Switch views to inspect all 5 habit stages or focus on <span tabindex="0" role="button" class="gold-term" data-term-key="active_adopters">Active Daily Users</span> vs. <span tabindex="0" role="button" class="gold-term" data-term-key="shelfware">Unused Shelfware Seats</span>.</p>
+                    </div>
+                    <div class="tab-group" role="group" aria-label="Team Behavior Chart View">
+                      <button type="button" class="tab-btn active" data-abm-view="all_states" data-term-key="abm">All 5 Habit Stages (%)</button>
+                      <button type="button" class="tab-btn" data-abm-view="active_vs_churn" data-term-key="active_adopters">Active Users vs. Quitters</button>
+                      <button type="button" class="tab-btn" data-abm-view="cashflow" data-term-key="breakeven">Team-Driven Cashflow ($)</button>
+                    </div>
+                  </div>
+                  <div class="svg-container" id="abm-trajectory-chart"></div>
+                  <div class="chart-legend" id="abm-trajectory-legend">
+                    <span class="legend-item"><span class="swatch" style="background:#64748b"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="skeptical_stage">Waiting &amp; Watching</span></span>
+                    <span class="legend-item"><span class="swatch" style="background:var(--warning)"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="exploring_stage">Learning (Early Dip)</span></span>
+                    <span class="legend-item"><span class="swatch" style="background:var(--brand-primary)"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="proficient_stage">Confident Daily Users</span></span>
+                    <span class="legend-item"><span class="swatch" style="background:var(--positive)"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="champions">AI Champions</span></span>
+                    <span class="legend-item"><span class="swatch" style="background:var(--negative)"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="frustration_sensitivity">Frustrated Quitters (Shelfware)</span></span>
+                  </div>
+                </article>
+
+                <article class="chart-card">
+                  <div class="card-header">
+                    <div>
+                      <h3>Coworker <span tabindex="0" role="button" class="gold-term" data-term-key="contagion">Word-of-Mouth</span> Network (Month 36 Snapshot)</h3>
+                      <p class="card-desc">Filter by department or hover any dot to see how coworkers influence each other across teams.</p>
+                    </div>
+                    <div class="tab-group" role="group" aria-label="Filter Coworker Network by Department">
+                      <button type="button" class="tab-btn active" data-abm-dept="all" data-term-key="fte">All Teams</button>
+                      <button type="button" class="tab-btn" data-abm-dept="software_eng" data-term-key="pull_request">Engineering</button>
+                      <button type="button" class="tab-btn" data-abm-dept="customer_ops" data-term-key="sla">Support</button>
+                      <button type="button" class="tab-btn" data-abm-dept="sales_gtm" data-term-key="rfp">Sales</button>
+                      <button type="button" class="tab-btn" data-abm-dept="legal_finance" data-term-key="rework_drag">Legal</button>
+                    </div>
+                  </div>
+                  <div class="svg-container" id="abm-network-chart"></div>
+                  <div class="chart-legend">
+                    <span class="legend-item"><span tabindex="0" role="button" class="gold-term" data-term-key="active_adopters">Green &amp; Blue Dots = Active Users &amp; Champions</span> • <span tabindex="0" role="button" class="gold-term" data-term-key="frustration_sensitivity">Red Dots = Frustrated Quitters</span></span>
+                  </div>
+                </article>
+              </div>
+
+              <div class="table-section">
+                <div class="section-header-row">
+                  <div>
+                    <h3>Department Adoption, <span tabindex="0" role="button" class="gold-term" data-term-key="champions">AI Champion Coaches</span> &amp; <span tabindex="0" role="button" class="gold-term" data-term-key="shelfware">Unused Licenses</span></h3>
+                    <p class="card-desc">Shows which teams build strong AI habits and which risk paying for unused seats.</p>
+                  </div>
+                </div>
+                <div tabindex="0" role="region" aria-label="Team behavior breakdown" class="table-wrapper">
+                  <table id="abm-team-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Department</th>
+                        <th scope="col"><span tabindex="0" role="button" class="gold-term" data-term-key="fte">Staff Count</span></th>
+                        <th scope="col"><span tabindex="0" role="button" class="gold-term" data-term-key="active_adopters">Active Daily Users</span> at Month 36 (P10 / P50 / P90)</th>
+                        <th scope="col"><span tabindex="0" role="button" class="gold-term" data-term-key="champions">AI Champion Coaches</span> (P50)</th>
+                        <th scope="col"><span tabindex="0" role="button" class="gold-term" data-term-key="shelfware">Unused "Shelfware" Seats</span> (P50)</th>
+                        <th scope="col">3-Year Team <span tabindex="0" role="button" class="gold-term" data-term-key="roi">Return</span> (P10 / P50 / P90)</th>
+                      </tr>
+                    </thead>
+                    <tbody id="abm-team-tbody"></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="tab-inline-md-card" id="md-inline-agent_based"></div>
+            </div>
+          </div>
+
+          <!-- ============================================================ -->
+          <!-- TAB PANEL 3: FLYWHEELS & BRAKES (SYSTEM DYNAMICS)            -->
+          <!-- ============================================================ -->
+          <div role="tabpanel" id="panel-sd" aria-labelledby="tab-sd" hidden="until-found">
+            <div class="panel-inner">
+              <div class="science-explainer-card">
+                <div class="explainer-grid">
+                  <div>
+                    <span class="memo-label">Lens 3 • Big-Picture Multi-Year Flywheels vs. Hidden Brakes</span>
+                    <h3><span tabindex="0" role="button" class="gold-term" data-term-key="system_dynamics">Long-Term Flywheels &amp; Brakes (System Dynamics)</span></h3>
+                    <p class="card-desc">
+                      Tracks how reinvesting in training builds a compounding <span tabindex="0" role="button" class="gold-term" data-term-key="data_moat">Company Know-How Flywheel</span>, while sloppy rollouts get bogged down by a <span tabindex="0" role="button" class="gold-term" data-term-key="tech_debt">Cleanup Backlog (Tech Debt)</span> and <span tabindex="0" role="button" class="gold-term" data-term-key="token_sprawl">AI Usage Bill Creep</span>.
+                    </p>
+                  </div>
+                  <div class="layperson-callout">
+                    <strong>Everyday Analogy:</strong> Like pushing a heavy snowball: good playbooks make your teams faster every quarter (a <strong>Growth Flywheel</strong>), while rushed, unchecked AI work piles up mistakes and higher cloud bills (a <strong>Hidden Brake</strong>).
+                    <div class="explainer-actions">
+                      <button type="button" class="btn-secondary" data-open-md="system_dynamics">📖 Pop-Out Modal</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="kpi-grid" id="sd-kpi-grid"></div>
+
+              <div class="charts-grid">
+                <article class="chart-card">
+                  <div class="card-header">
+                    <div>
+                      <h3>3-Year <span tabindex="0" role="button" class="gold-term" data-term-key="flywheel">Growth Flywheels</span> vs. <span tabindex="0" role="button" class="gold-term" data-term-key="balancing_loop">Hidden Brakes</span></h3>
+                      <p class="card-desc">Use the buttons or hover the lines to inspect all 4 forces or isolate Growth Flywheels vs. Hidden Brakes.</p>
+                    </div>
+                    <div class="tab-group" role="group" aria-label="System Dynamics Stock View">
+                      <button type="button" class="tab-btn active" data-sd-stock="all" data-term-key="system_dynamics">All 4 Forces</button>
+                      <button type="button" class="tab-btn" data-sd-stock="flywheels" data-term-key="flywheel">Growth Flywheels (+)</button>
+                      <button type="button" class="tab-btn" data-sd-stock="brakes" data-term-key="balancing_loop">Hidden Brakes (-)</button>
+                    </div>
+                  </div>
+                  <div class="svg-container" id="sd-stocks-chart"></div>
+                  <div class="chart-legend" id="sd-stocks-legend">
+                    <span class="legend-item"><span class="swatch" style="background:var(--brand-primary)"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="s_curve">Staff Using AI (%)</span></span>
+                    <span class="legend-item"><span class="swatch" style="background:var(--positive)"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="data_moat">Company Know-How Score</span></span>
+                    <span class="legend-item"><span class="swatch" style="background:var(--negative)"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="tech_debt">Cleanup Backlog (%)</span></span>
+                    <span class="legend-item"><span class="swatch" style="background:var(--warning)"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="token_sprawl">Usage Bill Growth</span></span>
+                  </div>
+                </article>
+
+                <article class="chart-card">
+                  <div class="card-header">
+                    <div>
+                      <h3><span tabindex="0" role="button" class="gold-term" data-term-key="monthly_value_flow">Monthly Value Created</span> vs. <span tabindex="0" role="button" class="gold-term" data-term-key="cleanup_cost">Cleanup</span> &amp; <span tabindex="0" role="button" class="gold-term" data-term-key="token_sprawl">Software Bills</span></h3>
+                      <p class="card-desc">Switch between monthly dollar flows and total 3-year cumulative cash payback.</p>
+                    </div>
+                    <div class="tab-group" role="group" aria-label="System Dynamics Cashflow View">
+                      <button type="button" class="tab-btn active" data-sd-flow="monthly_flows" data-term-key="monthly_value_flow">Monthly Flows ($/mo)</button>
+                      <button type="button" class="tab-btn" data-sd-flow="cumulative_cf" data-term-key="breakeven">Cumulative Cash ($)</button>
+                      <button type="button" class="tab-btn" data-sd-flow="dominance" data-term-key="net_momentum">Net Momentum Score</button>
+                    </div>
+                  </div>
+                  <div class="svg-container" id="sd-flows-chart"></div>
+                  <div class="chart-legend" id="sd-flows-legend">
+                    <span class="legend-item"><span class="swatch" style="background:var(--positive)"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="monthly_value_flow">Monthly Value Created ($/mo)</span></span>
+                    <span class="legend-item"><span class="swatch" style="background:var(--warning)"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="cleanup_cost">Monthly Cleanup Cost ($/mo)</span></span>
+                    <span class="legend-item"><span class="swatch" style="background:var(--negative)"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="token_sprawl">Monthly Software &amp; Usage Bill ($/mo)</span></span>
+                  </div>
+                </article>
+              </div>
+
+              <div class="table-section">
+                <div class="section-header-row">
+                  <div>
+                    <h3>Click Any <span tabindex="0" role="button" class="gold-term" data-term-key="flywheel">Growth Flywheel</span> or <span tabindex="0" role="button" class="gold-term" data-term-key="balancing_loop">Hidden Brake</span> Below to Spotlight It on the Chart</h3>
+                    <p class="card-desc">Plain-English summary of the four forces interacting inside your organization.</p>
+                  </div>
+                </div>
+                <div class="loop-cards-grid" id="sd-loops-grid"></div>
+              </div>
+
+              <div class="tab-inline-md-card" id="md-inline-system_dynamics"></div>
+            </div>
+          </div>
+
+          <!-- ============================================================ -->
+          <!-- TAB PANEL 4: WORKFLOW WAITING LINES (DISCRETE EVENT)         -->
+          <!-- ============================================================ -->
+          <div role="tabpanel" id="panel-des" aria-labelledby="tab-des" hidden="until-found">
+            <div class="panel-inner">
+              <div class="science-explainer-card">
+                <div class="explainer-grid">
+                  <div>
+                    <span class="memo-label">Lens 4 • Everyday Work Queues, Turnaround Time &amp; Bottlenecks</span>
+                    <h3><span tabindex="0" role="button" class="gold-term" data-term-key="des">Workflow Bottleneck Simulation (Discrete Event)</span></h3>
+                    <p class="card-desc">
+                      Tracks everyday work items—code changes, customer tickets, sales proposals, and legal contracts—from start to finish. Shows why speeding up first drafts can create a <span tabindex="0" role="button" class="gold-term" data-term-key="stage3_qa">Final Human Review Bottleneck</span> unless you shift some saved time into quality review.
+                    </p>
+                  </div>
+                  <div class="layperson-callout">
+                    <strong>Everyday Analogy:</strong> Like an airport security checkpoint: if a faster X-ray machine speeds up bag scanning by 40% without adding officers at the bag-check table, the final inspection line backs up!
+                    <div class="explainer-actions">
+                      <button type="button" class="btn-secondary" data-open-md="discrete_event">📖 Pop-Out Modal</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="kpi-grid" id="des-kpi-grid"></div>
+
+              <div class="charts-grid">
+                <article class="chart-card">
+                  <div class="card-header">
+                    <div>
+                      <h3><span tabindex="0" role="button" class="gold-term" data-term-key="cycle_time">Turnaround Speed</span>, <span tabindex="0" role="button" class="gold-term" data-term-key="stage3_qa">Review Waiting Lines</span> &amp; <span tabindex="0" role="button" class="gold-term" data-term-key="hours_saved">Hours Saved</span></h3>
+                      <p class="card-desc">Switch views or hover curves to inspect turnaround hours, waiting line delays, or monthly hours saved.</p>
+                    </div>
+                    <div class="tab-group" role="group" aria-label="Discrete Event Trajectory View">
+                      <button type="button" class="tab-btn active" data-des-traj="cycle_time" data-term-key="cycle_time">Turnaround Time (hrs)</button>
+                      <button type="button" class="tab-btn" data-des-traj="queue_wait" data-term-key="stage3_qa">Waiting Lines (hrs)</button>
+                      <button type="button" class="tab-btn" data-des-traj="hours_saved" data-term-key="hours_saved">Hours Saved / Mo</button>
+                    </div>
+                  </div>
+                  <div class="svg-container" id="des-cycle-chart"></div>
+                  <div class="chart-legend" id="des-cycle-legend">
+                    <span class="legend-item"><span class="swatch" style="background:#64748b"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="cycle_time">Old Turnaround Time (hrs)</span></span>
+                    <span class="legend-item"><span class="swatch" style="background:var(--brand-primary)"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="cycle_time">New Turnaround Time with AI (hrs)</span></span>
+                    <span class="legend-item"><span class="swatch" style="background:var(--negative)"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="stage3_qa">Human Review Waiting Line (hrs)</span></span>
+                  </div>
+                </article>
+
+                <article class="chart-card">
+                  <div class="card-header">
+                    <div>
+                      <h3>Staff <span tabindex="0" role="button" class="gold-term" data-term-key="utilization">Busyness (%)</span> &amp; <span tabindex="0" role="button" class="gold-term" data-term-key="sla">On-Time Delivery (SLA %)</span></h3>
+                      <p class="card-desc">When final reviewers pass the <span tabindex="0" role="button" class="gold-term" data-term-key="danger_line_85">85% busyness danger line</span>, work items pile up waiting for approval.</p>
+                    </div>
+                    <div class="tab-group" role="group" aria-label="Discrete Event Department Chart View">
+                      <button type="button" class="tab-btn active" data-des-bar="utilization" data-term-key="utilization">Draft vs. Review Busyness (%)</button>
+                      <button type="button" class="tab-btn" data-des-bar="before_after_qa" data-term-key="qa_busyness">Review Busyness (Before → Now)</button>
+                      <button type="button" class="tab-btn" data-des-bar="sla" data-term-key="sla">On-Time Delivery (SLA %)</button>
+                    </div>
+                  </div>
+                  <div class="svg-container" id="des-utilization-chart"></div>
+                  <div class="chart-legend" id="des-utilization-legend">
+                    <span class="legend-item"><span class="swatch" style="background:var(--brand-primary)"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="draft_busyness">First-Draft Staff Busyness (%)</span></span>
+                    <span class="legend-item"><span class="swatch" style="background:var(--warning)"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="qa_busyness">Final-Review Staff Busyness (%)</span></span>
+                    <span class="legend-item"><span class="swatch" style="background:var(--negative)"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="danger_line_85">85% Traffic-Jam Danger Line</span></span>
+                  </div>
+                </article>
+              </div>
+
+              <div class="table-section">
+                <div class="section-header-row">
+                  <div>
+                    <h3>Department <span tabindex="0" role="button" class="gold-term" data-term-key="cycle_time">Turnaround Speed</span>, <span tabindex="0" role="button" class="gold-term" data-term-key="stage3_qa">Review Queues</span> &amp; <span tabindex="0" role="button" class="gold-term" data-term-key="sla">On-Time Delivery</span></h3>
+                    <p class="card-desc">Pinpoints exact hours saved each month and whether final human reviewers are overloaded.</p>
+                  </div>
+                </div>
+                <div tabindex="0" role="region" aria-label="Workflow bottleneck table" class="table-wrapper">
+                  <table id="des-workflow-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Department &amp; Work Item</th>
+                        <th scope="col"><span tabindex="0" role="button" class="gold-term" data-term-key="cycle_time">Turnaround Time</span> (Before → Now)</th>
+                        <th scope="col"><span tabindex="0" role="button" class="gold-term" data-term-key="draft_busyness">Drafting Staff Busyness</span></th>
+                        <th scope="col"><span tabindex="0" role="button" class="gold-term" data-term-key="qa_busyness">Review Staff Busyness</span></th>
+                        <th scope="col"><span tabindex="0" role="button" class="gold-term" data-term-key="stage3_qa">Review Wait Line</span></th>
+                        <th scope="col"><span tabindex="0" role="button" class="gold-term" data-term-key="hours_saved">Hours Saved / Mo</span></th>
+                        <th scope="col"><span tabindex="0" role="button" class="gold-term" data-term-key="sla">On-Time Rate (SLA)</span></th>
+                        <th scope="col"><span tabindex="0" role="button" class="gold-term" data-term-key="workflow_health">Workflow Health Check</span></th>
+                      </tr>
+                    </thead>
+                    <tbody id="des-workflow-tbody"></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="tab-inline-md-card" id="md-inline-discrete_event"></div>
+            </div>
+          </div>
+
+          <!-- ============================================================ -->
+          <!-- TAB PANEL 5: PILOT SCORECARD (BAYESIAN NETWORK)              -->
+          <!-- ============================================================ -->
+          <div role="tabpanel" id="panel-bn" aria-labelledby="tab-bn" hidden="until-found">
+            <div class="panel-inner">
+              <div class="science-explainer-card">
+                <div class="explainer-grid">
+                  <div>
+                    <span class="memo-label">Lens 5 • Updating Your 3-Year Forecast When 6-Month Pilot Results Arrive</span>
+                    <h3><span tabindex="0" role="button" class="gold-term" data-term-key="bayesian_network">Pilot Scorecard Updater (Bayesian Network)</span></h3>
+                    <p class="card-desc">
+                      Smart Boards fund AI in stages. Start with a <span tabindex="0" role="button" class="gold-term" data-term-key="prior">Starting Estimate (Prior)</span>, click what your <strong>6-month pilot</strong> actually showed below, and see the <span tabindex="0" role="button" class="gold-term" data-term-key="posterior">Updated Forecast (Posterior)</span> and <span tabindex="0" role="button" class="gold-term" data-term-key="stage_gate">Next-Stage Funding Decision</span>.
+                    </p>
+                  </div>
+                  <div class="layperson-callout">
+                    <strong>Everyday Analogy:</strong> Like a doctor updating a patient's outlook as soon as lab test results come back—turning early 6-month pilot numbers into a clear <strong>Green Light</strong>, <strong>Fix First</strong>, or <strong>Pause</strong> funding call.
+                    <div class="explainer-actions">
+                      <button type="button" class="btn-secondary" data-open-md="bayesian_network">📖 Pop-Out Modal</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive Pilot Telemetry Selector inside Tab 5 -->
+              <div class="bn-evidence-bar">
+                <div class="section-header-row" style="margin-block-end:0.5rem">
+                  <div>
+                    <h3>Click Any <span tabindex="0" role="button" class="gold-term" data-term-key="pilot_signals">6-Month Pilot Result</span> to Update the 3-Year Forecast (1s Smooth Fade)</h3>
+                    <p class="card-desc">See how real pilot evidence changes your odds of a strong 3-year return using <span tabindex="0" role="button" class="gold-term" data-term-key="bayes_rule">Bayes' Rule</span>.</p>
+                  </div>
+                  <span class="stage-gate-pill" id="bn-gate-pill">GREEN LIGHT</span>
+                </div>
+                <div class="preset-buttons" id="bn-preset-buttons" role="radiogroup" aria-label="6-Month Pilot Results"></div>
+              </div>
+
+              <div class="kpi-grid" id="bn-kpi-grid"></div>
+
+              <div class="charts-grid">
+                <article class="chart-card">
+                  <div class="card-header">
+                    <div>
+                      <h3><span tabindex="0" role="button" class="gold-term" data-term-key="dag">Cause-and-Effect Decision Map</span> (Hover or Click Any Box)</h3>
+                      <p class="card-desc" id="bn-node-inspector-text">Shows how <span tabindex="0" role="button" class="gold-term" data-term-key="exec_support_node">Leadership Support</span> &amp; <span tabindex="0" role="button" class="gold-term" data-term-key="guardrail_strength">Quality Guardrails</span> drive <span tabindex="0" role="button" class="gold-term" data-term-key="pilot_signals">6-Month Pilot Results</span>, which in turn drive 3-Year Returns.</p>
+                    </div>
+                  </div>
+                  <div class="svg-container" id="bn-dag-chart"></div>
+                </article>
+
+                <article class="chart-card">
+                  <div class="card-header">
+                    <div>
+                      <h3><span tabindex="0" role="button" class="gold-term" data-term-key="prior">Starting Estimate</span> vs. <span tabindex="0" role="button" class="gold-term" data-term-key="posterior">Updated 3-Year Return</span> Odds (%)</h3>
+                      <p class="card-desc">Switch views or hover bars to inspect Return Odds (%) and 6-Month Pilot Signals (%).</p>
+                    </div>
+                    <div class="tab-group" role="group" aria-label="Bayesian Chart View">
+                      <button type="button" class="tab-btn active" data-bn-view="regime_probs" data-term-key="posterior">Return Odds (%)</button>
+                      <button type="button" class="tab-btn" data-bn-view="pilot_signals" data-term-key="pilot_signals">6-Month Pilot Signals (%)</button>
+                    </div>
+                  </div>
+                  <div class="svg-container" id="bn-posterior-chart"></div>
+                  <div class="chart-legend">
+                    <span class="legend-item"><span class="swatch" style="background:#64748b"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="prior">Day-1 Starting Estimate</span></span>
+                    <span class="legend-item"><span class="swatch" style="background:var(--brand-primary)"></span> <span tabindex="0" role="button" class="gold-term" data-term-key="posterior">Updated Odds After 6-Month Pilot</span></span>
+                  </div>
+                </article>
+              </div>
+
+              <div class="tab-inline-md-card" id="md-inline-bayesian_network"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Cross-Method Summary Table -->
+    <section aria-labelledby="cross-paradigm-caption" class="table-section">
+      <div class="section-header-row">
+        <div>
+          <h2>3. All 5 Lenses Side by Side (Current Rollout Strategy)</h2>
+          <p class="card-desc">See what all five forecasting methods say about your selected rollout strategy—and the specific blind spot each one catches.</p>
+        </div>
+        <a href="lab.html" class="btn-secondary">Adjust Sliders in What-If Lab →</a>
+      </div>
+
+      <div tabindex="0" role="region" aria-labelledby="cross-paradigm-caption" class="table-wrapper">
+        <table id="cross-paradigm-table">
+          <caption id="cross-paradigm-caption" class="sr-only">Comparison of the active rollout strategy across all five forecasting lenses</caption>
+          <thead>
+            <tr>
+              <th scope="col">Forecasting Lens</th>
+              <th scope="col">How It Works in Plain English</th>
+              <th scope="col">Cautious Return</th>
+              <th scope="col">Typical Return</th>
+              <th scope="col">Best-Case Return</th>
+              <th scope="col">Typical 3-Yr Net Profit</th>
+              <th scope="col">Key Takeaway for Leaders</th>
+            </tr>
+          </thead>
+          <tbody id="cross-paradigm-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 4. Cross-Strategy Board Comparison Table -->
+    <section aria-labelledby="comparison-table-caption" class="table-section">
+      <div class="section-header-row">
+        <div>
+          <h2>4. Compare All 4 Rollout Strategies Side by Side</h2>
+          <p class="card-desc">Compare downside protection, typical return, and payback speed across all four company strategies.</p>
+        </div>
+      </div>
+
+      <div tabindex="0" role="region" aria-labelledby="comparison-table-caption" class="table-wrapper">
+        <table id="scenario-comparison-table">
+          <caption id="comparison-table-caption" class="sr-only">Side-by-side comparison of all four rollout strategies</caption>
+          <thead>
+            <tr>
+              <th scope="col">Rollout Strategy</th>
+              <th scope="col">1. Financial Range (P10 / P50 / P90)</th>
+              <th scope="col">2. Team Behavior Return</th>
+              <th scope="col">3. Flywheels &amp; Brakes Return</th>
+              <th scope="col">4. Workflow Queue Return</th>
+              <th scope="col">5. Pilot Scorecard Return</th>
+              <th scope="col">3-Yr Net Profit (Typical)</th>
+              <th scope="col">Breakeven Speed</th>
+            </tr>
+          </thead>
+        <tbody id="comparison-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>
+        <strong>How This Works:</strong> Precomputed in Julia (<code>src/AIROISimulator.jl</code>) across five modular simulation engines and published as static JSON via GitHub Actions. Hover or tap any <span tabindex="0" role="button" class="gold-term" data-term-key="monte_carlo">light-gold underlined term</span> for a brief plain-English definition.
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js" defer></script>
+  <script src="data/scenarios-bundle.js?v=20261117" defer></script>
+  <script src="tooltips.js?v=20261117" defer></script>
+  <script src="app.js?v=20261117" defer></script>
+</body>
+</html>

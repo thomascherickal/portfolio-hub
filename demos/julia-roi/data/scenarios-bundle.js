@@ -1,0 +1,9917 @@
+window.PRECOMPUTED_SCENARIOS_BUNDLE = {
+  "default_scenario_id": "pragmatic_phased",
+  "generated_by": "Julia 1.12.6 — AIROISimulator.jl (MC + ABM + SD + DES + BN)",
+  "model_subtitle": "5 Science-Based Forecasting Approaches Modeling the Canonical 325-FTE Enterprise Rollout",
+  "model_title": "Multi-Paradigm Scientific AI Adoption ROI Simulator",
+  "paradigms_metadata": [
+    {
+      "best_for": "Board capital allocation, NPV at WACC & downside stress-testing",
+      "captures": "Honest P10–P50–P90 financial confidence bands & tail risk",
+      "core_concept": "Top-down correlated probability distributions",
+      "explanation_markdown": "# Plain-English Guide: 10,000 What-If Futures (Monte Carlo Simulation)\n\n> **Executive Summary:** Rather than betting your AI budget on a single optimistic spreadsheet number, **Monte Carlo Simulation** tests your business plan **10,000 times** with realistic ups and downs to give the Board an honest **Cautious (`P10`)**, **Typical (`P50`)**, and **Best-Case (`P90`)** range.\n\n---\n\n## 1. Everyday Analogy: Driving Across the State\n\nImagine you are driving across the state for an important dinner and someone asks: *\"What time will you get here?\"*\n\nIf you give **one optimistic number**—like *\"6:00 PM sharp, assuming zero traffic, green lights, and clear skies\"*—you will almost certainly be late. Instead, what if your GPS ran **10,000 practice drives** on a computer, testing realistic combinations of rain, roadwork, and rush-hour delays?\n\n| Forecast Case | What It Means on the Road | What It Means for Your AI Budget |\n| :--- | :--- | :--- |\n| **Cautious Case (`P10`)** | 9 out of 10 trips arrive before **7:15 PM** | Your downside-protected floor (90% of simulated futures do better) |\n| **Typical Case (`P50`)** | Half of trips arrive by **6:30 PM** | Your realistic middle outcome for base-case financial planning |\n| **Best Case (`P90`)** | Top 1 out of 10 trips arrive by **6:05 PM** | Your upside potential when adoption is fast and cleanup work stays low |\n\n---\n\n## 2. Why Single-Number AI Pitch Decks Mislead Boards\n\nMost AI proposals multiply three rosy guesses together:\n1. *\"Everyone will use the tool on Day 1...\"*\n2. *\"...it will save 30% of their week...\"*\n3. *\"...and every saved minute turns straight into profit.\"*\n\nIn real companies, four everyday realities get in the way:\n- [x] **Gradual Adoption & Early Learning Dip:** Teams adopt tools step by step. In the first few months, people actually work a bit slower while learning new habits.\n- [x] **Cleanup & Fact-Checking Time:** AI drafts emails, code, and reports quickly, but employees still have to check the facts and fix mistakes.\n- [x] **Turning Saved Time into Real Money:** Saving someone 20 minutes a day only helps the bottom line if managers turn those saved hours into more finished work, faster customer replies, or lower outside contractor bills.\n- [ ] **Unchecked Usage Bill Creep:** Without budget guardrails, monthly cloud bills can climb each quarter.\n\n---\n\n## 3. How the Model Calculates Each Trial\n\n```text\nMonthly Net Cash = (Active Staff × Raw Time Saved - Cleanup Time) × Profit Conversion\n                   - (IT Setup + Training + Monthly Software & Usage Bills)\n```\n\n---\n\n## 4. How Every Dollar Flows (Visual Map)\n\n```mermaid\nflowchart LR\n    A[\"Rollout Speed &amp; Training\"] --> B[\"Staff Using AI Daily\"]\n    B --> C[\"Raw Time Saved\"]\n    C --> D[\"Subtract Cleanup &amp; Fact-Checking\"]\n    D --> E[\"Turn Saved Hours into Real Profit\"]\n    F[\"Setup, Training &amp; Software Bills\"] --> G[\"3-Year Net Cash Range (P10 / P50 / P90)\"]\n    E --> G\n    style A fill:#2563eb,stroke:#1d4ed8,color:#ffffff\n    style B fill:#0284c7,stroke:#0369a1,color:#ffffff\n    style C fill:#0d9488,stroke:#0f766e,color:#ffffff\n    style D fill:#d97706,stroke:#b45309,color:#ffffff\n    style E fill:#059669,stroke:#047857,color:#ffffff\n    style F fill:#dc2626,stroke:#b91c1c,color:#ffffff\n    style G fill:#7c3aed,stroke:#6d28d9,color:#ffffff\n```\n\n---\n\n## 5. What This Means for Your Board Decision\n\nWhen a vendor pitches a single return number—such as *\"200% return in year one\"*—they are usually showing you the best-case scenario where everything goes right on the first try. In reality, your company faces normal business friction: some teams need extra coaching, early drafts require careful fact-checking, and IT integration takes a few months.\n\nTesting **10,000 What-If Futures** protects you from unpleasant budget surprises. Instead of hoping for the best, you can approve funding knowing that even in a **Cautious (`P10`)** year, your downside is protected—and if adoption goes smoothly, your **Typical (`P50`)** and **Best-Case (`P90`)** upside is clearly mapped out.\n\n---\n\n## 6. Quick Glossary (Under 60 Words Each)\n\n- **Cautious (`P10`) / Typical (`P50`) / Best Case (`P90`):** Out of 10,000 simulated futures, `P10` is the cautious floor that 90% of futures beat, `P50` is the middle outcome, and `P90` is the top 10% upside.\n- **Net Profit Today (`NPV`):** Total 3-year profit minus all setup, training, and software bills, adjusted so future dollars are worth slightly less than dollars today.\n- **Source File:** [`MonteCarloModel.jl`](src/simulations/monte-carlo/MonteCarloModel.jl)\n",
+      "explanation_path": "src/simulations/monte-carlo/explanations.md",
+      "id": "monte_carlo",
+      "tab_title": "1. Monte Carlo Risk"
+    },
+    {
+      "best_for": "Deploying AI copilots and customer-facing bots",
+      "captures": "Employee adoption friction, champion contagion & behavioral churn",
+      "core_concept": "Bottom-up interaction of individual actors",
+      "explanation_markdown": "# Plain-English Guide: Team Behavior Simulation (Agent-Based Modeling)\n\n> **Executive Summary:** People do not adopt new tools because of an executive memo—they adopt when a trusted coworker shows them a time-saving trick, and they quit if the tool keeps making frustrating mistakes.\n\n---\n\n## 1. What Is It in Plain English?\n\nThink about how a new restaurant or phone app becomes popular. People try it when the person sitting next to them says, *\"You have to see how much time this just saved me.\"*\n\nIn a **Team Behavior Simulation (Agent-Based Modeling)**, we do not treat your company as one giant spreadsheet line. Instead, we create **325 individual virtual employees** inside the computer—each with their own department, daily habits, and close coworkers.\n\n---\n\n## 2. The 5 Everyday Employee Habit Stages\n\n| Stage | Employee Mindset | Monthly Impact on the Business |\n| :--- | :--- | :--- |\n| **1. Waiting & Watching** | Hasn't tried the tool yet; watching teammates first | `$0` license cost, `0` hours saved |\n| **2. Learning the Ropes** | Trying AI out; working slightly slower during the early learning dip | Pays monthly seat fee; needs coaching to avoid frustration |\n| **3. Confident Daily User** | Uses AI every day, checks facts carefully, and saves real time | Generates steady monthly time savings and net profit |\n| **4. AI Champion** | Power user (`1.28x` speed gain) who coaches nearby coworkers | Helps *Learning* teammates succeed twice as fast |\n| **5. Frustrated Quitter** | Gave up after too many bad AI drafts; seat becomes **Shelfware** | Company still pays for unused licenses until re-coached |\n\n---\n\n## 3. Three Practical Takeaways for Leaders\n\n1. **Word-of-Mouth Spreads Faster Than Mandates:** Skeptical employees start trying AI when their immediate teammates use it successfully.\n2. **AI Champions Are the Spark:** Training a small group of enthusiastic **AI Champions** (even `5%` to `8%` of each team) gives coworkers someone to ask for help, cutting early frustration in half.\n3. **The \"Shelfware\" Trap:** If leaders hand out AI licenses to everyone on Day 1 without coaching (*Fast All-At-Once Push*), employees run into AI mistakes, get frustrated fixing bad drafts, and quietly stop using the tool—while the company keeps paying their monthly subscription fee!\n\n```text\nWaiting & Watching ──(Coworker Tip)──► Learning the Ropes ──(Champion Coaching)──► Confident Daily User ──► AI Champion\n                                               │\n                                    (Unchecked AI Mistakes)\n                                               ▼\n                                  Frustrated Quitter (Shelfware)\n```\n\n---\n\n## 4. How Habits Spread Across Your Teams\n\n```mermaid\nflowchart LR\n    S[\"1. Waiting &amp; Watching\"] -->|\"Trusted Coworker Tip\"| L[\"2. Learning the Ropes\"]\n    L -->|\"AI Champion Coaching\"| C[\"3. Confident Daily User\"]\n    C -->|\"Masters Playbooks\"| CH[\"4. AI Champion Coach\"]\n    L -->|\"Too Many Bad Drafts\"| Q[\"5. Frustrated Quitter (Shelfware)\"]\n    Q -.->|\"Re-Coached by Champion\"| L\n    style S fill:#475569,stroke:#334155,color:#ffffff\n    style L fill:#d97706,stroke:#b45309,color:#ffffff\n    style C fill:#2563eb,stroke:#1d4ed8,color:#ffffff\n    style CH fill:#059669,stroke:#047857,color:#ffffff\n    style Q fill:#dc2626,stroke:#b91c1c,color:#ffffff\n```\n\n---\n\n## 5. Why People—Not Software—Decide Your Return\n\nBuying 325 software licenses does not guarantee 325 daily users. In most companies, an all-staff announcement creates a brief spike of curiosity, followed by quiet drop-off if employees hit frustrating errors in their first week. Once someone gives up, their license becomes **Shelfware**—a monthly bill that delivers zero value.\n\nThe smartest way to protect your investment is to invest in people first. Training a small group of **AI Champions** inside each department gives hesitant coworkers a friendly desk neighbor to ask for help. That simple human support network turns early frustration into lasting daily habits.\n\n- **Source File:** [`AgentBasedModel.jl`](src/simulations/agent-based/AgentBasedModel.jl)\n",
+      "explanation_path": "src/simulations/agent-based/explanations.md",
+      "id": "agent_based",
+      "tab_title": "2. Agent-Based (ABM)"
+    },
+    {
+      "best_for": "Multi-year AI strategy and infrastructure scaling",
+      "captures": "Compounding workflow mastery vs. tech debt & scaling compute costs",
+      "core_concept": "Macro-level feedback loops, stocks, and flows",
+      "explanation_markdown": "# Plain-English Guide: Long-Term Flywheels & Brakes (System Dynamics)\n\n> **Executive Summary:** Over a 3-year horizon, your AI return is a tug-of-war between **Growth Flywheels** (shared playbooks and growing company know-how) and **Hidden Brakes** (sloppy cleanup backlogs and climbing monthly usage bills).\n\n---\n\n## 1. Everyday Analogy: Pushing a Snowball\n\nImagine pushing a snowball down a hill:\n- As it rolls, it picks up more snow and builds momentum (**a Growth Flywheel**).\n- At the same time, rough patches of grass and uphill slopes slow it down (**Hidden Brakes**).\n\n**System Dynamics** tracks how these four big-picture forces interact month after month over 36 months.\n\n---\n\n## 2. The 2 Growth Flywheels vs. 2 Hidden Brakes\n\n| Force | Type | How the Chain Reaction Works | 3-Year Impact |\n| :--- | :--- | :--- | :--- |\n| **Flywheel 1: Shared Tips** | `Growth Flywheel (+)` | More Active Users → Better Shared Templates → Easier for Next Wave | Speeds up adoption once `~25%` of staff are onboard |\n| **Flywheel 2: Company Know-How** | `Growth Flywheel (+)` | Daily Practice + Training → Better Playbooks → Higher Speed & Fewer Errors | Multiplies output per person in Years 2 & 3 |\n| **Brake 1: Cleanup Backlog** | `Hidden Brake (-)` | Rushed AI Output → Unchecked Mistakes Pile Up → Extra Time Fixing Bugs | Eats away saved hours if quality rules are weak |\n| **Brake 2: Usage Bill Creep** | `Hidden Brake (-)` | Automated Background Tasks → More Cloud Calls per Seat → Rising Bills | Doubles or triples per-seat usage bills without guardrails |\n\n---\n\n## 3. How Reinvestment & Guardrails Tip the Balance\n\n- [x] **Reinvest a Slice of Early Savings:** Putting `20%–35%` of early gains into role-specific playbooks keeps **Flywheel 2** spinning faster than **Brake 1**.\n- [x] **Set Automated Budget Guardrails:** Caching common questions and routing simple tasks to smaller AI models keeps **Brake 2 (Usage Bill Creep)** under control.\n\n```text\n[Active Staff] ──(+)──► [Company Know-How Flywheel] ──(+)──► [Higher Net Savings]\n      │\n      └──(+)──► [Rushed Unchecked Work] ──(-)──► [Cleanup Backlog Brake]\n```\n\n---\n\n## 4. The 3-Year Tug-of-War (Visual Map)\n\n```mermaid\nflowchart TD\n    A[\"Active Staff Using AI\"] -->|\"Reinvest in Training (+)\"| F[\"Growth Flywheel: Company Know-How\"]\n    F -->|\"Faster, Cleaner Work\"| V[\"Higher 3-Year Net Profit\"]\n    A -->|\"Rushed, Unchecked Output (-)\"| B1[\"Hidden Brake 1: Cleanup Backlog\"]\n    A -->|\"Automated Background Tasks (-)\"| B2[\"Hidden Brake 2: Rising Usage Bills\"]\n    B1 -->|\"Slows Teams Down\"| V\n    B2 -->|\"Eats Into Budget\"| V\n    style A fill:#2563eb,stroke:#1d4ed8,color:#ffffff\n    style F fill:#059669,stroke:#047857,color:#ffffff\n    style B1 fill:#dc2626,stroke:#b91c1c,color:#ffffff\n    style B2 fill:#d97706,stroke:#b45309,color:#ffffff\n    style V fill:#7c3aed,stroke:#6d28d9,color:#ffffff\n```\n\n---\n\n## 5. Why Year 2 and Year 3 Look Very Different From Month 1\n\nMany executive business cases assume that once a tool is rolled out, monthly savings stay flat forever. In practice, two opposing forces reshape your results over three years. If you reinvest a modest slice of early time savings into shared playbooks and team coaching, your organization builds lasting **Company Know-How** that compounds every quarter.\n\nOn the other hand, if teams rush ahead without quality checks or budget guardrails, sloppy outputs pile up into a **Cleanup Backlog** and automated background tasks quietly double or triple monthly cloud bills. Strong governance keeps the flywheel winning.\n\n- **Source File:** [`SystemDynamicsModel.jl`](src/simulations/system-dynamics/SystemDynamicsModel.jl)\n",
+      "explanation_path": "src/simulations/system-dynamics/explanations.md",
+      "id": "system_dynamics",
+      "tab_title": "3. System Dynamics"
+    },
+    {
+      "best_for": "Automating support desks, PR reviews, logistics, or claims",
+      "captures": "Exact cycle time saved, SLA queues & human QA review bottlenecks",
+      "core_concept": "Step-by-step process queues and resource limits",
+      "explanation_markdown": "# Plain-English Guide: Workflow Waiting Lines (Discrete Event Simulation)\n\n> **Executive Summary:** Speeding up first drafts by 40% will not speed up customer delivery if all those extra drafts get stuck waiting in line for **Final Human Review & Sign-Off**.\n\n---\n\n## 1. Everyday Analogy: The Airport Security Line\n\nPicture an airport security checkpoint with three steps:\n1. **Step 1 (Automated Triage):** A kiosk scans your boarding pass.\n2. **Step 2 (First Draft / Execution):** You put your bag through the X-ray scanner.\n3. **Step 3 (Final Human Review):** If anything looks unusual, an officer inspects your bag by hand.\n\nNow suppose the airport buys a faster X-ray machine that speeds up **Step 2 by 40%**, *and* triggers a few more bag checks—without adding any extra officers at **Step 3**. What happens? **The final inspection line backs up, and travelers still miss their flights!**\n\n---\n\n## 2. How Work Flows Through Your 4 Departments\n\n| Department | Everyday Work Item | Normal Turnaround | Where Waiting Lines Form |\n| :--- | :--- | :--- | :--- |\n| **Software Engineering** | Code Changes & Pull Requests | `~11–14 hrs` | Senior engineers reviewing AI-written code |\n| **Customer Support** | Complex Escalation Tickets | `~2–3 hrs` | Team leads checking tricky customer replies |\n| **Sales & Marketing** | Custom Deal Proposals & RFPs | `~8–10 hrs` | Pricing & compliance sign-off on proposals |\n| **Legal & Finance** | Contract Redlines & Audits | `~10–13 hrs` | Senior counsel verifying legal clauses |\n\n---\n\n## 3. The 85% Busyness Danger Line\n\nIn waiting-line math, once the senior staff who review and approve work are busy more than **85% of the workday**, waiting lines grow dramatically:\n\n```text\nReviewer Busyness:   50% ────► 70% ────► 85% (Danger Line!) ────► 95% (Multi-Day Backup!)\nWait Line Length:    Short     Moderate   Steep Climb             Severe Bottleneck\n```\n\n---\n\n## 4. Where Everyday Work Gets Stuck (Visual Map)\n\n```mermaid\nflowchart LR\n    I[\"Incoming Work (Tickets, Code, Contracts)\"] --> D[\"Step 1: AI-Assisted First Draft\"]\n    D -->|\"40% Faster Drafts\"| Q{\"Step 2: Final Human Review\"}\n    Q -->|\"Reviewer Busyness &lt; 85%\"| O[\"Fast On-Time Delivery (High SLA)\"]\n    Q -->|\"Reviewer Busyness &gt; 85%\"| W[\"Long Waiting Line &amp; Missed Deadlines\"]\n    style I fill:#475569,stroke:#334155,color:#ffffff\n    style D fill:#2563eb,stroke:#1d4ed8,color:#ffffff\n    style Q fill:#d97706,stroke:#b45309,color:#ffffff\n    style O fill:#059669,stroke:#047857,color:#ffffff\n    style W fill:#dc2626,stroke:#b91c1c,color:#ffffff\n```\n\n---\n\n## 5. Why Faster Drafts Alone Don't Equal Faster Delivery\n\nExecutives are often surprised when a team using AI writes proposals, code, or customer replies much faster—yet customers still wait just as long for the final result. The reason is simple: **a chain is only as fast as its slowest checkpoint.**\n\nWhen AI floods senior reviewers with extra drafts, those reviewers quickly cross the **85% busyness danger line** and a waiting line forms. By shifting just **5% to 7%** of the time saved on drafting into extra final-review capacity, you clear the traffic jam, protect on-time delivery, and turn drafting speed into real business results.\n\n- **How Smart Leaders Fix the Bottleneck:** In [`DiscreteEventModel.jl`](src/simulations/discrete-event/DiscreteEventModel.jl), our *Step-by-Step Phased Rollout* and *Full Workflow Redesign* plans shift **5% to 7% of saved drafting time into final quality review**, keeping waiting lines short and cutting total turnaround time by `25%` to `30%`.\n",
+      "explanation_path": "src/simulations/discrete-event/explanations.md",
+      "id": "discrete_event",
+      "tab_title": "4. Discrete Event (DES)"
+    },
+    {
+      "best_for": "Risk management and stage-gate funding decisions",
+      "captures": "Dynamically adjusts ROI forecasts using Month-6 pilot telemetry",
+      "core_concept": "Conditional probability graphs updated with data",
+      "explanation_markdown": "# Plain-English Guide: Pilot Scorecard Updater (Bayesian Networks)\n\n> **Executive Summary:** Wise Boards never write a blank check on Day 1. They fund a **6-month pilot**, check three simple pilot signals (Usage, Cleanup Rate, and Budget Control), and update their 3-year profit odds before releasing next-stage funding.\n\n---\n\n## 1. Everyday Analogy: How a Doctor Updates a Diagnosis\n\nThink about how a family doctor works:\n- Before running any tests, the doctor starts with a reasonable **Day-1 Starting Estimate (`Prior`)** based on your age and symptoms.\n- Once your **lab test results** come back, the doctor updates the diagnosis right away (**Updated Forecast / `Posterior`**) and recommends the next step.\n\nA **Pilot Scorecard Updater (Bayesian Network)** does the exact same thing for your AI investment.\n\n---\n\n## 2. The 6-Month Pilot Checkpoint Map\n\n```text\n[Leadership Support] & [Quality Guardrails]   (Layer 1: Company Foundation)\n                 │\n                 ▼\n[6M Staff Usage] • [6M Cleanup Rate] • [6M Budget Control]   (Layer 2: 6-Month Pilot Scorecard)\n                 │\n                 ▼\n      [Time-to-Profit Conversion]             (Layer 3: Turning Saved Hours into Value)\n                 │\n                 ▼\n   [Updated 3-Year Return & Funding Call]     (Layer 4: Green Light / Fix First / Hold)\n```\n\n---\n\n## 3. How 6-Month Pilot Results Change Your Funding Call\n\n| 6-Month Pilot Scorecard | Staff Usage | Cleanup Rate | Budget Control | Updated 3-Year Return | Board Stage-Gate Call |\n| :--- | :--- | :--- | :--- | :--- | :--- |\n| **Great 6-Month Pilot** | High (`>75%`) | Clean (`<5%`) | On Budget | **`+170%` to `+200%`** | **GREEN LIGHT** (Release Next-Stage Funding) |\n| **Average 6-Month Pilot** | On Target (`45–75%`) | Moderate (`5–10%`) | On Budget | **`+65%` to `+115%`** | **FIX FIRST** (Tighten Quality Before Scaling) |\n| **Busy But Messy Pilot** | High (`>75%`) | Heavy (`>10%`) | Over Budget | **`+15%` to `+45%`** | **FIX FIRST / HOLD** (Stop Bill Creep & Rework) |\n| **Struggling Pilot** | Low (`<45%`) | Heavy (`>10%`) | Over Budget | **`-10%` to `+10%`** | **HOLD / PAUSE** (Freeze New Seats & Redesign) |\n\n---\n\n## 4. From 6-Month Pilot to Board Funding Call (Visual Map)\n\n```mermaid\nflowchart TD\n    F[\"Leadership Support &amp; Quality Guardrails\"] --> P1[\"6M Staff Usage\"]\n    F --> P2[\"6M Cleanup Rate\"]\n    F --> P3[\"6M Budget Control\"]\n    P1 --> R[\"Time-to-Profit Conversion\"]\n    P2 --> R\n    P3 --> R\n    R --> G[\"Board Decision: Green Light / Fix First / Hold\"]\n    style F fill:#7c3aed,stroke:#6d28d9,color:#ffffff\n    style P1 fill:#2563eb,stroke:#1d4ed8,color:#ffffff\n    style P2 fill:#0284c7,stroke:#0369a1,color:#ffffff\n    style P3 fill:#d97706,stroke:#b45309,color:#ffffff\n    style R fill:#0d9488,stroke:#0f766e,color:#ffffff\n    style G fill:#059669,stroke:#047857,color:#ffffff\n```\n\n---\n\n## 5. How Stage-Gate Funding Protects Company Capital\n\nThe biggest financial mistake in enterprise technology is committing a full 3-year budget before testing whether teams actually use the tool. A **Pilot Scorecard Updater** gives the Board a clear, disciplined alternative: fund a focused **6-month pilot** first, then let real numbers—not vendor promises—decide what happens next.\n\nIf staff usage is high, cleanup is low, and usage bills stay on budget, you get an objective **Green Light** to scale company-wide. If cleanup or bills are creeping up, you get an early **Fix First** warning while the financial commitment is still small.\n\n- **Source File:** [`BayesianNetworkModel.jl`](src/simulations/bayesian-network/BayesianNetworkModel.jl)\n",
+      "explanation_path": "src/simulations/bayesian-network/explanations.md",
+      "id": "bayesian_network",
+      "tab_title": "5. Bayesian Network"
+    }
+  ],
+  "scenarios": [
+    {
+      "assumptions": {
+        "annual_token_drift_pct": [5.0, 14.0, 28.0],
+        "inflection_month": [6.5, 9.5, 14.0],
+        "j_curve_dip_pct": [2.0, 4.0, 8.0],
+        "rollout_ceiling_pct": [70.0, 84.0, 94.0],
+        "training_per_seat_usd": [350.0, 650.0, 1100.0],
+        "upfront_platform_p10_p90_usd": [180000.0, 460000.0]
+      },
+      "board_recommendation": "Recommended Baseline Plan: Present the Cautious (P10) to Best-Case (P90) range to the Board, with next-stage funding tied to 6-month adoption and quality checks.",
+      "cross_paradigm_comparison": [
+        {
+          "central_npv_usd": 1.84036e6,
+          "central_roi_pct": 139.9,
+          "downside_roi_pct": 58.8,
+          "mechanism": "Tests 10,000 combinations of adoption speed, time saved, and costs",
+          "paradigm_id": "monte_carlo",
+          "paradigm_name": "1. 10,000 What-If Futures (Monte Carlo)",
+          "primary_insight": "Shows honest Cautious (P10) to Best-Case (P90) profit ranges and breakeven speed.",
+          "upside_roi_pct": 239.3
+        },
+        {
+          "central_npv_usd": 2.691444e6,
+          "central_roi_pct": 214.3,
+          "downside_roi_pct": 113.2,
+          "mechanism": "Follows 325 individual coworkers sharing tips or quitting in frustration",
+          "paradigm_id": "agent_based",
+          "paradigm_name": "2. Team Behavior (Agent-Based)",
+          "primary_insight": "Shows how AI Champions spread good habits while 13.2% of seats risk becoming unused shelfware.",
+          "upside_roi_pct": 298.4
+        },
+        {
+          "central_npv_usd": 2.129373e6,
+          "central_roi_pct": 169.5,
+          "downside_roi_pct": 105.1,
+          "mechanism": "Tracks growing company know-how against cleanup backlog and rising bills",
+          "paradigm_id": "system_dynamics",
+          "paradigm_name": "3. Flywheels & Brakes (System Dynamics)",
+          "primary_insight": "Weighs growing team know-how (61.7 pts) against monthly bill growth (1.33x).",
+          "upside_roi_pct": 233.9
+        },
+        {
+          "central_npv_usd": 1.620719e6,
+          "central_roi_pct": 126.6,
+          "downside_roi_pct": 82.3,
+          "mechanism": "Follows everyday work items from first draft to final human review",
+          "paradigm_id": "discrete_event",
+          "paradigm_name": "4. Workflow Waiting Lines (Discrete Event)",
+          "primary_insight": "Cuts turnaround time by 3.7% while checking if final human review lines back up (0.14h wait).",
+          "upside_roi_pct": 170.9
+        },
+        {
+          "central_npv_usd": 1.9545e6,
+          "central_roi_pct": 126.2,
+          "downside_roi_pct": 25.2,
+          "mechanism": "Updates 3-year profit odds as soon as 6-month pilot results arrive",
+          "paradigm_id": "bayesian_network",
+          "paradigm_name": "5. Pilot Scorecard (Bayesian Network)",
+          "primary_insight": "Next-stage funding call: FIX FIRST (Tighten Quality & Budget Before Scaling).",
+          "upside_roi_pct": 187.6
+        }
+      ],
+      "description": "Covers 325 employees across 4 departments. Teams get hands-on coaching before licenses scale up, preventing runaway usage bills and steadily turning saved hours into real output.",
+      "distributions": {
+        "npv_k_usd_histogram": {
+          "bin_edges": [-1071.5, -833.0, -594.4, -355.8, -117.2, 121.3, 359.9, 598.5, 837.1, 1075.7, 1314.2, 1552.8, 1791.4, 2030.0, 2268.6, 2507.1, 2745.7, 2984.3, 3222.9, 3461.5, 3700.0, 3938.6, 4177.2, 4415.8, 4654.3, 4892.9, 5131.5, 5370.1, 5608.7],
+          "bin_midpoints": [-952.3, -713.7, -475.1, -236.5, 2.1, 240.6, 479.2, 717.8, 956.4, 1195.0, 1433.5, 1672.1, 1910.7, 2149.3, 2387.8, 2626.4, 2865.0, 3103.6, 3342.2, 3580.7, 3819.3, 4057.9, 4296.5, 4535.1, 4773.6, 5012.2, 5250.8, 5489.4],
+          "counts": [3, 5, 18, 46, 112, 208, 319, 505, 713, 886, 992, 986, 1053, 964, 806, 714, 514, 403, 266, 184, 121, 73, 56, 28, 10, 8, 5, 2],
+          "pct_of_trials": [0.03, 0.05, 0.18, 0.46, 1.12, 2.08, 3.19, 5.05, 7.13, 8.86, 9.92, 9.86, 10.53, 9.64, 8.06, 7.14, 5.14, 4.03, 2.66, 1.84, 1.21, 0.73, 0.56, 0.28, 0.1, 0.08, 0.05, 0.02]
+        },
+        "roi_pct_histogram": {
+          "bin_edges": [-60.0, -40.1, -20.2, -0.2, 19.7, 39.6, 59.5, 79.4, 99.3, 119.3, 139.2, 159.1, 179.0, 198.9, 218.8, 238.8, 258.7, 278.6, 298.5, 318.4, 338.3, 358.3, 378.2, 398.1, 418.0, 437.9, 457.8, 477.8, 497.7],
+          "bin_midpoints": [-50.0, -30.1, -10.2, 9.7, 29.6, 49.5, 69.5, 89.4, 109.3, 129.2, 149.1, 169.0, 189.0, 208.9, 228.8, 248.7, 268.6, 288.5, 308.5, 328.4, 348.3, 368.2, 388.1, 408.0, 428.0, 447.9, 467.8, 487.7],
+          "counts": [4, 16, 55, 158, 296, 496, 748, 966, 1082, 1138, 1119, 988, 813, 603, 511, 343, 246, 163, 94, 68, 33, 37, 8, 9, 2, 2, 1, 1],
+          "pct_of_trials": [0.04, 0.16, 0.55, 1.58, 2.96, 4.96, 7.48, 9.66, 10.82, 11.38, 11.19, 9.88, 8.13, 6.03, 5.11, 3.43, 2.46, 1.63, 0.94, 0.68, 0.33, 0.37, 0.08, 0.09, 0.02, 0.02, 0.01, 0.01]
+        }
+      },
+      "id": "pragmatic_phased",
+      "kpis": {
+        "month36_adoption_pct": {
+          "mean": 82.6,
+          "p05": 73.8,
+          "p10": 75.6,
+          "p25": 79.0,
+          "p50": 82.9,
+          "p75": 86.4,
+          "p90": 89.3,
+          "p95": 90.8,
+          "std": 5.2
+        },
+        "month36_net_productivity_uplift_pct": {
+          "mean": 6.93,
+          "p05": 4.61,
+          "p10": 5.13,
+          "p25": 5.91,
+          "p50": 6.89,
+          "p75": 7.93,
+          "p90": 8.82,
+          "p95": 9.4,
+          "std": 1.45
+        },
+        "npv_usd": {
+          "mean": 1.875735e6,
+          "p05": 455895.0,
+          "p10": 752393.0,
+          "p25": 1.233182e6,
+          "p50": 1.84036e6,
+          "p75": 2.468459e6,
+          "p90": 3.065663e6,
+          "p95": 3.447575e6,
+          "std": 910457.0
+        },
+        "payback_months": {
+          "mean": 16.7,
+          "p05": 11.6,
+          "p10": 12.4,
+          "p25": 14.0,
+          "p50": 16.0,
+          "p75": 18.5,
+          "p90": 21.4,
+          "p95": 24.1,
+          "std": 4.2
+        },
+        "prob_breakeven_within_24m_pct": 94.9,
+        "prob_breakeven_within_36m_pct": 99.2,
+        "prob_positive_npv_pct": 98.9,
+        "roi_pct": {
+          "mean": 145.2,
+          "p05": 38.1,
+          "p10": 58.8,
+          "p25": 94.6,
+          "p50": 139.9,
+          "p75": 189.0,
+          "p90": 239.3,
+          "p95": 270.0,
+          "std": 71.1
+        },
+        "total_cost_36m_usd": {
+          "mean": 1.663881e6,
+          "p05": 1.317486e6,
+          "p10": 1.384108e6,
+          "p25": 1.500106e6,
+          "p50": 1.64358e6,
+          "p75": 1.80778e6,
+          "p90": 1.96749e6,
+          "p95": 2.071224e6,
+          "std": 231868.0
+        },
+        "total_gross_benefit_36m_usd": {
+          "mean": 6.440021e6,
+          "p05": 4.667111e6,
+          "p10": 5.006209e6,
+          "p25": 5.613035e6,
+          "p50": 6.361331e6,
+          "p75": 7.189649e6,
+          "p90": 7.962047e6,
+          "p95": 8.477566e6,
+          "std": 1.161054e6
+        },
+        "total_net_benefit_36m_usd": {
+          "mean": 4.019358e6,
+          "p05": 2.352292e6,
+          "p10": 2.695655e6,
+          "p25": 3.242674e6,
+          "p50": 3.960132e6,
+          "p75": 4.723495e6,
+          "p90": 5.437227e6,
+          "p95": 5.891942e6,
+          "std": 1.080373e6
+        },
+        "total_rework_drag_36m_usd": {
+          "mean": 2.420663e6,
+          "p05": 1.72478e6,
+          "p10": 1.854656e6,
+          "p25": 2.080868e6,
+          "p50": 2.379441e6,
+          "p75": 2.713674e6,
+          "p90": 3.054336e6,
+          "p95": 3.261258e6,
+          "std": 468315.0
+        }
+      },
+      "metadata": {
+        "annual_discount_rate_pct": 10.0,
+        "horizon_months": 36,
+        "n_trials": 10000,
+        "seed": 20261217,
+        "total_annual_payroll_usd": 4.647e7,
+        "total_headcount": 325
+      },
+      "name": "Step-by-Step Phased Rollout",
+      "paradigms": {
+        "agent_based": {
+          "kpis": {
+            "emergent_npv_usd": {
+              "mean": 2.675343e6,
+              "p05": 1.145872e6,
+              "p10": 1.468445e6,
+              "p25": 1.958814e6,
+              "p50": 2.691444e6,
+              "p75": 3.249709e6,
+              "p90": 3.9906e6,
+              "p95": 4.294744e6,
+              "std": 977605.0
+            },
+            "emergent_roi_pct": {
+              "mean": 211.1,
+              "p05": 93.4,
+              "p10": 113.2,
+              "p25": 157.3,
+              "p50": 214.3,
+              "p75": 264.2,
+              "p90": 298.4,
+              "p95": 318.3,
+              "std": 72.4
+            },
+            "m36_active_adopters_pct": {
+              "mean": 80.9,
+              "p05": 68.6,
+              "p10": 71.1,
+              "p25": 75.7,
+              "p50": 82.2,
+              "p75": 85.8,
+              "p90": 89.0,
+              "p95": 90.2,
+              "std": 6.8
+            },
+            "m36_disillusioned_churn_pct": {
+              "mean": 13.6,
+              "p05": 6.4,
+              "p10": 7.0,
+              "p25": 9.5,
+              "p50": 13.2,
+              "p75": 17.2,
+              "p90": 20.6,
+              "p95": 23.1,
+              "std": 5.2
+            }
+          },
+          "network_snapshot": {
+            "edges": [
+              {
+                "source": 2,
+                "target": 33
+              },
+              {
+                "source": 3,
+                "target": 23
+              },
+              {
+                "source": 9,
+                "target": 43
+              },
+              {
+                "source": 10,
+                "target": 18
+              },
+              {
+                "source": 11,
+                "target": 29
+              },
+              {
+                "source": 13,
+                "target": 28
+              },
+              {
+                "source": 16,
+                "target": 45
+              },
+              {
+                "source": 30,
+                "target": 36
+              }
+            ],
+            "nodes": [
+              {
+                "agent_id": 1,
+                "final_state": 1,
+                "id": 1,
+                "skill": 0.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 7,
+                "final_state": 3,
+                "id": 2,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 13,
+                "final_state": 3,
+                "id": 3,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 19,
+                "final_state": 3,
+                "id": 4,
+                "skill": 0.97,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 25,
+                "final_state": 4,
+                "id": 5,
+                "skill": 0.85,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 31,
+                "final_state": 3,
+                "id": 6,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 37,
+                "final_state": 4,
+                "id": 7,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 43,
+                "final_state": 3,
+                "id": 8,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 49,
+                "final_state": 3,
+                "id": 9,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 55,
+                "final_state": 3,
+                "id": 10,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 61,
+                "final_state": 4,
+                "id": 11,
+                "skill": 0.84,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 67,
+                "final_state": 3,
+                "id": 12,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 73,
+                "final_state": 3,
+                "id": 13,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 79,
+                "final_state": 3,
+                "id": 14,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 85,
+                "final_state": 3,
+                "id": 15,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 91,
+                "final_state": 3,
+                "id": 16,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 97,
+                "final_state": 4,
+                "id": 17,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 103,
+                "final_state": 3,
+                "id": 18,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 109,
+                "final_state": 4,
+                "id": 19,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 115,
+                "final_state": 3,
+                "id": 20,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 121,
+                "final_state": 4,
+                "id": 21,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 127,
+                "final_state": 3,
+                "id": 22,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 133,
+                "final_state": 3,
+                "id": 23,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 139,
+                "final_state": 1,
+                "id": 24,
+                "skill": 0.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 145,
+                "final_state": 3,
+                "id": 25,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 151,
+                "final_state": 3,
+                "id": 26,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 157,
+                "final_state": 3,
+                "id": 27,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 163,
+                "final_state": 3,
+                "id": 28,
+                "skill": 0.81,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 169,
+                "final_state": 5,
+                "id": 29,
+                "skill": 0.37,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 175,
+                "final_state": 3,
+                "id": 30,
+                "skill": 0.61,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 181,
+                "final_state": 3,
+                "id": 31,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 187,
+                "final_state": 3,
+                "id": 32,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 193,
+                "final_state": 3,
+                "id": 33,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 199,
+                "final_state": 3,
+                "id": 34,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 205,
+                "final_state": 5,
+                "id": 35,
+                "skill": 0.54,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 211,
+                "final_state": 3,
+                "id": 36,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 217,
+                "final_state": 4,
+                "id": 37,
+                "skill": 0.95,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 223,
+                "final_state": 3,
+                "id": 38,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 229,
+                "final_state": 3,
+                "id": 39,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 235,
+                "final_state": 3,
+                "id": 40,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 241,
+                "final_state": 5,
+                "id": 41,
+                "skill": 0.58,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 247,
+                "final_state": 3,
+                "id": 42,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 253,
+                "final_state": 3,
+                "id": 43,
+                "skill": 0.98,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 259,
+                "final_state": 3,
+                "id": 44,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 265,
+                "final_state": 3,
+                "id": 45,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 271,
+                "final_state": 3,
+                "id": 46,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 277,
+                "final_state": 3,
+                "id": 47,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 283,
+                "final_state": 4,
+                "id": 48,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              }
+            ]
+          },
+          "paradigm": "agent_based",
+          "parameters": {
+            "champion_seed_fraction_pct": 6.0,
+            "frustration_sensitivity": 0.04,
+            "n_replications": 160,
+            "peer_contagion_strength": 0.38,
+            "total_agents": 325
+          },
+          "scenario_id": "pragmatic_phased",
+          "scenario_name": "Step-by-Step Phased Rollout",
+          "state_trajectories": {
+            "active_adoption_pct": {
+              "mean": [6.0, 11.7, 14.8, 18.5, 22.2, 25.9, 29.6, 33.2, 36.6, 39.9, 43.1, 46.2, 49.2, 52.2, 54.9, 57.2, 59.5, 61.7, 63.7, 65.5, 67.1, 68.7, 70.1, 71.5, 72.6, 73.7, 74.7, 75.5, 76.3, 77.1, 77.8, 78.5, 79.1, 79.7, 80.3, 80.9],
+              "p10": [4.3, 9.2, 11.1, 14.1, 16.9, 19.7, 22.5, 26.1, 28.6, 32.0, 34.8, 37.2, 39.9, 42.4, 44.3, 46.2, 47.7, 50.2, 52.0, 54.8, 56.3, 58.1, 58.8, 60.3, 61.2, 62.2, 63.7, 65.1, 66.3, 66.1, 67.4, 68.0, 68.9, 69.2, 70.2, 71.1],
+              "p25": [5.2, 10.5, 12.6, 16.3, 19.7, 23.1, 26.2, 29.2, 32.3, 35.6, 39.3, 41.5, 44.3, 46.8, 49.5, 51.6, 53.8, 55.9, 58.1, 60.0, 61.4, 62.4, 64.0, 65.5, 67.0, 68.2, 69.3, 69.9, 70.7, 71.9, 72.8, 73.5, 73.8, 74.6, 75.1, 75.7],
+              "p50": [5.8, 11.7, 14.5, 18.5, 21.8, 25.8, 29.5, 33.2, 36.8, 39.4, 43.1, 45.8, 48.9, 52.2, 54.5, 56.9, 59.4, 62.3, 64.2, 65.8, 67.4, 69.2, 70.8, 72.2, 73.1, 73.8, 75.5, 76.0, 77.1, 78.2, 78.6, 79.4, 80.0, 80.6, 81.5, 82.2],
+              "p75": [7.1, 13.2, 16.6, 20.6, 24.6, 28.9, 33.5, 36.5, 40.6, 44.3, 47.5, 50.8, 54.2, 57.3, 60.1, 62.2, 64.9, 66.8, 69.0, 71.1, 72.9, 74.5, 76.3, 77.5, 78.2, 79.5, 80.7, 81.2, 81.8, 82.5, 83.2, 83.7, 84.6, 85.2, 85.2, 85.8],
+              "p90": [8.0, 14.5, 19.1, 23.4, 28.0, 31.8, 36.3, 40.3, 44.0, 48.3, 51.7, 54.8, 58.5, 61.9, 65.0, 67.1, 70.5, 72.6, 74.8, 75.8, 77.8, 78.5, 80.0, 80.9, 81.8, 83.1, 84.0, 84.3, 85.0, 86.2, 86.8, 87.4, 87.4, 88.3, 88.9, 89.0]
+            },
+            "champion_pct": {
+              "mean": [5.9, 5.9, 5.9, 6.0, 6.0, 6.1, 6.2, 6.3, 6.5, 6.8, 7.2, 7.6, 8.1, 8.6, 9.1, 9.6, 10.3, 11.1, 11.8, 12.5, 13.3, 14.0, 14.8, 15.6, 16.4, 17.2, 18.0, 18.9, 19.7, 20.5, 21.3, 22.2, 23.0, 23.8, 24.6, 25.4],
+              "p10": [4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.6, 4.6, 4.9, 5.2, 5.5, 5.8, 6.1, 6.2, 6.7, 7.1, 7.4, 8.0, 8.3, 8.6, 9.5, 10.1, 10.5, 10.8, 11.1, 11.7, 12.0, 12.9, 13.2, 13.8, 14.4, 15.4, 15.7, 16.3],
+              "p25": [5.2, 5.2, 5.2, 5.2, 5.2, 5.2, 5.2, 5.2, 5.5, 5.5, 5.8, 6.2, 6.5, 6.8, 7.4, 7.7, 8.3, 8.5, 9.2, 9.5, 10.4, 11.1, 11.6, 12.3, 12.9, 13.8, 14.5, 14.7, 15.6, 16.2, 16.9, 17.5, 18.2, 18.5, 19.4, 20.3],
+              "p50": [5.8, 5.8, 5.8, 5.8, 5.8, 5.8, 6.2, 6.2, 6.5, 6.8, 7.1, 7.7, 8.0, 8.3, 8.9, 9.5, 9.8, 10.8, 11.7, 12.3, 12.9, 13.7, 14.8, 15.4, 16.3, 16.9, 17.8, 18.5, 19.4, 20.2, 20.9, 22.0, 23.1, 24.0, 24.8, 25.5],
+              "p75": [6.8, 6.8, 7.1, 7.1, 7.1, 7.1, 7.2, 7.4, 7.7, 8.0, 8.3, 8.7, 9.3, 10.2, 10.5, 11.4, 12.3, 13.2, 14.2, 15.1, 16.0, 16.7, 17.8, 19.2, 20.0, 20.7, 21.3, 22.5, 23.4, 24.3, 25.2, 26.2, 27.1, 28.0, 28.7, 29.6],
+              "p90": [7.7, 7.7, 7.7, 7.7, 7.7, 8.0, 8.0, 8.3, 8.6, 8.9, 9.5, 10.2, 10.8, 11.7, 12.3, 13.2, 14.5, 15.4, 16.6, 17.6, 18.5, 19.4, 20.9, 21.9, 22.8, 24.0, 25.8, 26.8, 27.7, 28.7, 30.2, 30.8, 32.3, 33.3, 33.8, 34.8]
+            },
+            "cumulative_cashflow_usd": {
+              "mean": [-101208.0, -189687.0, -274484.0, -352583.0, -353283.0, -346671.0, -333049.0, -311526.0, -282433.0, -223248.0, -156270.0, -81809.0, 632.0, 91387.0, 189225.0, 293881.0, 404987.0, 522582.0, 645963.0, 774624.0, 908132.0, 1.046341e6, 1.188941e6, 1.335733e6, 1.485984e6, 1.639908e6, 1.797116e6, 1.957005e6, 2.119211e6, 2.284171e6, 2.451412e6, 2.620746e6, 2.792118e6, 2.965245e6, 3.140062e6, 3.31655e6],
+              "p10": [-139121.0, -260437.0, -375653.0, -489045.0, -498572.0, -508961.0, -513017.0, -523533.0, -509269.0, -469045.0, -420664.0, -371074.0, -319825.0, -253164.0, -208578.0, -159942.0, -99271.0, -24607.0, 70377.0, 167912.0, 277701.0, 370823.0, 460267.0, 549391.0, 647725.0, 748844.0, 853017.0, 968765.0, 1.084189e6, 1.194246e6, 1.294367e6, 1.395129e6, 1.509765e6, 1.630428e6, 1.757062e6, 1.882915e6],
+              "p25": [-115620.0, -220528.0, -319315.0, -414279.0, -418927.0, -414760.0, -415823.0, -396795.0, -383078.0, -338304.0, -292274.0, -225225.0, -163835.0, -85361.0, -11920.0, 70243.0, 153908.0, 242610.0, 327687.0, 427279.0, 537756.0, 647042.0, 770138.0, 893164.0, 1.014782e6, 1.132054e6, 1.253569e6, 1.378234e6, 1.506456e6, 1.637241e6, 1.768025e6, 1.900208e6, 2.035626e6, 2.181351e6, 2.323739e6, 2.463353e6],
+              "p50": [-96987.0, -179781.0, -261731.0, -333572.0, -338271.0, -333852.0, -314696.0, -302024.0, -268880.0, -214945.0, -145553.0, -67919.0, 16516.0, 107457.0, 201029.0, 311390.0, 424958.0, 551613.0, 665828.0, 783960.0, 913086.0, 1.056509e6, 1.204063e6, 1.348116e6, 1.49088e6, 1.635372e6, 1.785031e6, 1.947013e6, 2.118291e6, 2.287738e6, 2.458015e6, 2.644673e6, 2.818012e6, 2.990212e6, 3.153556e6, 3.315157e6],
+              "p75": [-81832.0, -151099.0, -216748.0, -277511.0, -273090.0, -259653.0, -234047.0, -209089.0, -167083.0, -95388.0, -21269.0, 66032.0, 170035.0, 273527.0, 383458.0, 504251.0, 634481.0, 768269.0, 905619.0, 1.058663e6, 1.223325e6, 1.38487e6, 1.548202e6, 1.718446e6, 1.895968e6, 2.07386e6, 2.258024e6, 2.440495e6, 2.62498e6, 2.81436e6, 3.009517e6, 3.205002e6, 3.398146e6, 3.595972e6, 3.795673e6, 3.995787e6],
+              "p90": [-71484.0, -130777.0, -185304.0, -229962.0, -219574.0, -205081.0, -174350.0, -137586.0, -98781.0, -28274.0, 60504.0, 166597.0, 280325.0, 408143.0, 543112.0, 689698.0, 845437.0, 1.008047e6, 1.18007e6, 1.360335e6, 1.542409e6, 1.733739e6, 1.936512e6, 2.140083e6, 2.362123e6, 2.594224e6, 2.832274e6, 3.050466e6, 3.271822e6, 3.495484e6, 3.721213e6, 3.948124e6, 4.177555e6, 4.410169e6, 4.645059e6, 4.882059e6]
+            },
+            "disillusioned_pct": {
+              "mean": [0.4, 1.1, 1.7, 2.5, 3.2, 4.1, 4.9, 5.7, 6.6, 7.4, 8.2, 8.9, 9.6, 10.2, 10.8, 11.3, 11.7, 12.2, 12.5, 12.7, 13.1, 13.3, 13.6, 13.8, 13.9, 14.0, 14.1, 14.2, 14.1, 14.1, 14.1, 14.0, 13.9, 13.9, 13.7, 13.6],
+              "p10": [0.0, 0.3, 0.6, 1.2, 1.8, 2.5, 3.1, 3.4, 4.3, 4.6, 5.2, 5.5, 6.1, 6.2, 6.8, 6.8, 7.4, 7.4, 8.0, 7.7, 8.0, 8.0, 8.0, 8.3, 8.3, 8.3, 8.3, 8.6, 8.3, 8.3, 8.0, 8.0, 8.0, 7.7, 7.1, 7.0],
+              "p25": [0.3, 0.6, 1.2, 1.8, 2.5, 3.0, 3.7, 4.3, 5.2, 5.8, 6.5, 7.1, 7.7, 8.3, 8.6, 8.9, 9.2, 9.5, 9.8, 10.1, 10.5, 10.5, 10.7, 10.5, 10.8, 10.7, 10.5, 10.5, 10.4, 10.2, 10.2, 9.8, 9.8, 10.1, 9.5, 9.5],
+              "p50": [0.3, 0.9, 1.5, 2.2, 3.1, 4.0, 4.6, 5.5, 6.2, 7.1, 8.0, 8.6, 9.2, 10.2, 10.5, 11.1, 11.4, 11.7, 12.0, 12.3, 12.6, 13.2, 13.1, 13.5, 13.5, 13.7, 13.7, 13.5, 13.5, 13.5, 13.5, 13.5, 13.2, 13.2, 13.2, 13.2],
+              "p75": [0.6, 1.5, 2.2, 3.1, 4.0, 4.9, 6.2, 7.1, 8.0, 9.0, 9.6, 10.5, 11.4, 12.3, 12.6, 13.5, 13.8, 14.5, 14.8, 15.4, 15.7, 16.3, 16.6, 16.7, 16.9, 16.9, 17.5, 17.8, 17.6, 17.6, 17.6, 17.4, 17.3, 17.3, 17.2, 17.2],
+              "p90": [0.9, 1.8, 2.8, 4.0, 5.2, 6.5, 7.4, 8.6, 9.8, 10.8, 11.7, 12.3, 13.3, 13.6, 15.1, 15.4, 16.6, 17.3, 17.3, 17.9, 18.5, 18.8, 19.4, 19.7, 19.7, 20.0, 20.3, 20.6, 20.9, 21.0, 21.2, 21.3, 21.2, 20.9, 20.9, 20.6]
+            },
+            "exploring_pct": {
+              "mean": [11.6, 9.6, 10.6, 10.8, 10.9, 10.6, 10.6, 10.2, 9.9, 9.6, 9.3, 9.0, 8.4, 7.6, 7.1, 6.8, 6.3, 5.7, 5.2, 4.9, 4.5, 4.1, 3.7, 3.4, 3.1, 2.8, 2.4, 2.3, 2.3, 2.0, 1.8, 1.7, 1.6, 1.5, 1.4, 1.3],
+              "p10": [9.2, 7.1, 8.0, 8.3, 8.3, 8.3, 8.0, 8.0, 7.7, 7.1, 7.0, 6.8, 6.4, 5.5, 4.9, 4.6, 4.3, 3.4, 2.8, 3.1, 2.7, 2.2, 2.2, 1.8, 1.5, 1.2, 0.9, 0.9, 0.9, 0.9, 0.9, 0.6, 0.6, 0.3, 0.6, 0.3],
+              "p25": [10.5, 8.0, 9.2, 9.5, 9.5, 9.2, 9.2, 8.8, 8.6, 8.2, 8.0, 7.9, 7.1, 6.2, 5.8, 5.2, 4.9, 4.2, 4.0, 4.0, 3.7, 3.1, 2.8, 2.5, 2.2, 1.8, 1.5, 1.5, 1.5, 1.2, 1.2, 1.2, 0.9, 0.6, 0.9, 0.9],
+              "p50": [11.7, 9.2, 10.5, 10.8, 10.5, 10.5, 10.8, 10.3, 9.8, 9.5, 9.2, 8.9, 8.3, 7.4, 7.1, 6.8, 6.2, 5.8, 5.2, 4.9, 4.6, 4.0, 3.7, 3.1, 2.8, 2.5, 2.2, 2.2, 2.2, 1.8, 1.5, 1.5, 1.5, 1.4, 1.2, 1.2],
+              "p75": [12.6, 11.1, 12.0, 12.3, 12.3, 11.7, 12.0, 11.4, 11.1, 11.1, 10.5, 10.2, 9.5, 8.9, 8.3, 8.0, 7.4, 6.8, 6.2, 5.8, 5.5, 4.9, 4.3, 4.3, 4.0, 3.4, 3.4, 3.1, 3.1, 2.5, 2.2, 2.2, 2.2, 1.8, 1.8, 1.8],
+              "p90": [14.2, 12.6, 13.3, 13.5, 13.5, 13.2, 12.9, 12.3, 12.0, 12.0, 11.7, 11.1, 10.8, 9.9, 9.2, 8.9, 8.6, 8.0, 7.4, 7.1, 6.2, 5.8, 5.6, 5.2, 4.9, 4.6, 4.0, 4.0, 3.7, 3.4, 3.4, 3.1, 2.8, 2.8, 2.5, 2.2]
+            },
+            "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36],
+            "net_productivity_uplift_pct": {
+              "mean": [0.25, 0.85, 1.07, 1.41, 1.75, 2.12, 2.48, 2.86, 3.24, 3.61, 3.98, 4.35, 4.73, 5.12, 5.46, 5.78, 6.09, 6.4, 6.69, 6.94, 7.18, 7.41, 7.62, 7.83, 8.0, 8.18, 8.35, 8.49, 8.62, 8.76, 8.88, 9.0, 9.1, 9.2, 9.3, 9.4],
+              "p10": [-0.05, 0.39, 0.48, 0.7, 0.97, 1.23, 1.41, 1.68, 1.94, 2.28, 2.59, 2.92, 3.23, 3.47, 3.7, 3.92, 4.14, 4.34, 4.54, 4.78, 4.97, 5.06, 5.3, 5.62, 5.74, 5.84, 6.05, 6.19, 6.39, 6.45, 6.6, 6.69, 6.86, 6.93, 7.03, 7.16],
+              "p25": [0.07, 0.58, 0.71, 1.03, 1.33, 1.67, 1.92, 2.22, 2.59, 2.96, 3.3, 3.59, 3.96, 4.28, 4.66, 4.94, 5.25, 5.46, 5.69, 5.91, 6.2, 6.38, 6.57, 6.69, 6.87, 7.03, 7.16, 7.3, 7.42, 7.55, 7.71, 7.82, 7.94, 8.04, 8.08, 8.2],
+              "p50": [0.23, 0.81, 1.03, 1.32, 1.71, 2.13, 2.43, 2.84, 3.17, 3.54, 3.91, 4.25, 4.6, 5.01, 5.36, 5.74, 6.03, 6.41, 6.69, 6.94, 7.19, 7.48, 7.63, 7.84, 8.04, 8.2, 8.43, 8.56, 8.64, 8.8, 8.94, 9.04, 9.13, 9.22, 9.33, 9.46],
+              "p75": [0.38, 1.09, 1.39, 1.75, 2.17, 2.57, 3.01, 3.43, 3.9, 4.36, 4.73, 5.11, 5.5, 5.96, 6.36, 6.65, 7.06, 7.42, 7.69, 7.92, 8.24, 8.45, 8.68, 8.91, 9.07, 9.29, 9.43, 9.6, 9.74, 9.82, 9.94, 10.08, 10.17, 10.23, 10.35, 10.41],
+              "p90": [0.57, 1.4, 1.8, 2.2, 2.55, 3.0, 3.53, 3.95, 4.49, 5.0, 5.39, 5.94, 6.35, 6.87, 7.19, 7.54, 7.91, 8.26, 8.59, 8.9, 9.23, 9.37, 9.72, 9.98, 10.05, 10.24, 10.4, 10.51, 10.67, 10.81, 10.94, 11.02, 11.18, 11.25, 11.32, 11.4]
+            },
+            "proficient_pct": {
+              "mean": [0.0, 5.8, 8.8, 12.6, 16.2, 19.9, 23.4, 26.8, 30.1, 33.0, 35.9, 38.6, 41.1, 43.7, 45.8, 47.6, 49.2, 50.7, 51.9, 53.0, 53.9, 54.7, 55.3, 55.8, 56.2, 56.5, 56.6, 56.7, 56.6, 56.5, 56.5, 56.3, 56.2, 55.9, 55.7, 55.4],
+              "p10": [0.0, 3.4, 5.5, 8.9, 12.0, 14.8, 17.8, 20.6, 23.7, 26.1, 28.9, 31.7, 34.1, 35.7, 37.8, 39.0, 40.6, 42.1, 43.7, 45.5, 46.8, 48.3, 48.6, 49.8, 51.0, 51.4, 52.0, 52.3, 52.3, 52.3, 52.3, 52.3, 52.3, 52.0, 51.7, 51.1],
+              "p25": [0.0, 4.9, 7.1, 10.8, 14.1, 17.5, 20.6, 24.0, 26.8, 29.8, 32.6, 35.0, 37.2, 39.9, 41.8, 43.7, 45.2, 46.5, 48.2, 49.2, 50.5, 51.3, 52.0, 52.6, 53.5, 54.2, 54.2, 54.5, 54.5, 54.2, 54.2, 53.8, 53.8, 53.5, 53.5, 53.5],
+              "p50": [0.0, 5.8, 8.6, 12.6, 16.2, 20.0, 23.7, 27.2, 30.5, 33.2, 36.3, 38.5, 41.5, 44.0, 46.2, 47.7, 49.5, 51.2, 52.5, 53.4, 53.8, 54.9, 55.7, 56.3, 56.6, 56.6, 56.6, 56.9, 56.9, 56.5, 56.6, 56.3, 56.3, 56.0, 55.7, 55.5],
+              "p75": [0.0, 7.1, 10.8, 14.5, 18.5, 22.8, 26.5, 29.6, 33.8, 36.6, 39.5, 42.2, 45.0, 48.0, 50.2, 52.6, 53.5, 55.2, 56.6, 57.2, 57.9, 58.5, 59.1, 59.1, 59.4, 59.5, 59.4, 59.1, 58.8, 58.8, 58.8, 58.8, 58.2, 58.2, 57.8, 57.5],
+              "p90": [0.0, 7.7, 11.7, 16.3, 20.3, 24.3, 28.6, 32.6, 36.0, 39.4, 41.9, 45.9, 48.4, 51.1, 53.2, 55.4, 56.3, 57.6, 58.8, 59.4, 60.3, 60.9, 61.2, 61.2, 60.9, 61.2, 61.0, 60.6, 60.3, 60.3, 60.6, 60.3, 60.0, 59.7, 59.1, 59.4]
+            },
+            "skeptical_pct": {
+              "mean": [82.0, 77.6, 72.9, 68.2, 63.7, 59.4, 55.0, 50.9, 46.9, 43.1, 39.4, 35.9, 32.8, 30.0, 27.3, 24.7, 22.5, 20.5, 18.6, 16.8, 15.2, 13.8, 12.6, 11.4, 10.4, 9.5, 8.8, 8.0, 7.3, 6.8, 6.3, 5.8, 5.3, 4.9, 4.6, 4.2],
+              "p10": [78.2, 73.5, 68.6, 63.4, 59.0, 53.8, 49.5, 44.9, 40.6, 37.5, 33.2, 29.8, 26.4, 23.7, 20.9, 18.7, 16.3, 14.5, 12.6, 11.1, 9.8, 8.9, 7.7, 7.1, 6.2, 5.8, 5.2, 4.6, 4.0, 3.7, 3.1, 2.8, 2.8, 2.5, 2.5, 2.2],
+              "p25": [80.3, 75.6, 70.8, 65.8, 61.5, 56.3, 51.7, 47.9, 44.0, 39.9, 36.0, 32.6, 28.9, 26.2, 23.8, 21.2, 18.8, 16.9, 14.8, 13.2, 12.2, 10.8, 9.8, 8.6, 7.4, 7.1, 6.5, 5.8, 5.2, 4.9, 4.3, 4.0, 3.7, 3.4, 3.1, 2.8],
+              "p50": [82.2, 78.0, 73.1, 68.3, 63.4, 59.1, 55.1, 51.1, 46.8, 42.8, 39.1, 35.7, 32.2, 29.5, 26.8, 24.3, 22.2, 20.6, 18.5, 16.3, 14.8, 13.4, 12.0, 11.2, 9.8, 8.9, 8.3, 7.7, 7.1, 6.6, 5.8, 5.5, 5.2, 4.6, 4.3, 4.0],
+              "p75": [83.5, 79.7, 75.4, 70.8, 66.8, 62.5, 58.2, 54.2, 50.2, 46.5, 42.8, 39.7, 36.6, 33.8, 31.1, 28.6, 26.2, 23.8, 22.2, 20.3, 17.8, 16.3, 15.1, 13.9, 12.9, 12.0, 10.8, 9.9, 8.9, 8.3, 8.0, 7.1, 6.8, 6.2, 5.8, 5.5],
+              "p90": [85.3, 80.9, 76.9, 72.6, 68.6, 65.2, 60.3, 56.9, 52.9, 49.5, 45.8, 42.8, 40.0, 37.2, 33.9, 31.4, 28.3, 26.5, 24.3, 22.5, 20.9, 19.1, 17.5, 16.3, 15.1, 13.6, 12.6, 11.7, 10.8, 10.2, 9.3, 8.9, 8.3, 7.4, 7.1, 6.8]
+            }
+          },
+          "teams": [
+            {
+              "active_adopters_m36_pct": {
+                "mean": 79.9,
+                "p05": 65.0,
+                "p10": 69.9,
+                "p25": 75.0,
+                "p50": 80.8,
+                "p75": 85.8,
+                "p90": 89.2,
+                "p95": 91.7,
+                "std": 8.3
+              },
+              "champions_m36_pct": {
+                "mean": 25.3,
+                "p05": 13.3,
+                "p10": 15.8,
+                "p25": 19.8,
+                "p50": 25.4,
+                "p75": 30.8,
+                "p90": 35.1,
+                "p95": 39.2,
+                "std": 7.8
+              },
+              "disillusioned_churn_m36_pct": {
+                "mean": 14.8,
+                "p05": 5.8,
+                "p10": 6.7,
+                "p25": 10.0,
+                "p50": 13.3,
+                "p75": 19.2,
+                "p90": 23.3,
+                "p95": 27.5,
+                "std": 6.8
+              },
+              "emergent_roi_pct": {
+                "mean": 306.0,
+                "p05": 58.2,
+                "p10": 81.6,
+                "p25": 170.2,
+                "p50": 283.3,
+                "p75": 448.8,
+                "p90": 531.2,
+                "p95": 571.1,
+                "std": 175.0
+              },
+              "headcount": 120,
+              "id": "software_eng",
+              "name": "Product & Software Engineering"
+            },
+            {
+              "active_adopters_m36_pct": {
+                "mean": 82.9,
+                "p05": 67.7,
+                "p10": 72.2,
+                "p25": 77.8,
+                "p50": 84.4,
+                "p75": 88.1,
+                "p90": 91.2,
+                "p95": 93.4,
+                "std": 7.8
+              },
+              "champions_m36_pct": {
+                "mean": 26.2,
+                "p05": 13.3,
+                "p10": 15.6,
+                "p25": 20.0,
+                "p50": 26.7,
+                "p75": 31.1,
+                "p90": 37.8,
+                "p95": 40.1,
+                "std": 8.3
+              },
+              "disillusioned_churn_m36_pct": {
+                "mean": 11.7,
+                "p05": 3.3,
+                "p10": 4.4,
+                "p25": 7.8,
+                "p50": 11.1,
+                "p75": 15.6,
+                "p90": 20.0,
+                "p95": 21.2,
+                "std": 5.7
+              },
+              "emergent_roi_pct": {
+                "mean": 311.0,
+                "p05": 123.3,
+                "p10": 154.0,
+                "p25": 225.3,
+                "p50": 294.8,
+                "p75": 397.4,
+                "p90": 467.7,
+                "p95": 581.0,
+                "std": 131.9
+              },
+              "headcount": 90,
+              "id": "customer_ops",
+              "name": "Customer Support & Success"
+            },
+            {
+              "active_adopters_m36_pct": {
+                "mean": 81.6,
+                "p05": 65.3,
+                "p10": 69.3,
+                "p25": 77.3,
+                "p50": 82.7,
+                "p75": 88.0,
+                "p90": 92.0,
+                "p95": 93.3,
+                "std": 8.5
+              },
+              "champions_m36_pct": {
+                "mean": 24.7,
+                "p05": 12.0,
+                "p10": 14.7,
+                "p25": 18.7,
+                "p50": 24.0,
+                "p75": 29.3,
+                "p90": 36.0,
+                "p95": 40.1,
+                "std": 8.5
+              },
+              "disillusioned_churn_m36_pct": {
+                "mean": 12.8,
+                "p05": 4.0,
+                "p10": 5.3,
+                "p25": 8.0,
+                "p50": 12.0,
+                "p75": 16.0,
+                "p90": 21.3,
+                "p95": 24.1,
+                "std": 6.3
+              },
+              "emergent_roi_pct": {
+                "mean": 54.8,
+                "p05": -52.2,
+                "p10": -32.7,
+                "p25": -2.3,
+                "p50": 45.0,
+                "p75": 96.5,
+                "p90": 164.8,
+                "p95": 191.2,
+                "std": 76.4
+              },
+              "headcount": 75,
+              "id": "sales_gtm",
+              "name": "Sales, Account Teams & Marketing"
+            },
+            {
+              "active_adopters_m36_pct": {
+                "mean": 78.0,
+                "p05": 55.0,
+                "p10": 62.3,
+                "p25": 70.0,
+                "p50": 80.0,
+                "p75": 87.5,
+                "p90": 90.0,
+                "p95": 92.5,
+                "std": 11.7
+              },
+              "champions_m36_pct": {
+                "mean": 25.3,
+                "p05": 10.0,
+                "p10": 12.5,
+                "p25": 17.5,
+                "p50": 26.2,
+                "p75": 32.5,
+                "p90": 37.5,
+                "p95": 42.5,
+                "std": 9.8
+              },
+              "disillusioned_churn_m36_pct": {
+                "mean": 16.0,
+                "p05": 4.9,
+                "p10": 5.0,
+                "p25": 9.4,
+                "p50": 15.0,
+                "p75": 22.5,
+                "p90": 27.7,
+                "p95": 32.5,
+                "std": 9.2
+              },
+              "emergent_roi_pct": {
+                "mean": 36.0,
+                "p05": -80.7,
+                "p10": -62.3,
+                "p25": -17.7,
+                "p50": 30.4,
+                "p75": 84.0,
+                "p90": 144.0,
+                "p95": 188.5,
+                "std": 84.4
+              },
+              "headcount": 40,
+              "id": "legal_finance",
+              "name": "Legal, Finance & Compliance"
+            }
+          ]
+        },
+        "bayesian_network": {
+          "active_posterior": {
+            "expected_npv_usd": 1.9545e6,
+            "expected_roi_pct": 126.2,
+            "node_posteriors_pct": {
+              "exec_support": [12.0, 43.0, 45.0],
+              "governance": [10.0, 45.0, 45.0],
+              "pilot_adoption": [17.9, 43.1, 39.0],
+              "rework_signal": [16.1, 39.7, 44.2],
+              "roi_regime": [11.9, 26.4, 34.8, 27.0],
+              "sustained_realization": [17.1, 42.3, 40.6],
+              "token_discipline": [17.7, 42.6, 39.7]
+            },
+            "prob_positive_npv_pct": 88.1,
+            "prob_strong_or_outsized_roi_pct": 61.7,
+            "regime_probabilities_pct": {
+              "loss_below_0_pct": 11.9,
+              "modest_0_to_80_pct": 26.4,
+              "outsized_above_160_pct": 27.0,
+              "strong_80_to_160_pct": 34.8
+            },
+            "stage_gate_decision": "FIX FIRST (Tighten Quality & Budget Before Scaling)"
+          },
+          "dag_structure": {
+            "edges": [
+              {
+                "from": "exec_support",
+                "to": "pilot_adoption"
+              },
+              {
+                "from": "exec_support",
+                "to": "sustained_realization"
+              },
+              {
+                "from": "governance",
+                "to": "rework_signal"
+              },
+              {
+                "from": "governance",
+                "to": "token_discipline"
+              },
+              {
+                "from": "pilot_adoption",
+                "to": "sustained_realization"
+              },
+              {
+                "from": "rework_signal",
+                "to": "sustained_realization"
+              },
+              {
+                "from": "sustained_realization",
+                "to": "roi_regime"
+              },
+              {
+                "from": "rework_signal",
+                "to": "roi_regime"
+              },
+              {
+                "from": "token_discipline",
+                "to": "roi_regime"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "exec_support",
+                "label": "Executive & Change Support",
+                "layer": 1,
+                "states": [
+                  "Weak",
+                  "Moderate",
+                  "Strong"
+                ]
+              },
+              {
+                "id": "governance",
+                "label": "AI Governance & Guardrails",
+                "layer": 1,
+                "states": [
+                  "Ad-Hoc",
+                  "Managed",
+                  "Automated"
+                ]
+              },
+              {
+                "id": "pilot_adoption",
+                "label": "M6 Pilot Adoption Signal",
+                "layer": 2,
+                "states": [
+                  "Low (<45%)",
+                  "Target (45-75%)",
+                  "High (>75%)"
+                ]
+              },
+              {
+                "id": "rework_signal",
+                "label": "QA Verification & Rework",
+                "layer": 2,
+                "states": [
+                  "High (>10%)",
+                  "Moderate (5-10%)",
+                  "Low (<5%)"
+                ]
+              },
+              {
+                "id": "token_discipline",
+                "label": "FinOps Token Discipline",
+                "layer": 2,
+                "states": [
+                  "Overrun",
+                  "On-Budget",
+                  "Optimized"
+                ]
+              },
+              {
+                "id": "sustained_realization",
+                "label": "Operating-Model Realization",
+                "layer": 3,
+                "states": [
+                  "Low",
+                  "Medium",
+                  "High"
+                ]
+              },
+              {
+                "id": "roi_regime",
+                "label": "3-Year Net ROI Regime",
+                "layer": 4,
+                "states": [
+                  "Loss (<0%)",
+                  "Modest (0-80%)",
+                  "Strong (80-160%)",
+                  "Outsized (>160%)"
+                ]
+              }
+            ]
+          },
+          "evidence_presets": [
+            {
+              "evidence": {
+                "adoption": 0,
+                "rework": 0,
+                "token_discipline": 0
+              },
+              "id": "prior_unobserved",
+              "label": "Day-1 Estimate (Before Any Pilot Results)",
+              "summary": {
+                "expected_npv_usd": 1.9545e6,
+                "expected_roi_pct": 126.2,
+                "node_posteriors_pct": {
+                  "exec_support": [12.0, 43.0, 45.0],
+                  "governance": [10.0, 45.0, 45.0],
+                  "pilot_adoption": [17.9, 43.1, 39.0],
+                  "rework_signal": [16.1, 39.7, 44.2],
+                  "roi_regime": [11.9, 26.4, 34.8, 27.0],
+                  "sustained_realization": [17.1, 42.3, 40.6],
+                  "token_discipline": [17.7, 42.6, 39.7]
+                },
+                "prob_positive_npv_pct": 88.1,
+                "prob_strong_or_outsized_roi_pct": 61.7,
+                "regime_probabilities_pct": {
+                  "loss_below_0_pct": 11.9,
+                  "modest_0_to_80_pct": 26.4,
+                  "outsized_above_160_pct": 27.0,
+                  "strong_80_to_160_pct": 34.8
+                },
+                "stage_gate_decision": "FIX FIRST (Tighten Quality & Budget Before Scaling)"
+              }
+            },
+            {
+              "evidence": {
+                "adoption": 3,
+                "rework": 3,
+                "token_discipline": 3
+              },
+              "id": "strong_pilot",
+              "label": "Great 6-Month Pilot (High Usage + Low Cleanup + On-Budget)",
+              "summary": {
+                "expected_npv_usd": 3.053689e6,
+                "expected_roi_pct": 187.6,
+                "node_posteriors_pct": {
+                  "exec_support": [3.1, 27.6, 69.3],
+                  "governance": [0.5, 13.7, 85.9],
+                  "pilot_adoption": [0.0, 0.0, 100.0],
+                  "rework_signal": [0.0, 0.0, 100.0],
+                  "roi_regime": [1.7, 9.8, 35.6, 52.9],
+                  "sustained_realization": [4.4, 27.1, 68.5],
+                  "token_discipline": [0.0, 0.0, 100.0]
+                },
+                "prob_positive_npv_pct": 98.3,
+                "prob_strong_or_outsized_roi_pct": 88.5,
+                "regime_probabilities_pct": {
+                  "loss_below_0_pct": 1.7,
+                  "modest_0_to_80_pct": 9.8,
+                  "outsized_above_160_pct": 52.9,
+                  "strong_80_to_160_pct": 35.6
+                },
+                "stage_gate_decision": "GREEN LIGHT (Release Next-Stage Funding)"
+              }
+            },
+            {
+              "evidence": {
+                "adoption": 2,
+                "rework": 2,
+                "token_discipline": 2
+              },
+              "id": "mixed_pilot",
+              "label": "Average 6-Month Pilot (Moderate Usage + Moderate Cleanup + On-Budget)",
+              "summary": {
+                "expected_npv_usd": 1.141403e6,
+                "expected_roi_pct": 80.3,
+                "node_posteriors_pct": {
+                  "exec_support": [9.7, 54.8, 35.5],
+                  "governance": [5.2, 73.7, 21.1],
+                  "pilot_adoption": [0.0, 100.0, 0.0],
+                  "rework_signal": [0.0, 100.0, 0.0],
+                  "roi_regime": [19.4, 41.3, 29.8, 9.5],
+                  "sustained_realization": [16.0, 62.0, 22.0],
+                  "token_discipline": [0.0, 100.0, 0.0]
+                },
+                "prob_positive_npv_pct": 80.6,
+                "prob_strong_or_outsized_roi_pct": 39.3,
+                "regime_probabilities_pct": {
+                  "loss_below_0_pct": 19.4,
+                  "modest_0_to_80_pct": 41.3,
+                  "outsized_above_160_pct": 9.5,
+                  "strong_80_to_160_pct": 29.8
+                },
+                "stage_gate_decision": "FIX FIRST (Tighten Quality & Budget Before Scaling)"
+              }
+            },
+            {
+              "evidence": {
+                "adoption": 3,
+                "rework": 1,
+                "token_discipline": 1
+              },
+              "id": "sprawl_warning",
+              "label": "Busy But Messy Pilot (High Usage + Heavy Cleanup + Over-Budget)",
+              "summary": {
+                "expected_npv_usd": 641626.0,
+                "expected_roi_pct": 50.9,
+                "node_posteriors_pct": {
+                  "exec_support": [3.1, 27.6, 69.3],
+                  "governance": [66.5, 30.9, 2.6],
+                  "pilot_adoption": [0.0, 0.0, 100.0],
+                  "rework_signal": [100.0, 0.0, 0.0],
+                  "roi_regime": [33.0, 42.8, 19.4, 4.8],
+                  "sustained_realization": [7.7, 37.0, 55.3],
+                  "token_discipline": [100.0, 0.0, 0.0]
+                },
+                "prob_positive_npv_pct": 67.0,
+                "prob_strong_or_outsized_roi_pct": 24.2,
+                "regime_probabilities_pct": {
+                  "loss_below_0_pct": 33.0,
+                  "modest_0_to_80_pct": 42.8,
+                  "outsized_above_160_pct": 4.8,
+                  "strong_80_to_160_pct": 19.4
+                },
+                "stage_gate_decision": "HOLD / PAUSE (Freeze New Seats & Fix Workflows)"
+              }
+            },
+            {
+              "evidence": {
+                "adoption": 1,
+                "rework": 1,
+                "token_discipline": 1
+              },
+              "id": "stalled_pilot",
+              "label": "Struggling Pilot (Low Usage + Heavy Cleanup + Over-Budget)",
+              "summary": {
+                "expected_npv_usd": 210051.0,
+                "expected_roi_pct": 25.2,
+                "node_posteriors_pct": {
+                  "exec_support": [36.9, 48.0, 15.1],
+                  "governance": [66.5, 30.9, 2.6],
+                  "pilot_adoption": [100.0, 0.0, 0.0],
+                  "rework_signal": [100.0, 0.0, 0.0],
+                  "roi_regime": [50.8, 35.3, 11.4, 2.4],
+                  "sustained_realization": [60.2, 31.4, 8.4],
+                  "token_discipline": [100.0, 0.0, 0.0]
+                },
+                "prob_positive_npv_pct": 49.2,
+                "prob_strong_or_outsized_roi_pct": 13.9,
+                "regime_probabilities_pct": {
+                  "loss_below_0_pct": 50.8,
+                  "modest_0_to_80_pct": 35.3,
+                  "outsized_above_160_pct": 2.4,
+                  "strong_80_to_160_pct": 11.4
+                },
+                "stage_gate_decision": "HOLD / PAUSE (Freeze New Seats & Fix Workflows)"
+              }
+            }
+          ],
+          "paradigm": "bayesian_network",
+          "prior_baseline": {
+            "expected_npv_usd": 1.9545e6,
+            "expected_roi_pct": 126.2,
+            "node_posteriors_pct": {
+              "exec_support": [12.0, 43.0, 45.0],
+              "governance": [10.0, 45.0, 45.0],
+              "pilot_adoption": [17.9, 43.1, 39.0],
+              "rework_signal": [16.1, 39.7, 44.2],
+              "roi_regime": [11.9, 26.4, 34.8, 27.0],
+              "sustained_realization": [17.1, 42.3, 40.6],
+              "token_discipline": [17.7, 42.6, 39.7]
+            },
+            "prob_positive_npv_pct": 88.1,
+            "prob_strong_or_outsized_roi_pct": 61.7,
+            "regime_probabilities_pct": {
+              "loss_below_0_pct": 11.9,
+              "modest_0_to_80_pct": 26.4,
+              "outsized_above_160_pct": 27.0,
+              "strong_80_to_160_pct": 34.8
+            },
+            "stage_gate_decision": "FIX FIRST (Tighten Quality & Budget Before Scaling)"
+          },
+          "priors": {
+            "exec_support": [0.12, 0.43, 0.45],
+            "governance": [0.1, 0.45, 0.45]
+          },
+          "scenario_id": "pragmatic_phased",
+          "scenario_name": "Step-by-Step Phased Rollout"
+        },
+        "discrete_event": {
+          "kpis": {
+            "baseline_avg_cycle_time_hrs": 6.73,
+            "cycle_time_reduction_pct": 3.7,
+            "m36_avg_cycle_time_hrs": 6.48,
+            "m36_qa_queue_wait_hrs": 0.14,
+            "process_npv_usd": 1.620719e6,
+            "process_roi_pct": 126.6,
+            "total_hours_saved_36m": 83316.0
+          },
+          "paradigm": "discrete_event",
+          "parameters": {
+            "ai_triage_deflection_boost": 1.0,
+            "horizon_months": 36,
+            "qa_capacity_reallocation_pct": 5.0
+          },
+          "scenario_id": "pragmatic_phased",
+          "scenario_name": "Step-by-Step Phased Rollout",
+          "trajectories": {
+            "ai_cycle_time_hrs": [6.64, 6.68, 6.78, 6.76, 6.75, 6.68, 6.68, 6.6, 6.56, 6.61, 7.08, 6.62, 6.88, 6.68, 6.54, 6.4, 7.04, 6.51, 6.47, 6.58, 6.84, 6.45, 6.48, 6.61, 6.54, 6.55, 6.56, 6.71, 6.96, 6.43, 6.85, 6.81, 6.53, 6.43, 6.75, 6.48],
+            "baseline_cycle_time_hrs": [6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73, 6.73],
+            "cumulative_cashflow_usd": [-69714.0, -153351.0, -256704.0, -353202.0, -364519.0, -366294.0, -374311.0, -373557.0, -339879.0, -272586.0, -202199.0, -131705.0, -68799.0, 341.0, 75683.0, 184088.0, 276517.0, 385031.0, 484271.0, 575890.0, 662701.0, 761193.0, 857516.0, 958653.0, 1.044314e6, 1.142995e6, 1.240833e6, 1.326276e6, 1.399907e6, 1.492237e6, 1.587129e6, 1.672434e6, 1.746528e6, 1.83858e6, 1.913997e6, 2.008305e6],
+            "draft_stage_wait_hrs": [0.07, 0.06, 0.03, 0.09, 0.06, 0.07, 0.07, 0.03, 0.08, 0.08, 0.1, 0.17, 0.02, 0.07, 0.06, 0.07, 0.08, 0.2, 0.13, 0.04, 0.06, 0.1, 0.1, 0.24, 0.17, 0.16, 0.2, 0.3, 0.27, 0.08, 0.4, 0.26, 0.12, 0.09, 0.04, 0.1],
+            "monthly_hours_saved": [644.0, 482.0, 20.0, 206.0, 441.0, 608.0, 628.0, 859.0, 1590.0, 1982.0, 2221.0, 2397.0, 2305.0, 2500.0, 2579.0, 3272.0, 2919.0, 3287.0, 3094.0, 3081.0, 2873.0, 3172.0, 3066.0, 3103.0, 2871.0, 3222.0, 3108.0, 2917.0, 2667.0, 3091.0, 3150.0, 2944.0, 2825.0, 3114.0, 2864.0, 3215.0],
+            "monthly_throughput_items": [11329.0, 11335.0, 11345.0, 11361.0, 11387.0, 11427.0, 11482.0, 11560.0, 11651.0, 11749.0, 11840.0, 11918.0, 11974.0, 12014.0, 12040.0, 12056.0, 12066.0, 12072.0, 12075.0, 12077.0, 12079.0, 12080.0, 12081.0, 12081.0, 12081.0, 12081.0, 12081.0, 12081.0, 12081.0, 12081.0, 12081.0, 12081.0, 12081.0, 12081.0, 12081.0, 12081.0],
+            "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36],
+            "qa_review_stage_wait_hrs": [0.1, 0.05, 0.08, 0.07, 0.13, 0.11, 0.08, 0.08, 0.09, 0.2, 0.58, 0.11, 0.5, 0.27, 0.16, 0.13, 0.71, 0.1, 0.11, 0.25, 0.48, 0.12, 0.12, 0.14, 0.1, 0.15, 0.15, 0.12, 0.32, 0.1, 0.2, 0.3, 0.11, 0.09, 0.43, 0.14]
+          },
+          "workflows": [
+            {
+              "baseline_cycle_time_hrs": 9.4,
+              "baseline_draft_utilization_pct": 74.3,
+              "baseline_qa_utilization_pct": 73.3,
+              "baseline_qa_wait_hrs": 0.05,
+              "bottleneck_diagnosis": "Moderate Line at Final Review",
+              "cycle_time_reduction_pct": 7.0,
+              "m36_cycle_time_hrs": 8.7,
+              "m36_draft_utilization_pct": 76.0,
+              "m36_hours_saved_monthly": 1004.0,
+              "m36_qa_utilization_pct": 79.0,
+              "m36_qa_wait_hrs": 0.02,
+              "m36_sla_compliance_pct": 99.5,
+              "team_id": "software_eng",
+              "team_name": "Product & Software Engineering",
+              "work_unit_name": "Pull Requests & Feature Specs"
+            },
+            {
+              "baseline_cycle_time_hrs": 1.7,
+              "baseline_draft_utilization_pct": 83.7,
+              "baseline_qa_utilization_pct": 83.1,
+              "baseline_qa_wait_hrs": 0.03,
+              "bottleneck_diagnosis": "Moderate Line at Final Review",
+              "cycle_time_reduction_pct": 16.4,
+              "m36_cycle_time_hrs": 1.4,
+              "m36_draft_utilization_pct": 72.7,
+              "m36_hours_saved_monthly": 1748.0,
+              "m36_qa_utilization_pct": 82.2,
+              "m36_qa_wait_hrs": 0.02,
+              "m36_sla_compliance_pct": 99.5,
+              "team_id": "customer_ops",
+              "team_name": "Customer Support & Success",
+              "work_unit_name": "Tier-2/3 Escalation Cases"
+            },
+            {
+              "baseline_cycle_time_hrs": 7.4,
+              "baseline_draft_utilization_pct": 72.5,
+              "baseline_qa_utilization_pct": 84.3,
+              "baseline_qa_wait_hrs": 0.44,
+              "bottleneck_diagnosis": "Moderate Line at Final Review",
+              "cycle_time_reduction_pct": 7.7,
+              "m36_cycle_time_hrs": 6.9,
+              "m36_draft_utilization_pct": 72.3,
+              "m36_hours_saved_monthly": 459.0,
+              "m36_qa_utilization_pct": 78.2,
+              "m36_qa_wait_hrs": 0.08,
+              "m36_sla_compliance_pct": 99.5,
+              "team_id": "sales_gtm",
+              "team_name": "Sales, Account Teams & Marketing",
+              "work_unit_name": "RFPs & Custom Deal Proposals"
+            },
+            {
+              "baseline_cycle_time_hrs": 8.8,
+              "baseline_draft_utilization_pct": 74.0,
+              "baseline_qa_utilization_pct": 80.3,
+              "baseline_qa_wait_hrs": 0.26,
+              "bottleneck_diagnosis": "Backed Up at Final Human Review (>85% Busy)",
+              "cycle_time_reduction_pct": -18.3,
+              "m36_cycle_time_hrs": 10.4,
+              "m36_draft_utilization_pct": 84.2,
+              "m36_hours_saved_monthly": 5.0,
+              "m36_qa_utilization_pct": 90.5,
+              "m36_qa_wait_hrs": 0.9,
+              "m36_sla_compliance_pct": 99.5,
+              "team_id": "legal_finance",
+              "team_name": "Legal, Finance & Compliance",
+              "work_unit_name": "Contract Redlines & Audit Memos"
+            }
+          ]
+        },
+        "monte_carlo": {
+          "distributions": {
+            "npv_k_usd_histogram": {
+              "bin_edges": [-1071.5, -833.0, -594.4, -355.8, -117.2, 121.3, 359.9, 598.5, 837.1, 1075.7, 1314.2, 1552.8, 1791.4, 2030.0, 2268.6, 2507.1, 2745.7, 2984.3, 3222.9, 3461.5, 3700.0, 3938.6, 4177.2, 4415.8, 4654.3, 4892.9, 5131.5, 5370.1, 5608.7],
+              "bin_midpoints": [-952.3, -713.7, -475.1, -236.5, 2.1, 240.6, 479.2, 717.8, 956.4, 1195.0, 1433.5, 1672.1, 1910.7, 2149.3, 2387.8, 2626.4, 2865.0, 3103.6, 3342.2, 3580.7, 3819.3, 4057.9, 4296.5, 4535.1, 4773.6, 5012.2, 5250.8, 5489.4],
+              "counts": [3, 5, 18, 46, 112, 208, 319, 505, 713, 886, 992, 986, 1053, 964, 806, 714, 514, 403, 266, 184, 121, 73, 56, 28, 10, 8, 5, 2],
+              "pct_of_trials": [0.03, 0.05, 0.18, 0.46, 1.12, 2.08, 3.19, 5.05, 7.13, 8.86, 9.92, 9.86, 10.53, 9.64, 8.06, 7.14, 5.14, 4.03, 2.66, 1.84, 1.21, 0.73, 0.56, 0.28, 0.1, 0.08, 0.05, 0.02]
+            },
+            "roi_pct_histogram": {
+              "bin_edges": [-60.0, -40.1, -20.2, -0.2, 19.7, 39.6, 59.5, 79.4, 99.3, 119.3, 139.2, 159.1, 179.0, 198.9, 218.8, 238.8, 258.7, 278.6, 298.5, 318.4, 338.3, 358.3, 378.2, 398.1, 418.0, 437.9, 457.8, 477.8, 497.7],
+              "bin_midpoints": [-50.0, -30.1, -10.2, 9.7, 29.6, 49.5, 69.5, 89.4, 109.3, 129.2, 149.1, 169.0, 189.0, 208.9, 228.8, 248.7, 268.6, 288.5, 308.5, 328.4, 348.3, 368.2, 388.1, 408.0, 428.0, 447.9, 467.8, 487.7],
+              "counts": [4, 16, 55, 158, 296, 496, 748, 966, 1082, 1138, 1119, 988, 813, 603, 511, 343, 246, 163, 94, 68, 33, 37, 8, 9, 2, 2, 1, 1],
+              "pct_of_trials": [0.04, 0.16, 0.55, 1.58, 2.96, 4.96, 7.48, 9.66, 10.82, 11.38, 11.19, 9.88, 8.13, 6.03, 5.11, 3.43, 2.46, 1.63, 0.94, 0.68, 0.33, 0.37, 0.08, 0.09, 0.02, 0.02, 0.01, 0.01]
+            }
+          },
+          "kpis": {
+            "month36_adoption_pct": {
+              "mean": 82.6,
+              "p05": 73.8,
+              "p10": 75.6,
+              "p25": 79.0,
+              "p50": 82.9,
+              "p75": 86.4,
+              "p90": 89.3,
+              "p95": 90.8,
+              "std": 5.2
+            },
+            "month36_net_productivity_uplift_pct": {
+              "mean": 6.93,
+              "p05": 4.61,
+              "p10": 5.13,
+              "p25": 5.91,
+              "p50": 6.89,
+              "p75": 7.93,
+              "p90": 8.82,
+              "p95": 9.4,
+              "std": 1.45
+            },
+            "npv_usd": {
+              "mean": 1.875735e6,
+              "p05": 455895.0,
+              "p10": 752393.0,
+              "p25": 1.233182e6,
+              "p50": 1.84036e6,
+              "p75": 2.468459e6,
+              "p90": 3.065663e6,
+              "p95": 3.447575e6,
+              "std": 910457.0
+            },
+            "payback_months": {
+              "mean": 16.7,
+              "p05": 11.6,
+              "p10": 12.4,
+              "p25": 14.0,
+              "p50": 16.0,
+              "p75": 18.5,
+              "p90": 21.4,
+              "p95": 24.1,
+              "std": 4.2
+            },
+            "prob_breakeven_within_24m_pct": 94.9,
+            "prob_breakeven_within_36m_pct": 99.2,
+            "prob_positive_npv_pct": 98.9,
+            "roi_pct": {
+              "mean": 145.2,
+              "p05": 38.1,
+              "p10": 58.8,
+              "p25": 94.6,
+              "p50": 139.9,
+              "p75": 189.0,
+              "p90": 239.3,
+              "p95": 270.0,
+              "std": 71.1
+            },
+            "total_cost_36m_usd": {
+              "mean": 1.663881e6,
+              "p05": 1.317486e6,
+              "p10": 1.384108e6,
+              "p25": 1.500106e6,
+              "p50": 1.64358e6,
+              "p75": 1.80778e6,
+              "p90": 1.96749e6,
+              "p95": 2.071224e6,
+              "std": 231868.0
+            },
+            "total_gross_benefit_36m_usd": {
+              "mean": 6.440021e6,
+              "p05": 4.667111e6,
+              "p10": 5.006209e6,
+              "p25": 5.613035e6,
+              "p50": 6.361331e6,
+              "p75": 7.189649e6,
+              "p90": 7.962047e6,
+              "p95": 8.477566e6,
+              "std": 1.161054e6
+            },
+            "total_net_benefit_36m_usd": {
+              "mean": 4.019358e6,
+              "p05": 2.352292e6,
+              "p10": 2.695655e6,
+              "p25": 3.242674e6,
+              "p50": 3.960132e6,
+              "p75": 4.723495e6,
+              "p90": 5.437227e6,
+              "p95": 5.891942e6,
+              "std": 1.080373e6
+            },
+            "total_rework_drag_36m_usd": {
+              "mean": 2.420663e6,
+              "p05": 1.72478e6,
+              "p10": 1.854656e6,
+              "p25": 2.080868e6,
+              "p50": 2.379441e6,
+              "p75": 2.713674e6,
+              "p90": 3.054336e6,
+              "p95": 3.261258e6,
+              "std": 468315.0
+            }
+          },
+          "sensitivity": [
+            {
+              "category": "Speed Gain",
+              "driver": "Raw Time Saved per Task (%)",
+              "npv_high_driver_usd": 2.79646e6,
+              "npv_low_driver_usd": 906720.0,
+              "npv_swing_usd": 1.88974e6,
+              "roi_high_driver_pct": 210.9,
+              "roi_low_driver_pct": 71.8,
+              "roi_swing_pct": 139.1,
+              "spearman_r": 0.769
+            },
+            {
+              "category": "Quality Check",
+              "driver": "Cleanup & Fact-Checking Time",
+              "npv_high_driver_usd": 1.392427e6,
+              "npv_low_driver_usd": 2.195701e6,
+              "npv_swing_usd": -803274.0,
+              "roi_high_driver_pct": 107.5,
+              "roi_low_driver_pct": 167.1,
+              "roi_swing_pct": -59.6,
+              "spearman_r": -0.326
+            },
+            {
+              "category": "Business Impact",
+              "driver": "Turning Saved Time into Profit",
+              "npv_high_driver_usd": 2.160588e6,
+              "npv_low_driver_usd": 1.527357e6,
+              "npv_swing_usd": 633231.0,
+              "roi_high_driver_pct": 163.2,
+              "roi_low_driver_pct": 118.4,
+              "roi_swing_pct": 44.8,
+              "spearman_r": 0.258
+            },
+            {
+              "category": "Rollout Speed",
+              "driver": "How Fast Staff Adopt AI",
+              "npv_high_driver_usd": 2.077011e6,
+              "npv_low_driver_usd": 1.54921e6,
+              "npv_swing_usd": 527801.0,
+              "roi_high_driver_pct": 151.2,
+              "roi_low_driver_pct": 126.5,
+              "roi_swing_pct": 24.6,
+              "spearman_r": 0.213
+            },
+            {
+              "category": "Starting Cost",
+              "driver": "Upfront IT Setup & Training Cost",
+              "npv_high_driver_usd": 1.562866e6,
+              "npv_low_driver_usd": 2.06258e6,
+              "npv_swing_usd": -499714.0,
+              "roi_high_driver_pct": 104.0,
+              "roi_low_driver_pct": 178.8,
+              "roi_swing_pct": -74.8,
+              "spearman_r": -0.203
+            },
+            {
+              "category": "Ongoing Cost",
+              "driver": "Monthly Seat & Usage Bill Creep",
+              "npv_high_driver_usd": 1.736647e6,
+              "npv_low_driver_usd": 1.9233e6,
+              "npv_swing_usd": -186652.0,
+              "roi_high_driver_pct": 120.5,
+              "roi_low_driver_pct": 162.3,
+              "roi_swing_pct": -41.8,
+              "spearman_r": -0.089
+            }
+          ],
+          "teams": [
+            {
+              "ai_addressable_task_share_pct": 55.0,
+              "avg_monthly_hours_saved_per_fte": {
+                "mean": 7.5,
+                "p05": 2.4,
+                "p10": 3.4,
+                "p25": 5.2,
+                "p50": 7.4,
+                "p75": 9.7,
+                "p90": 11.8,
+                "p95": 13.0,
+                "std": 3.2
+              },
+              "cost_per_seat_monthly_usd": {
+                "mean": 151.3,
+                "p05": 113.2,
+                "p10": 119.6,
+                "p25": 133.2,
+                "p50": 149.7,
+                "p75": 167.7,
+                "p90": 184.9,
+                "p95": 195.6,
+                "std": 25.4
+              },
+              "fully_loaded_annual_cost_usd": 185000.0,
+              "headcount": 120,
+              "id": "software_eng",
+              "month36_net_productivity_uplift_pct": {
+                "mean": 6.72,
+                "p05": 2.34,
+                "p10": 3.21,
+                "p25": 4.8,
+                "p50": 6.7,
+                "p75": 8.62,
+                "p90": 10.3,
+                "p95": 11.25,
+                "std": 2.7
+              },
+              "name": "Product & Software Engineering",
+              "net_benefit_36m_usd": {
+                "mean": 2.033056e6,
+                "p05": 611654.0,
+                "p10": 886282.0,
+                "p25": 1.381032e6,
+                "p50": 1.974306e6,
+                "p75": 2.628149e6,
+                "p90": 3.263144e6,
+                "p95": 3.626308e6,
+                "std": 913687.0
+              },
+              "net_benefit_per_seat_36m_usd": {
+                "mean": 11496.0,
+                "p05": -331.0,
+                "p10": 1941.0,
+                "p25": 6100.0,
+                "p50": 11034.0,
+                "p75": 16467.0,
+                "p90": 21588.0,
+                "p95": 24733.0,
+                "std": 7610.0
+              },
+              "prob_positive_roi_pct": 94.5,
+              "roi_pct": {
+                "mean": 218.3,
+                "p05": -5.9,
+                "p10": 35.0,
+                "p25": 111.7,
+                "p50": 204.6,
+                "p75": 310.5,
+                "p90": 420.0,
+                "p95": 488.7,
+                "std": 150.7
+              },
+              "total_cost_36m_usd": {
+                "mean": 653535.0,
+                "p05": 489168.0,
+                "p10": 516839.0,
+                "p25": 575291.0,
+                "p50": 646785.0,
+                "p75": 724431.0,
+                "p90": 798840.0,
+                "p95": 844985.0,
+                "std": 109518.0
+              }
+            },
+            {
+              "ai_addressable_task_share_pct": 65.0,
+              "avg_monthly_hours_saved_per_fte": {
+                "mean": 13.7,
+                "p05": 7.4,
+                "p10": 8.7,
+                "p25": 10.9,
+                "p50": 13.6,
+                "p75": 16.4,
+                "p90": 19.0,
+                "p95": 20.5,
+                "std": 3.9
+              },
+              "cost_per_seat_monthly_usd": {
+                "mean": 125.6,
+                "p05": 93.3,
+                "p10": 99.3,
+                "p25": 110.1,
+                "p50": 123.5,
+                "p75": 139.3,
+                "p90": 154.6,
+                "p95": 164.5,
+                "std": 21.8
+              },
+              "fully_loaded_annual_cost_usd": 78000.0,
+              "headcount": 90,
+              "id": "customer_ops",
+              "month36_net_productivity_uplift_pct": {
+                "mean": 12.02,
+                "p05": 6.76,
+                "p10": 7.74,
+                "p25": 9.67,
+                "p50": 11.94,
+                "p75": 14.25,
+                "p90": 16.42,
+                "p95": 17.55,
+                "std": 3.27
+              },
+              "name": "Customer Support & Success",
+              "net_benefit_36m_usd": {
+                "mean": 1.385949e6,
+                "p05": 736670.0,
+                "p10": 858529.0,
+                "p25": 1.084666e6,
+                "p50": 1.361794e6,
+                "p75": 1.659479e6,
+                "p90": 1.950342e6,
+                "p95": 2.126483e6,
+                "std": 419353.0
+              },
+              "net_benefit_per_seat_36m_usd": {
+                "mean": 10878.0,
+                "p05": 3634.0,
+                "p10": 4997.0,
+                "p25": 7541.0,
+                "p50": 10606.0,
+                "p75": 13975.0,
+                "p90": 17096.0,
+                "p95": 19023.0,
+                "std": 4658.0
+              },
+              "prob_positive_roi_pct": 99.8,
+              "roi_pct": {
+                "mean": 249.2,
+                "p05": 76.2,
+                "p10": 107.2,
+                "p25": 164.6,
+                "p50": 237.9,
+                "p75": 321.3,
+                "p90": 407.0,
+                "p95": 460.5,
+                "std": 118.0
+              },
+              "total_cost_36m_usd": {
+                "mean": 406902.0,
+                "p05": 302196.0,
+                "p10": 321691.0,
+                "p25": 356717.0,
+                "p50": 400180.0,
+                "p75": 451187.0,
+                "p90": 500927.0,
+                "p95": 532824.0,
+                "std": 70558.0
+              }
+            },
+            {
+              "ai_addressable_task_share_pct": 42.0,
+              "avg_monthly_hours_saved_per_fte": {
+                "mean": 3.9,
+                "p05": 0.9,
+                "p10": 1.5,
+                "p25": 2.5,
+                "p50": 3.8,
+                "p75": 5.2,
+                "p90": 6.4,
+                "p95": 7.1,
+                "std": 1.9
+              },
+              "cost_per_seat_monthly_usd": {
+                "mean": 137.9,
+                "p05": 103.2,
+                "p10": 109.5,
+                "p25": 121.9,
+                "p50": 136.1,
+                "p75": 152.8,
+                "p90": 167.9,
+                "p95": 177.9,
+                "std": 23.0
+              },
+              "fully_loaded_annual_cost_usd": 142000.0,
+              "headcount": 75,
+              "id": "sales_gtm",
+              "month36_net_productivity_uplift_pct": {
+                "mean": 3.59,
+                "p05": 0.97,
+                "p10": 1.51,
+                "p25": 2.41,
+                "p50": 3.55,
+                "p75": 4.72,
+                "p90": 5.74,
+                "p95": 6.37,
+                "std": 1.64
+              },
+              "name": "Sales, Account Teams & Marketing",
+              "net_benefit_36m_usd": {
+                "mean": 420761.0,
+                "p05": 80099.0,
+                "p10": 144171.0,
+                "p25": 259190.0,
+                "p50": 404303.0,
+                "p75": 568027.0,
+                "p90": 719885.0,
+                "p95": 815322.0,
+                "std": 226328.0
+              },
+              "net_benefit_per_seat_36m_usd": {
+                "mean": 645.0,
+                "p05": -4072.0,
+                "p10": -3154.0,
+                "p25": -1533.0,
+                "p50": 496.0,
+                "p75": 2646.0,
+                "p90": 4686.0,
+                "p95": 5907.0,
+                "std": 3083.0
+              },
+              "prob_positive_roi_pct": 56.0,
+              "roi_pct": {
+                "mean": 15.6,
+                "p05": -78.7,
+                "p10": -61.3,
+                "p25": -30.5,
+                "p50": 10.0,
+                "p75": 54.8,
+                "p90": 101.2,
+                "p95": 130.3,
+                "std": 64.5
+              },
+              "total_cost_36m_usd": {
+                "mean": 372416.0,
+                "p05": 278580.0,
+                "p10": 295522.0,
+                "p25": 329015.0,
+                "p50": 367427.0,
+                "p75": 412502.0,
+                "p90": 453350.0,
+                "p95": 480312.0,
+                "std": 62018.0
+              }
+            },
+            {
+              "ai_addressable_task_share_pct": 48.0,
+              "avg_monthly_hours_saved_per_fte": {
+                "mean": 2.6,
+                "p05": 0.0,
+                "p10": 0.0,
+                "p25": 1.0,
+                "p50": 2.4,
+                "p75": 4.0,
+                "p90": 5.4,
+                "p95": 6.2,
+                "std": 2.0
+              },
+              "cost_per_seat_monthly_usd": {
+                "mean": 160.4,
+                "p05": 119.5,
+                "p10": 127.5,
+                "p25": 141.2,
+                "p50": 158.1,
+                "p75": 177.5,
+                "p90": 196.3,
+                "p95": 207.9,
+                "std": 27.0
+              },
+              "fully_loaded_annual_cost_usd": 165000.0,
+              "headcount": 40,
+              "id": "legal_finance",
+              "month36_net_productivity_uplift_pct": {
+                "mean": 2.39,
+                "p05": -0.69,
+                "p10": -0.06,
+                "p25": 1.07,
+                "p50": 2.34,
+                "p75": 3.7,
+                "p90": 4.92,
+                "p95": 5.6,
+                "std": 1.9
+              },
+              "name": "Legal, Finance & Compliance",
+              "net_benefit_36m_usd": {
+                "mean": 179591.0,
+                "p05": -87635.0,
+                "p10": -33917.0,
+                "p25": 61834.0,
+                "p50": 172636.0,
+                "p75": 291556.0,
+                "p90": 403800.0,
+                "p95": 476187.0,
+                "std": 170304.0
+              },
+              "net_benefit_per_seat_36m_usd": {
+                "mean": -1286.0,
+                "p05": -8136.0,
+                "p10": -6749.0,
+                "p25": -4314.0,
+                "p50": -1396.0,
+                "p75": 1554.0,
+                "p90": 4388.0,
+                "p95": 6189.0,
+                "std": 4340.0
+              },
+              "prob_positive_roi_pct": 37.2,
+              "roi_pct": {
+                "mean": -20.4,
+                "p05": -137.8,
+                "p10": -115.0,
+                "p25": -73.1,
+                "p50": -24.6,
+                "p75": 27.5,
+                "p90": 80.4,
+                "p95": 113.5,
+                "std": 77.0
+              },
+              "total_cost_36m_usd": {
+                "mean": 231029.0,
+                "p05": 172112.0,
+                "p10": 183658.0,
+                "p25": 203279.0,
+                "p50": 227638.0,
+                "p75": 255579.0,
+                "p90": 282604.0,
+                "p95": 299359.0,
+                "std": 38815.0
+              }
+            }
+          ],
+          "trajectories": {
+            "adoption_pct": {
+              "mean": [1.1, 1.8, 2.9, 4.7, 7.4, 11.3, 16.7, 23.8, 32.2, 41.3, 50.4, 58.8, 65.7, 71.2, 75.1, 77.8, 79.6, 80.8, 81.5, 81.9, 82.2, 82.4, 82.5, 82.5, 82.6, 82.6, 82.6, 82.6, 82.6, 82.6, 82.6, 82.6, 82.6, 82.6, 82.6, 82.6],
+              "p10": [0.1, 0.3, 0.5, 0.9, 1.6, 2.8, 4.8, 8.0, 12.8, 19.8, 28.7, 38.6, 48.8, 57.9, 64.9, 69.4, 72.1, 73.6, 74.4, 74.9, 75.2, 75.3, 75.4, 75.5, 75.5, 75.6, 75.6, 75.6, 75.6, 75.6, 75.6, 75.6, 75.6, 75.6, 75.6, 75.6],
+              "p25": [0.3, 0.6, 1.0, 1.8, 3.1, 5.2, 8.5, 13.6, 20.7, 29.6, 39.7, 50.0, 59.0, 65.9, 70.6, 73.6, 75.6, 76.9, 77.7, 78.2, 78.5, 78.7, 78.8, 78.9, 78.9, 78.9, 78.9, 78.9, 78.9, 79.0, 79.0, 79.0, 79.0, 79.0, 79.0, 79.0],
+              "p50": [0.8, 1.3, 2.2, 3.6, 5.9, 9.6, 15.0, 22.5, 31.7, 41.9, 52.0, 60.8, 67.6, 72.5, 75.9, 78.3, 79.9, 81.0, 81.7, 82.1, 82.4, 82.6, 82.7, 82.8, 82.9, 82.9, 82.9, 82.9, 82.9, 82.9, 82.9, 82.9, 82.9, 82.9, 82.9, 82.9],
+              "p75": [1.5, 2.5, 4.0, 6.5, 10.2, 15.7, 23.2, 32.5, 42.9, 53.1, 62.0, 69.0, 74.2, 77.9, 80.6, 82.4, 83.7, 84.6, 85.3, 85.7, 85.9, 86.1, 86.2, 86.3, 86.3, 86.3, 86.4, 86.4, 86.4, 86.4, 86.4, 86.4, 86.4, 86.4, 86.4, 86.4],
+              "p90": [2.6, 4.2, 6.5, 10.0, 15.2, 22.3, 31.5, 41.7, 52.1, 61.7, 69.4, 75.1, 79.2, 82.2, 84.3, 85.8, 86.9, 87.6, 88.2, 88.6, 88.8, 89.0, 89.1, 89.2, 89.2, 89.3, 89.3, 89.3, 89.3, 89.3, 89.3, 89.3, 89.3, 89.3, 89.3, 89.3]
+            },
+            "cumulative_cashflow_usd": {
+              "mean": [-100508.0, -200438.0, -299670.0, -398065.0, -423260.0, -446658.0, -466811.0, -481253.0, -486647.0, -457023.0, -412023.0, -350460.0, -273026.0, -181968.0, -80362.0, 28654.0, 142412.0, 258940.0, 376925.0, 495563.0, 614387.0, 733135.0, 851661.0, 969879.0, 1.087741e6, 1.205213e6, 1.322274e6, 1.438909e6, 1.555104e6, 1.670851e6, 1.786141e6, 1.900966e6, 2.015319e6, 2.129193e6, 2.242581e6, 2.355477e6],
+              "p10": [-139571.0, -278525.0, -416959.0, -554407.0, -583498.0, -612538.0, -641108.0, -665461.0, -684746.0, -674656.0, -653448.0, -624924.0, -587567.0, -541087.0, -481684.0, -412096.0, -338277.0, -260927.0, -182692.0, -104732.0, -26407.0, 48275.0, 122112.0, 193378.0, 264624.0, 337314.0, 407526.0, 478574.0, 549086.0, 618135.0, 685559.0, 753236.0, 822693.0, 889134.0, 956450.0, 1.021535e6],
+              "p25": [-116028.0, -231551.0, -346309.0, -459839.0, -487054.0, -513500.0, -539134.0, -561378.0, -579883.0, -565073.0, -540930.0, -503968.0, -454755.0, -391764.0, -315028.0, -228759.0, -136292.0, -43242.0, 52533.0, 147772.0, 242332.0, 338924.0, 431951.0, 524349.0, 616509.0, 708867.0, 797416.0, 887214.0, 978700.0, 1.067698e6, 1.155119e6, 1.241586e6, 1.331235e6, 1.419459e6, 1.504384e6, 1.588752e6],
+              "p50": [-95710.0, -190756.0, -285350.0, -378981.0, -404855.0, -429259.0, -452000.0, -469214.0, -479869.0, -456558.0, -419816.0, -368167.0, -297017.0, -207110.0, -109000.0, 1408.0, 113942.0, 228187.0, 344054.0, 460032.0, 578034.0, 696552.0, 815323.0, 932268.0, 1.051517e6, 1.166834e6, 1.285982e6, 1.403048e6, 1.517708e6, 1.634527e6, 1.748877e6, 1.863519e6, 1.975169e6, 2.088257e6, 2.200894e6, 2.312093e6],
+              "p75": [-79715.0, -158717.0, -237028.0, -314418.0, -337986.0, -359185.0, -375734.0, -385618.0, -385124.0, -349471.0, -291147.0, -210410.0, -110116.0, 5808.0, 129094.0, 258522.0, 392616.0, 530730.0, 669205.0, 807036.0, 947801.0, 1.087903e6, 1.23164e6, 1.377414e6, 1.516702e6, 1.658357e6, 1.799628e6, 1.939308e6, 2.084092e6, 2.227093e6, 2.368599e6, 2.509472e6, 2.646228e6, 2.784806e6, 2.922973e6, 3.060806e6],
+              "p90": [-67467.0, -134232.0, -200215.0, -265387.0, -285551.0, -302997.0, -314468.0, -316273.0, -299926.0, -240293.0, -154793.0, -47580.0, 76285.0, 215101.0, 358192.0, 506552.0, 661195.0, 818335.0, 979107.0, 1.140616e6, 1.309115e6, 1.469731e6, 1.633798e6, 1.799522e6, 1.965138e6, 2.134897e6, 2.300145e6, 2.465744e6, 2.627032e6, 2.790219e6, 2.950446e6, 3.118125e6, 3.280392e6, 3.443808e6, 3.604907e6, 3.766587e6]
+            },
+            "effective_productivity_uplift_pct": {
+              "mean": [0.08, 0.12, 0.16, 0.23, 0.33, 0.48, 0.71, 1.08, 1.62, 2.31, 3.13, 3.97, 4.77, 5.44, 5.96, 6.33, 6.57, 6.72, 6.81, 6.86, 6.89, 6.91, 6.92, 6.92, 6.93, 6.93, 6.93, 6.93, 6.93, 6.93, 6.93, 6.93, 6.93, 6.93, 6.93, 6.93],
+              "p10": [0.01, 0.02, 0.03, 0.05, 0.06, 0.09, 0.12, 0.18, 0.3, 0.52, 0.95, 1.58, 2.42, 3.27, 3.96, 4.44, 4.75, 4.93, 5.02, 5.06, 5.09, 5.11, 5.12, 5.12, 5.13, 5.13, 5.13, 5.13, 5.13, 5.13, 5.13, 5.13, 5.13, 5.13, 5.13, 5.13],
+              "p25": [0.02, 0.04, 0.06, 0.09, 0.13, 0.18, 0.26, 0.4, 0.66, 1.11, 1.79, 2.65, 3.57, 4.33, 4.92, 5.3, 5.56, 5.71, 5.79, 5.85, 5.87, 5.89, 5.9, 5.9, 5.9, 5.91, 5.91, 5.91, 5.91, 5.91, 5.91, 5.91, 5.91, 5.91, 5.91, 5.91],
+              "p50": [0.05, 0.08, 0.12, 0.18, 0.25, 0.35, 0.53, 0.83, 1.35, 2.1, 3.01, 3.97, 4.79, 5.45, 5.97, 6.32, 6.55, 6.69, 6.77, 6.82, 6.85, 6.87, 6.88, 6.88, 6.89, 6.89, 6.89, 6.89, 6.89, 6.89, 6.89, 6.89, 6.89, 6.89, 6.89, 6.89],
+              "p75": [0.11, 0.15, 0.22, 0.31, 0.44, 0.64, 0.98, 1.53, 2.33, 3.29, 4.3, 5.21, 5.96, 6.57, 7.0, 7.32, 7.55, 7.69, 7.79, 7.85, 7.88, 7.9, 7.91, 7.92, 7.92, 7.92, 7.92, 7.93, 7.93, 7.93, 7.93, 7.93, 7.93, 7.93, 7.93, 7.93],
+              "p90": [0.18, 0.26, 0.36, 0.49, 0.71, 1.05, 1.59, 2.38, 3.38, 4.44, 5.47, 6.31, 7.03, 7.57, 7.97, 8.26, 8.45, 8.59, 8.69, 8.74, 8.77, 8.8, 8.81, 8.82, 8.82, 8.82, 8.82, 8.82, 8.82, 8.82, 8.82, 8.82, 8.82, 8.82, 8.82, 8.82]
+            },
+            "monthly_benefit_usd": {
+              "mean": [1799.0, 2605.0, 3671.0, 5095.0, 7120.0, 10272.0, 15424.0, 23639.0, 35724.0, 51695.0, 70516.0, 90313.0, 108998.0, 124917.0, 137246.0, 145998.0, 151752.0, 155304.0, 157396.0, 158593.0, 159272.0, 159659.0, 159884.0, 160018.0, 160099.0, 160149.0, 160181.0, 160200.0, 160213.0, 160221.0, 160226.0, 160229.0, 160231.0, 160232.0, 160233.0, 160234.0],
+              "p10": [243.0, 408.0, 634.0, 909.0, 1199.0, 1449.0, 1934.0, 2885.0, 5132.0, 9702.0, 18419.0, 32312.0, 50715.0, 69579.0, 85348.0, 96354.0, 102912.0, 106849.0, 109081.0, 109886.0, 110320.0, 110568.0, 110774.0, 110829.0, 110876.0, 110940.0, 110948.0, 110950.0, 110951.0, 110951.0, 110952.0, 110952.0, 110952.0, 110952.0, 110952.0, 110952.0],
+              "p25": [540.0, 873.0, 1320.0, 1888.0, 2577.0, 3514.0, 4994.0, 7728.0, 13004.0, 22651.0, 37793.0, 57082.0, 77707.0, 95285.0, 109102.0, 117728.0, 123491.0, 127238.0, 129289.0, 130310.0, 131075.0, 131371.0, 131587.0, 131752.0, 131845.0, 131882.0, 131899.0, 131900.0, 131900.0, 131900.0, 131900.0, 131900.0, 131900.0, 131900.0, 131900.0, 131900.0],
+              "p50": [1202.0, 1841.0, 2708.0, 3787.0, 5225.0, 7418.0, 11081.0, 17703.0, 28846.0, 45516.0, 66686.0, 88745.0, 108331.0, 123761.0, 135571.0, 143995.0, 149912.0, 153575.0, 155637.0, 156749.0, 157353.0, 157778.0, 158043.0, 158137.0, 158191.0, 158263.0, 158291.0, 158304.0, 158312.0, 158314.0, 158315.0, 158316.0, 158320.0, 158320.0, 158320.0, 158320.0],
+              "p75": [2403.0, 3476.0, 4884.0, 6794.0, 9513.0, 13853.0, 21199.0, 33548.0, 51450.0, 74318.0, 98506.0, 120175.0, 139144.0, 153818.0, 164665.0, 172309.0, 177908.0, 181483.0, 183521.0, 184772.0, 185471.0, 185883.0, 186162.0, 186336.0, 186453.0, 186487.0, 186516.0, 186538.0, 186551.0, 186558.0, 186560.0, 186561.0, 186561.0, 186562.0, 186562.0, 186562.0],
+              "p90": [4083.0, 5788.0, 8016.0, 11079.0, 15725.0, 23295.0, 35624.0, 53682.0, 76945.0, 102845.0, 127540.0, 148718.0, 166329.0, 180123.0, 190181.0, 198177.0, 203633.0, 207183.0, 209406.0, 210601.0, 211316.0, 211665.0, 212009.0, 212135.0, 212197.0, 212252.0, 212283.0, 212297.0, 212302.0, 212305.0, 212306.0, 212307.0, 212308.0, 212309.0, 212310.0, 212310.0]
+            },
+            "monthly_cost_usd": {
+              "mean": [102307.0, 102535.0, 102903.0, 103490.0, 32316.0, 33670.0, 35577.0, 38082.0, 41118.0, 22072.0, 25516.0, 28749.0, 31564.0, 33859.0, 35639.0, 36982.0, 37994.0, 38776.0, 39411.0, 39955.0, 40448.0, 40911.0, 41359.0, 41799.0, 42238.0, 42677.0, 43120.0, 43566.0, 44017.0, 44474.0, 44936.0, 45404.0, 45878.0, 46358.0, 46845.0, 47338.0],
+              "p10": [69389.0, 69609.0, 69924.0, 70627.0, 24458.0, 25474.0, 26858.0, 28766.0, 31191.0, 14042.0, 17216.0, 20850.0, 24398.0, 27397.0, 29580.0, 31115.0, 32120.0, 32861.0, 33408.0, 33850.0, 34199.0, 34555.0, 34865.0, 35167.0, 35464.0, 35757.0, 36061.0, 36348.0, 36636.0, 36915.0, 37217.0, 37507.0, 37808.0, 38081.0, 38380.0, 38673.0],
+              "p25": [81514.0, 81753.0, 82126.0, 82691.0, 27813.0, 29021.0, 30597.0, 32730.0, 35348.0, 17553.0, 21166.0, 24795.0, 27936.0, 30489.0, 32359.0, 33742.0, 34754.0, 35490.0, 36045.0, 36512.0, 36936.0, 37316.0, 37666.0, 38016.0, 38376.0, 38715.0, 39064.0, 39407.0, 39754.0, 40103.0, 40454.0, 40791.0, 41129.0, 41489.0, 41856.0, 42185.0],
+              "p50": [97493.0, 97716.0, 98108.0, 98664.0, 31992.0, 33344.0, 35222.0, 37725.0, 40743.0, 21981.0, 25685.0, 28958.0, 31662.0, 33803.0, 35533.0, 36862.0, 37839.0, 38588.0, 39200.0, 39753.0, 40228.0, 40689.0, 41115.0, 41516.0, 41932.0, 42356.0, 42794.0, 43217.0, 43640.0, 44078.0, 44524.0, 44955.0, 45396.0, 45832.0, 46306.0, 46781.0],
+              "p75": [117567.0, 117886.0, 118264.0, 118815.0, 36625.0, 38192.0, 40328.0, 43154.0, 46537.0, 26351.0, 29852.0, 32840.0, 35298.0, 37226.0, 38811.0, 40046.0, 41061.0, 41877.0, 42549.0, 43155.0, 43712.0, 44249.0, 44752.0, 45269.0, 45776.0, 46299.0, 46824.0, 47367.0, 47919.0, 48439.0, 48990.0, 49539.0, 50112.0, 50686.0, 51250.0, 51883.0],
+              "p90": [141366.0, 141689.0, 141979.0, 142522.0, 40518.0, 42266.0, 44669.0, 47825.0, 51548.0, 30045.0, 33338.0, 36150.0, 38377.0, 40277.0, 41801.0, 43049.0, 44060.0, 44977.0, 45716.0, 46378.0, 47009.0, 47627.0, 48225.0, 48845.0, 49464.0, 50082.0, 50702.0, 51317.0, 51963.0, 52610.0, 53237.0, 53911.0, 54580.0, 55289.0, 55997.0, 56737.0]
+            },
+            "monthly_net_cashflow_usd": {
+              "mean": [-100508.0, -99930.0, -99232.0, -98394.0, -25196.0, -23398.0, -20152.0, -14442.0, -5394.0, 29623.0, 45000.0, 61564.0, 77434.0, 91058.0, 101606.0, 109015.0, 113758.0, 116528.0, 117985.0, 118638.0, 118824.0, 118748.0, 118526.0, 118219.0, 117862.0, 117472.0, 117061.0, 116634.0, 116196.0, 115747.0, 115290.0, 114825.0, 114353.0, 113874.0, 113388.0, 112896.0],
+              "p10": [-139571.0, -139050.0, -138268.0, -137456.0, -35363.0, -35437.0, -35345.0, -34659.0, -33063.0, -6095.0, -95.0, 10015.0, 23992.0, 39027.0, 51979.0, 60661.0, 65838.0, 68472.0, 69554.0, 69937.0, 69974.0, 69712.0, 69451.0, 69003.0, 68483.0, 68127.0, 67749.0, 67268.0, 66864.0, 66447.0, 65959.0, 65357.0, 64944.0, 64303.0, 63776.0, 63293.0],
+              "p25": [-116028.0, -115424.0, -114675.0, -113866.0, -30687.0, -30189.0, -29372.0, -27723.0, -24167.0, 4415.0, 15610.0, 30879.0, 47616.0, 62681.0, 73802.0, 81250.0, 86209.0, 88867.0, 90211.0, 90710.0, 90776.0, 90561.0, 90278.0, 89914.0, 89517.0, 89139.0, 88722.0, 88306.0, 87868.0, 87420.0, 87021.0, 86592.0, 86202.0, 85748.0, 85275.0, 84808.0],
+              "p50": [-95710.0, -95134.0, -94529.0, -93803.0, -25504.0, -24303.0, -22346.0, -18687.0, -11378.0, 23630.0, 40315.0, 58816.0, 75650.0, 89239.0, 99747.0, 107152.0, 112045.0, 114939.0, 116142.0, 116708.0, 116860.0, 116773.0, 116627.0, 116371.0, 116019.0, 115594.0, 115174.0, 114706.0, 114282.0, 113838.0, 113353.0, 112973.0, 112533.0, 112034.0, 111504.0, 110948.0],
+              "p75": [-79715.0, -79046.0, -78298.0, -77405.0, -20380.0, -18084.0, -13782.0, -5495.0, 8563.0, 48942.0, 69129.0, 88910.0, 105271.0, 118392.0, 127986.0, 134799.0, 139428.0, 142200.0, 143684.0, 144358.0, 144717.0, 144781.0, 144634.0, 144311.0, 143940.0, 143536.0, 143153.0, 142667.0, 142246.0, 141787.0, 141382.0, 140940.0, 140551.0, 140039.0, 139574.0, 139077.0],
+              "p90": [-67467.0, -66785.0, -65987.0, -64781.0, -15090.0, -10476.0, -2001.0, 11843.0, 30853.0, 75278.0, 96695.0, 115641.0, 131527.0, 144343.0, 153481.0, 160910.0, 164806.0, 167465.0, 168985.0, 170041.0, 170360.0, 170372.0, 170176.0, 169933.0, 169643.0, 169310.0, 168837.0, 168401.0, 167887.0, 167503.0, 167097.0, 166697.0, 166253.0, 165896.0, 165330.0, 164798.0]
+            },
+            "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]
+          }
+        },
+        "system_dynamics": {
+          "causal_loops": [
+            {
+              "id": "Flywheel 1",
+              "impact_summary": "Speeds up team-wide adoption once roughly 1 in 4 employees are using the tool daily.",
+              "name": "Word-of-Mouth & Shared Tips",
+              "pathway": "More Active Users → Better Shared Templates → Easier for Coworkers → Faster Adoption",
+              "type": "Growth Flywheel (+)"
+            },
+            {
+              "id": "Flywheel 2",
+              "impact_summary": "Boosts output per person by 1.1x by Month 36.",
+              "name": "Growing Company Know-How",
+              "pathway": "Daily Practice + Training → Stronger Company Playbooks → Bigger Time Savings & Fewer Mistakes",
+              "type": "Growth Flywheel (+)"
+            },
+            {
+              "id": "Brake 1",
+              "impact_summary": "Costs $2636k in extra cleanup and rework over 36 months.",
+              "name": "Sloppy AI Cleanup Backlog",
+              "pathway": "Rushed AI Output → Pileup of Unchecked Work → Extra Time Fixing Mistakes → Staff Burnout",
+              "type": "Hidden Brake (-)"
+            },
+            {
+              "id": "Brake 2",
+              "impact_summary": "Pushes monthly usage bills to 1.33x per seat by Month 36 without budget guardrails.",
+              "name": "Climbing Monthly AI Usage Bills",
+              "pathway": "Automated Multi-Step Tasks → Higher Cloud Usage per Person → Rising Monthly Bills → Lower Profit",
+              "type": "Hidden Brake (-)"
+            }
+          ],
+          "kpis": {
+            "equilibrium_npv_usd": 2.129373e6,
+            "equilibrium_roi_pct": 169.5,
+            "m36_adopted_workforce_pct": 82.2,
+            "m36_tech_debt_index": 5.6,
+            "m36_token_sprawl_multiplier": 1.33,
+            "m36_workflow_mastery_index": 61.7,
+            "total_cost_36m_usd": 1.557112e6,
+            "total_gross_value_36m_usd": 6.83214e6,
+            "total_tech_debt_drag_36m_usd": 2.635645e6
+          },
+          "paradigm": "system_dynamics",
+          "parameters": {
+            "automation_ambition": 0.4,
+            "governance_damping": 0.32,
+            "horizon_months": 36,
+            "reinvestment_rate": 0.26,
+            "rk4_step_months": 0.25
+          },
+          "scenario_id": "pragmatic_phased",
+          "scenario_name": "Step-by-Step Phased Rollout",
+          "stocks_and_flows": {
+            "flow_cumulative_cashflow_usd": [-94060.0, -183939.0, -268826.0, -347934.0, -345377.0, -335842.0, -319050.0, -294974.0, -263819.0, -204777.0, -139509.0, -68525.0, 7682.0, 88670.0, 174053.0, 263504.0, 356749.0, 453555.0, 553722.0, 657074.0, 763452.0, 872713.0, 984722.0, 1.099351e6, 1.216479e6, 1.33599e6, 1.457772e6, 1.581716e6, 1.707719e6, 1.835679e6, 1.9655e6, 2.097089e6, 2.230356e6, 2.365215e6, 2.501584e6, 2.639383e6],
+            "flow_debt_drag_usd": [8812.0, 12584.0, 17141.0, 22519.0, 28682.0, 35501.0, 42757.0, 50156.0, 57381.0, 64133.0, 70186.0, 75401.0, 79734.0, 83212.0, 85915.0, 87950.0, 89429.0, 90462.0, 91145.0, 91561.0, 91775.0, 91842.0, 91803.0, 91689.0, 91525.0, 91328.0, 91110.0, 90882.0, 90650.0, 90418.0, 90190.0, 89968.0, 89753.0, 89546.0, 89348.0, 89158.0],
+            "flow_gross_benefit_usd": [20902.0, 30019.0, 40959.0, 53727.0, 68160.0, 83903.0, 100428.0, 117111.0, 133321.0, 148529.0, 162367.0, 174651.0, 185361.0, 194592.0, 202509.0, 209304.0, 215168.0, 220274.0, 224770.0, 228777.0, 232392.0, 235690.0, 238728.0, 241551.0, 244190.0, 246673.0, 249017.0, 251237.0, 253344.0, 255347.0, 257254.0, 259071.0, 260803.0, 262454.0, 264028.0, 265530.0],
+            "flow_net_cashflow_usd": [-94060.0, -89879.0, -84887.0, -79108.0, 2557.0, 9535.0, 16792.0, 24076.0, 31155.0, 59042.0, 65268.0, 70984.0, 76208.0, 80988.0, 85383.0, 89451.0, 93245.0, 96806.0, 100167.0, 103352.0, 106378.0, 109261.0, 112009.0, 114629.0, 117128.0, 119511.0, 121782.0, 123944.0, 126003.0, 127960.0, 129821.0, 131589.0, 133267.0, 134859.0, 136368.0, 137799.0],
+            "flow_total_cost_usd": [106150.0, 107314.0, 108705.0, 110316.0, 36921.0, 38867.0, 40880.0, 42879.0, 44785.0, 25353.0, 26913.0, 28266.0, 29420.0, 30393.0, 31211.0, 31903.0, 32494.0, 33006.0, 33458.0, 33865.0, 34239.0, 34587.0, 34917.0, 35232.0, 35537.0, 35834.0, 36125.0, 36410.0, 36691.0, 36969.0, 37243.0, 37514.0, 37783.0, 38049.0, 38312.0, 38573.0],
+            "loop_dominance_score": [4.6, 7.8, 11.3, 15.3, 19.6, 24.2, 28.9, 33.6, 38.1, 42.2, 45.8, 49.0, 51.8, 54.1, 56.1, 57.7, 59.2, 60.5, 61.6, 62.6, 63.5, 64.3, 65.1, 65.8, 66.4, 67.0, 67.6, 68.1, 68.6, 69.0, 69.4, 69.8, 70.1, 70.4, 70.7, 71.0],
+            "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36],
+            "stock_adopted_workforce_pct": [9.3, 13.3, 18.1, 23.6, 29.7, 36.2, 42.8, 49.3, 55.3, 60.6, 65.2, 69.0, 72.1, 74.5, 76.3, 77.7, 78.7, 79.5, 80.1, 80.5, 80.8, 81.1, 81.2, 81.4, 81.5, 81.6, 81.7, 81.8, 81.8, 81.9, 81.9, 82.0, 82.0, 82.1, 82.1, 82.2],
+            "stock_tech_debt_index": [1.8, 1.7, 1.7, 1.9, 2.3, 2.7, 3.2, 3.7, 4.3, 4.8, 5.3, 5.8, 6.2, 6.5, 6.7, 6.9, 7.0, 7.1, 7.1, 7.1, 7.0, 6.9, 6.9, 6.8, 6.7, 6.5, 6.4, 6.3, 6.2, 6.1, 6.0, 5.9, 5.8, 5.8, 5.7, 5.6],
+            "stock_token_sprawl_multiplier": [1.0, 1.0, 1.01, 1.01, 1.01, 1.02, 1.02, 1.03, 1.04, 1.05, 1.06, 1.07, 1.08, 1.09, 1.1, 1.11, 1.12, 1.13, 1.14, 1.16, 1.17, 1.18, 1.19, 1.2, 1.21, 1.22, 1.23, 1.25, 1.26, 1.27, 1.28, 1.29, 1.3, 1.31, 1.32, 1.33],
+            "stock_workflow_mastery_index": [10.2, 10.5, 11.0, 11.7, 12.6, 13.8, 15.2, 16.9, 18.7, 20.7, 22.8, 24.9, 27.1, 29.3, 31.4, 33.5, 35.5, 37.5, 39.4, 41.2, 43.0, 44.7, 46.3, 47.8, 49.3, 50.7, 52.0, 53.3, 54.5, 55.7, 56.8, 57.9, 58.9, 59.9, 60.8, 61.7]
+          }
+        }
+      },
+      "sensitivity": [
+        {
+          "category": "Speed Gain",
+          "driver": "Raw Time Saved per Task (%)",
+          "npv_high_driver_usd": 2.79646e6,
+          "npv_low_driver_usd": 906720.0,
+          "npv_swing_usd": 1.88974e6,
+          "roi_high_driver_pct": 210.9,
+          "roi_low_driver_pct": 71.8,
+          "roi_swing_pct": 139.1,
+          "spearman_r": 0.769
+        },
+        {
+          "category": "Quality Check",
+          "driver": "Cleanup & Fact-Checking Time",
+          "npv_high_driver_usd": 1.392427e6,
+          "npv_low_driver_usd": 2.195701e6,
+          "npv_swing_usd": -803274.0,
+          "roi_high_driver_pct": 107.5,
+          "roi_low_driver_pct": 167.1,
+          "roi_swing_pct": -59.6,
+          "spearman_r": -0.326
+        },
+        {
+          "category": "Business Impact",
+          "driver": "Turning Saved Time into Profit",
+          "npv_high_driver_usd": 2.160588e6,
+          "npv_low_driver_usd": 1.527357e6,
+          "npv_swing_usd": 633231.0,
+          "roi_high_driver_pct": 163.2,
+          "roi_low_driver_pct": 118.4,
+          "roi_swing_pct": 44.8,
+          "spearman_r": 0.258
+        },
+        {
+          "category": "Rollout Speed",
+          "driver": "How Fast Staff Adopt AI",
+          "npv_high_driver_usd": 2.077011e6,
+          "npv_low_driver_usd": 1.54921e6,
+          "npv_swing_usd": 527801.0,
+          "roi_high_driver_pct": 151.2,
+          "roi_low_driver_pct": 126.5,
+          "roi_swing_pct": 24.6,
+          "spearman_r": 0.213
+        },
+        {
+          "category": "Starting Cost",
+          "driver": "Upfront IT Setup & Training Cost",
+          "npv_high_driver_usd": 1.562866e6,
+          "npv_low_driver_usd": 2.06258e6,
+          "npv_swing_usd": -499714.0,
+          "roi_high_driver_pct": 104.0,
+          "roi_low_driver_pct": 178.8,
+          "roi_swing_pct": -74.8,
+          "spearman_r": -0.203
+        },
+        {
+          "category": "Ongoing Cost",
+          "driver": "Monthly Seat & Usage Bill Creep",
+          "npv_high_driver_usd": 1.736647e6,
+          "npv_low_driver_usd": 1.9233e6,
+          "npv_swing_usd": -186652.0,
+          "roi_high_driver_pct": 120.5,
+          "roi_low_driver_pct": 162.3,
+          "roi_swing_pct": -41.8,
+          "spearman_r": -0.089
+        }
+      ],
+      "tagline": "Train teams first, expand seats in stages, and keep usage bills in check",
+      "teams": [
+        {
+          "ai_addressable_task_share_pct": 55.0,
+          "avg_monthly_hours_saved_per_fte": {
+            "mean": 7.5,
+            "p05": 2.4,
+            "p10": 3.4,
+            "p25": 5.2,
+            "p50": 7.4,
+            "p75": 9.7,
+            "p90": 11.8,
+            "p95": 13.0,
+            "std": 3.2
+          },
+          "cost_per_seat_monthly_usd": {
+            "mean": 151.3,
+            "p05": 113.2,
+            "p10": 119.6,
+            "p25": 133.2,
+            "p50": 149.7,
+            "p75": 167.7,
+            "p90": 184.9,
+            "p95": 195.6,
+            "std": 25.4
+          },
+          "fully_loaded_annual_cost_usd": 185000.0,
+          "headcount": 120,
+          "id": "software_eng",
+          "month36_net_productivity_uplift_pct": {
+            "mean": 6.72,
+            "p05": 2.34,
+            "p10": 3.21,
+            "p25": 4.8,
+            "p50": 6.7,
+            "p75": 8.62,
+            "p90": 10.3,
+            "p95": 11.25,
+            "std": 2.7
+          },
+          "name": "Product & Software Engineering",
+          "net_benefit_36m_usd": {
+            "mean": 2.033056e6,
+            "p05": 611654.0,
+            "p10": 886282.0,
+            "p25": 1.381032e6,
+            "p50": 1.974306e6,
+            "p75": 2.628149e6,
+            "p90": 3.263144e6,
+            "p95": 3.626308e6,
+            "std": 913687.0
+          },
+          "net_benefit_per_seat_36m_usd": {
+            "mean": 11496.0,
+            "p05": -331.0,
+            "p10": 1941.0,
+            "p25": 6100.0,
+            "p50": 11034.0,
+            "p75": 16467.0,
+            "p90": 21588.0,
+            "p95": 24733.0,
+            "std": 7610.0
+          },
+          "prob_positive_roi_pct": 94.5,
+          "roi_pct": {
+            "mean": 218.3,
+            "p05": -5.9,
+            "p10": 35.0,
+            "p25": 111.7,
+            "p50": 204.6,
+            "p75": 310.5,
+            "p90": 420.0,
+            "p95": 488.7,
+            "std": 150.7
+          },
+          "total_cost_36m_usd": {
+            "mean": 653535.0,
+            "p05": 489168.0,
+            "p10": 516839.0,
+            "p25": 575291.0,
+            "p50": 646785.0,
+            "p75": 724431.0,
+            "p90": 798840.0,
+            "p95": 844985.0,
+            "std": 109518.0
+          }
+        },
+        {
+          "ai_addressable_task_share_pct": 65.0,
+          "avg_monthly_hours_saved_per_fte": {
+            "mean": 13.7,
+            "p05": 7.4,
+            "p10": 8.7,
+            "p25": 10.9,
+            "p50": 13.6,
+            "p75": 16.4,
+            "p90": 19.0,
+            "p95": 20.5,
+            "std": 3.9
+          },
+          "cost_per_seat_monthly_usd": {
+            "mean": 125.6,
+            "p05": 93.3,
+            "p10": 99.3,
+            "p25": 110.1,
+            "p50": 123.5,
+            "p75": 139.3,
+            "p90": 154.6,
+            "p95": 164.5,
+            "std": 21.8
+          },
+          "fully_loaded_annual_cost_usd": 78000.0,
+          "headcount": 90,
+          "id": "customer_ops",
+          "month36_net_productivity_uplift_pct": {
+            "mean": 12.02,
+            "p05": 6.76,
+            "p10": 7.74,
+            "p25": 9.67,
+            "p50": 11.94,
+            "p75": 14.25,
+            "p90": 16.42,
+            "p95": 17.55,
+            "std": 3.27
+          },
+          "name": "Customer Support & Success",
+          "net_benefit_36m_usd": {
+            "mean": 1.385949e6,
+            "p05": 736670.0,
+            "p10": 858529.0,
+            "p25": 1.084666e6,
+            "p50": 1.361794e6,
+            "p75": 1.659479e6,
+            "p90": 1.950342e6,
+            "p95": 2.126483e6,
+            "std": 419353.0
+          },
+          "net_benefit_per_seat_36m_usd": {
+            "mean": 10878.0,
+            "p05": 3634.0,
+            "p10": 4997.0,
+            "p25": 7541.0,
+            "p50": 10606.0,
+            "p75": 13975.0,
+            "p90": 17096.0,
+            "p95": 19023.0,
+            "std": 4658.0
+          },
+          "prob_positive_roi_pct": 99.8,
+          "roi_pct": {
+            "mean": 249.2,
+            "p05": 76.2,
+            "p10": 107.2,
+            "p25": 164.6,
+            "p50": 237.9,
+            "p75": 321.3,
+            "p90": 407.0,
+            "p95": 460.5,
+            "std": 118.0
+          },
+          "total_cost_36m_usd": {
+            "mean": 406902.0,
+            "p05": 302196.0,
+            "p10": 321691.0,
+            "p25": 356717.0,
+            "p50": 400180.0,
+            "p75": 451187.0,
+            "p90": 500927.0,
+            "p95": 532824.0,
+            "std": 70558.0
+          }
+        },
+        {
+          "ai_addressable_task_share_pct": 42.0,
+          "avg_monthly_hours_saved_per_fte": {
+            "mean": 3.9,
+            "p05": 0.9,
+            "p10": 1.5,
+            "p25": 2.5,
+            "p50": 3.8,
+            "p75": 5.2,
+            "p90": 6.4,
+            "p95": 7.1,
+            "std": 1.9
+          },
+          "cost_per_seat_monthly_usd": {
+            "mean": 137.9,
+            "p05": 103.2,
+            "p10": 109.5,
+            "p25": 121.9,
+            "p50": 136.1,
+            "p75": 152.8,
+            "p90": 167.9,
+            "p95": 177.9,
+            "std": 23.0
+          },
+          "fully_loaded_annual_cost_usd": 142000.0,
+          "headcount": 75,
+          "id": "sales_gtm",
+          "month36_net_productivity_uplift_pct": {
+            "mean": 3.59,
+            "p05": 0.97,
+            "p10": 1.51,
+            "p25": 2.41,
+            "p50": 3.55,
+            "p75": 4.72,
+            "p90": 5.74,
+            "p95": 6.37,
+            "std": 1.64
+          },
+          "name": "Sales, Account Teams & Marketing",
+          "net_benefit_36m_usd": {
+            "mean": 420761.0,
+            "p05": 80099.0,
+            "p10": 144171.0,
+            "p25": 259190.0,
+            "p50": 404303.0,
+            "p75": 568027.0,
+            "p90": 719885.0,
+            "p95": 815322.0,
+            "std": 226328.0
+          },
+          "net_benefit_per_seat_36m_usd": {
+            "mean": 645.0,
+            "p05": -4072.0,
+            "p10": -3154.0,
+            "p25": -1533.0,
+            "p50": 496.0,
+            "p75": 2646.0,
+            "p90": 4686.0,
+            "p95": 5907.0,
+            "std": 3083.0
+          },
+          "prob_positive_roi_pct": 56.0,
+          "roi_pct": {
+            "mean": 15.6,
+            "p05": -78.7,
+            "p10": -61.3,
+            "p25": -30.5,
+            "p50": 10.0,
+            "p75": 54.8,
+            "p90": 101.2,
+            "p95": 130.3,
+            "std": 64.5
+          },
+          "total_cost_36m_usd": {
+            "mean": 372416.0,
+            "p05": 278580.0,
+            "p10": 295522.0,
+            "p25": 329015.0,
+            "p50": 367427.0,
+            "p75": 412502.0,
+            "p90": 453350.0,
+            "p95": 480312.0,
+            "std": 62018.0
+          }
+        },
+        {
+          "ai_addressable_task_share_pct": 48.0,
+          "avg_monthly_hours_saved_per_fte": {
+            "mean": 2.6,
+            "p05": 0.0,
+            "p10": 0.0,
+            "p25": 1.0,
+            "p50": 2.4,
+            "p75": 4.0,
+            "p90": 5.4,
+            "p95": 6.2,
+            "std": 2.0
+          },
+          "cost_per_seat_monthly_usd": {
+            "mean": 160.4,
+            "p05": 119.5,
+            "p10": 127.5,
+            "p25": 141.2,
+            "p50": 158.1,
+            "p75": 177.5,
+            "p90": 196.3,
+            "p95": 207.9,
+            "std": 27.0
+          },
+          "fully_loaded_annual_cost_usd": 165000.0,
+          "headcount": 40,
+          "id": "legal_finance",
+          "month36_net_productivity_uplift_pct": {
+            "mean": 2.39,
+            "p05": -0.69,
+            "p10": -0.06,
+            "p25": 1.07,
+            "p50": 2.34,
+            "p75": 3.7,
+            "p90": 4.92,
+            "p95": 5.6,
+            "std": 1.9
+          },
+          "name": "Legal, Finance & Compliance",
+          "net_benefit_36m_usd": {
+            "mean": 179591.0,
+            "p05": -87635.0,
+            "p10": -33917.0,
+            "p25": 61834.0,
+            "p50": 172636.0,
+            "p75": 291556.0,
+            "p90": 403800.0,
+            "p95": 476187.0,
+            "std": 170304.0
+          },
+          "net_benefit_per_seat_36m_usd": {
+            "mean": -1286.0,
+            "p05": -8136.0,
+            "p10": -6749.0,
+            "p25": -4314.0,
+            "p50": -1396.0,
+            "p75": 1554.0,
+            "p90": 4388.0,
+            "p95": 6189.0,
+            "std": 4340.0
+          },
+          "prob_positive_roi_pct": 37.2,
+          "roi_pct": {
+            "mean": -20.4,
+            "p05": -137.8,
+            "p10": -115.0,
+            "p25": -73.1,
+            "p50": -24.6,
+            "p75": 27.5,
+            "p90": 80.4,
+            "p95": 113.5,
+            "std": 77.0
+          },
+          "total_cost_36m_usd": {
+            "mean": 231029.0,
+            "p05": 172112.0,
+            "p10": 183658.0,
+            "p25": 203279.0,
+            "p50": 227638.0,
+            "p75": 255579.0,
+            "p90": 282604.0,
+            "p95": 299359.0,
+            "std": 38815.0
+          }
+        }
+      ],
+      "trajectories": {
+        "adoption_pct": {
+          "mean": [1.1, 1.8, 2.9, 4.7, 7.4, 11.3, 16.7, 23.8, 32.2, 41.3, 50.4, 58.8, 65.7, 71.2, 75.1, 77.8, 79.6, 80.8, 81.5, 81.9, 82.2, 82.4, 82.5, 82.5, 82.6, 82.6, 82.6, 82.6, 82.6, 82.6, 82.6, 82.6, 82.6, 82.6, 82.6, 82.6],
+          "p10": [0.1, 0.3, 0.5, 0.9, 1.6, 2.8, 4.8, 8.0, 12.8, 19.8, 28.7, 38.6, 48.8, 57.9, 64.9, 69.4, 72.1, 73.6, 74.4, 74.9, 75.2, 75.3, 75.4, 75.5, 75.5, 75.6, 75.6, 75.6, 75.6, 75.6, 75.6, 75.6, 75.6, 75.6, 75.6, 75.6],
+          "p25": [0.3, 0.6, 1.0, 1.8, 3.1, 5.2, 8.5, 13.6, 20.7, 29.6, 39.7, 50.0, 59.0, 65.9, 70.6, 73.6, 75.6, 76.9, 77.7, 78.2, 78.5, 78.7, 78.8, 78.9, 78.9, 78.9, 78.9, 78.9, 78.9, 79.0, 79.0, 79.0, 79.0, 79.0, 79.0, 79.0],
+          "p50": [0.8, 1.3, 2.2, 3.6, 5.9, 9.6, 15.0, 22.5, 31.7, 41.9, 52.0, 60.8, 67.6, 72.5, 75.9, 78.3, 79.9, 81.0, 81.7, 82.1, 82.4, 82.6, 82.7, 82.8, 82.9, 82.9, 82.9, 82.9, 82.9, 82.9, 82.9, 82.9, 82.9, 82.9, 82.9, 82.9],
+          "p75": [1.5, 2.5, 4.0, 6.5, 10.2, 15.7, 23.2, 32.5, 42.9, 53.1, 62.0, 69.0, 74.2, 77.9, 80.6, 82.4, 83.7, 84.6, 85.3, 85.7, 85.9, 86.1, 86.2, 86.3, 86.3, 86.3, 86.4, 86.4, 86.4, 86.4, 86.4, 86.4, 86.4, 86.4, 86.4, 86.4],
+          "p90": [2.6, 4.2, 6.5, 10.0, 15.2, 22.3, 31.5, 41.7, 52.1, 61.7, 69.4, 75.1, 79.2, 82.2, 84.3, 85.8, 86.9, 87.6, 88.2, 88.6, 88.8, 89.0, 89.1, 89.2, 89.2, 89.3, 89.3, 89.3, 89.3, 89.3, 89.3, 89.3, 89.3, 89.3, 89.3, 89.3]
+        },
+        "cumulative_cashflow_usd": {
+          "mean": [-100508.0, -200438.0, -299670.0, -398065.0, -423260.0, -446658.0, -466811.0, -481253.0, -486647.0, -457023.0, -412023.0, -350460.0, -273026.0, -181968.0, -80362.0, 28654.0, 142412.0, 258940.0, 376925.0, 495563.0, 614387.0, 733135.0, 851661.0, 969879.0, 1.087741e6, 1.205213e6, 1.322274e6, 1.438909e6, 1.555104e6, 1.670851e6, 1.786141e6, 1.900966e6, 2.015319e6, 2.129193e6, 2.242581e6, 2.355477e6],
+          "p10": [-139571.0, -278525.0, -416959.0, -554407.0, -583498.0, -612538.0, -641108.0, -665461.0, -684746.0, -674656.0, -653448.0, -624924.0, -587567.0, -541087.0, -481684.0, -412096.0, -338277.0, -260927.0, -182692.0, -104732.0, -26407.0, 48275.0, 122112.0, 193378.0, 264624.0, 337314.0, 407526.0, 478574.0, 549086.0, 618135.0, 685559.0, 753236.0, 822693.0, 889134.0, 956450.0, 1.021535e6],
+          "p25": [-116028.0, -231551.0, -346309.0, -459839.0, -487054.0, -513500.0, -539134.0, -561378.0, -579883.0, -565073.0, -540930.0, -503968.0, -454755.0, -391764.0, -315028.0, -228759.0, -136292.0, -43242.0, 52533.0, 147772.0, 242332.0, 338924.0, 431951.0, 524349.0, 616509.0, 708867.0, 797416.0, 887214.0, 978700.0, 1.067698e6, 1.155119e6, 1.241586e6, 1.331235e6, 1.419459e6, 1.504384e6, 1.588752e6],
+          "p50": [-95710.0, -190756.0, -285350.0, -378981.0, -404855.0, -429259.0, -452000.0, -469214.0, -479869.0, -456558.0, -419816.0, -368167.0, -297017.0, -207110.0, -109000.0, 1408.0, 113942.0, 228187.0, 344054.0, 460032.0, 578034.0, 696552.0, 815323.0, 932268.0, 1.051517e6, 1.166834e6, 1.285982e6, 1.403048e6, 1.517708e6, 1.634527e6, 1.748877e6, 1.863519e6, 1.975169e6, 2.088257e6, 2.200894e6, 2.312093e6],
+          "p75": [-79715.0, -158717.0, -237028.0, -314418.0, -337986.0, -359185.0, -375734.0, -385618.0, -385124.0, -349471.0, -291147.0, -210410.0, -110116.0, 5808.0, 129094.0, 258522.0, 392616.0, 530730.0, 669205.0, 807036.0, 947801.0, 1.087903e6, 1.23164e6, 1.377414e6, 1.516702e6, 1.658357e6, 1.799628e6, 1.939308e6, 2.084092e6, 2.227093e6, 2.368599e6, 2.509472e6, 2.646228e6, 2.784806e6, 2.922973e6, 3.060806e6],
+          "p90": [-67467.0, -134232.0, -200215.0, -265387.0, -285551.0, -302997.0, -314468.0, -316273.0, -299926.0, -240293.0, -154793.0, -47580.0, 76285.0, 215101.0, 358192.0, 506552.0, 661195.0, 818335.0, 979107.0, 1.140616e6, 1.309115e6, 1.469731e6, 1.633798e6, 1.799522e6, 1.965138e6, 2.134897e6, 2.300145e6, 2.465744e6, 2.627032e6, 2.790219e6, 2.950446e6, 3.118125e6, 3.280392e6, 3.443808e6, 3.604907e6, 3.766587e6]
+        },
+        "effective_productivity_uplift_pct": {
+          "mean": [0.08, 0.12, 0.16, 0.23, 0.33, 0.48, 0.71, 1.08, 1.62, 2.31, 3.13, 3.97, 4.77, 5.44, 5.96, 6.33, 6.57, 6.72, 6.81, 6.86, 6.89, 6.91, 6.92, 6.92, 6.93, 6.93, 6.93, 6.93, 6.93, 6.93, 6.93, 6.93, 6.93, 6.93, 6.93, 6.93],
+          "p10": [0.01, 0.02, 0.03, 0.05, 0.06, 0.09, 0.12, 0.18, 0.3, 0.52, 0.95, 1.58, 2.42, 3.27, 3.96, 4.44, 4.75, 4.93, 5.02, 5.06, 5.09, 5.11, 5.12, 5.12, 5.13, 5.13, 5.13, 5.13, 5.13, 5.13, 5.13, 5.13, 5.13, 5.13, 5.13, 5.13],
+          "p25": [0.02, 0.04, 0.06, 0.09, 0.13, 0.18, 0.26, 0.4, 0.66, 1.11, 1.79, 2.65, 3.57, 4.33, 4.92, 5.3, 5.56, 5.71, 5.79, 5.85, 5.87, 5.89, 5.9, 5.9, 5.9, 5.91, 5.91, 5.91, 5.91, 5.91, 5.91, 5.91, 5.91, 5.91, 5.91, 5.91],
+          "p50": [0.05, 0.08, 0.12, 0.18, 0.25, 0.35, 0.53, 0.83, 1.35, 2.1, 3.01, 3.97, 4.79, 5.45, 5.97, 6.32, 6.55, 6.69, 6.77, 6.82, 6.85, 6.87, 6.88, 6.88, 6.89, 6.89, 6.89, 6.89, 6.89, 6.89, 6.89, 6.89, 6.89, 6.89, 6.89, 6.89],
+          "p75": [0.11, 0.15, 0.22, 0.31, 0.44, 0.64, 0.98, 1.53, 2.33, 3.29, 4.3, 5.21, 5.96, 6.57, 7.0, 7.32, 7.55, 7.69, 7.79, 7.85, 7.88, 7.9, 7.91, 7.92, 7.92, 7.92, 7.92, 7.93, 7.93, 7.93, 7.93, 7.93, 7.93, 7.93, 7.93, 7.93],
+          "p90": [0.18, 0.26, 0.36, 0.49, 0.71, 1.05, 1.59, 2.38, 3.38, 4.44, 5.47, 6.31, 7.03, 7.57, 7.97, 8.26, 8.45, 8.59, 8.69, 8.74, 8.77, 8.8, 8.81, 8.82, 8.82, 8.82, 8.82, 8.82, 8.82, 8.82, 8.82, 8.82, 8.82, 8.82, 8.82, 8.82]
+        },
+        "monthly_benefit_usd": {
+          "mean": [1799.0, 2605.0, 3671.0, 5095.0, 7120.0, 10272.0, 15424.0, 23639.0, 35724.0, 51695.0, 70516.0, 90313.0, 108998.0, 124917.0, 137246.0, 145998.0, 151752.0, 155304.0, 157396.0, 158593.0, 159272.0, 159659.0, 159884.0, 160018.0, 160099.0, 160149.0, 160181.0, 160200.0, 160213.0, 160221.0, 160226.0, 160229.0, 160231.0, 160232.0, 160233.0, 160234.0],
+          "p10": [243.0, 408.0, 634.0, 909.0, 1199.0, 1449.0, 1934.0, 2885.0, 5132.0, 9702.0, 18419.0, 32312.0, 50715.0, 69579.0, 85348.0, 96354.0, 102912.0, 106849.0, 109081.0, 109886.0, 110320.0, 110568.0, 110774.0, 110829.0, 110876.0, 110940.0, 110948.0, 110950.0, 110951.0, 110951.0, 110952.0, 110952.0, 110952.0, 110952.0, 110952.0, 110952.0],
+          "p25": [540.0, 873.0, 1320.0, 1888.0, 2577.0, 3514.0, 4994.0, 7728.0, 13004.0, 22651.0, 37793.0, 57082.0, 77707.0, 95285.0, 109102.0, 117728.0, 123491.0, 127238.0, 129289.0, 130310.0, 131075.0, 131371.0, 131587.0, 131752.0, 131845.0, 131882.0, 131899.0, 131900.0, 131900.0, 131900.0, 131900.0, 131900.0, 131900.0, 131900.0, 131900.0, 131900.0],
+          "p50": [1202.0, 1841.0, 2708.0, 3787.0, 5225.0, 7418.0, 11081.0, 17703.0, 28846.0, 45516.0, 66686.0, 88745.0, 108331.0, 123761.0, 135571.0, 143995.0, 149912.0, 153575.0, 155637.0, 156749.0, 157353.0, 157778.0, 158043.0, 158137.0, 158191.0, 158263.0, 158291.0, 158304.0, 158312.0, 158314.0, 158315.0, 158316.0, 158320.0, 158320.0, 158320.0, 158320.0],
+          "p75": [2403.0, 3476.0, 4884.0, 6794.0, 9513.0, 13853.0, 21199.0, 33548.0, 51450.0, 74318.0, 98506.0, 120175.0, 139144.0, 153818.0, 164665.0, 172309.0, 177908.0, 181483.0, 183521.0, 184772.0, 185471.0, 185883.0, 186162.0, 186336.0, 186453.0, 186487.0, 186516.0, 186538.0, 186551.0, 186558.0, 186560.0, 186561.0, 186561.0, 186562.0, 186562.0, 186562.0],
+          "p90": [4083.0, 5788.0, 8016.0, 11079.0, 15725.0, 23295.0, 35624.0, 53682.0, 76945.0, 102845.0, 127540.0, 148718.0, 166329.0, 180123.0, 190181.0, 198177.0, 203633.0, 207183.0, 209406.0, 210601.0, 211316.0, 211665.0, 212009.0, 212135.0, 212197.0, 212252.0, 212283.0, 212297.0, 212302.0, 212305.0, 212306.0, 212307.0, 212308.0, 212309.0, 212310.0, 212310.0]
+        },
+        "monthly_cost_usd": {
+          "mean": [102307.0, 102535.0, 102903.0, 103490.0, 32316.0, 33670.0, 35577.0, 38082.0, 41118.0, 22072.0, 25516.0, 28749.0, 31564.0, 33859.0, 35639.0, 36982.0, 37994.0, 38776.0, 39411.0, 39955.0, 40448.0, 40911.0, 41359.0, 41799.0, 42238.0, 42677.0, 43120.0, 43566.0, 44017.0, 44474.0, 44936.0, 45404.0, 45878.0, 46358.0, 46845.0, 47338.0],
+          "p10": [69389.0, 69609.0, 69924.0, 70627.0, 24458.0, 25474.0, 26858.0, 28766.0, 31191.0, 14042.0, 17216.0, 20850.0, 24398.0, 27397.0, 29580.0, 31115.0, 32120.0, 32861.0, 33408.0, 33850.0, 34199.0, 34555.0, 34865.0, 35167.0, 35464.0, 35757.0, 36061.0, 36348.0, 36636.0, 36915.0, 37217.0, 37507.0, 37808.0, 38081.0, 38380.0, 38673.0],
+          "p25": [81514.0, 81753.0, 82126.0, 82691.0, 27813.0, 29021.0, 30597.0, 32730.0, 35348.0, 17553.0, 21166.0, 24795.0, 27936.0, 30489.0, 32359.0, 33742.0, 34754.0, 35490.0, 36045.0, 36512.0, 36936.0, 37316.0, 37666.0, 38016.0, 38376.0, 38715.0, 39064.0, 39407.0, 39754.0, 40103.0, 40454.0, 40791.0, 41129.0, 41489.0, 41856.0, 42185.0],
+          "p50": [97493.0, 97716.0, 98108.0, 98664.0, 31992.0, 33344.0, 35222.0, 37725.0, 40743.0, 21981.0, 25685.0, 28958.0, 31662.0, 33803.0, 35533.0, 36862.0, 37839.0, 38588.0, 39200.0, 39753.0, 40228.0, 40689.0, 41115.0, 41516.0, 41932.0, 42356.0, 42794.0, 43217.0, 43640.0, 44078.0, 44524.0, 44955.0, 45396.0, 45832.0, 46306.0, 46781.0],
+          "p75": [117567.0, 117886.0, 118264.0, 118815.0, 36625.0, 38192.0, 40328.0, 43154.0, 46537.0, 26351.0, 29852.0, 32840.0, 35298.0, 37226.0, 38811.0, 40046.0, 41061.0, 41877.0, 42549.0, 43155.0, 43712.0, 44249.0, 44752.0, 45269.0, 45776.0, 46299.0, 46824.0, 47367.0, 47919.0, 48439.0, 48990.0, 49539.0, 50112.0, 50686.0, 51250.0, 51883.0],
+          "p90": [141366.0, 141689.0, 141979.0, 142522.0, 40518.0, 42266.0, 44669.0, 47825.0, 51548.0, 30045.0, 33338.0, 36150.0, 38377.0, 40277.0, 41801.0, 43049.0, 44060.0, 44977.0, 45716.0, 46378.0, 47009.0, 47627.0, 48225.0, 48845.0, 49464.0, 50082.0, 50702.0, 51317.0, 51963.0, 52610.0, 53237.0, 53911.0, 54580.0, 55289.0, 55997.0, 56737.0]
+        },
+        "monthly_net_cashflow_usd": {
+          "mean": [-100508.0, -99930.0, -99232.0, -98394.0, -25196.0, -23398.0, -20152.0, -14442.0, -5394.0, 29623.0, 45000.0, 61564.0, 77434.0, 91058.0, 101606.0, 109015.0, 113758.0, 116528.0, 117985.0, 118638.0, 118824.0, 118748.0, 118526.0, 118219.0, 117862.0, 117472.0, 117061.0, 116634.0, 116196.0, 115747.0, 115290.0, 114825.0, 114353.0, 113874.0, 113388.0, 112896.0],
+          "p10": [-139571.0, -139050.0, -138268.0, -137456.0, -35363.0, -35437.0, -35345.0, -34659.0, -33063.0, -6095.0, -95.0, 10015.0, 23992.0, 39027.0, 51979.0, 60661.0, 65838.0, 68472.0, 69554.0, 69937.0, 69974.0, 69712.0, 69451.0, 69003.0, 68483.0, 68127.0, 67749.0, 67268.0, 66864.0, 66447.0, 65959.0, 65357.0, 64944.0, 64303.0, 63776.0, 63293.0],
+          "p25": [-116028.0, -115424.0, -114675.0, -113866.0, -30687.0, -30189.0, -29372.0, -27723.0, -24167.0, 4415.0, 15610.0, 30879.0, 47616.0, 62681.0, 73802.0, 81250.0, 86209.0, 88867.0, 90211.0, 90710.0, 90776.0, 90561.0, 90278.0, 89914.0, 89517.0, 89139.0, 88722.0, 88306.0, 87868.0, 87420.0, 87021.0, 86592.0, 86202.0, 85748.0, 85275.0, 84808.0],
+          "p50": [-95710.0, -95134.0, -94529.0, -93803.0, -25504.0, -24303.0, -22346.0, -18687.0, -11378.0, 23630.0, 40315.0, 58816.0, 75650.0, 89239.0, 99747.0, 107152.0, 112045.0, 114939.0, 116142.0, 116708.0, 116860.0, 116773.0, 116627.0, 116371.0, 116019.0, 115594.0, 115174.0, 114706.0, 114282.0, 113838.0, 113353.0, 112973.0, 112533.0, 112034.0, 111504.0, 110948.0],
+          "p75": [-79715.0, -79046.0, -78298.0, -77405.0, -20380.0, -18084.0, -13782.0, -5495.0, 8563.0, 48942.0, 69129.0, 88910.0, 105271.0, 118392.0, 127986.0, 134799.0, 139428.0, 142200.0, 143684.0, 144358.0, 144717.0, 144781.0, 144634.0, 144311.0, 143940.0, 143536.0, 143153.0, 142667.0, 142246.0, 141787.0, 141382.0, 140940.0, 140551.0, 140039.0, 139574.0, 139077.0],
+          "p90": [-67467.0, -66785.0, -65987.0, -64781.0, -15090.0, -10476.0, -2001.0, 11843.0, 30853.0, 75278.0, 96695.0, 115641.0, 131527.0, 144343.0, 153481.0, 160910.0, 164806.0, 167465.0, 168985.0, 170041.0, 170360.0, 170372.0, 170176.0, 169933.0, 169643.0, 169310.0, 168837.0, 168401.0, 167887.0, 167503.0, 167097.0, 166697.0, 166253.0, 165896.0, 165330.0, 164798.0]
+        },
+        "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]
+      }
+    },
+    {
+      "assumptions": {
+        "annual_token_drift_pct": [18.0, 35.0, 60.0],
+        "inflection_month": [3.0, 5.0, 8.5],
+        "j_curve_dip_pct": [5.0, 9.0, 15.0],
+        "rollout_ceiling_pct": [75.0, 88.0, 96.0],
+        "training_per_seat_usd": [150.0, 300.0, 550.0],
+        "upfront_platform_p10_p90_usd": [240000.0, 680000.0]
+      },
+      "board_recommendation": "Warning / Stress-Test Case: Shows why buying licenses for everyone on Day 1 without training creates wide risk and can lose money in the Cautious (P10) case.",
+      "cross_paradigm_comparison": [
+        {
+          "central_npv_usd": 345192.0,
+          "central_roi_pct": 18.9,
+          "downside_roi_pct": -34.6,
+          "mechanism": "Tests 10,000 combinations of adoption speed, time saved, and costs",
+          "paradigm_id": "monte_carlo",
+          "paradigm_name": "1. 10,000 What-If Futures (Monte Carlo)",
+          "primary_insight": "Shows honest Cautious (P10) to Best-Case (P90) profit ranges and breakeven speed.",
+          "upside_roi_pct": 85.1
+        },
+        {
+          "central_npv_usd": -953713.0,
+          "central_roi_pct": -69.8,
+          "downside_roi_pct": -93.9,
+          "mechanism": "Follows 325 individual coworkers sharing tips or quitting in frustration",
+          "paradigm_id": "agent_based",
+          "paradigm_name": "2. Team Behavior (Agent-Based)",
+          "primary_insight": "Shows how AI Champions spread good habits while 69.7% of seats risk becoming unused shelfware.",
+          "upside_roi_pct": -30.4
+        },
+        {
+          "central_npv_usd": -382377.0,
+          "central_roi_pct": -16.7,
+          "downside_roi_pct": -10.4,
+          "mechanism": "Tracks growing company know-how against cleanup backlog and rising bills",
+          "paradigm_id": "system_dynamics",
+          "paradigm_name": "3. Flywheels & Brakes (System Dynamics)",
+          "primary_insight": "Weighs growing team know-how (50.9 pts) against monthly bill growth (1.97x).",
+          "upside_roi_pct": -23.0
+        },
+        {
+          "central_npv_usd": -394518.0,
+          "central_roi_pct": -16.5,
+          "downside_roi_pct": -10.7,
+          "mechanism": "Follows everyday work items from first draft to final human review",
+          "paradigm_id": "discrete_event",
+          "paradigm_name": "4. Workflow Waiting Lines (Discrete Event)",
+          "primary_insight": "Cuts turnaround time by -180.4% while checking if final human review lines back up (12.19h wait).",
+          "upside_roi_pct": -22.3
+        },
+        {
+          "central_npv_usd": 961891.0,
+          "central_roi_pct": 65.7,
+          "downside_roi_pct": 13.5,
+          "mechanism": "Updates 3-year profit odds as soon as 6-month pilot results arrive",
+          "paradigm_id": "bayesian_network",
+          "paradigm_name": "5. Pilot Scorecard (Bayesian Network)",
+          "primary_insight": "Next-stage funding call: FIX FIRST (Tighten Quality & Budget Before Scaling).",
+          "upside_roi_pct": 129.2
+        }
+      ],
+      "description": "Gives every employee an AI seat right away with minimal training. Usage jumps early, but lack of guardrails leads to extra cleanup work, frustrated quitters, and climbing monthly usage bills.",
+      "distributions": {
+        "npv_k_usd_histogram": {
+          "bin_edges": [-2986.3, -2718.5, -2450.7, -2183.0, -1915.2, -1647.5, -1379.7, -1112.0, -844.2, -576.5, -308.7, -40.9, 226.8, 494.6, 762.3, 1030.1, 1297.8, 1565.6, 1833.3, 2101.1, 2368.9, 2636.6, 2904.4, 3172.1, 3439.9, 3707.6, 3975.4, 4243.1, 4510.9],
+          "bin_midpoints": [-2852.4, -2584.6, -2316.9, -2049.1, -1781.4, -1513.6, -1245.8, -978.1, -710.3, -442.6, -174.8, 92.9, 360.7, 628.4, 896.2, 1164.0, 1431.7, 1699.5, 1967.2, 2235.0, 2502.7, 2770.5, 3038.2, 3306.0, 3573.8, 3841.5, 4109.3, 4377.0],
+          "counts": [5, 17, 21, 50, 91, 187, 321, 446, 622, 837, 918, 1021, 1039, 1006, 859, 717, 592, 449, 323, 203, 113, 85, 38, 21, 12, 4, 2, 1],
+          "pct_of_trials": [0.05, 0.17, 0.21, 0.5, 0.91, 1.87, 3.21, 4.46, 6.22, 8.37, 9.18, 10.21, 10.39, 10.06, 8.59, 7.17, 5.92, 4.49, 3.23, 2.03, 1.13, 0.85, 0.38, 0.21, 0.12, 0.04, 0.02, 0.01]
+        },
+        "roi_pct_histogram": {
+          "bin_edges": [-108.2, -95.0, -81.9, -68.7, -55.6, -42.4, -29.3, -16.1, -3.0, 10.2, 23.3, 36.5, 49.6, 62.8, 75.9, 89.1, 102.2, 115.4, 128.5, 141.7, 154.8, 168.0, 181.1, 194.3, 207.4, 220.6, 233.7, 246.9, 260.0],
+          "bin_midpoints": [-101.6, -88.5, -75.3, -62.2, -49.0, -35.9, -22.7, -9.6, 3.6, 16.7, 29.9, 43.0, 56.2, 69.3, 82.5, 95.6, 108.8, 121.9, 135.1, 148.2, 161.4, 174.5, 187.7, 200.8, 214.0, 227.1, 240.3, 253.4],
+          "counts": [12, 33, 66, 206, 379, 591, 836, 994, 1111, 1121, 1089, 906, 729, 599, 437, 318, 207, 149, 85, 59, 32, 17, 8, 6, 3, 4, 2, 1],
+          "pct_of_trials": [0.12, 0.33, 0.66, 2.06, 3.79, 5.91, 8.36, 9.94, 11.11, 11.21, 10.89, 9.06, 7.29, 5.99, 4.37, 3.18, 2.07, 1.49, 0.85, 0.59, 0.32, 0.17, 0.08, 0.06, 0.03, 0.04, 0.02, 0.01]
+        }
+      },
+      "id": "blitzscale_mandate",
+      "kpis": {
+        "month36_adoption_pct": {
+          "mean": 86.3,
+          "p05": 78.3,
+          "p10": 80.0,
+          "p25": 83.1,
+          "p50": 86.6,
+          "p75": 89.7,
+          "p90": 92.2,
+          "p95": 93.6,
+          "std": 4.6
+        },
+        "month36_net_productivity_uplift_pct": {
+          "mean": 6.22,
+          "p05": 3.53,
+          "p10": 4.08,
+          "p25": 5.06,
+          "p50": 6.2,
+          "p75": 7.33,
+          "p90": 8.37,
+          "p95": 8.99,
+          "std": 1.65
+        },
+        "npv_usd": {
+          "mean": 370970.0,
+          "p05": -1.266087e6,
+          "p10": -916611.0,
+          "p25": -340689.0,
+          "p50": 345192.0,
+          "p75": 1.049649e6,
+          "p90": 1.708785e6,
+          "p95": 2.077435e6,
+          "std": 1.019341e6
+        },
+        "payback_months": {
+          "mean": 24.2,
+          "p05": 11.1,
+          "p10": 12.3,
+          "p25": 15.1,
+          "p50": 20.8,
+          "p75": 37.0,
+          "p90": 37.0,
+          "p95": 37.0,
+          "std": 10.1
+        },
+        "prob_breakeven_within_24m_pct": 57.4,
+        "prob_breakeven_within_36m_pct": 66.4,
+        "prob_positive_npv_pct": 63.4,
+        "roi_pct": {
+          "mean": 22.6,
+          "p05": -48.5,
+          "p10": -34.6,
+          "p25": -11.0,
+          "p50": 18.9,
+          "p75": 52.3,
+          "p90": 85.1,
+          "p95": 106.3,
+          "std": 47.3
+        },
+        "total_cost_36m_usd": {
+          "mean": 2.668725e6,
+          "p05": 2.043497e6,
+          "p10": 2.160289e6,
+          "p25": 2.36878e6,
+          "p50": 2.629916e6,
+          "p75": 2.928324e6,
+          "p90": 3.2299e6,
+          "p95": 3.409655e6,
+          "std": 423974.0
+        },
+        "total_gross_benefit_36m_usd": {
+          "mean": 6.766311e6,
+          "p05": 5.005556e6,
+          "p10": 5.318149e6,
+          "p25": 5.927362e6,
+          "p50": 6.687992e6,
+          "p75": 7.517173e6,
+          "p90": 8.353903e6,
+          "p95": 8.827803e6,
+          "std": 1.163025e6
+        },
+        "total_net_benefit_36m_usd": {
+          "mean": 3.200776e6,
+          "p05": 1.3963e6,
+          "p10": 1.777896e6,
+          "p25": 2.394728e6,
+          "p50": 3.154401e6,
+          "p75": 3.953298e6,
+          "p90": 4.702454e6,
+          "p95": 5.144863e6,
+          "std": 1.135205e6
+        },
+        "total_rework_drag_36m_usd": {
+          "mean": 3.565536e6,
+          "p05": 2.559257e6,
+          "p10": 2.742389e6,
+          "p25": 3.090851e6,
+          "p50": 3.514921e6,
+          "p75": 3.988422e6,
+          "p90": 4.45181e6,
+          "p95": 4.762085e6,
+          "std": 665971.0
+        }
+      },
+      "metadata": {
+        "annual_discount_rate_pct": 10.0,
+        "horizon_months": 36,
+        "n_trials": 10000,
+        "seed": 20261318,
+        "total_annual_payroll_usd": 4.647e7,
+        "total_headcount": 325
+      },
+      "name": "Fast All-At-Once Push",
+      "paradigms": {
+        "agent_based": {
+          "kpis": {
+            "emergent_npv_usd": {
+              "mean": -959676.0,
+              "p05": -1.696897e6,
+              "p10": -1.511738e6,
+              "p25": -1.195411e6,
+              "p50": -953713.0,
+              "p75": -685746.0,
+              "p90": -497957.0,
+              "p95": -172464.0,
+              "std": 475255.0
+            },
+            "emergent_roi_pct": {
+              "mean": -63.8,
+              "p05": -96.7,
+              "p10": -93.9,
+              "p25": -85.3,
+              "p50": -69.8,
+              "p75": -47.3,
+              "p90": -30.4,
+              "p95": -7.2,
+              "std": 29.1
+            },
+            "m36_active_adopters_pct": {
+              "mean": 17.6,
+              "p05": 6.8,
+              "p10": 8.6,
+              "p25": 10.8,
+              "p50": 15.8,
+              "p75": 22.8,
+              "p90": 29.8,
+              "p95": 31.7,
+              "std": 8.2
+            },
+            "m36_disillusioned_churn_pct": {
+              "mean": 68.7,
+              "p05": 58.1,
+              "p10": 60.3,
+              "p25": 64.8,
+              "p50": 69.7,
+              "p75": 73.5,
+              "p90": 75.7,
+              "p95": 76.3,
+              "std": 6.1
+            }
+          },
+          "network_snapshot": {
+            "edges": [
+              {
+                "source": 3,
+                "target": 39
+              },
+              {
+                "source": 6,
+                "target": 32
+              },
+              {
+                "source": 9,
+                "target": 48
+              },
+              {
+                "source": 17,
+                "target": 30
+              },
+              {
+                "source": 21,
+                "target": 34
+              },
+              {
+                "source": 33,
+                "target": 43
+              }
+            ],
+            "nodes": [
+              {
+                "agent_id": 1,
+                "final_state": 5,
+                "id": 1,
+                "skill": 0.25,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 7,
+                "final_state": 5,
+                "id": 2,
+                "skill": 0.33,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 13,
+                "final_state": 5,
+                "id": 3,
+                "skill": 0.31,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 19,
+                "final_state": 5,
+                "id": 4,
+                "skill": 0.5,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 25,
+                "final_state": 5,
+                "id": 5,
+                "skill": 0.62,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 31,
+                "final_state": 5,
+                "id": 6,
+                "skill": 0.22,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 37,
+                "final_state": 3,
+                "id": 7,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 43,
+                "final_state": 5,
+                "id": 8,
+                "skill": 0.23,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 49,
+                "final_state": 5,
+                "id": 9,
+                "skill": 0.58,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 55,
+                "final_state": 5,
+                "id": 10,
+                "skill": 0.4,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 61,
+                "final_state": 5,
+                "id": 11,
+                "skill": 0.37,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 67,
+                "final_state": 3,
+                "id": 12,
+                "skill": 0.9,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 73,
+                "final_state": 5,
+                "id": 13,
+                "skill": 0.29,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 79,
+                "final_state": 5,
+                "id": 14,
+                "skill": 0.24,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 85,
+                "final_state": 5,
+                "id": 15,
+                "skill": 0.27,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 91,
+                "final_state": 5,
+                "id": 16,
+                "skill": 0.54,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 97,
+                "final_state": 5,
+                "id": 17,
+                "skill": 0.42,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 103,
+                "final_state": 3,
+                "id": 18,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 109,
+                "final_state": 1,
+                "id": 19,
+                "skill": 0.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 115,
+                "final_state": 1,
+                "id": 20,
+                "skill": 0.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 121,
+                "final_state": 1,
+                "id": 21,
+                "skill": 0.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 127,
+                "final_state": 5,
+                "id": 22,
+                "skill": 0.41,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 133,
+                "final_state": 5,
+                "id": 23,
+                "skill": 0.4,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 139,
+                "final_state": 5,
+                "id": 24,
+                "skill": 0.45,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 145,
+                "final_state": 3,
+                "id": 25,
+                "skill": 0.99,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 151,
+                "final_state": 5,
+                "id": 26,
+                "skill": 0.24,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 157,
+                "final_state": 5,
+                "id": 27,
+                "skill": 0.55,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 163,
+                "final_state": 3,
+                "id": 28,
+                "skill": 0.69,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 169,
+                "final_state": 5,
+                "id": 29,
+                "skill": 0.32,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 175,
+                "final_state": 3,
+                "id": 30,
+                "skill": 0.84,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 181,
+                "final_state": 5,
+                "id": 31,
+                "skill": 0.34,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 187,
+                "final_state": 3,
+                "id": 32,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 193,
+                "final_state": 5,
+                "id": 33,
+                "skill": 0.61,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 199,
+                "final_state": 3,
+                "id": 34,
+                "skill": 0.9,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 205,
+                "final_state": 2,
+                "id": 35,
+                "skill": 0.15,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 211,
+                "final_state": 5,
+                "id": 36,
+                "skill": 0.54,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 217,
+                "final_state": 3,
+                "id": 37,
+                "skill": 0.89,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 223,
+                "final_state": 1,
+                "id": 38,
+                "skill": 0.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 229,
+                "final_state": 5,
+                "id": 39,
+                "skill": 0.54,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 235,
+                "final_state": 4,
+                "id": 40,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 241,
+                "final_state": 5,
+                "id": 41,
+                "skill": 0.32,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 247,
+                "final_state": 5,
+                "id": 42,
+                "skill": 0.32,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 253,
+                "final_state": 5,
+                "id": 43,
+                "skill": 0.25,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 259,
+                "final_state": 2,
+                "id": 44,
+                "skill": 0.3,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 265,
+                "final_state": 5,
+                "id": 45,
+                "skill": 0.47,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 271,
+                "final_state": 5,
+                "id": 46,
+                "skill": 0.34,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 277,
+                "final_state": 5,
+                "id": 47,
+                "skill": 0.28,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 283,
+                "final_state": 5,
+                "id": 48,
+                "skill": 0.58,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              }
+            ]
+          },
+          "paradigm": "agent_based",
+          "parameters": {
+            "champion_seed_fraction_pct": 3.0,
+            "frustration_sensitivity": 0.11,
+            "n_replications": 160,
+            "peer_contagion_strength": 0.48,
+            "total_agents": 325
+          },
+          "scenario_id": "blitzscale_mandate",
+          "scenario_name": "Fast All-At-Once Push",
+          "state_trajectories": {
+            "active_adoption_pct": {
+              "mean": [3.0, 3.1, 3.7, 4.5, 5.7, 6.8, 7.9, 8.7, 9.5, 10.3, 10.9, 11.5, 11.9, 12.4, 12.9, 13.3, 13.6, 14.0, 14.3, 14.6, 14.9, 15.1, 15.3, 15.6, 15.7, 15.9, 16.1, 16.3, 16.4, 16.6, 16.8, 17.0, 17.1, 17.3, 17.4, 17.6],
+              "p10": [1.8, 1.8, 2.4, 2.5, 3.0, 3.7, 4.0, 4.6, 4.9, 4.9, 5.2, 5.5, 5.8, 5.8, 6.2, 6.4, 6.5, 6.5, 6.8, 6.8, 7.1, 7.1, 7.4, 7.7, 7.7, 7.7, 8.0, 8.0, 8.0, 8.0, 8.0, 8.3, 8.3, 8.3, 8.3, 8.6],
+              "p25": [2.5, 2.5, 3.0, 3.4, 4.0, 4.9, 5.5, 6.2, 6.5, 7.1, 7.6, 8.0, 8.0, 8.3, 8.6, 8.9, 8.9, 9.2, 9.2, 9.5, 9.5, 9.5, 9.5, 9.8, 10.1, 10.2, 10.4, 10.4, 10.4, 10.5, 10.5, 10.7, 10.8, 10.8, 10.8, 10.8],
+              "p50": [2.8, 3.1, 3.7, 4.3, 5.1, 6.5, 7.2, 7.7, 8.5, 9.4, 9.8, 10.3, 10.8, 11.1, 11.7, 12.0, 12.3, 12.6, 13.1, 13.2, 13.5, 13.5, 13.7, 14.0, 14.3, 14.6, 14.8, 14.8, 14.6, 14.8, 15.2, 15.2, 15.4, 15.7, 15.8, 15.8],
+              "p75": [3.7, 3.7, 4.6, 5.8, 7.2, 8.7, 10.2, 11.2, 12.3, 13.1, 13.9, 14.5, 15.4, 16.0, 16.6, 17.0, 17.5, 18.2, 18.5, 19.4, 19.5, 19.6, 20.3, 20.6, 20.7, 21.0, 21.3, 21.2, 21.4, 21.7, 21.9, 22.0, 22.2, 22.5, 22.5, 22.8],
+              "p90": [4.3, 4.3, 5.2, 6.8, 9.2, 11.1, 12.6, 13.6, 15.1, 16.4, 17.9, 18.8, 19.7, 20.6, 21.6, 22.2, 22.8, 23.1, 24.0, 24.3, 25.0, 25.3, 25.9, 25.9, 26.2, 26.5, 26.8, 27.4, 27.7, 28.3, 28.6, 29.2, 29.5, 29.5, 29.6, 29.8]
+            },
+            "champion_pct": {
+              "mean": [3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.0, 3.1, 3.1, 3.1, 3.2, 3.2, 3.3, 3.3, 3.4, 3.5, 3.5, 3.6, 3.7, 3.8, 3.9, 4.0, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7],
+              "p10": [1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 1.8, 2.2, 2.2, 2.2, 2.2, 2.2, 2.2, 2.2, 2.2, 2.2, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.7, 2.8],
+              "p25": [2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8, 3.0, 3.1, 3.1, 3.1, 3.1, 3.1, 3.3, 3.4, 3.4, 3.4],
+              "p50": [2.8, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8, 2.8, 3.1, 3.1, 3.1, 3.1, 3.1, 3.1, 3.2, 3.4, 3.4, 3.4, 3.4, 3.4, 3.7, 3.7, 3.7, 3.7, 4.0, 4.0, 4.0, 4.2, 4.3, 4.3],
+              "p75": [3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.7, 3.8, 4.0, 4.0, 4.0, 4.0, 4.1, 4.3, 4.3, 4.3, 4.6, 4.6, 4.9, 4.9, 5.0, 5.2, 5.2, 5.2, 5.5, 5.5, 5.6],
+              "p90": [4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.3, 4.6, 4.6, 4.6, 4.6, 4.6, 4.9, 5.2, 5.2, 5.2, 5.5, 5.6, 5.8, 6.2, 6.5, 6.5, 6.8, 6.8, 7.1, 7.4]
+            },
+            "cumulative_cashflow_usd": {
+              "mean": [-144536.0, -295442.0, -447294.0, -596954.0, -634311.0, -668893.0, -700920.0, -730898.0, -758698.0, -774426.0, -788818.0, -802135.0, -814562.0, -825912.0, -836244.0, -846264.0, -855639.0, -864617.0, -873131.0, -881302.0, -889257.0, -896956.0, -904555.0, -911983.0, -919527.0, -927076.0, -935011.0, -943110.0, -951723.0, -960548.0, -969422.0, -978738.0, -988838.0, -999305.0, -1.010302e6, -1.022204e6],
+              "p10": [-210825.0, -430191.0, -648931.0, -868019.0, -910664.0, -952704.0, -996623.0, -1.033011e6, -1.064669e6, -1.082507e6, -1.108766e6, -1.127859e6, -1.139971e6, -1.162642e6, -1.187129e6, -1.213992e6, -1.238187e6, -1.258103e6, -1.274354e6, -1.296729e6, -1.312225e6, -1.318699e6, -1.330528e6, -1.3462e6, -1.367198e6, -1.392644e6, -1.421926e6, -1.450501e6, -1.479035e6, -1.505637e6, -1.531541e6, -1.551194e6, -1.5651e6, -1.576611e6, -1.587298e6, -1.607823e6],
+              "p25": [-167001.0, -340122.0, -516860.0, -686943.0, -726604.0, -760683.0, -792475.0, -826779.0, -860530.0, -881138.0, -894634.0, -907490.0, -923109.0, -936200.0, -949122.0, -963501.0, -975424.0, -984514.0, -995349.0, -1.010945e6, -1.022294e6, -1.03609e6, -1.044832e6, -1.063303e6, -1.081478e6, -1.094045e6, -1.103764e6, -1.120586e6, -1.137954e6, -1.150694e6, -1.170821e6, -1.195348e6, -1.228807e6, -1.259258e6, -1.281713e6, -1.301299e6],
+              "p50": [-134238.0, -277313.0, -419295.0, -555817.0, -585823.0, -622358.0, -656220.0, -685395.0, -712134.0, -726123.0, -742446.0, -760426.0, -769205.0, -781737.0, -789273.0, -796153.0, -814474.0, -835555.0, -849959.0, -853360.0, -864280.0, -877619.0, -890739.0, -899015.0, -905391.0, -913957.0, -919525.0, -926719.0, -940453.0, -955318.0, -966111.0, -975385.0, -984734.0, -994624.0, -1.008865e6, -1.025632e6],
+              "p75": [-108736.0, -224976.0, -341825.0, -453362.0, -484793.0, -514062.0, -542856.0, -569861.0, -599158.0, -616786.0, -626618.0, -640240.0, -647816.0, -652411.0, -659496.0, -665782.0, -670157.0, -673593.0, -676084.0, -679380.0, -687356.0, -687895.0, -688897.0, -694834.0, -696039.0, -698222.0, -695894.0, -695616.0, -703676.0, -703563.0, -705195.0, -700562.0, -704422.0, -706078.0, -714342.0, -722244.0],
+              "p90": [-90336.0, -186128.0, -282597.0, -381292.0, -406642.0, -433214.0, -466547.0, -491612.0, -501528.0, -514481.0, -524038.0, -540461.0, -536313.0, -544852.0, -548900.0, -545269.0, -549540.0, -552118.0, -555616.0, -557069.0, -559845.0, -559961.0, -548943.0, -548146.0, -550179.0, -540317.0, -537980.0, -535289.0, -533311.0, -532755.0, -529870.0, -522149.0, -508782.0, -492592.0, -482683.0, -479114.0]
+            },
+            "disillusioned_pct": {
+              "mean": [1.3, 5.4, 10.7, 16.1, 21.1, 25.7, 29.7, 33.2, 36.5, 39.4, 42.0, 44.5, 46.8, 48.8, 50.7, 52.3, 54.0, 55.4, 56.7, 57.9, 59.0, 60.1, 61.1, 62.1, 62.9, 63.6, 64.3, 65.0, 65.5, 66.1, 66.7, 67.1, 67.5, 68.0, 68.4, 68.7],
+              "p10": [0.6, 3.7, 8.0, 12.9, 16.9, 21.2, 24.9, 27.7, 30.8, 34.4, 37.2, 39.4, 41.2, 43.0, 45.1, 46.2, 47.7, 49.2, 50.2, 51.4, 52.3, 53.2, 54.1, 55.0, 55.7, 56.6, 56.6, 57.2, 57.5, 58.1, 58.7, 59.1, 59.1, 59.7, 60.0, 60.3],
+              "p25": [0.9, 4.3, 9.2, 14.7, 19.4, 23.7, 27.3, 31.1, 34.5, 37.5, 39.9, 42.5, 44.3, 46.5, 47.7, 49.5, 51.1, 52.6, 53.8, 55.3, 56.3, 57.2, 58.2, 59.0, 59.9, 60.2, 60.8, 61.5, 62.4, 62.7, 63.4, 63.4, 63.4, 64.3, 64.6, 64.8],
+              "p50": [1.2, 5.2, 10.6, 16.3, 21.2, 25.8, 29.8, 33.5, 36.9, 39.7, 41.8, 44.3, 46.8, 49.2, 51.2, 52.8, 54.5, 56.0, 57.5, 58.8, 60.0, 61.1, 62.2, 63.1, 64.0, 64.9, 65.5, 66.2, 66.8, 67.4, 68.0, 68.3, 68.6, 69.1, 69.5, 69.7],
+              "p75": [1.8, 6.2, 12.3, 17.8, 22.8, 28.0, 32.1, 35.8, 39.1, 41.8, 44.6, 47.1, 49.9, 51.7, 53.8, 55.4, 56.9, 58.8, 60.0, 61.0, 62.2, 63.4, 64.4, 65.5, 66.5, 67.7, 68.4, 69.2, 69.9, 70.5, 71.2, 71.7, 72.0, 72.3, 73.0, 73.5],
+              "p90": [2.5, 7.1, 13.5, 19.1, 24.9, 29.8, 33.9, 37.5, 40.9, 44.0, 46.5, 49.6, 51.7, 53.8, 55.7, 57.6, 59.1, 60.6, 61.9, 63.1, 64.3, 66.2, 67.4, 67.7, 68.3, 69.3, 70.5, 70.8, 71.4, 72.0, 72.6, 73.2, 73.8, 74.8, 75.1, 75.7]
+            },
+            "exploring_pct": {
+              "mean": [10.8, 13.9, 14.5, 13.6, 12.4, 11.1, 10.1, 9.2, 8.3, 7.8, 7.1, 6.5, 6.1, 5.6, 5.0, 4.8, 4.4, 4.2, 3.9, 3.6, 3.5, 3.3, 3.1, 2.8, 2.7, 2.5, 2.5, 2.4, 2.4, 2.2, 2.0, 2.0, 2.0, 1.9, 1.8, 1.8],
+              "p10": [8.0, 11.4, 11.7, 10.8, 9.8, 8.6, 7.7, 6.5, 5.8, 5.8, 5.2, 4.9, 4.0, 3.7, 3.1, 3.4, 3.0, 2.5, 2.5, 2.4, 2.2, 2.2, 1.8, 1.5, 1.8, 1.5, 1.5, 1.2, 1.2, 1.2, 1.2, 1.2, 0.9, 0.9, 0.9, 0.9],
+              "p25": [9.5, 12.3, 13.2, 11.9, 10.8, 9.5, 8.6, 7.7, 7.1, 6.8, 5.8, 5.8, 4.9, 4.6, 4.0, 3.9, 3.6, 3.4, 3.1, 3.1, 2.8, 2.5, 2.5, 2.2, 2.2, 1.8, 1.8, 1.8, 1.8, 1.8, 1.5, 1.5, 1.5, 1.2, 1.2, 1.2],
+              "p50": [10.8, 13.8, 14.2, 13.5, 12.3, 11.1, 10.0, 8.9, 8.3, 7.7, 7.1, 6.5, 6.2, 5.5, 4.9, 4.6, 4.3, 4.0, 3.7, 3.7, 3.4, 3.1, 3.1, 2.8, 2.8, 2.5, 2.5, 2.5, 2.5, 2.2, 2.2, 1.8, 1.8, 1.8, 1.8, 1.8],
+              "p75": [12.0, 15.4, 15.7, 15.1, 13.8, 12.1, 11.7, 10.8, 9.2, 8.9, 8.3, 7.4, 7.1, 6.8, 5.8, 5.5, 5.2, 4.9, 4.6, 4.3, 4.3, 4.0, 3.7, 3.4, 3.4, 3.1, 3.1, 3.1, 3.1, 2.8, 2.5, 2.5, 2.5, 2.5, 2.2, 2.2],
+              "p90": [13.2, 16.6, 17.2, 16.6, 15.1, 13.8, 12.9, 11.7, 10.5, 10.2, 9.2, 8.3, 7.7, 7.7, 6.8, 6.2, 6.2, 5.8, 5.3, 4.9, 4.9, 4.6, 4.3, 4.0, 4.0, 4.0, 3.7, 3.4, 3.4, 3.1, 3.1, 3.1, 3.1, 3.1, 3.1, 3.1]
+            },
+            "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36],
+            "net_productivity_uplift_pct": {
+              "mean": [-0.4, -0.62, -0.6, -0.46, -0.27, -0.08, 0.08, 0.23, 0.37, 0.48, 0.59, 0.69, 0.78, 0.86, 0.96, 1.02, 1.09, 1.15, 1.21, 1.27, 1.32, 1.38, 1.43, 1.48, 1.52, 1.57, 1.6, 1.64, 1.66, 1.7, 1.74, 1.78, 1.8, 1.83, 1.86, 1.88],
+              "p10": [-0.72, -0.95, -0.98, -0.81, -0.69, -0.54, -0.37, -0.27, -0.18, -0.09, -0.03, 0.04, 0.11, 0.18, 0.23, 0.23, 0.3, 0.29, 0.31, 0.34, 0.4, 0.43, 0.43, 0.5, 0.48, 0.52, 0.57, 0.57, 0.56, 0.6, 0.64, 0.68, 0.64, 0.67, 0.71, 0.71],
+              "p25": [-0.55, -0.78, -0.77, -0.65, -0.49, -0.35, -0.2, -0.05, -0.02, 0.08, 0.16, 0.22, 0.31, 0.35, 0.42, 0.47, 0.49, 0.53, 0.62, 0.66, 0.67, 0.76, 0.73, 0.76, 0.82, 0.84, 0.85, 0.85, 0.89, 0.9, 0.92, 0.91, 0.95, 1.0, 1.04, 1.0],
+              "p50": [-0.39, -0.61, -0.61, -0.45, -0.28, -0.1, 0.01, 0.17, 0.32, 0.42, 0.52, 0.64, 0.64, 0.74, 0.81, 0.9, 0.96, 0.99, 1.03, 1.09, 1.06, 1.1, 1.22, 1.25, 1.3, 1.32, 1.45, 1.45, 1.4, 1.47, 1.55, 1.56, 1.55, 1.56, 1.61, 1.63],
+              "p75": [-0.22, -0.45, -0.4, -0.28, -0.07, 0.18, 0.36, 0.5, 0.65, 0.78, 0.92, 1.05, 1.22, 1.34, 1.36, 1.46, 1.55, 1.65, 1.72, 1.74, 1.81, 1.83, 1.89, 1.99, 2.07, 2.1, 2.18, 2.25, 2.25, 2.3, 2.32, 2.35, 2.38, 2.47, 2.49, 2.46],
+              "p90": [-0.13, -0.28, -0.26, -0.1, 0.19, 0.45, 0.65, 0.82, 0.98, 1.13, 1.32, 1.4, 1.52, 1.67, 1.84, 1.95, 2.07, 2.27, 2.38, 2.41, 2.6, 2.6, 2.71, 2.79, 2.91, 2.94, 3.01, 3.1, 3.17, 3.18, 3.24, 3.28, 3.38, 3.39, 3.48, 3.5]
+            },
+            "proficient_pct": {
+              "mean": [0.0, 0.1, 0.7, 1.6, 2.7, 3.8, 4.9, 5.8, 6.5, 7.3, 7.9, 8.5, 8.9, 9.3, 9.8, 10.2, 10.5, 10.8, 11.0, 11.3, 11.5, 11.7, 11.9, 12.0, 12.1, 12.2, 12.3, 12.4, 12.5, 12.5, 12.6, 12.7, 12.7, 12.8, 12.8, 12.9],
+              "p10": [0.0, 0.0, 0.0, 0.3, 0.6, 0.9, 1.8, 2.2, 2.5, 2.5, 3.1, 3.1, 3.7, 3.7, 3.7, 4.0, 4.0, 4.0, 4.3, 4.3, 4.6, 4.6, 4.6, 4.9, 4.9, 4.9, 4.9, 4.9, 4.9, 4.9, 4.9, 5.2, 5.2, 5.2, 5.2, 5.2],
+              "p25": [0.0, 0.0, 0.3, 0.6, 1.2, 1.8, 2.5, 3.1, 3.6, 4.0, 4.5, 4.6, 5.2, 5.2, 5.2, 5.5, 5.5, 5.5, 5.8, 6.2, 6.2, 6.2, 6.5, 6.5, 6.5, 6.8, 6.8, 6.8, 7.1, 7.1, 7.3, 7.1, 7.1, 7.3, 7.1, 7.1],
+              "p50": [0.0, 0.0, 0.6, 1.2, 2.2, 3.1, 4.2, 4.6, 5.7, 6.3, 6.8, 7.1, 7.7, 8.0, 8.5, 8.9, 9.2, 9.5, 9.5, 9.8, 9.8, 10.0, 10.2, 10.5, 10.8, 10.6, 10.8, 10.9, 11.1, 11.1, 11.1, 11.1, 11.2, 11.4, 11.5, 11.7],
+              "p75": [0.0, 0.0, 1.2, 2.2, 3.8, 5.2, 6.8, 8.0, 8.9, 9.8, 10.5, 11.5, 11.9, 12.7, 13.5, 14.2, 14.5, 14.8, 14.8, 15.1, 15.7, 16.3, 16.3, 16.4, 16.9, 17.0, 17.2, 17.0, 17.2, 17.0, 17.2, 17.5, 17.3, 17.5, 17.3, 17.2],
+              "p90": [0.0, 0.3, 1.5, 3.7, 5.8, 7.7, 9.5, 10.8, 12.0, 13.5, 14.2, 15.7, 16.3, 17.2, 18.2, 18.8, 19.4, 19.7, 20.3, 20.3, 21.3, 21.5, 21.2, 21.5, 21.6, 22.5, 22.2, 22.2, 22.5, 22.8, 22.8, 22.8, 22.8, 22.5, 22.5, 22.2]
+            },
+            "skeptical_pct": {
+              "mean": [84.9, 77.6, 71.1, 65.8, 60.8, 56.4, 52.4, 48.8, 45.7, 42.6, 39.9, 37.5, 35.2, 33.2, 31.4, 29.6, 28.0, 26.5, 25.1, 23.9, 22.6, 21.5, 20.5, 19.6, 18.7, 17.9, 17.1, 16.4, 15.6, 15.0, 14.4, 13.9, 13.3, 12.8, 12.4, 11.9],
+              "p10": [81.8, 73.5, 66.7, 61.5, 56.3, 52.0, 48.0, 44.2, 40.9, 37.8, 35.3, 32.6, 30.5, 28.0, 26.5, 24.3, 22.8, 21.2, 20.0, 18.4, 17.5, 16.3, 15.4, 15.0, 13.8, 13.5, 12.6, 12.0, 11.4, 10.7, 10.2, 9.5, 8.9, 8.6, 8.3, 8.0],
+              "p25": [83.4, 75.7, 69.2, 63.7, 58.7, 53.8, 50.1, 46.4, 42.8, 39.7, 37.2, 34.5, 32.5, 30.7, 28.9, 27.1, 25.2, 24.0, 22.5, 21.5, 20.3, 19.1, 18.2, 16.9, 16.2, 15.4, 14.5, 13.8, 12.9, 12.5, 12.3, 11.7, 11.1, 10.8, 10.2, 9.8],
+              "p50": [84.9, 77.8, 71.4, 65.8, 60.9, 56.5, 52.3, 48.9, 46.2, 42.8, 40.3, 37.5, 34.9, 33.2, 31.4, 29.7, 27.7, 26.5, 24.9, 23.7, 22.5, 21.5, 20.8, 20.0, 18.8, 17.8, 17.2, 16.3, 15.7, 14.9, 14.2, 13.7, 13.1, 12.6, 12.3, 11.8],
+              "p75": [86.5, 79.7, 73.2, 68.3, 62.8, 58.5, 54.5, 51.1, 48.0, 45.0, 42.5, 39.8, 38.2, 36.0, 34.5, 32.3, 30.8, 29.2, 27.7, 26.8, 25.2, 24.0, 22.8, 21.9, 20.6, 20.0, 19.4, 18.5, 17.8, 17.2, 16.6, 16.1, 15.7, 15.1, 14.8, 13.8],
+              "p90": [88.0, 81.5, 74.8, 69.8, 64.9, 60.3, 57.2, 53.2, 50.2, 47.4, 44.6, 42.5, 40.3, 38.2, 36.0, 33.9, 32.9, 31.4, 30.2, 28.6, 27.4, 26.2, 25.0, 24.0, 23.1, 22.2, 21.8, 20.9, 20.3, 19.7, 19.1, 18.5, 17.6, 16.9, 16.0, 15.7]
+            }
+          },
+          "teams": [
+            {
+              "active_adopters_m36_pct": {
+                "mean": 15.6,
+                "p05": 5.8,
+                "p10": 6.7,
+                "p25": 9.2,
+                "p50": 12.5,
+                "p75": 19.4,
+                "p90": 29.2,
+                "p95": 36.7,
+                "std": 9.5
+              },
+              "champions_m36_pct": {
+                "mean": 4.5,
+                "p05": 1.7,
+                "p10": 1.7,
+                "p25": 2.5,
+                "p50": 4.2,
+                "p75": 5.8,
+                "p90": 7.6,
+                "p95": 8.4,
+                "std": 2.4
+              },
+              "disillusioned_churn_m36_pct": {
+                "mean": 70.4,
+                "p05": 55.0,
+                "p10": 59.2,
+                "p25": 67.3,
+                "p50": 72.5,
+                "p75": 75.8,
+                "p90": 77.6,
+                "p95": 79.2,
+                "std": 7.5
+              },
+              "emergent_roi_pct": {
+                "mean": -63.2,
+                "p05": -117.8,
+                "p10": -109.4,
+                "p25": -96.2,
+                "p50": -73.2,
+                "p75": -42.2,
+                "p90": 3.5,
+                "p95": 30.1,
+                "std": 49.2
+              },
+              "headcount": 120,
+              "id": "software_eng",
+              "name": "Product & Software Engineering"
+            },
+            {
+              "active_adopters_m36_pct": {
+                "mean": 21.5,
+                "p05": 5.6,
+                "p10": 6.7,
+                "p25": 10.0,
+                "p50": 17.8,
+                "p75": 30.0,
+                "p90": 39.0,
+                "p95": 50.1,
+                "std": 13.9
+              },
+              "champions_m36_pct": {
+                "mean": 5.2,
+                "p05": 1.1,
+                "p10": 1.1,
+                "p25": 2.2,
+                "p50": 4.4,
+                "p75": 7.8,
+                "p90": 10.0,
+                "p95": 11.1,
+                "std": 3.3
+              },
+              "disillusioned_churn_m36_pct": {
+                "mean": 65.6,
+                "p05": 44.3,
+                "p10": 49.9,
+                "p25": 58.9,
+                "p50": 68.9,
+                "p75": 73.3,
+                "p90": 77.8,
+                "p95": 78.9,
+                "std": 11.2
+              },
+              "emergent_roi_pct": {
+                "mean": -27.7,
+                "p05": -94.5,
+                "p10": -85.4,
+                "p25": -71.3,
+                "p50": -38.5,
+                "p75": 0.4,
+                "p90": 46.9,
+                "p95": 81.4,
+                "std": 55.9
+              },
+              "headcount": 90,
+              "id": "customer_ops",
+              "name": "Customer Support & Success"
+            },
+            {
+              "active_adopters_m36_pct": {
+                "mean": 18.9,
+                "p05": 6.6,
+                "p10": 8.0,
+                "p25": 10.7,
+                "p50": 15.3,
+                "p75": 26.7,
+                "p90": 34.8,
+                "p95": 42.7,
+                "std": 11.3
+              },
+              "champions_m36_pct": {
+                "mean": 5.0,
+                "p05": 1.3,
+                "p10": 1.3,
+                "p25": 2.7,
+                "p50": 4.0,
+                "p75": 6.7,
+                "p90": 9.3,
+                "p95": 10.7,
+                "std": 3.0
+              },
+              "disillusioned_churn_m36_pct": {
+                "mean": 67.8,
+                "p05": 46.7,
+                "p10": 54.7,
+                "p25": 62.7,
+                "p50": 69.3,
+                "p75": 74.7,
+                "p90": 77.3,
+                "p95": 78.7,
+                "std": 9.4
+              },
+              "emergent_roi_pct": {
+                "mean": -85.0,
+                "p05": -115.8,
+                "p10": -110.2,
+                "p25": -102.0,
+                "p50": -90.5,
+                "p75": -74.8,
+                "p90": -52.3,
+                "p95": -33.3,
+                "std": 26.9
+              },
+              "headcount": 75,
+              "id": "sales_gtm",
+              "name": "Sales, Account Teams & Marketing"
+            },
+            {
+              "active_adopters_m36_pct": {
+                "mean": 12.0,
+                "p05": 2.5,
+                "p10": 5.0,
+                "p25": 7.5,
+                "p50": 11.2,
+                "p75": 15.0,
+                "p90": 20.0,
+                "p95": 25.1,
+                "std": 7.2
+              },
+              "champions_m36_pct": {
+                "mean": 3.6,
+                "p05": 0.0,
+                "p10": 0.0,
+                "p25": 1.9,
+                "p50": 2.5,
+                "p75": 5.0,
+                "p90": 7.5,
+                "p95": 10.0,
+                "std": 2.9
+              },
+              "disillusioned_churn_m36_pct": {
+                "mean": 72.4,
+                "p05": 62.5,
+                "p10": 65.0,
+                "p25": 67.5,
+                "p50": 72.5,
+                "p75": 77.5,
+                "p90": 80.0,
+                "p95": 82.5,
+                "std": 6.7
+              },
+              "emergent_roi_pct": {
+                "mean": -107.4,
+                "p05": -141.2,
+                "p10": -131.5,
+                "p25": -120.9,
+                "p50": -109.6,
+                "p75": -95.4,
+                "p90": -80.1,
+                "p95": -71.5,
+                "std": 21.9
+              },
+              "headcount": 40,
+              "id": "legal_finance",
+              "name": "Legal, Finance & Compliance"
+            }
+          ]
+        },
+        "bayesian_network": {
+          "active_posterior": {
+            "expected_npv_usd": 961891.0,
+            "expected_roi_pct": 65.7,
+            "node_posteriors_pct": {
+              "exec_support": [10.0, 30.0, 60.0],
+              "governance": [62.0, 28.0, 10.0],
+              "pilot_adoption": [15.1, 40.4, 44.5],
+              "rework_signal": [41.5, 37.7, 20.8],
+              "roi_regime": [19.2, 32.3, 31.0, 17.5],
+              "sustained_realization": [16.7, 41.7, 41.6],
+              "token_discipline": [43.4, 37.5, 19.1]
+            },
+            "prob_positive_npv_pct": 80.8,
+            "prob_strong_or_outsized_roi_pct": 48.5,
+            "regime_probabilities_pct": {
+              "loss_below_0_pct": 19.2,
+              "modest_0_to_80_pct": 32.3,
+              "outsized_above_160_pct": 17.5,
+              "strong_80_to_160_pct": 31.0
+            },
+            "stage_gate_decision": "FIX FIRST (Tighten Quality & Budget Before Scaling)"
+          },
+          "dag_structure": {
+            "edges": [
+              {
+                "from": "exec_support",
+                "to": "pilot_adoption"
+              },
+              {
+                "from": "exec_support",
+                "to": "sustained_realization"
+              },
+              {
+                "from": "governance",
+                "to": "rework_signal"
+              },
+              {
+                "from": "governance",
+                "to": "token_discipline"
+              },
+              {
+                "from": "pilot_adoption",
+                "to": "sustained_realization"
+              },
+              {
+                "from": "rework_signal",
+                "to": "sustained_realization"
+              },
+              {
+                "from": "sustained_realization",
+                "to": "roi_regime"
+              },
+              {
+                "from": "rework_signal",
+                "to": "roi_regime"
+              },
+              {
+                "from": "token_discipline",
+                "to": "roi_regime"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "exec_support",
+                "label": "Executive & Change Support",
+                "layer": 1,
+                "states": [
+                  "Weak",
+                  "Moderate",
+                  "Strong"
+                ]
+              },
+              {
+                "id": "governance",
+                "label": "AI Governance & Guardrails",
+                "layer": 1,
+                "states": [
+                  "Ad-Hoc",
+                  "Managed",
+                  "Automated"
+                ]
+              },
+              {
+                "id": "pilot_adoption",
+                "label": "M6 Pilot Adoption Signal",
+                "layer": 2,
+                "states": [
+                  "Low (<45%)",
+                  "Target (45-75%)",
+                  "High (>75%)"
+                ]
+              },
+              {
+                "id": "rework_signal",
+                "label": "QA Verification & Rework",
+                "layer": 2,
+                "states": [
+                  "High (>10%)",
+                  "Moderate (5-10%)",
+                  "Low (<5%)"
+                ]
+              },
+              {
+                "id": "token_discipline",
+                "label": "FinOps Token Discipline",
+                "layer": 2,
+                "states": [
+                  "Overrun",
+                  "On-Budget",
+                  "Optimized"
+                ]
+              },
+              {
+                "id": "sustained_realization",
+                "label": "Operating-Model Realization",
+                "layer": 3,
+                "states": [
+                  "Low",
+                  "Medium",
+                  "High"
+                ]
+              },
+              {
+                "id": "roi_regime",
+                "label": "3-Year Net ROI Regime",
+                "layer": 4,
+                "states": [
+                  "Loss (<0%)",
+                  "Modest (0-80%)",
+                  "Strong (80-160%)",
+                  "Outsized (>160%)"
+                ]
+              }
+            ]
+          },
+          "evidence_presets": [
+            {
+              "evidence": {
+                "adoption": 0,
+                "rework": 0,
+                "token_discipline": 0
+              },
+              "id": "prior_unobserved",
+              "label": "Day-1 Estimate (Before Any Pilot Results)",
+              "summary": {
+                "expected_npv_usd": 961891.0,
+                "expected_roi_pct": 65.7,
+                "node_posteriors_pct": {
+                  "exec_support": [10.0, 30.0, 60.0],
+                  "governance": [62.0, 28.0, 10.0],
+                  "pilot_adoption": [15.1, 40.4, 44.5],
+                  "rework_signal": [41.5, 37.7, 20.8],
+                  "roi_regime": [19.2, 32.3, 31.0, 17.5],
+                  "sustained_realization": [16.7, 41.7, 41.6],
+                  "token_discipline": [43.4, 37.5, 19.1]
+                },
+                "prob_positive_npv_pct": 80.8,
+                "prob_strong_or_outsized_roi_pct": 48.5,
+                "regime_probabilities_pct": {
+                  "loss_below_0_pct": 19.2,
+                  "modest_0_to_80_pct": 32.3,
+                  "outsized_above_160_pct": 17.5,
+                  "strong_80_to_160_pct": 31.0
+                },
+                "stage_gate_decision": "FIX FIRST (Tighten Quality & Budget Before Scaling)"
+              }
+            },
+            {
+              "evidence": {
+                "adoption": 3,
+                "rework": 3,
+                "token_discipline": 3
+              },
+              "id": "strong_pilot",
+              "label": "Great 6-Month Pilot (High Usage + Low Cleanup + On-Budget)",
+              "summary": {
+                "expected_npv_usd": 2.101351e6,
+                "expected_roi_pct": 129.2,
+                "node_posteriors_pct": {
+                  "exec_support": [2.2, 16.9, 80.9],
+                  "governance": [9.2, 28.0, 62.8],
+                  "pilot_adoption": [0.0, 0.0, 100.0],
+                  "rework_signal": [0.0, 0.0, 100.0],
+                  "roi_regime": [1.6, 9.8, 35.6, 53.0],
+                  "sustained_realization": [4.3, 26.8, 68.9],
+                  "token_discipline": [0.0, 0.0, 100.0]
+                },
+                "prob_positive_npv_pct": 98.4,
+                "prob_strong_or_outsized_roi_pct": 88.6,
+                "regime_probabilities_pct": {
+                  "loss_below_0_pct": 1.6,
+                  "modest_0_to_80_pct": 9.8,
+                  "outsized_above_160_pct": 53.0,
+                  "strong_80_to_160_pct": 35.6
+                },
+                "stage_gate_decision": "GREEN LIGHT (Release Next-Stage Funding)"
+              }
+            },
+            {
+              "evidence": {
+                "adoption": 2,
+                "rework": 2,
+                "token_discipline": 2
+              },
+              "id": "mixed_pilot",
+              "label": "Average 6-Month Pilot (Moderate Usage + Moderate Cleanup + On-Budget)",
+              "summary": {
+                "expected_npv_usd": 745060.0,
+                "expected_roi_pct": 53.6,
+                "node_posteriors_pct": {
+                  "exec_support": [8.7, 40.8, 50.5],
+                  "governance": [38.9, 55.4, 5.7],
+                  "pilot_adoption": [0.0, 100.0, 0.0],
+                  "rework_signal": [0.0, 100.0, 0.0],
+                  "roi_regime": [19.4, 41.3, 29.8, 9.5],
+                  "sustained_realization": [16.0, 62.0, 22.0],
+                  "token_discipline": [0.0, 100.0, 0.0]
+                },
+                "prob_positive_npv_pct": 80.6,
+                "prob_strong_or_outsized_roi_pct": 39.3,
+                "regime_probabilities_pct": {
+                  "loss_below_0_pct": 19.4,
+                  "modest_0_to_80_pct": 41.3,
+                  "outsized_above_160_pct": 9.5,
+                  "strong_80_to_160_pct": 29.8
+                },
+                "stage_gate_decision": "FIX FIRST (Tighten Quality & Budget Before Scaling)"
+              }
+            },
+            {
+              "evidence": {
+                "adoption": 3,
+                "rework": 1,
+                "token_discipline": 1
+              },
+              "id": "sprawl_warning",
+              "label": "Busy But Messy Pilot (High Usage + Heavy Cleanup + Over-Budget)",
+              "summary": {
+                "expected_npv_usd": 411856.0,
+                "expected_roi_pct": 34.5,
+                "node_posteriors_pct": {
+                  "exec_support": [2.2, 16.9, 80.9],
+                  "governance": [95.4, 4.5, 0.1],
+                  "pilot_adoption": [0.0, 0.0, 100.0],
+                  "rework_signal": [100.0, 0.0, 0.0],
+                  "roi_regime": [30.9, 43.7, 20.3, 5.0],
+                  "sustained_realization": [6.3, 32.9, 60.8],
+                  "token_discipline": [100.0, 0.0, 0.0]
+                },
+                "prob_positive_npv_pct": 69.1,
+                "prob_strong_or_outsized_roi_pct": 25.4,
+                "regime_probabilities_pct": {
+                  "loss_below_0_pct": 30.9,
+                  "modest_0_to_80_pct": 43.7,
+                  "outsized_above_160_pct": 5.0,
+                  "strong_80_to_160_pct": 20.3
+                },
+                "stage_gate_decision": "HOLD / PAUSE (Freeze New Seats & Fix Workflows)"
+              }
+            },
+            {
+              "evidence": {
+                "adoption": 1,
+                "rework": 1,
+                "token_discipline": 1
+              },
+              "id": "stalled_pilot",
+              "label": "Struggling Pilot (Low Usage + Heavy Cleanup + Over-Budget)",
+              "summary": {
+                "expected_npv_usd": 47192.0,
+                "expected_roi_pct": 13.5,
+                "node_posteriors_pct": {
+                  "exec_support": [36.4, 39.7, 23.8],
+                  "governance": [95.4, 4.5, 0.1],
+                  "pilot_adoption": [100.0, 0.0, 0.0],
+                  "rework_signal": [100.0, 0.0, 0.0],
+                  "roi_regime": [50.3, 35.6, 11.7, 2.5],
+                  "sustained_realization": [55.6, 34.6, 9.8],
+                  "token_discipline": [100.0, 0.0, 0.0]
+                },
+                "prob_positive_npv_pct": 49.7,
+                "prob_strong_or_outsized_roi_pct": 14.2,
+                "regime_probabilities_pct": {
+                  "loss_below_0_pct": 50.3,
+                  "modest_0_to_80_pct": 35.6,
+                  "outsized_above_160_pct": 2.5,
+                  "strong_80_to_160_pct": 11.7
+                },
+                "stage_gate_decision": "HOLD / PAUSE (Freeze New Seats & Fix Workflows)"
+              }
+            }
+          ],
+          "paradigm": "bayesian_network",
+          "prior_baseline": {
+            "expected_npv_usd": 961891.0,
+            "expected_roi_pct": 65.7,
+            "node_posteriors_pct": {
+              "exec_support": [10.0, 30.0, 60.0],
+              "governance": [62.0, 28.0, 10.0],
+              "pilot_adoption": [15.1, 40.4, 44.5],
+              "rework_signal": [41.5, 37.7, 20.8],
+              "roi_regime": [19.2, 32.3, 31.0, 17.5],
+              "sustained_realization": [16.7, 41.7, 41.6],
+              "token_discipline": [43.4, 37.5, 19.1]
+            },
+            "prob_positive_npv_pct": 80.8,
+            "prob_strong_or_outsized_roi_pct": 48.5,
+            "regime_probabilities_pct": {
+              "loss_below_0_pct": 19.2,
+              "modest_0_to_80_pct": 32.3,
+              "outsized_above_160_pct": 17.5,
+              "strong_80_to_160_pct": 31.0
+            },
+            "stage_gate_decision": "FIX FIRST (Tighten Quality & Budget Before Scaling)"
+          },
+          "priors": {
+            "exec_support": [0.1, 0.3, 0.6],
+            "governance": [0.62, 0.28, 0.1]
+          },
+          "scenario_id": "blitzscale_mandate",
+          "scenario_name": "Fast All-At-Once Push"
+        },
+        "discrete_event": {
+          "kpis": {
+            "baseline_avg_cycle_time_hrs": 6.62,
+            "cycle_time_reduction_pct": -180.4,
+            "m36_avg_cycle_time_hrs": 18.56,
+            "m36_qa_queue_wait_hrs": 12.19,
+            "process_npv_usd": -394518.0,
+            "process_roi_pct": -16.5,
+            "total_hours_saved_36m": 57852.0
+          },
+          "paradigm": "discrete_event",
+          "parameters": {
+            "ai_triage_deflection_boost": 1.0,
+            "horizon_months": 36,
+            "qa_capacity_reallocation_pct": 0.0
+          },
+          "scenario_id": "blitzscale_mandate",
+          "scenario_name": "Fast All-At-Once Push",
+          "trajectories": {
+            "ai_cycle_time_hrs": [6.96, 6.89, 7.03, 6.93, 8.18, 10.91, 14.47, 16.7, 17.38, 15.68, 19.01, 16.25, 18.57, 21.62, 17.39, 18.71, 19.93, 16.33, 19.99, 18.06, 16.9, 18.67, 20.33, 19.58, 18.36, 19.37, 18.96, 20.14, 20.36, 19.34, 19.81, 18.69, 19.17, 18.88, 18.2, 18.56],
+            "baseline_cycle_time_hrs": [6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62, 6.62],
+            "cumulative_cashflow_usd": [-115973.0, -237996.0, -356599.0, -450514.0, -433192.0, -434468.0, -431180.0, -426468.0, -428662.0, -409208.0, -388863.0, -364196.0, -336501.0, -336876.0, -328186.0, -310338.0, -314196.0, -308216.0, -315798.0, -294505.0, -293849.0, -302737.0, -309676.0, -313136.0, -302845.0, -310175.0, -317100.0, -348842.0, -344832.0, -329489.0, -360238.0, -354402.0, -370459.0, -388090.0, -397413.0, -414555.0],
+            "draft_stage_wait_hrs": [0.27, 0.12, 0.08, 0.04, 0.05, 0.23, 0.06, 0.04, 0.16, 0.25, 0.14, 0.1, 0.03, 0.36, 0.07, 0.08, 0.19, 0.42, 0.17, 0.03, 0.23, 0.08, 0.08, 0.25, 0.07, 0.07, 0.04, 0.4, 0.28, 0.04, 0.41, 0.1, 0.05, 0.16, 0.08, 0.06],
+            "monthly_hours_saved": [284.0, 241.0, 409.0, 1091.0, 1427.0, 1215.0, 1413.0, 1565.0, 1548.0, 1898.0, 1933.0, 2021.0, 2053.0, 1457.0, 1737.0, 1971.0, 1552.0, 1757.0, 1508.0, 2097.0, 1825.0, 1535.0, 1614.0, 1715.0, 1986.0, 1691.0, 1765.0, 1274.0, 2081.0, 2243.0, 1377.0, 2176.0, 1774.0, 1827.0, 1953.0, 1839.0],
+            "monthly_throughput_items": [11389.0, 11469.0, 11622.0, 11876.0, 12217.0, 12558.0, 12811.0, 12964.0, 13042.0, 13081.0, 13099.0, 13106.0, 13110.0, 13112.0, 13112.0, 13113.0, 13113.0, 13113.0, 13113.0, 13113.0, 13113.0, 13113.0, 13113.0, 13113.0, 13113.0, 13113.0, 13113.0, 13113.0, 13113.0, 13113.0, 13113.0, 13113.0, 13113.0, 13113.0, 13113.0, 13113.0],
+            "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36],
+            "qa_review_stage_wait_hrs": [0.1, 0.14, 0.27, 0.41, 1.71, 4.16, 8.07, 10.29, 10.82, 9.09, 12.53, 9.85, 12.28, 14.82, 10.97, 12.32, 13.38, 9.56, 13.42, 11.83, 10.32, 12.2, 13.9, 12.91, 11.98, 12.96, 12.56, 13.25, 13.78, 13.09, 13.01, 12.36, 12.78, 12.39, 11.82, 12.19]
+          },
+          "workflows": [
+            {
+              "baseline_cycle_time_hrs": 9.1,
+              "baseline_draft_utilization_pct": 72.5,
+              "baseline_qa_utilization_pct": 72.5,
+              "baseline_qa_wait_hrs": 0.01,
+              "bottleneck_diagnosis": "Backed Up at Final Human Review (>85% Busy)",
+              "cycle_time_reduction_pct": -61.4,
+              "m36_cycle_time_hrs": 14.7,
+              "m36_draft_utilization_pct": 77.1,
+              "m36_hours_saved_monthly": 775.0,
+              "m36_qa_utilization_pct": 96.8,
+              "m36_qa_wait_hrs": 5.9,
+              "m36_sla_compliance_pct": 99.5,
+              "team_id": "software_eng",
+              "team_name": "Product & Software Engineering",
+              "work_unit_name": "Pull Requests & Feature Specs"
+            },
+            {
+              "baseline_cycle_time_hrs": 1.6,
+              "baseline_draft_utilization_pct": 82.3,
+              "baseline_qa_utilization_pct": 82.5,
+              "baseline_qa_wait_hrs": 0.02,
+              "bottleneck_diagnosis": "Backed Up at Final Human Review (>85% Busy)",
+              "cycle_time_reduction_pct": -757.7,
+              "m36_cycle_time_hrs": 14.0,
+              "m36_draft_utilization_pct": 76.1,
+              "m36_hours_saved_monthly": 1054.0,
+              "m36_qa_utilization_pct": 99.6,
+              "m36_qa_wait_hrs": 12.61,
+              "m36_sla_compliance_pct": 65.7,
+              "team_id": "customer_ops",
+              "team_name": "Customer Support & Success",
+              "work_unit_name": "Tier-2/3 Escalation Cases"
+            },
+            {
+              "baseline_cycle_time_hrs": 7.3,
+              "baseline_draft_utilization_pct": 69.8,
+              "baseline_qa_utilization_pct": 82.5,
+              "baseline_qa_wait_hrs": 0.24,
+              "bottleneck_diagnosis": "Backed Up at Final Human Review (>85% Busy)",
+              "cycle_time_reduction_pct": -235.3,
+              "m36_cycle_time_hrs": 24.4,
+              "m36_draft_utilization_pct": 76.5,
+              "m36_hours_saved_monthly": 5.0,
+              "m36_qa_utilization_pct": 97.4,
+              "m36_qa_wait_hrs": 17.38,
+              "m36_sla_compliance_pct": 89.3,
+              "team_id": "sales_gtm",
+              "team_name": "Sales, Account Teams & Marketing",
+              "work_unit_name": "RFPs & Custom Deal Proposals"
+            },
+            {
+              "baseline_cycle_time_hrs": 9.1,
+              "baseline_draft_utilization_pct": 84.4,
+              "baseline_qa_utilization_pct": 76.8,
+              "baseline_qa_wait_hrs": 0.14,
+              "bottleneck_diagnosis": "Backed Up at Final Human Review (>85% Busy)",
+              "cycle_time_reduction_pct": -221.5,
+              "m36_cycle_time_hrs": 29.4,
+              "m36_draft_utilization_pct": 80.5,
+              "m36_hours_saved_monthly": 5.0,
+              "m36_qa_utilization_pct": 97.8,
+              "m36_qa_wait_hrs": 20.37,
+              "m36_sla_compliance_pct": 97.8,
+              "team_id": "legal_finance",
+              "team_name": "Legal, Finance & Compliance",
+              "work_unit_name": "Contract Redlines & Audit Memos"
+            }
+          ]
+        },
+        "monte_carlo": {
+          "distributions": {
+            "npv_k_usd_histogram": {
+              "bin_edges": [-2986.3, -2718.5, -2450.7, -2183.0, -1915.2, -1647.5, -1379.7, -1112.0, -844.2, -576.5, -308.7, -40.9, 226.8, 494.6, 762.3, 1030.1, 1297.8, 1565.6, 1833.3, 2101.1, 2368.9, 2636.6, 2904.4, 3172.1, 3439.9, 3707.6, 3975.4, 4243.1, 4510.9],
+              "bin_midpoints": [-2852.4, -2584.6, -2316.9, -2049.1, -1781.4, -1513.6, -1245.8, -978.1, -710.3, -442.6, -174.8, 92.9, 360.7, 628.4, 896.2, 1164.0, 1431.7, 1699.5, 1967.2, 2235.0, 2502.7, 2770.5, 3038.2, 3306.0, 3573.8, 3841.5, 4109.3, 4377.0],
+              "counts": [5, 17, 21, 50, 91, 187, 321, 446, 622, 837, 918, 1021, 1039, 1006, 859, 717, 592, 449, 323, 203, 113, 85, 38, 21, 12, 4, 2, 1],
+              "pct_of_trials": [0.05, 0.17, 0.21, 0.5, 0.91, 1.87, 3.21, 4.46, 6.22, 8.37, 9.18, 10.21, 10.39, 10.06, 8.59, 7.17, 5.92, 4.49, 3.23, 2.03, 1.13, 0.85, 0.38, 0.21, 0.12, 0.04, 0.02, 0.01]
+            },
+            "roi_pct_histogram": {
+              "bin_edges": [-108.2, -95.0, -81.9, -68.7, -55.6, -42.4, -29.3, -16.1, -3.0, 10.2, 23.3, 36.5, 49.6, 62.8, 75.9, 89.1, 102.2, 115.4, 128.5, 141.7, 154.8, 168.0, 181.1, 194.3, 207.4, 220.6, 233.7, 246.9, 260.0],
+              "bin_midpoints": [-101.6, -88.5, -75.3, -62.2, -49.0, -35.9, -22.7, -9.6, 3.6, 16.7, 29.9, 43.0, 56.2, 69.3, 82.5, 95.6, 108.8, 121.9, 135.1, 148.2, 161.4, 174.5, 187.7, 200.8, 214.0, 227.1, 240.3, 253.4],
+              "counts": [12, 33, 66, 206, 379, 591, 836, 994, 1111, 1121, 1089, 906, 729, 599, 437, 318, 207, 149, 85, 59, 32, 17, 8, 6, 3, 4, 2, 1],
+              "pct_of_trials": [0.12, 0.33, 0.66, 2.06, 3.79, 5.91, 8.36, 9.94, 11.11, 11.21, 10.89, 9.06, 7.29, 5.99, 4.37, 3.18, 2.07, 1.49, 0.85, 0.59, 0.32, 0.17, 0.08, 0.06, 0.03, 0.04, 0.02, 0.01]
+            }
+          },
+          "kpis": {
+            "month36_adoption_pct": {
+              "mean": 86.3,
+              "p05": 78.3,
+              "p10": 80.0,
+              "p25": 83.1,
+              "p50": 86.6,
+              "p75": 89.7,
+              "p90": 92.2,
+              "p95": 93.6,
+              "std": 4.6
+            },
+            "month36_net_productivity_uplift_pct": {
+              "mean": 6.22,
+              "p05": 3.53,
+              "p10": 4.08,
+              "p25": 5.06,
+              "p50": 6.2,
+              "p75": 7.33,
+              "p90": 8.37,
+              "p95": 8.99,
+              "std": 1.65
+            },
+            "npv_usd": {
+              "mean": 370970.0,
+              "p05": -1.266087e6,
+              "p10": -916611.0,
+              "p25": -340689.0,
+              "p50": 345192.0,
+              "p75": 1.049649e6,
+              "p90": 1.708785e6,
+              "p95": 2.077435e6,
+              "std": 1.019341e6
+            },
+            "payback_months": {
+              "mean": 24.2,
+              "p05": 11.1,
+              "p10": 12.3,
+              "p25": 15.1,
+              "p50": 20.8,
+              "p75": 37.0,
+              "p90": 37.0,
+              "p95": 37.0,
+              "std": 10.1
+            },
+            "prob_breakeven_within_24m_pct": 57.4,
+            "prob_breakeven_within_36m_pct": 66.4,
+            "prob_positive_npv_pct": 63.4,
+            "roi_pct": {
+              "mean": 22.6,
+              "p05": -48.5,
+              "p10": -34.6,
+              "p25": -11.0,
+              "p50": 18.9,
+              "p75": 52.3,
+              "p90": 85.1,
+              "p95": 106.3,
+              "std": 47.3
+            },
+            "total_cost_36m_usd": {
+              "mean": 2.668725e6,
+              "p05": 2.043497e6,
+              "p10": 2.160289e6,
+              "p25": 2.36878e6,
+              "p50": 2.629916e6,
+              "p75": 2.928324e6,
+              "p90": 3.2299e6,
+              "p95": 3.409655e6,
+              "std": 423974.0
+            },
+            "total_gross_benefit_36m_usd": {
+              "mean": 6.766311e6,
+              "p05": 5.005556e6,
+              "p10": 5.318149e6,
+              "p25": 5.927362e6,
+              "p50": 6.687992e6,
+              "p75": 7.517173e6,
+              "p90": 8.353903e6,
+              "p95": 8.827803e6,
+              "std": 1.163025e6
+            },
+            "total_net_benefit_36m_usd": {
+              "mean": 3.200776e6,
+              "p05": 1.3963e6,
+              "p10": 1.777896e6,
+              "p25": 2.394728e6,
+              "p50": 3.154401e6,
+              "p75": 3.953298e6,
+              "p90": 4.702454e6,
+              "p95": 5.144863e6,
+              "std": 1.135205e6
+            },
+            "total_rework_drag_36m_usd": {
+              "mean": 3.565536e6,
+              "p05": 2.559257e6,
+              "p10": 2.742389e6,
+              "p25": 3.090851e6,
+              "p50": 3.514921e6,
+              "p75": 3.988422e6,
+              "p90": 4.45181e6,
+              "p95": 4.762085e6,
+              "std": 665971.0
+            }
+          },
+          "sensitivity": [
+            {
+              "category": "Speed Gain",
+              "driver": "Raw Time Saved per Task (%)",
+              "npv_high_driver_usd": 1.416227e6,
+              "npv_low_driver_usd": -684348.0,
+              "npv_swing_usd": 2.100575e6,
+              "roi_high_driver_pct": 67.1,
+              "roi_low_driver_pct": -26.6,
+              "roi_swing_pct": 93.7,
+              "spearman_r": 0.739
+            },
+            {
+              "category": "Quality Check",
+              "driver": "Cleanup & Fact-Checking Time",
+              "npv_high_driver_usd": -293295.0,
+              "npv_low_driver_usd": 951162.0,
+              "npv_swing_usd": -1.244458e6,
+              "roi_high_driver_pct": -9.5,
+              "roi_low_driver_pct": 45.7,
+              "roi_swing_pct": -55.2,
+              "spearman_r": -0.429
+            },
+            {
+              "category": "Starting Cost",
+              "driver": "Upfront IT Setup & Training Cost",
+              "npv_high_driver_usd": -85487.0,
+              "npv_low_driver_usd": 591266.0,
+              "npv_swing_usd": -676752.0,
+              "roi_high_driver_pct": 1.2,
+              "roi_low_driver_pct": 33.2,
+              "roi_swing_pct": -32.0,
+              "spearman_r": -0.261
+            },
+            {
+              "category": "Ongoing Cost",
+              "driver": "Monthly Seat & Usage Bill Creep",
+              "npv_high_driver_usd": -6032.0,
+              "npv_low_driver_usd": 646190.0,
+              "npv_swing_usd": -652223.0,
+              "roi_high_driver_pct": 2.5,
+              "roi_low_driver_pct": 37.5,
+              "roi_swing_pct": -34.9,
+              "spearman_r": -0.228
+            },
+            {
+              "category": "Business Impact",
+              "driver": "Turning Saved Time into Profit",
+              "npv_high_driver_usd": 609615.0,
+              "npv_low_driver_usd": 123463.0,
+              "npv_swing_usd": 486152.0,
+              "roi_high_driver_pct": 31.1,
+              "roi_low_driver_pct": 8.4,
+              "roi_swing_pct": 22.7,
+              "spearman_r": 0.185
+            },
+            {
+              "category": "Rollout Speed",
+              "driver": "How Fast Staff Adopt AI",
+              "npv_high_driver_usd": 388562.0,
+              "npv_low_driver_usd": 265799.0,
+              "npv_swing_usd": 122763.0,
+              "roi_high_driver_pct": 20.6,
+              "roi_low_driver_pct": 15.7,
+              "roi_swing_pct": 4.9,
+              "spearman_r": 0.06
+            }
+          ],
+          "teams": [
+            {
+              "ai_addressable_task_share_pct": 55.0,
+              "avg_monthly_hours_saved_per_fte": {
+                "mean": 7.4,
+                "p05": 0.9,
+                "p10": 2.2,
+                "p25": 4.4,
+                "p50": 7.2,
+                "p75": 10.2,
+                "p90": 12.8,
+                "p95": 14.4,
+                "std": 4.0
+              },
+              "cost_per_seat_monthly_usd": {
+                "mean": 246.8,
+                "p05": 175.0,
+                "p10": 188.1,
+                "p25": 211.6,
+                "p50": 242.2,
+                "p75": 277.9,
+                "p90": 311.1,
+                "p95": 332.6,
+                "std": 48.4
+              },
+              "fully_loaded_annual_cost_usd": 185000.0,
+              "headcount": 120,
+              "id": "software_eng",
+              "month36_net_productivity_uplift_pct": {
+                "mean": 5.81,
+                "p05": 0.78,
+                "p10": 1.87,
+                "p25": 3.62,
+                "p50": 5.73,
+                "p75": 7.96,
+                "p90": 9.88,
+                "p95": 11.0,
+                "std": 3.08
+              },
+              "name": "Product & Software Engineering",
+              "net_benefit_36m_usd": {
+                "mean": 1.596972e6,
+                "p05": 69144.0,
+                "p10": 374978.0,
+                "p25": 908158.0,
+                "p50": 1.545014e6,
+                "p75": 2.237559e6,
+                "p90": 2.894457e6,
+                "p95": 3.291938e6,
+                "std": 972390.0
+              },
+              "net_benefit_per_seat_36m_usd": {
+                "mean": 4425.0,
+                "p05": -8522.0,
+                "p10": -5951.0,
+                "p25": -1386.0,
+                "p50": 4049.0,
+                "p75": 9932.0,
+                "p90": 15451.0,
+                "p95": 18757.0,
+                "std": 8237.0
+              },
+              "prob_positive_roi_pct": 69.0,
+              "roi_pct": {
+                "mean": 55.1,
+                "p05": -93.8,
+                "p10": -65.3,
+                "p25": -14.9,
+                "p50": 45.3,
+                "p75": 116.4,
+                "p90": 188.1,
+                "p95": 235.2,
+                "std": 100.2
+              },
+              "total_cost_36m_usd": {
+                "mean": 1.066019e6,
+                "p05": 755890.0,
+                "p10": 812400.0,
+                "p25": 914243.0,
+                "p50": 1.046326e6,
+                "p75": 1.200455e6,
+                "p90": 1.343975e6,
+                "p95": 1.436654e6,
+                "std": 209169.0
+              }
+            },
+            {
+              "ai_addressable_task_share_pct": 65.0,
+              "avg_monthly_hours_saved_per_fte": {
+                "mean": 15.5,
+                "p05": 7.3,
+                "p10": 8.9,
+                "p25": 11.9,
+                "p50": 15.4,
+                "p75": 19.0,
+                "p90": 22.2,
+                "p95": 24.0,
+                "std": 5.1
+              },
+              "cost_per_seat_monthly_usd": {
+                "mean": 194.5,
+                "p05": 135.3,
+                "p10": 145.8,
+                "p25": 165.5,
+                "p50": 190.7,
+                "p75": 219.8,
+                "p90": 248.6,
+                "p95": 264.3,
+                "std": 40.1
+              },
+              "fully_loaded_annual_cost_usd": 78000.0,
+              "headcount": 90,
+              "id": "customer_ops",
+              "month36_net_productivity_uplift_pct": {
+                "mean": 11.83,
+                "p05": 5.81,
+                "p10": 7.03,
+                "p25": 9.22,
+                "p50": 11.76,
+                "p75": 14.43,
+                "p90": 16.71,
+                "p95": 18.02,
+                "std": 3.67
+              },
+              "name": "Customer Support & Success",
+              "net_benefit_36m_usd": {
+                "mean": 1.281578e6,
+                "p05": 585551.0,
+                "p10": 717159.0,
+                "p25": 973739.0,
+                "p50": 1.265386e6,
+                "p75": 1.581796e6,
+                "p90": 1.856698e6,
+                "p95": 2.018992e6,
+                "std": 436940.0
+              },
+              "net_benefit_per_seat_36m_usd": {
+                "mean": 7238.0,
+                "p05": -728.0,
+                "p10": 864.0,
+                "p25": 3668.0,
+                "p50": 7055.0,
+                "p75": 10684.0,
+                "p90": 13866.0,
+                "p95": 15667.0,
+                "std": 5023.0
+              },
+              "prob_positive_roi_pct": 93.1,
+              "roi_pct": {
+                "mean": 111.6,
+                "p05": -10.0,
+                "p10": 11.5,
+                "p25": 50.6,
+                "p50": 102.5,
+                "p75": 163.7,
+                "p90": 224.6,
+                "p95": 263.2,
+                "std": 84.2
+              },
+              "total_cost_36m_usd": {
+                "mean": 630198.0,
+                "p05": 438473.0,
+                "p10": 472303.0,
+                "p25": 536367.0,
+                "p50": 617741.0,
+                "p75": 712111.0,
+                "p90": 805523.0,
+                "p95": 856269.0,
+                "std": 129959.0
+              }
+            },
+            {
+              "ai_addressable_task_share_pct": 42.0,
+              "avg_monthly_hours_saved_per_fte": {
+                "mean": 3.6,
+                "p05": 0.0,
+                "p10": 0.4,
+                "p25": 1.8,
+                "p50": 3.4,
+                "p75": 5.3,
+                "p90": 6.9,
+                "p95": 7.9,
+                "std": 2.4
+              },
+              "cost_per_seat_monthly_usd": {
+                "mean": 219.1,
+                "p05": 155.8,
+                "p10": 168.1,
+                "p25": 188.6,
+                "p50": 215.5,
+                "p75": 245.5,
+                "p90": 276.0,
+                "p95": 294.9,
+                "std": 42.5
+              },
+              "fully_loaded_annual_cost_usd": 142000.0,
+              "headcount": 75,
+              "id": "sales_gtm",
+              "month36_net_productivity_uplift_pct": {
+                "mean": 2.91,
+                "p05": -0.31,
+                "p10": 0.38,
+                "p25": 1.54,
+                "p50": 2.87,
+                "p75": 4.28,
+                "p90": 5.53,
+                "p95": 6.28,
+                "std": 1.98
+              },
+              "name": "Sales, Account Teams & Marketing",
+              "net_benefit_36m_usd": {
+                "mean": 287773.0,
+                "p05": -111992.0,
+                "p10": -26334.0,
+                "p25": 113839.0,
+                "p50": 277414.0,
+                "p75": 452814.0,
+                "p90": 617491.0,
+                "p95": 724831.0,
+                "std": 252674.0
+              },
+              "net_benefit_per_seat_36m_usd": {
+                "mean": -4052.0,
+                "p05": -10079.0,
+                "p10": -8748.0,
+                "p25": -6594.0,
+                "p50": -4146.0,
+                "p75": -1547.0,
+                "p90": 753.0,
+                "p95": 2201.0,
+                "std": 3695.0
+              },
+              "prob_positive_roi_pct": 13.8,
+              "roi_pct": {
+                "mean": -49.5,
+                "p05": -119.2,
+                "p10": -104.5,
+                "p25": -81.0,
+                "p50": -53.3,
+                "p75": -21.0,
+                "p90": 11.0,
+                "p95": 30.9,
+                "std": 46.0
+              },
+              "total_cost_36m_usd": {
+                "mean": 591638.0,
+                "p05": 420548.0,
+                "p10": 453935.0,
+                "p25": 509341.0,
+                "p50": 581831.0,
+                "p75": 662767.0,
+                "p90": 745232.0,
+                "p95": 796143.0,
+                "std": 114712.0
+              }
+            },
+            {
+              "ai_addressable_task_share_pct": 48.0,
+              "avg_monthly_hours_saved_per_fte": {
+                "mean": 1.8,
+                "p05": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 1.1,
+                "p75": 3.1,
+                "p90": 4.9,
+                "p95": 6.1,
+                "std": 2.1
+              },
+              "cost_per_seat_monthly_usd": {
+                "mean": 264.5,
+                "p05": 186.8,
+                "p10": 200.1,
+                "p25": 226.2,
+                "p50": 259.7,
+                "p75": 298.3,
+                "p90": 335.3,
+                "p95": 358.5,
+                "std": 52.5
+              },
+              "fully_loaded_annual_cost_usd": 165000.0,
+              "headcount": 40,
+              "id": "legal_finance",
+              "month36_net_productivity_uplift_pct": {
+                "mean": 1.0,
+                "p05": -2.95,
+                "p10": -2.12,
+                "p25": -0.64,
+                "p50": 1.02,
+                "p75": 2.65,
+                "p90": 4.08,
+                "p95": 4.89,
+                "std": 2.37
+              },
+              "name": "Legal, Finance & Compliance",
+              "net_benefit_36m_usd": {
+                "mean": 34453.0,
+                "p05": -297526.0,
+                "p10": -224513.0,
+                "p25": -101663.0,
+                "p50": 34820.0,
+                "p75": 169612.0,
+                "p90": 293524.0,
+                "p95": 365335.0,
+                "std": 200952.0
+              },
+              "net_benefit_per_seat_36m_usd": {
+                "mean": -8660.0,
+                "p05": -17550.0,
+                "p10": -15625.0,
+                "p25": -12281.0,
+                "p50": -8681.0,
+                "p75": -4976.0,
+                "p90": -1849.0,
+                "p95": 150.0,
+                "std": 5363.0
+              },
+              "prob_positive_roi_pct": 5.4,
+              "roi_pct": {
+                "mean": -90.6,
+                "p05": -181.3,
+                "p10": -161.0,
+                "p25": -126.5,
+                "p50": -90.8,
+                "p75": -54.6,
+                "p90": -20.8,
+                "p95": 1.7,
+                "std": 55.8
+              },
+              "total_cost_36m_usd": {
+                "mean": 380870.0,
+                "p05": 268948.0,
+                "p10": 288147.0,
+                "p25": 325745.0,
+                "p50": 373974.0,
+                "p75": 429522.0,
+                "p90": 482806.0,
+                "p95": 516304.0,
+                "std": 75549.0
+              }
+            }
+          ],
+          "trajectories": {
+            "adoption_pct": {
+              "mean": [3.6, 7.2, 13.6, 23.5, 36.2, 50.1, 62.8, 72.4, 78.8, 82.5, 84.5, 85.4, 85.9, 86.1, 86.2, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3],
+              "p10": [0.5, 1.2, 2.8, 6.4, 13.4, 25.0, 40.2, 55.7, 67.9, 74.9, 77.8, 79.1, 79.6, 79.8, 79.9, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0],
+              "p25": [1.1, 2.6, 5.7, 11.9, 22.6, 37.3, 53.1, 66.3, 74.5, 78.8, 81.0, 82.2, 82.7, 82.9, 83.0, 83.0, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1],
+              "p50": [2.5, 5.4, 11.3, 21.5, 35.8, 51.9, 65.7, 74.8, 80.1, 83.1, 84.7, 85.7, 86.1, 86.4, 86.5, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6],
+              "p75": [5.0, 10.2, 19.5, 33.1, 49.1, 64.0, 74.5, 80.8, 84.6, 86.8, 88.1, 88.9, 89.3, 89.5, 89.6, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7],
+              "p90": [8.3, 15.9, 27.9, 43.6, 59.3, 72.0, 80.2, 85.0, 88.0, 89.7, 90.8, 91.4, 91.8, 92.0, 92.1, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2]
+            },
+            "cumulative_cashflow_usd": {
+              "mean": [-124811.0, -253714.0, -388692.0, -529460.0, -569838.0, -603824.0, -623924.0, -626111.0, -610800.0, -570840.0, -521596.0, -467161.0, -410456.0, -353272.0, -296589.0, -240900.0, -186443.0, -133338.0, -81657.0, -31451.0, 17234.0, 64354.0, 109863.0, 153715.0, 195863.0, 236259.0, 274852.0, 311591.0, 346423.0, 379293.0, 410145.0, 438921.0, 465563.0, 490007.0, 512192.0, 532051.0],
+              "p10": [-186043.0, -376489.0, -574737.0, -778835.0, -831125.0, -881967.0, -917330.0, -938864.0, -951125.0, -938695.0, -920927.0, -901139.0, -881156.0, -864760.0, -849683.0, -835253.0, -822811.0, -809137.0, -801131.0, -796678.0, -788951.0, -786342.0, -782647.0, -787265.0, -789802.0, -795409.0, -801660.0, -810477.0, -824506.0, -839127.0, -855280.0, -875302.0, -898150.0, -923238.0, -946808.0, -977564.0],
+              "p25": [-147909.0, -300505.0, -459482.0, -624908.0, -673546.0, -714075.0, -746269.0, -762282.0, -767477.0, -748688.0, -722307.0, -687632.0, -653223.0, -617917.0, -585454.0, -554154.0, -523924.0, -494948.0, -468747.0, -445345.0, -422739.0, -400567.0, -379041.0, -359296.0, -344106.0, -331157.0, -318282.0, -310625.0, -302927.0, -295264.0, -291397.0, -288281.0, -289018.0, -293071.0, -296598.0, -302895.0],
+              "p50": [-116037.0, -236214.0, -362900.0, -495271.0, -537602.0, -571558.0, -594488.0, -600886.0, -592705.0, -557674.0, -512235.0, -461801.0, -409036.0, -354321.0, -298112.0, -246069.0, -192712.0, -140553.0, -90122.0, -39330.0, 7394.0, 52845.0, 97041.0, 138611.0, 179756.0, 219638.0, 256207.0, 291613.0, 326140.0, 356655.0, 385137.0, 412225.0, 436812.0, 457232.0, 478838.0, 497235.0],
+              "p75": [-91870.0, -187798.0, -287889.0, -394220.0, -429825.0, -458281.0, -471307.0, -462965.0, -434470.0, -379207.0, -314767.0, -239468.0, -164238.0, -86209.0, -8927.0, 70384.0, 143120.0, 216919.0, 291745.0, 362773.0, 434080.0, 506369.0, 575994.0, 645355.0, 713196.0, 780244.0, 844724.0, 906532.0, 968884.0, 1.026094e6, 1.078991e6, 1.133381e6, 1.187026e6, 1.237255e6, 1.281684e6, 1.328818e6],
+              "p90": [-75027.0, -153198.0, -236199.0, -323553.0, -352278.0, -372493.0, -371889.0, -345638.0, -294269.0, -214765.0, -127630.0, -34926.0, 62959.0, 163636.0, 262859.0, 361946.0, 461497.0, 560486.0, 659298.0, 756388.0, 853535.0, 948418.0, 1.037914e6, 1.129744e6, 1.2175e6, 1.309807e6, 1.394702e6, 1.479867e6, 1.562646e6, 1.64465e6, 1.72647e6, 1.807229e6, 1.880554e6, 1.954419e6, 2.02646e6, 2.099461e6]
+            },
+            "effective_productivity_uplift_pct": {
+              "mean": [-0.05, -0.16, -0.28, -0.29, 0.01, 0.74, 1.82, 3.03, 4.12, 4.97, 5.53, 5.87, 6.06, 6.15, 6.19, 6.21, 6.21, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22],
+              "p10": [-0.24, -0.55, -0.94, -1.19, -1.18, -0.95, -0.48, 0.42, 1.59, 2.62, 3.32, 3.74, 3.94, 4.03, 4.06, 4.07, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08],
+              "p25": [-0.09, -0.26, -0.49, -0.67, -0.62, -0.32, 0.45, 1.63, 2.82, 3.75, 4.36, 4.72, 4.91, 5.0, 5.04, 5.05, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06],
+              "p50": [-0.01, -0.07, -0.17, -0.24, -0.11, 0.53, 1.73, 3.03, 4.16, 4.99, 5.54, 5.87, 6.06, 6.14, 6.18, 6.19, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2],
+              "p75": [0.02, 0.01, 0.0, 0.07, 0.56, 1.68, 3.09, 4.44, 5.5, 6.23, 6.71, 6.99, 7.16, 7.26, 7.3, 7.31, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33],
+              "p90": [0.07, 0.1, 0.19, 0.53, 1.41, 2.75, 4.24, 5.54, 6.57, 7.3, 7.77, 8.05, 8.21, 8.3, 8.34, 8.36, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37]
+            },
+            "monthly_benefit_usd": {
+              "mean": [-1521.0, -4096.0, -7420.0, -8837.0, -4254.0, 8856.0, 29195.0, 52436.0, 73851.0, 90493.0, 101730.0, 108470.0, 112118.0, 113921.0, 114741.0, 115087.0, 115224.0, 115276.0, 115295.0, 115302.0, 115305.0, 115306.0, 115307.0, 115307.0, 115307.0, 115307.0, 115307.0, 115307.0, 115307.0, 115307.0, 115307.0, 115307.0, 115307.0, 115307.0, 115307.0, 115307.0],
+              "p10": [-5567.0, -12703.0, -21772.0, -28371.0, -29206.0, -24890.0, -16420.0, -122.0, 20902.0, 40977.0, 54429.0, 61927.0, 65916.0, 67842.0, 68664.0, 68922.0, 69030.0, 69060.0, 69070.0, 69072.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0],
+              "p25": [-2349.0, -6286.0, -11776.0, -16412.0, -16782.0, -11698.0, 2014.0, 23615.0, 45809.0, 63386.0, 75252.0, 82295.0, 86088.0, 88035.0, 88973.0, 89251.0, 89353.0, 89402.0, 89419.0, 89421.0, 89422.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0],
+              "p50": [-431.0, -1902.0, -4443.0, -6806.0, -5437.0, 4510.0, 26169.0, 51286.0, 73239.0, 89647.0, 100770.0, 107345.0, 110726.0, 112511.0, 113365.0, 113765.0, 113882.0, 113976.0, 113982.0, 113991.0, 113996.0, 113997.0, 113997.0, 113997.0, 113997.0, 113997.0, 113997.0, 113998.0, 113998.0, 113998.0, 113998.0, 113998.0, 113998.0, 113998.0, 113998.0, 113998.0],
+              "p75": [200.0, -73.0, -679.0, -397.0, 6499.0, 26486.0, 54147.0, 80506.0, 101812.0, 116758.0, 126845.0, 132900.0, 136414.0, 138208.0, 139060.0, 139425.0, 139587.0, 139632.0, 139650.0, 139663.0, 139663.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0],
+              "p90": [953.0, 1181.0, 2190.0, 7514.0, 22946.0, 48857.0, 78578.0, 105812.0, 126914.0, 141653.0, 151273.0, 157570.0, 160938.0, 162410.0, 163393.0, 163772.0, 163941.0, 163970.0, 163985.0, 163987.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0]
+            },
+            "monthly_cost_usd": {
+              "mean": [123290.0, 124807.0, 127559.0, 131931.0, 36124.0, 42842.0, 49294.0, 54623.0, 58540.0, 50534.0, 52486.0, 54035.0, 55413.0, 56737.0, 58058.0, 59398.0, 60767.0, 62172.0, 63614.0, 65096.0, 66620.0, 68186.0, 69798.0, 71455.0, 73159.0, 74911.0, 76714.0, 78568.0, 80475.0, 82437.0, 84455.0, 86531.0, 88666.0, 90863.0, 93122.0, 95447.0],
+              "p10": [73628.0, 75147.0, 77612.0, 81384.0, 24662.0, 30234.0, 37239.0, 44193.0, 49210.0, 42520.0, 44485.0, 45820.0, 46923.0, 47949.0, 48971.0, 49901.0, 50895.0, 51854.0, 52844.0, 53874.0, 54925.0, 55978.0, 57050.0, 58137.0, 59204.0, 60281.0, 61401.0, 62581.0, 63699.0, 64933.0, 66168.0, 67412.0, 68703.0, 69951.0, 71243.0, 72565.0],
+              "p25": [90508.0, 92078.0, 94837.0, 98777.0, 29343.0, 36132.0, 43322.0, 49340.0, 53478.0, 46021.0, 47872.0, 49291.0, 50508.0, 51649.0, 52783.0, 53955.0, 55094.0, 56281.0, 57458.0, 58695.0, 59948.0, 61186.0, 62483.0, 63777.0, 65092.0, 66461.0, 67858.0, 69297.0, 70761.0, 72237.0, 73706.0, 75239.0, 76788.0, 78371.0, 80001.0, 81647.0],
+              "p50": [114560.0, 116079.0, 118693.0, 123378.0, 35595.0, 42894.0, 49579.0, 54659.0, 58306.0, 50169.0, 52045.0, 53566.0, 54918.0, 56247.0, 57575.0, 58876.0, 60226.0, 61620.0, 63010.0, 64462.0, 65913.0, 67434.0, 69023.0, 70632.0, 72285.0, 73953.0, 75684.0, 77484.0, 79336.0, 81227.0, 83162.0, 85136.0, 87138.0, 89214.0, 91331.0, 93504.0],
+              "p75": [146344.0, 147683.0, 150482.0, 155099.0, 42297.0, 49529.0, 55530.0, 60001.0, 63449.0, 54831.0, 56755.0, 58347.0, 59879.0, 61369.0, 62824.0, 64335.0, 65884.0, 67483.0, 69188.0, 70877.0, 72611.0, 74411.0, 76249.0, 78195.0, 80177.0, 82307.0, 84499.0, 86752.0, 89013.0, 91421.0, 93859.0, 96430.0, 99026.0, 101704.0, 104461.0, 107342.0],
+              "p90": [184561.0, 186159.0, 188996.0, 193958.0, 48191.0, 55092.0, 60784.0, 64930.0, 68182.0, 58873.0, 60960.0, 62796.0, 64557.0, 66190.0, 67841.0, 69540.0, 71286.0, 73111.0, 75146.0, 77183.0, 79299.0, 81427.0, 83670.0, 86029.0, 88441.0, 90855.0, 93363.0, 96054.0, 98811.0, 101726.0, 104644.0, 107774.0, 111042.0, 114377.0, 117759.0, 121379.0]
+            },
+            "monthly_net_cashflow_usd": {
+              "mean": [-124811.0, -128903.0, -134979.0, -140768.0, -40378.0, -33986.0, -20100.0, -2187.0, 15311.0, 39959.0, 49244.0, 54435.0, 56705.0, 57184.0, 56683.0, 55689.0, 54457.0, 53104.0, 51681.0, 50206.0, 48685.0, 47120.0, 45509.0, 43852.0, 42148.0, 40396.0, 38593.0, 36739.0, 34832.0, 32870.0, 30852.0, 28776.0, 26641.0, 24444.0, 22185.0, 19860.0],
+              "p10": [-186043.0, -190663.0, -198811.0, -207038.0, -68074.0, -66460.0, -61221.0, -50878.0, -34964.0, -9161.0, 1714.0, 7576.0, 9848.0, 10331.0, 9754.0, 8706.0, 7278.0, 5846.0, 4359.0, 2781.0, 1283.0, -325.0, -2183.0, -4066.0, -5966.0, -7994.0, -10022.0, -12130.0, -14144.0, -16366.0, -18703.0, -21215.0, -23838.0, -26491.0, -29246.0, -32162.0],
+              "p25": [-147909.0, -152523.0, -159372.0, -166886.0, -52935.0, -51670.0, -43934.0, -28953.0, -11782.0, 13235.0, 23035.0, 28313.0, 30702.0, 31265.0, 30815.0, 29731.0, 28473.0, 27047.0, 25609.0, 24123.0, 22523.0, 20885.0, 19225.0, 17551.0, 15786.0, 13905.0, 11902.0, 9990.0, 7924.0, 5793.0, 3640.0, 1370.0, -1056.0, -3522.0, -6098.0, -8621.0],
+              "p50": [-116037.0, -120309.0, -126594.0, -132734.0, -38842.0, -35720.0, -23340.0, -4134.0, 14485.0, 39337.0, 48040.0, 53086.0, 55435.0, 55861.0, 55427.0, 54380.0, 53173.0, 51779.0, 50439.0, 48916.0, 47311.0, 45727.0, 44165.0, 42522.0, 40907.0, 39161.0, 37465.0, 35577.0, 33761.0, 31844.0, 29702.0, 27632.0, 25733.0, 23653.0, 21454.0, 19197.0],
+              "p75": [-91870.0, -95388.0, -100417.0, -105447.0, -26952.0, -18513.0, 1784.0, 23764.0, 41537.0, 65658.0, 74147.0, 79268.0, 81282.0, 81887.0, 81343.0, 80315.0, 79113.0, 77897.0, 76554.0, 75191.0, 73692.0, 72227.0, 70647.0, 69126.0, 67522.0, 65811.0, 64047.0, 62391.0, 60739.0, 59040.0, 57300.0, 55407.0, 53446.0, 51453.0, 49318.0, 47156.0],
+              "p90": [-75027.0, -78093.0, -82336.0, -85944.0, -15853.0, 1344.0, 24850.0, 48297.0, 66586.0, 90916.0, 99092.0, 103629.0, 105846.0, 106389.0, 106129.0, 105220.0, 104003.0, 102746.0, 101382.0, 99876.0, 98385.0, 96910.0, 95288.0, 93899.0, 92507.0, 90852.0, 89164.0, 87625.0, 86036.0, 84314.0, 82551.0, 80681.0, 78808.0, 77002.0, 75144.0, 73298.0]
+            },
+            "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]
+          }
+        },
+        "system_dynamics": {
+          "causal_loops": [
+            {
+              "id": "Flywheel 1",
+              "impact_summary": "Speeds up team-wide adoption once roughly 1 in 4 employees are using the tool daily.",
+              "name": "Word-of-Mouth & Shared Tips",
+              "pathway": "More Active Users → Better Shared Templates → Easier for Coworkers → Faster Adoption",
+              "type": "Growth Flywheel (+)"
+            },
+            {
+              "id": "Flywheel 2",
+              "impact_summary": "Boosts output per person by 1.03x by Month 36.",
+              "name": "Growing Company Know-How",
+              "pathway": "Daily Practice + Training → Stronger Company Playbooks → Bigger Time Savings & Fewer Mistakes",
+              "type": "Growth Flywheel (+)"
+            },
+            {
+              "id": "Brake 1",
+              "impact_summary": "Costs $4255k in extra cleanup and rework over 36 months.",
+              "name": "Sloppy AI Cleanup Backlog",
+              "pathway": "Rushed AI Output → Pileup of Unchecked Work → Extra Time Fixing Mistakes → Staff Burnout",
+              "type": "Hidden Brake (-)"
+            },
+            {
+              "id": "Brake 2",
+              "impact_summary": "Pushes monthly usage bills to 1.97x per seat by Month 36 without budget guardrails.",
+              "name": "Climbing Monthly AI Usage Bills",
+              "pathway": "Automated Multi-Step Tasks → Higher Cloud Usage per Person → Rising Monthly Bills → Lower Profit",
+              "type": "Hidden Brake (-)"
+            }
+          ],
+          "kpis": {
+            "equilibrium_npv_usd": -382377.0,
+            "equilibrium_roi_pct": -16.7,
+            "m36_adopted_workforce_pct": 80.8,
+            "m36_tech_debt_index": 19.7,
+            "m36_token_sprawl_multiplier": 1.97,
+            "m36_workflow_mastery_index": 50.9,
+            "total_cost_36m_usd": 2.196964e6,
+            "total_gross_value_36m_usd": 6.085902e6,
+            "total_tech_debt_drag_36m_usd": 4.254948e6
+          },
+          "paradigm": "system_dynamics",
+          "parameters": {
+            "automation_ambition": 0.65,
+            "governance_damping": 0.12,
+            "horizon_months": 36,
+            "reinvestment_rate": 0.12,
+            "rk4_step_months": 0.25
+          },
+          "scenario_id": "blitzscale_mandate",
+          "scenario_name": "Fast All-At-Once Push",
+          "stocks_and_flows": {
+            "flow_cumulative_cashflow_usd": [-115141.0, -228199.0, -339729.0, -450489.0, -454738.0, -459781.0, -466143.0, -474088.0, -483630.0, -484244.0, -485975.0, -488468.0, -491363.0, -494326.0, -497064.0, -499338.0, -500956.0, -501775.0, -501693.0, -500642.0, -498586.0, -495510.0, -491419.0, -486336.0, -480294.0, -473335.0, -465508.0, -456870.0, -447478.0, -437395.0, -426685.0, -415412.0, -403642.0, -391441.0, -378876.0, -366010.0],
+            "flow_debt_drag_usd": [28216.0, 37880.0, 48798.0, 60567.0, 72627.0, 84370.0, 95248.0, 104869.0, 113028.0, 119690.0, 124948.0, 128966.0, 131941.0, 134067.0, 135523.0, 136462.0, 137010.0, 137268.0, 137313.0, 137207.0, 136994.0, 136708.0, 136374.0, 136010.0, 135629.0, 135240.0, 134849.0, 134461.0, 134079.0, 133705.0, 133339.0, 132984.0, 132638.0, 132302.0, 131977.0, 131662.0],
+            "flow_gross_benefit_usd": [47814.0, 62272.0, 77605.0, 93075.0, 107923.0, 121516.0, 133448.0, 143564.0, 151918.0, 158704.0, 164177.0, 168604.0, 172231.0, 175261.0, 177859.0, 180149.0, 182224.0, 184148.0, 185967.0, 187713.0, 189404.0, 191052.0, 192665.0, 194246.0, 195796.0, 197315.0, 198802.0, 200257.0, 201677.0, 203063.0, 204413.0, 205727.0, 207004.0, 208245.0, 209449.0, 210617.0],
+            "flow_net_cashflow_usd": [-115141.0, -113058.0, -111530.0, -110760.0, -4249.0, -5042.0, -6362.0, -7945.0, -9542.0, -613.0, -1731.0, -2494.0, -2895.0, -2962.0, -2738.0, -2273.0, -1618.0, -819.0, 82.0, 1050.0, 2057.0, 3076.0, 4090.0, 5083.0, 6042.0, 6959.0, 7827.0, 8639.0, 9392.0, 10083.0, 10710.0, 11273.0, 11770.0, 12201.0, 12566.0, 12865.0],
+            "flow_total_cost_usd": [134739.0, 137449.0, 140336.0, 143268.0, 39545.0, 42188.0, 44562.0, 46640.0, 48432.0, 39627.0, 40960.0, 42132.0, 43186.0, 44157.0, 45075.0, 45961.0, 46832.0, 47699.0, 48572.0, 49455.0, 50353.0, 51268.0, 52201.0, 53153.0, 54125.0, 55116.0, 56127.0, 57157.0, 58207.0, 59275.0, 60363.0, 61470.0, 62596.0, 63741.0, 64906.0, 66090.0],
+            "loop_dominance_score": [14.2, 17.6, 20.9, 23.8, 26.3, 28.2, 29.5, 30.2, 30.4, 30.3, 29.9, 29.5, 29.0, 28.5, 28.1, 27.7, 27.4, 27.2, 27.0, 26.8, 26.7, 26.5, 26.4, 26.3, 26.1, 25.9, 25.7, 25.4, 25.2, 24.8, 24.4, 24.0, 23.6, 23.1, 22.5, 21.9],
+            "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36],
+            "stock_adopted_workforce_pct": [24.6, 31.8, 39.3, 46.7, 53.6, 59.6, 64.6, 68.6, 71.7, 74.0, 75.6, 76.7, 77.5, 78.0, 78.4, 78.6, 78.8, 78.9, 79.1, 79.2, 79.2, 79.3, 79.4, 79.5, 79.7, 79.8, 79.9, 80.0, 80.1, 80.2, 80.3, 80.4, 80.5, 80.6, 80.7, 80.8],
+            "stock_tech_debt_index": [3.2, 4.7, 6.4, 8.3, 10.4, 12.4, 14.4, 16.3, 17.9, 19.4, 20.5, 21.5, 22.2, 22.8, 23.1, 23.4, 23.5, 23.5, 23.4, 23.3, 23.1, 22.9, 22.7, 22.5, 22.2, 22.0, 21.7, 21.5, 21.3, 21.0, 20.8, 20.6, 20.3, 20.1, 19.9, 19.7],
+            "stock_token_sprawl_multiplier": [1.01, 1.01, 1.02, 1.04, 1.05, 1.07, 1.09, 1.11, 1.13, 1.15, 1.18, 1.2, 1.23, 1.26, 1.28, 1.31, 1.34, 1.37, 1.39, 1.42, 1.45, 1.48, 1.51, 1.55, 1.58, 1.61, 1.64, 1.68, 1.71, 1.75, 1.78, 1.82, 1.85, 1.89, 1.93, 1.97],
+            "stock_workflow_mastery_index": [10.6, 11.4, 12.4, 13.6, 14.9, 16.4, 18.0, 19.6, 21.3, 22.9, 24.5, 26.0, 27.5, 29.0, 30.4, 31.7, 33.0, 34.3, 35.5, 36.6, 37.8, 38.8, 39.9, 40.9, 41.9, 42.9, 43.8, 44.7, 45.5, 46.4, 47.2, 48.0, 48.7, 49.5, 50.2, 50.9]
+          }
+        }
+      },
+      "sensitivity": [
+        {
+          "category": "Speed Gain",
+          "driver": "Raw Time Saved per Task (%)",
+          "npv_high_driver_usd": 1.416227e6,
+          "npv_low_driver_usd": -684348.0,
+          "npv_swing_usd": 2.100575e6,
+          "roi_high_driver_pct": 67.1,
+          "roi_low_driver_pct": -26.6,
+          "roi_swing_pct": 93.7,
+          "spearman_r": 0.739
+        },
+        {
+          "category": "Quality Check",
+          "driver": "Cleanup & Fact-Checking Time",
+          "npv_high_driver_usd": -293295.0,
+          "npv_low_driver_usd": 951162.0,
+          "npv_swing_usd": -1.244458e6,
+          "roi_high_driver_pct": -9.5,
+          "roi_low_driver_pct": 45.7,
+          "roi_swing_pct": -55.2,
+          "spearman_r": -0.429
+        },
+        {
+          "category": "Starting Cost",
+          "driver": "Upfront IT Setup & Training Cost",
+          "npv_high_driver_usd": -85487.0,
+          "npv_low_driver_usd": 591266.0,
+          "npv_swing_usd": -676752.0,
+          "roi_high_driver_pct": 1.2,
+          "roi_low_driver_pct": 33.2,
+          "roi_swing_pct": -32.0,
+          "spearman_r": -0.261
+        },
+        {
+          "category": "Ongoing Cost",
+          "driver": "Monthly Seat & Usage Bill Creep",
+          "npv_high_driver_usd": -6032.0,
+          "npv_low_driver_usd": 646190.0,
+          "npv_swing_usd": -652223.0,
+          "roi_high_driver_pct": 2.5,
+          "roi_low_driver_pct": 37.5,
+          "roi_swing_pct": -34.9,
+          "spearman_r": -0.228
+        },
+        {
+          "category": "Business Impact",
+          "driver": "Turning Saved Time into Profit",
+          "npv_high_driver_usd": 609615.0,
+          "npv_low_driver_usd": 123463.0,
+          "npv_swing_usd": 486152.0,
+          "roi_high_driver_pct": 31.1,
+          "roi_low_driver_pct": 8.4,
+          "roi_swing_pct": 22.7,
+          "spearman_r": 0.185
+        },
+        {
+          "category": "Rollout Speed",
+          "driver": "How Fast Staff Adopt AI",
+          "npv_high_driver_usd": 388562.0,
+          "npv_low_driver_usd": 265799.0,
+          "npv_swing_usd": 122763.0,
+          "roi_high_driver_pct": 20.6,
+          "roi_low_driver_pct": 15.7,
+          "roi_swing_pct": 4.9,
+          "spearman_r": 0.06
+        }
+      ],
+      "tagline": "Buy seats for everyone on Day 1 without redesigning daily workflows",
+      "teams": [
+        {
+          "ai_addressable_task_share_pct": 55.0,
+          "avg_monthly_hours_saved_per_fte": {
+            "mean": 7.4,
+            "p05": 0.9,
+            "p10": 2.2,
+            "p25": 4.4,
+            "p50": 7.2,
+            "p75": 10.2,
+            "p90": 12.8,
+            "p95": 14.4,
+            "std": 4.0
+          },
+          "cost_per_seat_monthly_usd": {
+            "mean": 246.8,
+            "p05": 175.0,
+            "p10": 188.1,
+            "p25": 211.6,
+            "p50": 242.2,
+            "p75": 277.9,
+            "p90": 311.1,
+            "p95": 332.6,
+            "std": 48.4
+          },
+          "fully_loaded_annual_cost_usd": 185000.0,
+          "headcount": 120,
+          "id": "software_eng",
+          "month36_net_productivity_uplift_pct": {
+            "mean": 5.81,
+            "p05": 0.78,
+            "p10": 1.87,
+            "p25": 3.62,
+            "p50": 5.73,
+            "p75": 7.96,
+            "p90": 9.88,
+            "p95": 11.0,
+            "std": 3.08
+          },
+          "name": "Product & Software Engineering",
+          "net_benefit_36m_usd": {
+            "mean": 1.596972e6,
+            "p05": 69144.0,
+            "p10": 374978.0,
+            "p25": 908158.0,
+            "p50": 1.545014e6,
+            "p75": 2.237559e6,
+            "p90": 2.894457e6,
+            "p95": 3.291938e6,
+            "std": 972390.0
+          },
+          "net_benefit_per_seat_36m_usd": {
+            "mean": 4425.0,
+            "p05": -8522.0,
+            "p10": -5951.0,
+            "p25": -1386.0,
+            "p50": 4049.0,
+            "p75": 9932.0,
+            "p90": 15451.0,
+            "p95": 18757.0,
+            "std": 8237.0
+          },
+          "prob_positive_roi_pct": 69.0,
+          "roi_pct": {
+            "mean": 55.1,
+            "p05": -93.8,
+            "p10": -65.3,
+            "p25": -14.9,
+            "p50": 45.3,
+            "p75": 116.4,
+            "p90": 188.1,
+            "p95": 235.2,
+            "std": 100.2
+          },
+          "total_cost_36m_usd": {
+            "mean": 1.066019e6,
+            "p05": 755890.0,
+            "p10": 812400.0,
+            "p25": 914243.0,
+            "p50": 1.046326e6,
+            "p75": 1.200455e6,
+            "p90": 1.343975e6,
+            "p95": 1.436654e6,
+            "std": 209169.0
+          }
+        },
+        {
+          "ai_addressable_task_share_pct": 65.0,
+          "avg_monthly_hours_saved_per_fte": {
+            "mean": 15.5,
+            "p05": 7.3,
+            "p10": 8.9,
+            "p25": 11.9,
+            "p50": 15.4,
+            "p75": 19.0,
+            "p90": 22.2,
+            "p95": 24.0,
+            "std": 5.1
+          },
+          "cost_per_seat_monthly_usd": {
+            "mean": 194.5,
+            "p05": 135.3,
+            "p10": 145.8,
+            "p25": 165.5,
+            "p50": 190.7,
+            "p75": 219.8,
+            "p90": 248.6,
+            "p95": 264.3,
+            "std": 40.1
+          },
+          "fully_loaded_annual_cost_usd": 78000.0,
+          "headcount": 90,
+          "id": "customer_ops",
+          "month36_net_productivity_uplift_pct": {
+            "mean": 11.83,
+            "p05": 5.81,
+            "p10": 7.03,
+            "p25": 9.22,
+            "p50": 11.76,
+            "p75": 14.43,
+            "p90": 16.71,
+            "p95": 18.02,
+            "std": 3.67
+          },
+          "name": "Customer Support & Success",
+          "net_benefit_36m_usd": {
+            "mean": 1.281578e6,
+            "p05": 585551.0,
+            "p10": 717159.0,
+            "p25": 973739.0,
+            "p50": 1.265386e6,
+            "p75": 1.581796e6,
+            "p90": 1.856698e6,
+            "p95": 2.018992e6,
+            "std": 436940.0
+          },
+          "net_benefit_per_seat_36m_usd": {
+            "mean": 7238.0,
+            "p05": -728.0,
+            "p10": 864.0,
+            "p25": 3668.0,
+            "p50": 7055.0,
+            "p75": 10684.0,
+            "p90": 13866.0,
+            "p95": 15667.0,
+            "std": 5023.0
+          },
+          "prob_positive_roi_pct": 93.1,
+          "roi_pct": {
+            "mean": 111.6,
+            "p05": -10.0,
+            "p10": 11.5,
+            "p25": 50.6,
+            "p50": 102.5,
+            "p75": 163.7,
+            "p90": 224.6,
+            "p95": 263.2,
+            "std": 84.2
+          },
+          "total_cost_36m_usd": {
+            "mean": 630198.0,
+            "p05": 438473.0,
+            "p10": 472303.0,
+            "p25": 536367.0,
+            "p50": 617741.0,
+            "p75": 712111.0,
+            "p90": 805523.0,
+            "p95": 856269.0,
+            "std": 129959.0
+          }
+        },
+        {
+          "ai_addressable_task_share_pct": 42.0,
+          "avg_monthly_hours_saved_per_fte": {
+            "mean": 3.6,
+            "p05": 0.0,
+            "p10": 0.4,
+            "p25": 1.8,
+            "p50": 3.4,
+            "p75": 5.3,
+            "p90": 6.9,
+            "p95": 7.9,
+            "std": 2.4
+          },
+          "cost_per_seat_monthly_usd": {
+            "mean": 219.1,
+            "p05": 155.8,
+            "p10": 168.1,
+            "p25": 188.6,
+            "p50": 215.5,
+            "p75": 245.5,
+            "p90": 276.0,
+            "p95": 294.9,
+            "std": 42.5
+          },
+          "fully_loaded_annual_cost_usd": 142000.0,
+          "headcount": 75,
+          "id": "sales_gtm",
+          "month36_net_productivity_uplift_pct": {
+            "mean": 2.91,
+            "p05": -0.31,
+            "p10": 0.38,
+            "p25": 1.54,
+            "p50": 2.87,
+            "p75": 4.28,
+            "p90": 5.53,
+            "p95": 6.28,
+            "std": 1.98
+          },
+          "name": "Sales, Account Teams & Marketing",
+          "net_benefit_36m_usd": {
+            "mean": 287773.0,
+            "p05": -111992.0,
+            "p10": -26334.0,
+            "p25": 113839.0,
+            "p50": 277414.0,
+            "p75": 452814.0,
+            "p90": 617491.0,
+            "p95": 724831.0,
+            "std": 252674.0
+          },
+          "net_benefit_per_seat_36m_usd": {
+            "mean": -4052.0,
+            "p05": -10079.0,
+            "p10": -8748.0,
+            "p25": -6594.0,
+            "p50": -4146.0,
+            "p75": -1547.0,
+            "p90": 753.0,
+            "p95": 2201.0,
+            "std": 3695.0
+          },
+          "prob_positive_roi_pct": 13.8,
+          "roi_pct": {
+            "mean": -49.5,
+            "p05": -119.2,
+            "p10": -104.5,
+            "p25": -81.0,
+            "p50": -53.3,
+            "p75": -21.0,
+            "p90": 11.0,
+            "p95": 30.9,
+            "std": 46.0
+          },
+          "total_cost_36m_usd": {
+            "mean": 591638.0,
+            "p05": 420548.0,
+            "p10": 453935.0,
+            "p25": 509341.0,
+            "p50": 581831.0,
+            "p75": 662767.0,
+            "p90": 745232.0,
+            "p95": 796143.0,
+            "std": 114712.0
+          }
+        },
+        {
+          "ai_addressable_task_share_pct": 48.0,
+          "avg_monthly_hours_saved_per_fte": {
+            "mean": 1.8,
+            "p05": 0.0,
+            "p10": 0.0,
+            "p25": 0.0,
+            "p50": 1.1,
+            "p75": 3.1,
+            "p90": 4.9,
+            "p95": 6.1,
+            "std": 2.1
+          },
+          "cost_per_seat_monthly_usd": {
+            "mean": 264.5,
+            "p05": 186.8,
+            "p10": 200.1,
+            "p25": 226.2,
+            "p50": 259.7,
+            "p75": 298.3,
+            "p90": 335.3,
+            "p95": 358.5,
+            "std": 52.5
+          },
+          "fully_loaded_annual_cost_usd": 165000.0,
+          "headcount": 40,
+          "id": "legal_finance",
+          "month36_net_productivity_uplift_pct": {
+            "mean": 1.0,
+            "p05": -2.95,
+            "p10": -2.12,
+            "p25": -0.64,
+            "p50": 1.02,
+            "p75": 2.65,
+            "p90": 4.08,
+            "p95": 4.89,
+            "std": 2.37
+          },
+          "name": "Legal, Finance & Compliance",
+          "net_benefit_36m_usd": {
+            "mean": 34453.0,
+            "p05": -297526.0,
+            "p10": -224513.0,
+            "p25": -101663.0,
+            "p50": 34820.0,
+            "p75": 169612.0,
+            "p90": 293524.0,
+            "p95": 365335.0,
+            "std": 200952.0
+          },
+          "net_benefit_per_seat_36m_usd": {
+            "mean": -8660.0,
+            "p05": -17550.0,
+            "p10": -15625.0,
+            "p25": -12281.0,
+            "p50": -8681.0,
+            "p75": -4976.0,
+            "p90": -1849.0,
+            "p95": 150.0,
+            "std": 5363.0
+          },
+          "prob_positive_roi_pct": 5.4,
+          "roi_pct": {
+            "mean": -90.6,
+            "p05": -181.3,
+            "p10": -161.0,
+            "p25": -126.5,
+            "p50": -90.8,
+            "p75": -54.6,
+            "p90": -20.8,
+            "p95": 1.7,
+            "std": 55.8
+          },
+          "total_cost_36m_usd": {
+            "mean": 380870.0,
+            "p05": 268948.0,
+            "p10": 288147.0,
+            "p25": 325745.0,
+            "p50": 373974.0,
+            "p75": 429522.0,
+            "p90": 482806.0,
+            "p95": 516304.0,
+            "std": 75549.0
+          }
+        }
+      ],
+      "trajectories": {
+        "adoption_pct": {
+          "mean": [3.6, 7.2, 13.6, 23.5, 36.2, 50.1, 62.8, 72.4, 78.8, 82.5, 84.5, 85.4, 85.9, 86.1, 86.2, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3, 86.3],
+          "p10": [0.5, 1.2, 2.8, 6.4, 13.4, 25.0, 40.2, 55.7, 67.9, 74.9, 77.8, 79.1, 79.6, 79.8, 79.9, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0, 80.0],
+          "p25": [1.1, 2.6, 5.7, 11.9, 22.6, 37.3, 53.1, 66.3, 74.5, 78.8, 81.0, 82.2, 82.7, 82.9, 83.0, 83.0, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1, 83.1],
+          "p50": [2.5, 5.4, 11.3, 21.5, 35.8, 51.9, 65.7, 74.8, 80.1, 83.1, 84.7, 85.7, 86.1, 86.4, 86.5, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6, 86.6],
+          "p75": [5.0, 10.2, 19.5, 33.1, 49.1, 64.0, 74.5, 80.8, 84.6, 86.8, 88.1, 88.9, 89.3, 89.5, 89.6, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7, 89.7],
+          "p90": [8.3, 15.9, 27.9, 43.6, 59.3, 72.0, 80.2, 85.0, 88.0, 89.7, 90.8, 91.4, 91.8, 92.0, 92.1, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2, 92.2]
+        },
+        "cumulative_cashflow_usd": {
+          "mean": [-124811.0, -253714.0, -388692.0, -529460.0, -569838.0, -603824.0, -623924.0, -626111.0, -610800.0, -570840.0, -521596.0, -467161.0, -410456.0, -353272.0, -296589.0, -240900.0, -186443.0, -133338.0, -81657.0, -31451.0, 17234.0, 64354.0, 109863.0, 153715.0, 195863.0, 236259.0, 274852.0, 311591.0, 346423.0, 379293.0, 410145.0, 438921.0, 465563.0, 490007.0, 512192.0, 532051.0],
+          "p10": [-186043.0, -376489.0, -574737.0, -778835.0, -831125.0, -881967.0, -917330.0, -938864.0, -951125.0, -938695.0, -920927.0, -901139.0, -881156.0, -864760.0, -849683.0, -835253.0, -822811.0, -809137.0, -801131.0, -796678.0, -788951.0, -786342.0, -782647.0, -787265.0, -789802.0, -795409.0, -801660.0, -810477.0, -824506.0, -839127.0, -855280.0, -875302.0, -898150.0, -923238.0, -946808.0, -977564.0],
+          "p25": [-147909.0, -300505.0, -459482.0, -624908.0, -673546.0, -714075.0, -746269.0, -762282.0, -767477.0, -748688.0, -722307.0, -687632.0, -653223.0, -617917.0, -585454.0, -554154.0, -523924.0, -494948.0, -468747.0, -445345.0, -422739.0, -400567.0, -379041.0, -359296.0, -344106.0, -331157.0, -318282.0, -310625.0, -302927.0, -295264.0, -291397.0, -288281.0, -289018.0, -293071.0, -296598.0, -302895.0],
+          "p50": [-116037.0, -236214.0, -362900.0, -495271.0, -537602.0, -571558.0, -594488.0, -600886.0, -592705.0, -557674.0, -512235.0, -461801.0, -409036.0, -354321.0, -298112.0, -246069.0, -192712.0, -140553.0, -90122.0, -39330.0, 7394.0, 52845.0, 97041.0, 138611.0, 179756.0, 219638.0, 256207.0, 291613.0, 326140.0, 356655.0, 385137.0, 412225.0, 436812.0, 457232.0, 478838.0, 497235.0],
+          "p75": [-91870.0, -187798.0, -287889.0, -394220.0, -429825.0, -458281.0, -471307.0, -462965.0, -434470.0, -379207.0, -314767.0, -239468.0, -164238.0, -86209.0, -8927.0, 70384.0, 143120.0, 216919.0, 291745.0, 362773.0, 434080.0, 506369.0, 575994.0, 645355.0, 713196.0, 780244.0, 844724.0, 906532.0, 968884.0, 1.026094e6, 1.078991e6, 1.133381e6, 1.187026e6, 1.237255e6, 1.281684e6, 1.328818e6],
+          "p90": [-75027.0, -153198.0, -236199.0, -323553.0, -352278.0, -372493.0, -371889.0, -345638.0, -294269.0, -214765.0, -127630.0, -34926.0, 62959.0, 163636.0, 262859.0, 361946.0, 461497.0, 560486.0, 659298.0, 756388.0, 853535.0, 948418.0, 1.037914e6, 1.129744e6, 1.2175e6, 1.309807e6, 1.394702e6, 1.479867e6, 1.562646e6, 1.64465e6, 1.72647e6, 1.807229e6, 1.880554e6, 1.954419e6, 2.02646e6, 2.099461e6]
+        },
+        "effective_productivity_uplift_pct": {
+          "mean": [-0.05, -0.16, -0.28, -0.29, 0.01, 0.74, 1.82, 3.03, 4.12, 4.97, 5.53, 5.87, 6.06, 6.15, 6.19, 6.21, 6.21, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22, 6.22],
+          "p10": [-0.24, -0.55, -0.94, -1.19, -1.18, -0.95, -0.48, 0.42, 1.59, 2.62, 3.32, 3.74, 3.94, 4.03, 4.06, 4.07, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08, 4.08],
+          "p25": [-0.09, -0.26, -0.49, -0.67, -0.62, -0.32, 0.45, 1.63, 2.82, 3.75, 4.36, 4.72, 4.91, 5.0, 5.04, 5.05, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06, 5.06],
+          "p50": [-0.01, -0.07, -0.17, -0.24, -0.11, 0.53, 1.73, 3.03, 4.16, 4.99, 5.54, 5.87, 6.06, 6.14, 6.18, 6.19, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2],
+          "p75": [0.02, 0.01, 0.0, 0.07, 0.56, 1.68, 3.09, 4.44, 5.5, 6.23, 6.71, 6.99, 7.16, 7.26, 7.3, 7.31, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33, 7.33],
+          "p90": [0.07, 0.1, 0.19, 0.53, 1.41, 2.75, 4.24, 5.54, 6.57, 7.3, 7.77, 8.05, 8.21, 8.3, 8.34, 8.36, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37, 8.37]
+        },
+        "monthly_benefit_usd": {
+          "mean": [-1521.0, -4096.0, -7420.0, -8837.0, -4254.0, 8856.0, 29195.0, 52436.0, 73851.0, 90493.0, 101730.0, 108470.0, 112118.0, 113921.0, 114741.0, 115087.0, 115224.0, 115276.0, 115295.0, 115302.0, 115305.0, 115306.0, 115307.0, 115307.0, 115307.0, 115307.0, 115307.0, 115307.0, 115307.0, 115307.0, 115307.0, 115307.0, 115307.0, 115307.0, 115307.0, 115307.0],
+          "p10": [-5567.0, -12703.0, -21772.0, -28371.0, -29206.0, -24890.0, -16420.0, -122.0, 20902.0, 40977.0, 54429.0, 61927.0, 65916.0, 67842.0, 68664.0, 68922.0, 69030.0, 69060.0, 69070.0, 69072.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0, 69073.0],
+          "p25": [-2349.0, -6286.0, -11776.0, -16412.0, -16782.0, -11698.0, 2014.0, 23615.0, 45809.0, 63386.0, 75252.0, 82295.0, 86088.0, 88035.0, 88973.0, 89251.0, 89353.0, 89402.0, 89419.0, 89421.0, 89422.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0, 89423.0],
+          "p50": [-431.0, -1902.0, -4443.0, -6806.0, -5437.0, 4510.0, 26169.0, 51286.0, 73239.0, 89647.0, 100770.0, 107345.0, 110726.0, 112511.0, 113365.0, 113765.0, 113882.0, 113976.0, 113982.0, 113991.0, 113996.0, 113997.0, 113997.0, 113997.0, 113997.0, 113997.0, 113997.0, 113998.0, 113998.0, 113998.0, 113998.0, 113998.0, 113998.0, 113998.0, 113998.0, 113998.0],
+          "p75": [200.0, -73.0, -679.0, -397.0, 6499.0, 26486.0, 54147.0, 80506.0, 101812.0, 116758.0, 126845.0, 132900.0, 136414.0, 138208.0, 139060.0, 139425.0, 139587.0, 139632.0, 139650.0, 139663.0, 139663.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0, 139664.0],
+          "p90": [953.0, 1181.0, 2190.0, 7514.0, 22946.0, 48857.0, 78578.0, 105812.0, 126914.0, 141653.0, 151273.0, 157570.0, 160938.0, 162410.0, 163393.0, 163772.0, 163941.0, 163970.0, 163985.0, 163987.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0, 163988.0]
+        },
+        "monthly_cost_usd": {
+          "mean": [123290.0, 124807.0, 127559.0, 131931.0, 36124.0, 42842.0, 49294.0, 54623.0, 58540.0, 50534.0, 52486.0, 54035.0, 55413.0, 56737.0, 58058.0, 59398.0, 60767.0, 62172.0, 63614.0, 65096.0, 66620.0, 68186.0, 69798.0, 71455.0, 73159.0, 74911.0, 76714.0, 78568.0, 80475.0, 82437.0, 84455.0, 86531.0, 88666.0, 90863.0, 93122.0, 95447.0],
+          "p10": [73628.0, 75147.0, 77612.0, 81384.0, 24662.0, 30234.0, 37239.0, 44193.0, 49210.0, 42520.0, 44485.0, 45820.0, 46923.0, 47949.0, 48971.0, 49901.0, 50895.0, 51854.0, 52844.0, 53874.0, 54925.0, 55978.0, 57050.0, 58137.0, 59204.0, 60281.0, 61401.0, 62581.0, 63699.0, 64933.0, 66168.0, 67412.0, 68703.0, 69951.0, 71243.0, 72565.0],
+          "p25": [90508.0, 92078.0, 94837.0, 98777.0, 29343.0, 36132.0, 43322.0, 49340.0, 53478.0, 46021.0, 47872.0, 49291.0, 50508.0, 51649.0, 52783.0, 53955.0, 55094.0, 56281.0, 57458.0, 58695.0, 59948.0, 61186.0, 62483.0, 63777.0, 65092.0, 66461.0, 67858.0, 69297.0, 70761.0, 72237.0, 73706.0, 75239.0, 76788.0, 78371.0, 80001.0, 81647.0],
+          "p50": [114560.0, 116079.0, 118693.0, 123378.0, 35595.0, 42894.0, 49579.0, 54659.0, 58306.0, 50169.0, 52045.0, 53566.0, 54918.0, 56247.0, 57575.0, 58876.0, 60226.0, 61620.0, 63010.0, 64462.0, 65913.0, 67434.0, 69023.0, 70632.0, 72285.0, 73953.0, 75684.0, 77484.0, 79336.0, 81227.0, 83162.0, 85136.0, 87138.0, 89214.0, 91331.0, 93504.0],
+          "p75": [146344.0, 147683.0, 150482.0, 155099.0, 42297.0, 49529.0, 55530.0, 60001.0, 63449.0, 54831.0, 56755.0, 58347.0, 59879.0, 61369.0, 62824.0, 64335.0, 65884.0, 67483.0, 69188.0, 70877.0, 72611.0, 74411.0, 76249.0, 78195.0, 80177.0, 82307.0, 84499.0, 86752.0, 89013.0, 91421.0, 93859.0, 96430.0, 99026.0, 101704.0, 104461.0, 107342.0],
+          "p90": [184561.0, 186159.0, 188996.0, 193958.0, 48191.0, 55092.0, 60784.0, 64930.0, 68182.0, 58873.0, 60960.0, 62796.0, 64557.0, 66190.0, 67841.0, 69540.0, 71286.0, 73111.0, 75146.0, 77183.0, 79299.0, 81427.0, 83670.0, 86029.0, 88441.0, 90855.0, 93363.0, 96054.0, 98811.0, 101726.0, 104644.0, 107774.0, 111042.0, 114377.0, 117759.0, 121379.0]
+        },
+        "monthly_net_cashflow_usd": {
+          "mean": [-124811.0, -128903.0, -134979.0, -140768.0, -40378.0, -33986.0, -20100.0, -2187.0, 15311.0, 39959.0, 49244.0, 54435.0, 56705.0, 57184.0, 56683.0, 55689.0, 54457.0, 53104.0, 51681.0, 50206.0, 48685.0, 47120.0, 45509.0, 43852.0, 42148.0, 40396.0, 38593.0, 36739.0, 34832.0, 32870.0, 30852.0, 28776.0, 26641.0, 24444.0, 22185.0, 19860.0],
+          "p10": [-186043.0, -190663.0, -198811.0, -207038.0, -68074.0, -66460.0, -61221.0, -50878.0, -34964.0, -9161.0, 1714.0, 7576.0, 9848.0, 10331.0, 9754.0, 8706.0, 7278.0, 5846.0, 4359.0, 2781.0, 1283.0, -325.0, -2183.0, -4066.0, -5966.0, -7994.0, -10022.0, -12130.0, -14144.0, -16366.0, -18703.0, -21215.0, -23838.0, -26491.0, -29246.0, -32162.0],
+          "p25": [-147909.0, -152523.0, -159372.0, -166886.0, -52935.0, -51670.0, -43934.0, -28953.0, -11782.0, 13235.0, 23035.0, 28313.0, 30702.0, 31265.0, 30815.0, 29731.0, 28473.0, 27047.0, 25609.0, 24123.0, 22523.0, 20885.0, 19225.0, 17551.0, 15786.0, 13905.0, 11902.0, 9990.0, 7924.0, 5793.0, 3640.0, 1370.0, -1056.0, -3522.0, -6098.0, -8621.0],
+          "p50": [-116037.0, -120309.0, -126594.0, -132734.0, -38842.0, -35720.0, -23340.0, -4134.0, 14485.0, 39337.0, 48040.0, 53086.0, 55435.0, 55861.0, 55427.0, 54380.0, 53173.0, 51779.0, 50439.0, 48916.0, 47311.0, 45727.0, 44165.0, 42522.0, 40907.0, 39161.0, 37465.0, 35577.0, 33761.0, 31844.0, 29702.0, 27632.0, 25733.0, 23653.0, 21454.0, 19197.0],
+          "p75": [-91870.0, -95388.0, -100417.0, -105447.0, -26952.0, -18513.0, 1784.0, 23764.0, 41537.0, 65658.0, 74147.0, 79268.0, 81282.0, 81887.0, 81343.0, 80315.0, 79113.0, 77897.0, 76554.0, 75191.0, 73692.0, 72227.0, 70647.0, 69126.0, 67522.0, 65811.0, 64047.0, 62391.0, 60739.0, 59040.0, 57300.0, 55407.0, 53446.0, 51453.0, 49318.0, 47156.0],
+          "p90": [-75027.0, -78093.0, -82336.0, -85944.0, -15853.0, 1344.0, 24850.0, 48297.0, 66586.0, 90916.0, 99092.0, 103629.0, 105846.0, 106389.0, 106129.0, 105220.0, 104003.0, 102746.0, 101382.0, 99876.0, 98385.0, 96910.0, 95288.0, 93899.0, 92507.0, 90852.0, 89164.0, 87625.0, 86036.0, 84314.0, 82551.0, 80681.0, 78808.0, 77002.0, 75144.0, 73298.0]
+        },
+        "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]
+      }
+    },
+    {
+      "assumptions": {
+        "annual_token_drift_pct": [2.0, 8.0, 16.0],
+        "inflection_month": [10.0, 14.0, 19.0],
+        "j_curve_dip_pct": [1.0, 2.0, 5.0],
+        "rollout_ceiling_pct": [50.0, 68.0, 82.0],
+        "training_per_seat_usd": [450.0, 800.0, 1300.0],
+        "upfront_platform_p10_p90_usd": [210000.0, 520000.0]
+      },
+      "board_recommendation": "Downside-Protected Plan: Best for regulated teams where avoiding mistakes and protecting the budget matter more than fast payback.",
+      "cross_paradigm_comparison": [
+        {
+          "central_npv_usd": 723322.0,
+          "central_roi_pct": 74.8,
+          "downside_roi_pct": 15.1,
+          "mechanism": "Tests 10,000 combinations of adoption speed, time saved, and costs",
+          "paradigm_id": "monte_carlo",
+          "paradigm_name": "1. 10,000 What-If Futures (Monte Carlo)",
+          "primary_insight": "Shows honest Cautious (P10) to Best-Case (P90) profit ranges and breakeven speed.",
+          "upside_roi_pct": 150.4
+        },
+        {
+          "central_npv_usd": 1.6813e6,
+          "central_roi_pct": 154.5,
+          "downside_roi_pct": 81.2,
+          "mechanism": "Follows 325 individual coworkers sharing tips or quitting in frustration",
+          "paradigm_id": "agent_based",
+          "paradigm_name": "2. Team Behavior (Agent-Based)",
+          "primary_insight": "Shows how AI Champions spread good habits while 7.1% of seats risk becoming unused shelfware.",
+          "upside_roi_pct": 227.4
+        },
+        {
+          "central_npv_usd": 1.159943e6,
+          "central_roi_pct": 110.4,
+          "downside_roi_pct": 68.4,
+          "mechanism": "Tracks growing company know-how against cleanup backlog and rising bills",
+          "paradigm_id": "system_dynamics",
+          "paradigm_name": "3. Flywheels & Brakes (System Dynamics)",
+          "primary_insight": "Weighs growing team know-how (51.8 pts) against monthly bill growth (1.12x).",
+          "upside_roi_pct": 152.4
+        },
+        {
+          "central_npv_usd": 810137.0,
+          "central_roi_pct": 82.6,
+          "downside_roi_pct": 53.7,
+          "mechanism": "Follows everyday work items from first draft to final human review",
+          "paradigm_id": "discrete_event",
+          "paradigm_name": "4. Workflow Waiting Lines (Discrete Event)",
+          "primary_insight": "Cuts turnaround time by 8.7% while checking if final human review lines back up (0.13h wait).",
+          "upside_roi_pct": 111.5
+        },
+        {
+          "central_npv_usd": 1.829975e6,
+          "central_roi_pct": 118.1,
+          "downside_roi_pct": 21.8,
+          "mechanism": "Updates 3-year profit odds as soon as 6-month pilot results arrive",
+          "paradigm_id": "bayesian_network",
+          "paradigm_name": "5. Pilot Scorecard (Bayesian Network)",
+          "primary_insight": "Next-stage funding call: FIX FIRST (Tighten Quality & Budget Before Scaling).",
+          "upside_roi_pct": 173.8
+        }
+      ],
+      "description": "Puts safety and cost control first. Teams adopt gradually with thorough human review at every step. Downside risk is very small, though big profits take longer to arrive.",
+      "distributions": {
+        "npv_k_usd_histogram": {
+          "bin_edges": [-992.1, -844.6, -697.1, -549.6, -402.1, -254.6, -107.1, 40.4, 187.9, 335.3, 482.8, 630.3, 777.8, 925.3, 1072.8, 1220.3, 1367.8, 1515.3, 1662.8, 1810.3, 1957.8, 2105.3, 2252.8, 2400.3, 2547.8, 2695.3, 2842.8, 2990.3, 3137.7],
+          "bin_midpoints": [-918.4, -770.9, -623.4, -475.9, -328.4, -180.9, -33.4, 114.1, 261.6, 409.1, 556.6, 704.1, 851.6, 999.1, 1146.6, 1294.1, 1441.6, 1589.1, 1736.5, 1884.0, 2031.5, 2179.0, 2326.5, 2474.0, 2621.5, 2769.0, 2916.5, 3064.0],
+          "counts": [2, 6, 21, 72, 131, 246, 445, 591, 812, 940, 1046, 1102, 977, 884, 718, 579, 461, 331, 249, 143, 100, 58, 45, 14, 13, 7, 6, 1],
+          "pct_of_trials": [0.02, 0.06, 0.21, 0.72, 1.31, 2.46, 4.45, 5.91, 8.12, 9.4, 10.46, 11.02, 9.77, 8.84, 7.18, 5.79, 4.61, 3.31, 2.49, 1.43, 1.0, 0.58, 0.45, 0.14, 0.13, 0.07, 0.06, 0.01]
+        },
+        "roi_pct_histogram": {
+          "bin_edges": [-60.0, -45.5, -30.9, -16.4, -1.9, 12.6, 27.2, 41.7, 56.2, 70.7, 85.3, 99.8, 114.3, 128.9, 143.4, 157.9, 172.4, 187.0, 201.5, 216.0, 230.5, 245.1, 259.6, 274.1, 288.7, 303.2, 317.7, 332.2, 346.8],
+          "bin_midpoints": [-52.7, -38.2, -23.7, -9.2, 5.4, 19.9, 34.4, 49.0, 63.5, 78.0, 92.5, 107.1, 121.6, 136.1, 150.6, 165.2, 179.7, 194.2, 208.8, 223.3, 237.8, 252.3, 266.9, 281.4, 295.9, 310.4, 325.0, 339.5],
+          "counts": [2, 31, 106, 253, 502, 686, 931, 1012, 1139, 1101, 978, 855, 685, 506, 387, 273, 206, 132, 87, 49, 34, 18, 12, 7, 3, 2, 2, 1],
+          "pct_of_trials": [0.02, 0.31, 1.06, 2.53, 5.02, 6.86, 9.31, 10.12, 11.39, 11.01, 9.78, 8.55, 6.85, 5.06, 3.87, 2.73, 2.06, 1.32, 0.87, 0.49, 0.34, 0.18, 0.12, 0.07, 0.03, 0.02, 0.02, 0.01]
+        }
+      },
+      "id": "conservative_pilot",
+      "kpis": {
+        "month36_adoption_pct": {
+          "mean": 66.7,
+          "p05": 55.2,
+          "p10": 57.6,
+          "p25": 62.0,
+          "p50": 67.0,
+          "p75": 71.5,
+          "p90": 75.5,
+          "p95": 77.5,
+          "std": 6.7
+        },
+        "month36_net_productivity_uplift_pct": {
+          "mean": 5.17,
+          "p05": 3.44,
+          "p10": 3.78,
+          "p25": 4.37,
+          "p50": 5.12,
+          "p75": 5.91,
+          "p90": 6.64,
+          "p95": 7.1,
+          "std": 1.11
+        },
+        "npv_usd": {
+          "mean": 758619.0,
+          "p05": -98935.0,
+          "p10": 62084.0,
+          "p25": 365597.0,
+          "p50": 723322.0,
+          "p75": 1.115263e6,
+          "p90": 1.50183e6,
+          "p95": 1.734034e6,
+          "std": 560550.0
+        },
+        "payback_months": {
+          "mean": 24.3,
+          "p05": 17.5,
+          "p10": 18.6,
+          "p25": 20.6,
+          "p50": 23.5,
+          "p75": 26.9,
+          "p90": 31.6,
+          "p95": 35.2,
+          "std": 5.1
+        },
+        "prob_breakeven_within_24m_pct": 54.5,
+        "prob_breakeven_within_36m_pct": 95.6,
+        "prob_positive_npv_pct": 92.1,
+        "roi_pct": {
+          "mean": 80.0,
+          "p05": 2.4,
+          "p10": 15.1,
+          "p25": 41.5,
+          "p50": 74.8,
+          "p75": 112.5,
+          "p90": 150.4,
+          "p95": 175.7,
+          "std": 53.1
+        },
+        "total_cost_36m_usd": {
+          "mean": 1.367867e6,
+          "p05": 1.055798e6,
+          "p10": 1.114083e6,
+          "p25": 1.216153e6,
+          "p50": 1.343995e6,
+          "p75": 1.49547e6,
+          "p90": 1.648507e6,
+          "p95": 1.754771e6,
+          "std": 215664.0
+        },
+        "total_gross_benefit_36m_usd": {
+          "mean": 3.629082e6,
+          "p05": 2.504695e6,
+          "p10": 2.695095e6,
+          "p25": 3.091522e6,
+          "p50": 3.576211e6,
+          "p75": 4.100732e6,
+          "p90": 4.630836e6,
+          "p95": 4.966903e6,
+          "std": 751112.0
+        },
+        "total_net_benefit_36m_usd": {
+          "mean": 2.419002e6,
+          "p05": 1.425551e6,
+          "p10": 1.606739e6,
+          "p25": 1.940165e6,
+          "p50": 2.362221e6,
+          "p75": 2.841266e6,
+          "p90": 3.306575e6,
+          "p95": 3.603509e6,
+          "std": 664115.0
+        },
+        "total_rework_drag_36m_usd": {
+          "mean": 1.210079e6,
+          "p05": 815645.0,
+          "p10": 884176.0,
+          "p25": 1.020901e6,
+          "p50": 1.189504e6,
+          "p75": 1.373815e6,
+          "p90": 1.561168e6,
+          "p95": 1.67948e6,
+          "std": 263965.0
+        }
+      },
+      "metadata": {
+        "annual_discount_rate_pct": 10.0,
+        "horizon_months": 36,
+        "n_trials": 10000,
+        "seed": 20261419,
+        "total_annual_payroll_usd": 4.647e7,
+        "total_headcount": 325
+      },
+      "name": "Cautious Safety-First Pilot",
+      "paradigms": {
+        "agent_based": {
+          "kpis": {
+            "emergent_npv_usd": {
+              "mean": 1.69838e6,
+              "p05": 528253.0,
+              "p10": 769716.0,
+              "p25": 1.249543e6,
+              "p50": 1.6813e6,
+              "p75": 2.070526e6,
+              "p90": 2.613317e6,
+              "p95": 2.95939e6,
+              "std": 717477.0
+            },
+            "emergent_roi_pct": {
+              "mean": 155.4,
+              "p05": 56.0,
+              "p10": 81.2,
+              "p25": 117.4,
+              "p50": 154.5,
+              "p75": 185.0,
+              "p90": 227.4,
+              "p95": 270.0,
+              "std": 62.6
+            },
+            "m36_active_adopters_pct": {
+              "mean": 78.2,
+              "p05": 65.8,
+              "p10": 69.5,
+              "p25": 74.7,
+              "p50": 78.5,
+              "p75": 82.5,
+              "p90": 86.8,
+              "p95": 88.9,
+              "std": 6.6
+            },
+            "m36_disillusioned_churn_pct": {
+              "mean": 7.2,
+              "p05": 2.5,
+              "p10": 3.4,
+              "p25": 5.2,
+              "p50": 7.1,
+              "p75": 9.2,
+              "p90": 10.8,
+              "p95": 12.6,
+              "std": 2.9
+            }
+          },
+          "network_snapshot": {
+            "edges": [
+              {
+                "source": 1,
+                "target": 47
+              },
+              {
+                "source": 4,
+                "target": 17
+              },
+              {
+                "source": 6,
+                "target": 23
+              },
+              {
+                "source": 7,
+                "target": 13
+              },
+              {
+                "source": 8,
+                "target": 30
+              },
+              {
+                "source": 13,
+                "target": 14
+              },
+              {
+                "source": 20,
+                "target": 38
+              },
+              {
+                "source": 22,
+                "target": 26
+              }
+            ],
+            "nodes": [
+              {
+                "agent_id": 1,
+                "final_state": 3,
+                "id": 1,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 7,
+                "final_state": 3,
+                "id": 2,
+                "skill": 0.63,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 13,
+                "final_state": 5,
+                "id": 3,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 19,
+                "final_state": 3,
+                "id": 4,
+                "skill": 0.82,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 25,
+                "final_state": 3,
+                "id": 5,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 31,
+                "final_state": 3,
+                "id": 6,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 37,
+                "final_state": 3,
+                "id": 7,
+                "skill": 0.84,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 43,
+                "final_state": 3,
+                "id": 8,
+                "skill": 0.68,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 49,
+                "final_state": 3,
+                "id": 9,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 55,
+                "final_state": 1,
+                "id": 10,
+                "skill": 0.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 61,
+                "final_state": 4,
+                "id": 11,
+                "skill": 0.85,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 67,
+                "final_state": 4,
+                "id": 12,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 73,
+                "final_state": 3,
+                "id": 13,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 79,
+                "final_state": 5,
+                "id": 14,
+                "skill": 0.63,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 85,
+                "final_state": 3,
+                "id": 15,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 91,
+                "final_state": 3,
+                "id": 16,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 97,
+                "final_state": 3,
+                "id": 17,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 103,
+                "final_state": 3,
+                "id": 18,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 109,
+                "final_state": 5,
+                "id": 19,
+                "skill": 0.53,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 115,
+                "final_state": 3,
+                "id": 20,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 121,
+                "final_state": 3,
+                "id": 21,
+                "skill": 0.55,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 127,
+                "final_state": 3,
+                "id": 22,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 133,
+                "final_state": 3,
+                "id": 23,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 139,
+                "final_state": 3,
+                "id": 24,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 145,
+                "final_state": 1,
+                "id": 25,
+                "skill": 0.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 151,
+                "final_state": 1,
+                "id": 26,
+                "skill": 0.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 157,
+                "final_state": 1,
+                "id": 27,
+                "skill": 0.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 163,
+                "final_state": 3,
+                "id": 28,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 169,
+                "final_state": 1,
+                "id": 29,
+                "skill": 0.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 175,
+                "final_state": 4,
+                "id": 30,
+                "skill": 0.85,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 181,
+                "final_state": 5,
+                "id": 31,
+                "skill": 0.7,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 187,
+                "final_state": 3,
+                "id": 32,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 193,
+                "final_state": 3,
+                "id": 33,
+                "skill": 0.87,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 199,
+                "final_state": 3,
+                "id": 34,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 205,
+                "final_state": 2,
+                "id": 35,
+                "skill": 0.3,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 211,
+                "final_state": 4,
+                "id": 36,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 217,
+                "final_state": 4,
+                "id": 37,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 223,
+                "final_state": 3,
+                "id": 38,
+                "skill": 0.92,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 229,
+                "final_state": 4,
+                "id": 39,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 235,
+                "final_state": 3,
+                "id": 40,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 241,
+                "final_state": 3,
+                "id": 41,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 247,
+                "final_state": 4,
+                "id": 42,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 253,
+                "final_state": 1,
+                "id": 43,
+                "skill": 0.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 259,
+                "final_state": 3,
+                "id": 44,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 265,
+                "final_state": 3,
+                "id": 45,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 271,
+                "final_state": 3,
+                "id": 46,
+                "skill": 0.66,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 277,
+                "final_state": 3,
+                "id": 47,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 283,
+                "final_state": 1,
+                "id": 48,
+                "skill": 0.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              }
+            ]
+          },
+          "paradigm": "agent_based",
+          "parameters": {
+            "champion_seed_fraction_pct": 4.0,
+            "frustration_sensitivity": 0.03,
+            "n_replications": 160,
+            "peer_contagion_strength": 0.26,
+            "total_agents": 325
+          },
+          "scenario_id": "conservative_pilot",
+          "scenario_name": "Cautious Safety-First Pilot",
+          "state_trajectories": {
+            "active_adoption_pct": {
+              "mean": [4.3, 8.6, 10.4, 12.4, 14.5, 16.7, 19.0, 21.2, 23.5, 26.0, 28.3, 30.8, 33.4, 36.0, 38.5, 41.0, 43.4, 45.8, 48.3, 50.7, 53.0, 55.2, 57.4, 59.5, 61.5, 63.4, 65.2, 67.0, 68.7, 70.4, 71.9, 73.2, 74.6, 75.9, 77.1, 78.2],
+              "p10": [2.7, 6.5, 7.7, 9.5, 10.8, 12.6, 14.5, 16.0, 18.1, 20.3, 22.2, 24.0, 26.2, 28.6, 31.1, 33.2, 35.7, 37.8, 40.0, 42.4, 44.5, 45.8, 48.3, 49.8, 52.6, 54.4, 56.0, 57.8, 59.6, 61.2, 62.1, 63.6, 64.6, 66.7, 68.3, 69.5],
+              "p25": [3.4, 7.4, 8.9, 10.8, 12.3, 14.8, 16.6, 18.5, 20.5, 23.1, 24.9, 27.1, 29.5, 31.7, 34.5, 36.6, 38.8, 41.2, 43.9, 46.1, 47.7, 50.2, 52.6, 55.1, 56.8, 58.5, 60.5, 62.7, 64.6, 65.8, 67.9, 69.2, 70.8, 72.5, 73.5, 74.7],
+              "p50": [4.0, 8.6, 10.5, 12.6, 14.8, 16.8, 19.4, 21.5, 23.8, 26.2, 28.3, 31.1, 33.8, 36.3, 38.9, 41.2, 43.7, 46.0, 48.3, 50.8, 53.2, 55.4, 57.5, 59.1, 61.4, 63.1, 65.4, 67.1, 69.1, 70.5, 72.3, 73.5, 74.6, 76.2, 77.4, 78.5],
+              "p75": [4.9, 9.8, 11.7, 13.8, 16.0, 18.5, 21.2, 23.4, 25.8, 28.3, 31.1, 33.8, 36.3, 39.4, 41.8, 44.6, 46.8, 49.6, 52.3, 54.8, 57.5, 59.7, 62.2, 64.0, 66.2, 68.3, 70.2, 72.1, 73.8, 75.1, 76.4, 77.7, 79.1, 80.4, 81.5, 82.5],
+              "p90": [5.9, 10.8, 12.9, 15.1, 17.6, 20.3, 23.1, 25.3, 29.3, 31.7, 34.5, 37.3, 40.6, 43.1, 45.3, 48.0, 50.6, 53.8, 55.7, 59.1, 61.3, 63.7, 65.9, 68.7, 70.5, 73.3, 74.5, 76.6, 78.2, 80.3, 81.5, 82.2, 83.4, 84.3, 85.8, 86.8]
+            },
+            "champion_pct": {
+              "mean": [4.0, 4.0, 4.0, 4.0, 4.1, 4.2, 4.3, 4.5, 4.8, 5.0, 5.3, 5.6, 6.0, 6.4, 7.0, 7.6, 8.2, 8.7, 9.4, 10.1, 10.8, 11.5, 12.3, 13.1, 13.9, 14.7, 15.6, 16.4, 17.3, 18.2, 19.2, 20.0, 20.9, 22.0, 23.0, 24.0],
+              "p10": [2.5, 2.5, 2.5, 2.7, 2.8, 2.8, 2.8, 3.0, 3.1, 3.1, 3.4, 3.9, 4.0, 4.0, 4.3, 4.6, 4.9, 5.2, 5.5, 6.1, 6.5, 7.1, 7.7, 8.3, 8.9, 9.2, 9.8, 10.5, 11.1, 11.7, 12.3, 12.9, 13.2, 14.1, 14.5, 15.1],
+              "p25": [3.1, 3.1, 3.1, 3.1, 3.4, 3.4, 3.7, 3.7, 4.0, 4.0, 4.3, 4.6, 4.9, 5.2, 5.2, 5.8, 6.2, 6.8, 7.4, 7.7, 8.3, 8.9, 9.5, 9.8, 10.5, 11.1, 12.0, 12.6, 13.2, 14.2, 14.7, 15.1, 16.0, 16.9, 17.8, 19.1],
+              "p50": [4.0, 4.0, 4.0, 4.0, 4.0, 4.3, 4.3, 4.6, 4.6, 4.9, 5.2, 5.2, 5.5, 6.2, 6.6, 7.1, 7.7, 8.2, 8.6, 9.4, 10.0, 10.5, 11.4, 12.0, 12.9, 13.8, 14.5, 15.1, 16.3, 16.9, 18.0, 18.8, 19.5, 20.6, 21.5, 22.3],
+              "p75": [4.6, 4.6, 4.6, 4.6, 4.9, 4.9, 4.9, 5.2, 5.5, 5.8, 5.9, 6.5, 6.8, 7.4, 8.0, 8.7, 9.8, 10.5, 11.2, 12.0, 12.9, 13.6, 14.8, 16.1, 16.7, 17.6, 18.8, 20.0, 20.6, 22.2, 23.1, 23.8, 25.2, 26.0, 27.4, 28.3],
+              "p90": [5.2, 5.2, 5.2, 5.2, 5.5, 5.5, 5.8, 6.2, 6.5, 6.8, 7.4, 8.0, 8.4, 9.5, 10.5, 11.4, 12.4, 13.2, 14.2, 15.4, 16.6, 17.5, 18.8, 20.0, 20.6, 21.8, 23.1, 24.3, 25.5, 27.1, 28.6, 30.2, 31.1, 32.3, 33.6, 34.8]
+            },
+            "cumulative_cashflow_usd": {
+              "mean": [-114507.0, -219086.0, -321104.0, -420218.0, -434733.0, -445380.0, -451896.0, -454477.0, -452950.0, -419183.0, -381000.0, -338003.0, -289723.0, -236248.0, -177339.0, -113153.0, -43951.0, 30103.0, 109749.0, 194948.0, 285519.0, 380982.0, 481306.0, 586644.0, 696806.0, 811298.0, 930173.0, 1.053327e6, 1.180604e6, 1.312068e6, 1.447299e6, 1.585955e6, 1.728104e6, 1.873634e6, 2.022461e6, 2.174158e6],
+              "p10": [-153245.0, -296851.0, -434389.0, -571137.0, -589345.0, -607314.0, -616451.0, -625540.0, -632897.0, -613383.0, -585537.0, -559541.0, -531552.0, -492590.0, -440468.0, -400054.0, -357538.0, -303109.0, -255435.0, -179136.0, -125736.0, -84786.0, -23904.0, 35240.0, 107664.0, 184143.0, 254624.0, 325605.0, 400760.0, 480197.0, 561769.0, 656840.0, 760093.0, 865544.0, 976357.0, 1.08996e6],
+              "p25": [-130147.0, -253067.0, -371009.0, -483034.0, -496057.0, -508877.0, -513339.0, -522122.0, -523820.0, -500096.0, -471524.0, -442199.0, -404267.0, -351643.0, -311268.0, -249364.0, -197012.0, -135163.0, -62672.0, 9048.0, 76958.0, 156110.0, 239231.0, 318930.0, 403653.0, 516593.0, 611295.0, 707523.0, 827279.0, 929196.0, 1.03864e6, 1.152303e6, 1.263377e6, 1.380689e6, 1.494179e6, 1.607558e6],
+              "p50": [-110632.0, -211192.0, -310517.0, -408349.0, -428510.0, -438911.0, -443941.0, -445213.0, -441029.0, -401507.0, -359809.0, -327345.0, -282933.0, -228713.0, -176788.0, -125869.0, -57316.0, 20653.0, 93447.0, 163882.0, 253866.0, 347058.0, 447912.0, 557186.0, 665077.0, 806184.0, 928870.0, 1.045505e6, 1.175131e6, 1.298966e6, 1.422811e6, 1.550853e6, 1.697654e6, 1.846319e6, 2.000239e6, 2.156567e6],
+              "p75": [-92457.0, -177968.0, -259319.0, -335693.0, -343953.0, -353365.0, -359428.0, -364591.0, -361444.0, -328010.0, -283504.0, -235713.0, -183101.0, -121700.0, -60897.0, 20748.0, 95040.0, 187644.0, 281682.0, 381958.0, 488412.0, 594750.0, 708427.0, 829941.0, 949918.0, 1.072417e6, 1.205694e6, 1.344803e6, 1.487473e6, 1.63647e6, 1.790879e6, 1.953464e6, 2.11704e6, 2.2775e6, 2.443775e6, 2.611761e6],
+              "p90": [-77969.0, -145857.0, -214030.0, -279186.0, -290702.0, -300207.0, -295797.0, -290762.0, -281916.0, -236791.0, -189474.0, -124988.0, -76991.0, 4859.0, 84399.0, 180287.0, 281239.0, 388530.0, 506785.0, 627045.0, 753547.0, 884756.0, 1.019509e6, 1.164596e6, 1.310477e6, 1.45979e6, 1.620745e6, 1.783316e6, 1.960168e6, 2.151984e6, 2.336856e6, 2.513677e6, 2.692255e6, 2.87527e6, 3.061567e6, 3.254027e6]
+            },
+            "disillusioned_pct": {
+              "mean": [0.1, 0.3, 0.5, 0.7, 1.0, 1.2, 1.5, 1.8, 2.0, 2.3, 2.6, 2.9, 3.2, 3.5, 3.8, 4.1, 4.4, 4.6, 4.9, 5.2, 5.4, 5.7, 5.9, 6.1, 6.3, 6.4, 6.6, 6.7, 6.8, 6.9, 7.0, 7.0, 7.1, 7.2, 7.2, 7.2],
+              "p10": [0.0, 0.0, 0.0, 0.0, 0.3, 0.3, 0.6, 0.9, 0.9, 1.2, 1.2, 1.5, 1.8, 1.8, 2.1, 2.2, 2.4, 2.5, 2.8, 3.0, 3.0, 3.1, 3.1, 3.1, 3.1, 3.4, 3.4, 3.7, 3.7, 3.4, 3.7, 3.7, 3.4, 3.4, 3.4, 3.4],
+              "p25": [0.0, 0.0, 0.3, 0.3, 0.6, 0.9, 0.9, 1.2, 1.2, 1.5, 1.8, 2.1, 2.2, 2.5, 2.8, 3.1, 3.4, 3.4, 3.7, 4.0, 4.0, 4.2, 4.3, 4.6, 4.6, 4.9, 4.9, 4.9, 5.2, 4.9, 4.9, 5.2, 4.9, 4.9, 4.9, 5.2],
+              "p50": [0.0, 0.3, 0.3, 0.6, 0.9, 1.2, 1.2, 1.8, 2.0, 2.5, 2.8, 3.1, 3.2, 3.7, 4.0, 4.0, 4.3, 4.6, 4.9, 4.9, 5.4, 5.5, 5.8, 6.2, 6.2, 6.5, 6.5, 6.8, 6.8, 6.8, 7.1, 7.1, 7.2, 7.1, 7.1, 7.1],
+              "p75": [0.3, 0.6, 0.6, 0.9, 1.2, 1.5, 1.8, 2.2, 2.5, 2.8, 3.2, 3.7, 4.0, 4.3, 4.6, 4.9, 5.5, 5.8, 6.2, 6.5, 6.8, 7.1, 7.1, 7.7, 7.7, 7.8, 8.3, 8.4, 8.6, 8.6, 8.9, 8.9, 8.9, 9.2, 9.2, 9.2],
+              "p90": [0.3, 0.9, 1.0, 1.5, 1.8, 2.2, 2.5, 3.1, 3.4, 3.7, 4.0, 4.3, 5.0, 5.2, 5.5, 5.8, 6.5, 6.8, 7.4, 7.4, 8.0, 8.6, 8.9, 9.0, 9.3, 9.9, 10.2, 10.2, 10.5, 10.5, 10.2, 10.2, 10.2, 10.5, 10.5, 10.8]
+            },
+            "exploring_pct": {
+              "mean": [6.9, 4.5, 4.9, 5.3, 5.4, 5.5, 5.6, 5.9, 6.1, 6.1, 6.3, 6.4, 6.3, 6.2, 6.0, 6.0, 6.1, 6.2, 5.9, 5.6, 5.5, 5.3, 5.1, 4.8, 4.6, 4.5, 4.3, 4.1, 3.9, 3.6, 3.4, 3.2, 3.0, 2.7, 2.5, 2.4],
+              "p10": [4.9, 2.8, 3.1, 3.4, 3.4, 3.4, 4.0, 4.0, 4.3, 4.3, 4.6, 4.3, 4.6, 4.3, 4.3, 4.3, 4.6, 4.6, 4.3, 4.0, 3.7, 3.7, 3.4, 3.4, 3.1, 2.8, 2.8, 2.5, 2.4, 2.1, 1.8, 1.8, 1.5, 1.5, 1.2, 1.2],
+              "p25": [5.8, 3.4, 4.0, 4.3, 4.3, 4.3, 4.6, 4.9, 5.2, 5.2, 5.2, 5.2, 5.5, 5.2, 4.9, 5.2, 5.2, 5.2, 5.2, 4.6, 4.5, 4.3, 4.0, 3.9, 3.7, 3.4, 3.4, 3.1, 3.0, 2.8, 2.5, 2.5, 2.2, 2.2, 1.8, 1.5],
+              "p50": [7.1, 4.6, 4.9, 5.2, 5.2, 5.5, 5.7, 5.8, 6.2, 6.2, 6.2, 6.5, 6.5, 6.2, 5.8, 5.8, 5.8, 6.2, 5.8, 5.5, 5.2, 5.2, 4.9, 4.6, 4.5, 4.6, 4.0, 4.0, 3.7, 3.4, 3.4, 3.1, 2.8, 2.8, 2.5, 2.2],
+              "p75": [8.0, 5.2, 5.8, 6.2, 6.5, 6.8, 6.5, 6.8, 6.8, 7.1, 7.4, 7.4, 7.1, 7.4, 7.1, 6.8, 6.8, 7.1, 6.8, 6.5, 6.5, 6.2, 5.9, 5.5, 5.2, 5.3, 5.2, 4.9, 4.9, 4.6, 4.3, 4.1, 3.7, 3.4, 3.2, 3.1],
+              "p90": [8.6, 6.2, 6.8, 7.1, 7.4, 7.4, 7.1, 7.7, 7.7, 8.0, 8.0, 8.3, 8.0, 8.0, 8.0, 7.4, 7.7, 7.7, 7.4, 7.4, 7.1, 7.4, 7.1, 6.5, 6.2, 6.2, 6.2, 6.2, 6.2, 5.8, 4.9, 4.6, 4.6, 4.3, 4.0, 4.0]
+            },
+            "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36],
+            "net_productivity_uplift_pct": {
+              "mean": [0.24, 0.7, 0.84, 1.0, 1.19, 1.39, 1.61, 1.82, 2.04, 2.29, 2.52, 2.78, 3.05, 3.32, 3.59, 3.86, 4.12, 4.38, 4.66, 4.94, 5.21, 5.46, 5.71, 5.97, 6.21, 6.43, 6.65, 6.87, 7.08, 7.3, 7.49, 7.67, 7.85, 8.03, 8.19, 8.34],
+              "p10": [-0.02, 0.41, 0.5, 0.61, 0.7, 0.85, 0.99, 1.14, 1.31, 1.47, 1.71, 1.87, 2.04, 2.26, 2.5, 2.7, 2.93, 3.1, 3.35, 3.6, 3.7, 3.99, 4.2, 4.35, 4.61, 4.85, 5.01, 5.11, 5.31, 5.46, 5.64, 5.86, 6.03, 6.16, 6.27, 6.4],
+              "p25": [0.08, 0.53, 0.62, 0.76, 0.94, 1.09, 1.28, 1.42, 1.63, 1.83, 2.02, 2.18, 2.44, 2.69, 2.91, 3.12, 3.38, 3.62, 3.91, 4.11, 4.29, 4.53, 4.79, 5.07, 5.3, 5.43, 5.63, 5.85, 6.0, 6.28, 6.44, 6.6, 6.77, 6.93, 7.12, 7.24],
+              "p50": [0.21, 0.69, 0.82, 0.95, 1.14, 1.33, 1.56, 1.78, 1.96, 2.26, 2.43, 2.7, 2.91, 3.24, 3.56, 3.73, 4.0, 4.26, 4.53, 4.88, 5.17, 5.35, 5.59, 5.83, 6.17, 6.39, 6.6, 6.8, 7.08, 7.3, 7.5, 7.66, 7.79, 7.99, 8.16, 8.34],
+              "p75": [0.38, 0.84, 1.02, 1.21, 1.43, 1.68, 1.91, 2.15, 2.42, 2.7, 3.0, 3.35, 3.58, 3.92, 4.23, 4.53, 4.83, 5.05, 5.44, 5.85, 6.1, 6.37, 6.65, 6.91, 7.22, 7.38, 7.6, 7.86, 8.02, 8.23, 8.49, 8.64, 8.81, 8.97, 9.23, 9.39],
+              "p90": [0.51, 1.03, 1.22, 1.43, 1.73, 1.97, 2.26, 2.59, 2.8, 3.12, 3.5, 3.87, 4.22, 4.52, 4.76, 4.96, 5.47, 5.73, 6.11, 6.47, 6.78, 7.08, 7.38, 7.65, 7.95, 8.24, 8.5, 8.8, 9.06, 9.27, 9.53, 9.75, 9.93, 10.09, 10.2, 10.38]
+            },
+            "proficient_pct": {
+              "mean": [0.3, 4.6, 6.5, 8.3, 10.4, 12.5, 14.6, 16.7, 18.7, 21.0, 23.0, 25.2, 27.4, 29.5, 31.6, 33.4, 35.2, 37.0, 38.9, 40.6, 42.2, 43.7, 45.1, 46.4, 47.6, 48.6, 49.7, 50.6, 51.4, 52.1, 52.7, 53.2, 53.7, 54.0, 54.2, 54.2],
+              "p10": [0.0, 3.1, 4.6, 5.8, 7.7, 9.2, 11.4, 12.9, 14.5, 16.6, 18.5, 20.0, 21.5, 24.0, 26.1, 28.0, 29.8, 31.7, 33.2, 34.5, 36.0, 38.1, 39.1, 40.9, 42.5, 43.4, 44.3, 45.8, 46.7, 47.4, 48.3, 48.9, 49.8, 50.4, 50.4, 50.2],
+              "p25": [0.0, 3.7, 5.2, 7.1, 8.9, 11.1, 12.9, 14.8, 16.6, 18.5, 20.6, 22.5, 24.6, 26.7, 29.2, 30.5, 32.2, 34.2, 36.0, 37.5, 39.1, 40.9, 42.5, 44.0, 45.2, 46.4, 47.4, 48.6, 49.2, 50.2, 50.5, 51.1, 51.7, 51.7, 52.0, 52.3],
+              "p50": [0.0, 4.6, 6.5, 8.3, 10.5, 12.6, 14.6, 16.9, 18.8, 21.2, 22.9, 25.2, 27.4, 29.7, 31.5, 33.5, 35.4, 37.2, 39.5, 41.4, 43.1, 44.3, 45.5, 46.8, 48.0, 48.9, 50.0, 51.1, 51.7, 52.3, 52.8, 53.2, 53.5, 53.8, 54.2, 54.2],
+              "p75": [0.0, 5.5, 7.4, 9.5, 11.7, 14.2, 16.4, 18.5, 20.6, 22.8, 25.5, 28.1, 30.5, 32.3, 34.2, 36.3, 37.9, 39.8, 41.8, 43.4, 44.9, 46.2, 48.0, 49.3, 50.5, 51.2, 52.3, 53.2, 53.8, 54.5, 55.1, 55.5, 56.0, 56.3, 56.3, 56.3],
+              "p90": [0.6, 6.2, 8.3, 10.5, 12.9, 15.4, 17.9, 20.6, 23.1, 25.6, 28.0, 29.8, 32.6, 34.5, 36.9, 38.8, 40.3, 42.2, 44.0, 45.3, 46.8, 48.6, 49.8, 51.4, 52.3, 53.5, 54.2, 54.8, 55.7, 56.6, 57.8, 57.8, 57.3, 57.6, 58.2, 58.2]
+            },
+            "skeptical_pct": {
+              "mean": [88.7, 86.6, 84.2, 81.6, 79.1, 76.6, 74.0, 71.2, 68.4, 65.6, 62.7, 59.8, 57.1, 54.3, 51.6, 49.0, 46.2, 43.5, 40.9, 38.5, 36.1, 33.8, 31.6, 29.6, 27.6, 25.7, 23.9, 22.2, 20.6, 19.2, 17.7, 16.5, 15.3, 14.2, 13.2, 12.2],
+              "p10": [86.2, 84.0, 80.9, 77.5, 75.1, 72.6, 68.3, 65.5, 61.8, 59.4, 56.0, 53.2, 50.5, 48.3, 44.9, 42.2, 39.7, 36.3, 33.5, 31.1, 28.9, 26.4, 24.0, 22.2, 20.3, 19.0, 16.9, 15.4, 14.2, 12.9, 12.0, 11.1, 10.1, 9.2, 8.3, 7.4],
+              "p25": [87.1, 84.9, 82.5, 79.7, 77.2, 74.2, 71.7, 68.6, 65.5, 62.5, 60.0, 56.8, 53.8, 50.8, 48.3, 45.5, 42.4, 39.7, 37.2, 34.7, 31.9, 29.8, 27.6, 25.8, 24.0, 22.2, 20.3, 18.5, 17.2, 16.0, 14.5, 13.5, 12.3, 11.3, 10.5, 9.8],
+              "p50": [88.6, 86.3, 84.0, 81.5, 78.9, 76.6, 74.2, 71.4, 68.6, 66.0, 62.8, 60.0, 57.1, 54.5, 52.0, 49.2, 46.2, 43.1, 40.6, 38.3, 35.7, 33.5, 31.4, 29.5, 27.4, 25.5, 24.0, 22.2, 20.6, 18.8, 17.2, 16.3, 15.1, 13.8, 13.1, 12.0],
+              "p75": [90.2, 88.3, 85.9, 83.4, 81.2, 79.1, 76.3, 73.8, 71.1, 68.4, 65.8, 63.2, 60.3, 57.8, 55.2, 52.7, 50.2, 47.7, 44.9, 42.5, 39.8, 37.8, 35.7, 33.5, 31.2, 28.9, 27.2, 25.5, 23.1, 21.6, 20.1, 18.8, 17.6, 16.6, 15.7, 14.5],
+              "p90": [91.4, 89.8, 87.7, 85.2, 83.7, 81.3, 78.5, 76.6, 73.9, 71.7, 69.2, 66.5, 63.7, 60.6, 57.8, 55.4, 53.0, 50.2, 48.0, 45.8, 43.7, 41.0, 38.5, 36.6, 34.8, 32.1, 30.8, 28.7, 27.4, 26.2, 24.0, 22.2, 20.7, 20.0, 18.8, 17.2]
+            }
+          },
+          "teams": [
+            {
+              "active_adopters_m36_pct": {
+                "mean": 77.6,
+                "p05": 63.2,
+                "p10": 67.4,
+                "p25": 73.1,
+                "p50": 77.5,
+                "p75": 83.3,
+                "p90": 87.5,
+                "p95": 89.2,
+                "std": 8.2
+              },
+              "champions_m36_pct": {
+                "mean": 23.7,
+                "p05": 13.3,
+                "p10": 15.0,
+                "p25": 18.1,
+                "p50": 22.9,
+                "p75": 28.3,
+                "p90": 34.2,
+                "p95": 38.4,
+                "std": 7.8
+              },
+              "disillusioned_churn_m36_pct": {
+                "mean": 7.4,
+                "p05": 1.7,
+                "p10": 3.3,
+                "p25": 5.0,
+                "p50": 7.1,
+                "p75": 9.4,
+                "p90": 12.5,
+                "p95": 13.3,
+                "std": 3.4
+              },
+              "emergent_roi_pct": {
+                "mean": 243.7,
+                "p05": 63.7,
+                "p10": 104.2,
+                "p25": 157.4,
+                "p50": 231.0,
+                "p75": 312.1,
+                "p90": 400.8,
+                "p95": 473.2,
+                "std": 128.5
+              },
+              "headcount": 120,
+              "id": "software_eng",
+              "name": "Product & Software Engineering"
+            },
+            {
+              "active_adopters_m36_pct": {
+                "mean": 79.2,
+                "p05": 65.6,
+                "p10": 70.0,
+                "p25": 74.2,
+                "p50": 80.0,
+                "p75": 85.6,
+                "p90": 88.9,
+                "p95": 91.1,
+                "std": 8.0
+              },
+              "champions_m36_pct": {
+                "mean": 24.3,
+                "p05": 11.1,
+                "p10": 13.3,
+                "p25": 17.5,
+                "p50": 23.3,
+                "p75": 31.1,
+                "p90": 36.7,
+                "p95": 40.0,
+                "std": 9.0
+              },
+              "disillusioned_churn_m36_pct": {
+                "mean": 6.4,
+                "p05": 1.1,
+                "p10": 2.2,
+                "p25": 3.3,
+                "p50": 5.6,
+                "p75": 8.9,
+                "p90": 11.1,
+                "p95": 13.3,
+                "std": 3.6
+              },
+              "emergent_roi_pct": {
+                "mean": 216.7,
+                "p05": 84.7,
+                "p10": 100.3,
+                "p25": 152.5,
+                "p50": 215.5,
+                "p75": 286.9,
+                "p90": 324.5,
+                "p95": 385.8,
+                "std": 96.5
+              },
+              "headcount": 90,
+              "id": "customer_ops",
+              "name": "Customer Support & Success"
+            },
+            {
+              "active_adopters_m36_pct": {
+                "mean": 78.2,
+                "p05": 64.0,
+                "p10": 67.7,
+                "p25": 72.0,
+                "p50": 78.7,
+                "p75": 84.0,
+                "p90": 89.3,
+                "p95": 90.7,
+                "std": 8.6
+              },
+              "champions_m36_pct": {
+                "mean": 23.9,
+                "p05": 11.9,
+                "p10": 13.3,
+                "p25": 17.3,
+                "p50": 22.7,
+                "p75": 29.3,
+                "p90": 37.3,
+                "p95": 40.1,
+                "std": 8.9
+              },
+              "disillusioned_churn_m36_pct": {
+                "mean": 7.1,
+                "p05": 1.3,
+                "p10": 2.7,
+                "p25": 4.0,
+                "p50": 6.7,
+                "p75": 9.3,
+                "p90": 12.0,
+                "p95": 13.3,
+                "std": 3.7
+              },
+              "emergent_roi_pct": {
+                "mean": 25.4,
+                "p05": -46.5,
+                "p10": -32.3,
+                "p25": -13.6,
+                "p50": 17.0,
+                "p75": 58.9,
+                "p90": 96.8,
+                "p95": 123.7,
+                "std": 52.4
+              },
+              "headcount": 75,
+              "id": "sales_gtm",
+              "name": "Sales, Account Teams & Marketing"
+            },
+            {
+              "active_adopters_m36_pct": {
+                "mean": 77.6,
+                "p05": 55.0,
+                "p10": 65.0,
+                "p25": 70.0,
+                "p50": 80.0,
+                "p75": 85.0,
+                "p90": 90.0,
+                "p95": 95.0,
+                "std": 10.5
+              },
+              "champions_m36_pct": {
+                "mean": 24.0,
+                "p05": 9.9,
+                "p10": 12.5,
+                "p25": 17.5,
+                "p50": 23.8,
+                "p75": 30.0,
+                "p90": 35.2,
+                "p95": 42.5,
+                "std": 10.0
+              },
+              "disillusioned_churn_m36_pct": {
+                "mean": 8.2,
+                "p05": 0.0,
+                "p10": 2.5,
+                "p25": 5.0,
+                "p50": 7.5,
+                "p75": 10.0,
+                "p90": 15.0,
+                "p95": 20.0,
+                "std": 5.7
+              },
+              "emergent_roi_pct": {
+                "mean": 8.2,
+                "p05": -84.0,
+                "p10": -72.5,
+                "p25": -34.3,
+                "p50": 3.5,
+                "p75": 48.3,
+                "p90": 81.5,
+                "p95": 113.1,
+                "std": 63.4
+              },
+              "headcount": 40,
+              "id": "legal_finance",
+              "name": "Legal, Finance & Compliance"
+            }
+          ]
+        },
+        "bayesian_network": {
+          "active_posterior": {
+            "expected_npv_usd": 1.829975e6,
+            "expected_roi_pct": 118.1,
+            "node_posteriors_pct": {
+              "exec_support": [22.0, 50.0, 28.0],
+              "governance": [6.0, 34.0, 60.0],
+              "pilot_adoption": [23.8, 44.7, 31.5],
+              "rework_signal": [12.6, 36.5, 50.9],
+              "roi_regime": [11.7, 26.3, 34.5, 27.6],
+              "sustained_realization": [21.4, 43.8, 34.8],
+              "token_discipline": [14.0, 40.0, 46.0]
+            },
+            "prob_positive_npv_pct": 88.3,
+            "prob_strong_or_outsized_roi_pct": 62.1,
+            "regime_probabilities_pct": {
+              "loss_below_0_pct": 11.7,
+              "modest_0_to_80_pct": 26.3,
+              "outsized_above_160_pct": 27.6,
+              "strong_80_to_160_pct": 34.5
+            },
+            "stage_gate_decision": "FIX FIRST (Tighten Quality & Budget Before Scaling)"
+          },
+          "dag_structure": {
+            "edges": [
+              {
+                "from": "exec_support",
+                "to": "pilot_adoption"
+              },
+              {
+                "from": "exec_support",
+                "to": "sustained_realization"
+              },
+              {
+                "from": "governance",
+                "to": "rework_signal"
+              },
+              {
+                "from": "governance",
+                "to": "token_discipline"
+              },
+              {
+                "from": "pilot_adoption",
+                "to": "sustained_realization"
+              },
+              {
+                "from": "rework_signal",
+                "to": "sustained_realization"
+              },
+              {
+                "from": "sustained_realization",
+                "to": "roi_regime"
+              },
+              {
+                "from": "rework_signal",
+                "to": "roi_regime"
+              },
+              {
+                "from": "token_discipline",
+                "to": "roi_regime"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "exec_support",
+                "label": "Executive & Change Support",
+                "layer": 1,
+                "states": [
+                  "Weak",
+                  "Moderate",
+                  "Strong"
+                ]
+              },
+              {
+                "id": "governance",
+                "label": "AI Governance & Guardrails",
+                "layer": 1,
+                "states": [
+                  "Ad-Hoc",
+                  "Managed",
+                  "Automated"
+                ]
+              },
+              {
+                "id": "pilot_adoption",
+                "label": "M6 Pilot Adoption Signal",
+                "layer": 2,
+                "states": [
+                  "Low (<45%)",
+                  "Target (45-75%)",
+                  "High (>75%)"
+                ]
+              },
+              {
+                "id": "rework_signal",
+                "label": "QA Verification & Rework",
+                "layer": 2,
+                "states": [
+                  "High (>10%)",
+                  "Moderate (5-10%)",
+                  "Low (<5%)"
+                ]
+              },
+              {
+                "id": "token_discipline",
+                "label": "FinOps Token Discipline",
+                "layer": 2,
+                "states": [
+                  "Overrun",
+                  "On-Budget",
+                  "Optimized"
+                ]
+              },
+              {
+                "id": "sustained_realization",
+                "label": "Operating-Model Realization",
+                "layer": 3,
+                "states": [
+                  "Low",
+                  "Medium",
+                  "High"
+                ]
+              },
+              {
+                "id": "roi_regime",
+                "label": "3-Year Net ROI Regime",
+                "layer": 4,
+                "states": [
+                  "Loss (<0%)",
+                  "Modest (0-80%)",
+                  "Strong (80-160%)",
+                  "Outsized (>160%)"
+                ]
+              }
+            ]
+          },
+          "evidence_presets": [
+            {
+              "evidence": {
+                "adoption": 0,
+                "rework": 0,
+                "token_discipline": 0
+              },
+              "id": "prior_unobserved",
+              "label": "Day-1 Estimate (Before Any Pilot Results)",
+              "summary": {
+                "expected_npv_usd": 1.829975e6,
+                "expected_roi_pct": 118.1,
+                "node_posteriors_pct": {
+                  "exec_support": [22.0, 50.0, 28.0],
+                  "governance": [6.0, 34.0, 60.0],
+                  "pilot_adoption": [23.8, 44.7, 31.5],
+                  "rework_signal": [12.6, 36.5, 50.9],
+                  "roi_regime": [11.7, 26.3, 34.5, 27.6],
+                  "sustained_realization": [21.4, 43.8, 34.8],
+                  "token_discipline": [14.0, 40.0, 46.0]
+                },
+                "prob_positive_npv_pct": 88.3,
+                "prob_strong_or_outsized_roi_pct": 62.1,
+                "regime_probabilities_pct": {
+                  "loss_below_0_pct": 11.7,
+                  "modest_0_to_80_pct": 26.3,
+                  "outsized_above_160_pct": 27.6,
+                  "strong_80_to_160_pct": 34.5
+                },
+                "stage_gate_decision": "FIX FIRST (Tighten Quality & Budget Before Scaling)"
+              }
+            },
+            {
+              "evidence": {
+                "adoption": 3,
+                "rework": 3,
+                "token_discipline": 3
+              },
+              "id": "strong_pilot",
+              "label": "Great 6-Month Pilot (High Usage + Low Cleanup + On-Budget)",
+              "summary": {
+                "expected_npv_usd": 2.826603e6,
+                "expected_roi_pct": 173.8,
+                "node_posteriors_pct": {
+                  "exec_support": [7.0, 39.7, 53.3],
+                  "governance": [0.2, 8.3, 91.5],
+                  "pilot_adoption": [0.0, 0.0, 100.0],
+                  "rework_signal": [0.0, 0.0, 100.0],
+                  "roi_regime": [1.7, 10.0, 35.6, 52.7],
+                  "sustained_realization": [4.8, 28.5, 66.6],
+                  "token_discipline": [0.0, 0.0, 100.0]
+                },
+                "prob_positive_npv_pct": 98.3,
+                "prob_strong_or_outsized_roi_pct": 88.2,
+                "regime_probabilities_pct": {
+                  "loss_below_0_pct": 1.7,
+                  "modest_0_to_80_pct": 10.0,
+                  "outsized_above_160_pct": 52.7,
+                  "strong_80_to_160_pct": 35.6
+                },
+                "stage_gate_decision": "GREEN LIGHT (Release Next-Stage Funding)"
+              }
+            },
+            {
+              "evidence": {
+                "adoption": 2,
+                "rework": 2,
+                "token_discipline": 2
+              },
+              "id": "mixed_pilot",
+              "label": "Average 6-Month Pilot (Moderate Usage + Moderate Cleanup + On-Budget)",
+              "summary": {
+                "expected_npv_usd": 1.050837e6,
+                "expected_roi_pct": 74.2,
+                "node_posteriors_pct": {
+                  "exec_support": [17.2, 61.5, 21.3],
+                  "governance": [3.6, 64.1, 32.3],
+                  "pilot_adoption": [0.0, 100.0, 0.0],
+                  "rework_signal": [0.0, 100.0, 0.0],
+                  "roi_regime": [19.4, 41.3, 29.8, 9.5],
+                  "sustained_realization": [16.0, 62.0, 22.0],
+                  "token_discipline": [0.0, 100.0, 0.0]
+                },
+                "prob_positive_npv_pct": 80.6,
+                "prob_strong_or_outsized_roi_pct": 39.3,
+                "regime_probabilities_pct": {
+                  "loss_below_0_pct": 19.4,
+                  "modest_0_to_80_pct": 41.3,
+                  "outsized_above_160_pct": 9.5,
+                  "strong_80_to_160_pct": 29.8
+                },
+                "stage_gate_decision": "FIX FIRST (Tighten Quality & Budget Before Scaling)"
+              }
+            },
+            {
+              "evidence": {
+                "adoption": 3,
+                "rework": 1,
+                "token_discipline": 1
+              },
+              "id": "sprawl_warning",
+              "label": "Busy But Messy Pilot (High Usage + Heavy Cleanup + Over-Budget)",
+              "summary": {
+                "expected_npv_usd": 512988.0,
+                "expected_roi_pct": 42.7,
+                "node_posteriors_pct": {
+                  "exec_support": [7.0, 39.7, 53.3],
+                  "governance": [59.8, 35.1, 5.2],
+                  "pilot_adoption": [0.0, 0.0, 100.0],
+                  "rework_signal": [100.0, 0.0, 0.0],
+                  "roi_regime": [35.9, 41.6, 18.1, 4.4],
+                  "sustained_realization": [9.6, 42.8, 47.6],
+                  "token_discipline": [100.0, 0.0, 0.0]
+                },
+                "prob_positive_npv_pct": 64.1,
+                "prob_strong_or_outsized_roi_pct": 22.5,
+                "regime_probabilities_pct": {
+                  "loss_below_0_pct": 35.9,
+                  "modest_0_to_80_pct": 41.6,
+                  "outsized_above_160_pct": 4.4,
+                  "strong_80_to_160_pct": 18.1
+                },
+                "stage_gate_decision": "HOLD / PAUSE (Freeze New Seats & Fix Workflows)"
+              }
+            },
+            {
+              "evidence": {
+                "adoption": 1,
+                "rework": 1,
+                "token_discipline": 1
+              },
+              "id": "stalled_pilot",
+              "label": "Struggling Pilot (Low Usage + Heavy Cleanup + Over-Budget)",
+              "summary": {
+                "expected_npv_usd": 159336.0,
+                "expected_roi_pct": 21.8,
+                "node_posteriors_pct": {
+                  "exec_support": [50.9, 42.1, 7.1],
+                  "governance": [59.8, 35.1, 5.2],
+                  "pilot_adoption": [100.0, 0.0, 0.0],
+                  "rework_signal": [100.0, 0.0, 0.0],
+                  "roi_regime": [51.3, 35.1, 11.2, 2.4],
+                  "sustained_realization": [64.3, 28.5, 7.1],
+                  "token_discipline": [100.0, 0.0, 0.0]
+                },
+                "prob_positive_npv_pct": 48.7,
+                "prob_strong_or_outsized_roi_pct": 13.6,
+                "regime_probabilities_pct": {
+                  "loss_below_0_pct": 51.3,
+                  "modest_0_to_80_pct": 35.1,
+                  "outsized_above_160_pct": 2.4,
+                  "strong_80_to_160_pct": 11.2
+                },
+                "stage_gate_decision": "HOLD / PAUSE (Freeze New Seats & Fix Workflows)"
+              }
+            }
+          ],
+          "paradigm": "bayesian_network",
+          "prior_baseline": {
+            "expected_npv_usd": 1.829975e6,
+            "expected_roi_pct": 118.1,
+            "node_posteriors_pct": {
+              "exec_support": [22.0, 50.0, 28.0],
+              "governance": [6.0, 34.0, 60.0],
+              "pilot_adoption": [23.8, 44.7, 31.5],
+              "rework_signal": [12.6, 36.5, 50.9],
+              "roi_regime": [11.7, 26.3, 34.5, 27.6],
+              "sustained_realization": [21.4, 43.8, 34.8],
+              "token_discipline": [14.0, 40.0, 46.0]
+            },
+            "prob_positive_npv_pct": 88.3,
+            "prob_strong_or_outsized_roi_pct": 62.1,
+            "regime_probabilities_pct": {
+              "loss_below_0_pct": 11.7,
+              "modest_0_to_80_pct": 26.3,
+              "outsized_above_160_pct": 27.6,
+              "strong_80_to_160_pct": 34.5
+            },
+            "stage_gate_decision": "FIX FIRST (Tighten Quality & Budget Before Scaling)"
+          },
+          "priors": {
+            "exec_support": [0.22, 0.5, 0.28],
+            "governance": [0.06, 0.34, 0.6]
+          },
+          "scenario_id": "conservative_pilot",
+          "scenario_name": "Cautious Safety-First Pilot"
+        },
+        "discrete_event": {
+          "kpis": {
+            "baseline_avg_cycle_time_hrs": 7.03,
+            "cycle_time_reduction_pct": 8.7,
+            "m36_avg_cycle_time_hrs": 6.42,
+            "m36_qa_queue_wait_hrs": 0.13,
+            "process_npv_usd": 810137.0,
+            "process_roi_pct": 82.6,
+            "total_hours_saved_36m": 57302.0
+          },
+          "paradigm": "discrete_event",
+          "parameters": {
+            "ai_triage_deflection_boost": 1.0,
+            "horizon_months": 36,
+            "qa_capacity_reallocation_pct": 4.0
+          },
+          "scenario_id": "conservative_pilot",
+          "scenario_name": "Cautious Safety-First Pilot",
+          "trajectories": {
+            "ai_cycle_time_hrs": [6.68, 6.74, 6.81, 6.81, 6.75, 6.7, 6.79, 6.71, 6.57, 6.78, 6.79, 6.82, 6.79, 6.59, 6.83, 6.56, 6.57, 6.62, 6.62, 6.65, 6.55, 6.49, 6.53, 6.46, 6.91, 6.62, 6.35, 6.42, 6.54, 6.55, 6.63, 6.66, 6.62, 6.63, 6.73, 6.42],
+            "baseline_cycle_time_hrs": [7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03, 7.03],
+            "cumulative_cashflow_usd": [-95980.0, -214175.0, -328794.0, -448416.0, -473403.0, -487180.0, -517300.0, -536383.0, -545056.0, -544233.0, -546737.0, -509743.0, -490330.0, -457196.0, -436020.0, -380608.0, -307209.0, -271634.0, -219897.0, -167452.0, -101275.0, 1061.0, 64167.0, 136339.0, 208088.0, 282926.0, 367513.0, 462162.0, 541003.0, 623368.0, 723369.0, 813495.0, 854206.0, 922711.0, 1.006134e6, 1.099014e6],
+            "draft_stage_wait_hrs": [0.06, 0.06, 0.14, 0.09, 0.06, 0.04, 0.05, 0.1, 0.04, 0.07, 0.06, 0.26, 0.02, 0.07, 0.23, 0.06, 0.13, 0.05, 0.14, 0.11, 0.06, 0.07, 0.07, 0.04, 0.14, 0.07, 0.04, 0.04, 0.08, 0.09, 0.09, 0.21, 0.11, 0.06, 0.33, 0.07],
+            "monthly_hours_saved": [423.0, 52.0, 145.0, 21.0, 263.0, 494.0, 128.0, 384.0, 636.0, 351.0, 328.0, 1196.0, 905.0, 1167.0, 1113.0, 1764.0, 2164.0, 1512.0, 1946.0, 1940.0, 2260.0, 2947.0, 2194.0, 2356.0, 2326.0, 2392.0, 2684.0, 2894.0, 2588.0, 2514.0, 2864.0, 2719.0, 1790.0, 2358.0, 2706.0, 2780.0],
+            "monthly_throughput_items": [11325.0, 11326.0, 11329.0, 11334.0, 11339.0, 11348.0, 11360.0, 11377.0, 11401.0, 11430.0, 11469.0, 11516.0, 11570.0, 11628.0, 11686.0, 11740.0, 11786.0, 11825.0, 11856.0, 11880.0, 11896.0, 11907.0, 11916.0, 11922.0, 11926.0, 11929.0, 11932.0, 11933.0, 11934.0, 11934.0, 11935.0, 11935.0, 11935.0, 11935.0, 11935.0, 11935.0],
+            "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36],
+            "qa_review_stage_wait_hrs": [0.09, 0.06, 0.09, 0.08, 0.1, 0.1, 0.14, 0.05, 0.04, 0.12, 0.11, 0.12, 0.29, 0.09, 0.11, 0.14, 0.14, 0.14, 0.08, 0.16, 0.17, 0.25, 0.13, 0.13, 0.46, 0.27, 0.06, 0.17, 0.19, 0.19, 0.27, 0.21, 0.09, 0.26, 0.11, 0.13]
+          },
+          "workflows": [
+            {
+              "baseline_cycle_time_hrs": 9.3,
+              "baseline_draft_utilization_pct": 76.6,
+              "baseline_qa_utilization_pct": 72.5,
+              "baseline_qa_wait_hrs": 0.01,
+              "bottleneck_diagnosis": "Moderate Line at Final Review",
+              "cycle_time_reduction_pct": 7.9,
+              "m36_cycle_time_hrs": 8.6,
+              "m36_draft_utilization_pct": 69.4,
+              "m36_hours_saved_monthly": 1253.0,
+              "m36_qa_utilization_pct": 77.8,
+              "m36_qa_wait_hrs": 0.06,
+              "m36_sla_compliance_pct": 99.5,
+              "team_id": "software_eng",
+              "team_name": "Product & Software Engineering",
+              "work_unit_name": "Pull Requests & Feature Specs"
+            },
+            {
+              "baseline_cycle_time_hrs": 1.6,
+              "baseline_draft_utilization_pct": 80.8,
+              "baseline_qa_utilization_pct": 82.9,
+              "baseline_qa_wait_hrs": 0.03,
+              "bottleneck_diagnosis": "Moderate Line at Final Review",
+              "cycle_time_reduction_pct": 8.8,
+              "m36_cycle_time_hrs": 1.5,
+              "m36_draft_utilization_pct": 78.8,
+              "m36_hours_saved_monthly": 1273.0,
+              "m36_qa_utilization_pct": 83.7,
+              "m36_qa_wait_hrs": 0.03,
+              "m36_sla_compliance_pct": 99.5,
+              "team_id": "customer_ops",
+              "team_name": "Customer Support & Success",
+              "work_unit_name": "Tier-2/3 Escalation Cases"
+            },
+            {
+              "baseline_cycle_time_hrs": 7.2,
+              "baseline_draft_utilization_pct": 73.4,
+              "baseline_qa_utilization_pct": 81.7,
+              "baseline_qa_wait_hrs": 0.11,
+              "bottleneck_diagnosis": "Moderate Line at Final Review",
+              "cycle_time_reduction_pct": 2.1,
+              "m36_cycle_time_hrs": 7.1,
+              "m36_draft_utilization_pct": 78.1,
+              "m36_hours_saved_monthly": 218.0,
+              "m36_qa_utilization_pct": 79.4,
+              "m36_qa_wait_hrs": 0.09,
+              "m36_sla_compliance_pct": 99.5,
+              "team_id": "sales_gtm",
+              "team_name": "Sales, Account Teams & Marketing",
+              "work_unit_name": "RFPs & Custom Deal Proposals"
+            },
+            {
+              "baseline_cycle_time_hrs": 11.9,
+              "baseline_draft_utilization_pct": 85.5,
+              "baseline_qa_utilization_pct": 77.7,
+              "baseline_qa_wait_hrs": 0.24,
+              "bottleneck_diagnosis": "Backed Up at Final Human Review (>85% Busy)",
+              "cycle_time_reduction_pct": 18.3,
+              "m36_cycle_time_hrs": 9.8,
+              "m36_draft_utilization_pct": 81.4,
+              "m36_hours_saved_monthly": 35.0,
+              "m36_qa_utilization_pct": 90.9,
+              "m36_qa_wait_hrs": 0.65,
+              "m36_sla_compliance_pct": 99.5,
+              "team_id": "legal_finance",
+              "team_name": "Legal, Finance & Compliance",
+              "work_unit_name": "Contract Redlines & Audit Memos"
+            }
+          ]
+        },
+        "monte_carlo": {
+          "distributions": {
+            "npv_k_usd_histogram": {
+              "bin_edges": [-992.1, -844.6, -697.1, -549.6, -402.1, -254.6, -107.1, 40.4, 187.9, 335.3, 482.8, 630.3, 777.8, 925.3, 1072.8, 1220.3, 1367.8, 1515.3, 1662.8, 1810.3, 1957.8, 2105.3, 2252.8, 2400.3, 2547.8, 2695.3, 2842.8, 2990.3, 3137.7],
+              "bin_midpoints": [-918.4, -770.9, -623.4, -475.9, -328.4, -180.9, -33.4, 114.1, 261.6, 409.1, 556.6, 704.1, 851.6, 999.1, 1146.6, 1294.1, 1441.6, 1589.1, 1736.5, 1884.0, 2031.5, 2179.0, 2326.5, 2474.0, 2621.5, 2769.0, 2916.5, 3064.0],
+              "counts": [2, 6, 21, 72, 131, 246, 445, 591, 812, 940, 1046, 1102, 977, 884, 718, 579, 461, 331, 249, 143, 100, 58, 45, 14, 13, 7, 6, 1],
+              "pct_of_trials": [0.02, 0.06, 0.21, 0.72, 1.31, 2.46, 4.45, 5.91, 8.12, 9.4, 10.46, 11.02, 9.77, 8.84, 7.18, 5.79, 4.61, 3.31, 2.49, 1.43, 1.0, 0.58, 0.45, 0.14, 0.13, 0.07, 0.06, 0.01]
+            },
+            "roi_pct_histogram": {
+              "bin_edges": [-60.0, -45.5, -30.9, -16.4, -1.9, 12.6, 27.2, 41.7, 56.2, 70.7, 85.3, 99.8, 114.3, 128.9, 143.4, 157.9, 172.4, 187.0, 201.5, 216.0, 230.5, 245.1, 259.6, 274.1, 288.7, 303.2, 317.7, 332.2, 346.8],
+              "bin_midpoints": [-52.7, -38.2, -23.7, -9.2, 5.4, 19.9, 34.4, 49.0, 63.5, 78.0, 92.5, 107.1, 121.6, 136.1, 150.6, 165.2, 179.7, 194.2, 208.8, 223.3, 237.8, 252.3, 266.9, 281.4, 295.9, 310.4, 325.0, 339.5],
+              "counts": [2, 31, 106, 253, 502, 686, 931, 1012, 1139, 1101, 978, 855, 685, 506, 387, 273, 206, 132, 87, 49, 34, 18, 12, 7, 3, 2, 2, 1],
+              "pct_of_trials": [0.02, 0.31, 1.06, 2.53, 5.02, 6.86, 9.31, 10.12, 11.39, 11.01, 9.78, 8.55, 6.85, 5.06, 3.87, 2.73, 2.06, 1.32, 0.87, 0.49, 0.34, 0.18, 0.12, 0.07, 0.03, 0.02, 0.02, 0.01]
+            }
+          },
+          "kpis": {
+            "month36_adoption_pct": {
+              "mean": 66.7,
+              "p05": 55.2,
+              "p10": 57.6,
+              "p25": 62.0,
+              "p50": 67.0,
+              "p75": 71.5,
+              "p90": 75.5,
+              "p95": 77.5,
+              "std": 6.7
+            },
+            "month36_net_productivity_uplift_pct": {
+              "mean": 5.17,
+              "p05": 3.44,
+              "p10": 3.78,
+              "p25": 4.37,
+              "p50": 5.12,
+              "p75": 5.91,
+              "p90": 6.64,
+              "p95": 7.1,
+              "std": 1.11
+            },
+            "npv_usd": {
+              "mean": 758619.0,
+              "p05": -98935.0,
+              "p10": 62084.0,
+              "p25": 365597.0,
+              "p50": 723322.0,
+              "p75": 1.115263e6,
+              "p90": 1.50183e6,
+              "p95": 1.734034e6,
+              "std": 560550.0
+            },
+            "payback_months": {
+              "mean": 24.3,
+              "p05": 17.5,
+              "p10": 18.6,
+              "p25": 20.6,
+              "p50": 23.5,
+              "p75": 26.9,
+              "p90": 31.6,
+              "p95": 35.2,
+              "std": 5.1
+            },
+            "prob_breakeven_within_24m_pct": 54.5,
+            "prob_breakeven_within_36m_pct": 95.6,
+            "prob_positive_npv_pct": 92.1,
+            "roi_pct": {
+              "mean": 80.0,
+              "p05": 2.4,
+              "p10": 15.1,
+              "p25": 41.5,
+              "p50": 74.8,
+              "p75": 112.5,
+              "p90": 150.4,
+              "p95": 175.7,
+              "std": 53.1
+            },
+            "total_cost_36m_usd": {
+              "mean": 1.367867e6,
+              "p05": 1.055798e6,
+              "p10": 1.114083e6,
+              "p25": 1.216153e6,
+              "p50": 1.343995e6,
+              "p75": 1.49547e6,
+              "p90": 1.648507e6,
+              "p95": 1.754771e6,
+              "std": 215664.0
+            },
+            "total_gross_benefit_36m_usd": {
+              "mean": 3.629082e6,
+              "p05": 2.504695e6,
+              "p10": 2.695095e6,
+              "p25": 3.091522e6,
+              "p50": 3.576211e6,
+              "p75": 4.100732e6,
+              "p90": 4.630836e6,
+              "p95": 4.966903e6,
+              "std": 751112.0
+            },
+            "total_net_benefit_36m_usd": {
+              "mean": 2.419002e6,
+              "p05": 1.425551e6,
+              "p10": 1.606739e6,
+              "p25": 1.940165e6,
+              "p50": 2.362221e6,
+              "p75": 2.841266e6,
+              "p90": 3.306575e6,
+              "p95": 3.603509e6,
+              "std": 664115.0
+            },
+            "total_rework_drag_36m_usd": {
+              "mean": 1.210079e6,
+              "p05": 815645.0,
+              "p10": 884176.0,
+              "p25": 1.020901e6,
+              "p50": 1.189504e6,
+              "p75": 1.373815e6,
+              "p90": 1.561168e6,
+              "p95": 1.67948e6,
+              "std": 263965.0
+            }
+          },
+          "sensitivity": [
+            {
+              "category": "Speed Gain",
+              "driver": "Raw Time Saved per Task (%)",
+              "npv_high_driver_usd": 1.28701e6,
+              "npv_low_driver_usd": 193690.0,
+              "npv_swing_usd": 1.09332e6,
+              "roi_high_driver_pct": 124.9,
+              "roi_low_driver_pct": 26.9,
+              "roi_swing_pct": 98.0,
+              "spearman_r": 0.701
+            },
+            {
+              "category": "Starting Cost",
+              "driver": "Upfront IT Setup & Training Cost",
+              "npv_high_driver_usd": 444283.0,
+              "npv_low_driver_usd": 950150.0,
+              "npv_swing_usd": -505867.0,
+              "roi_high_driver_pct": 42.6,
+              "roi_low_driver_pct": 111.4,
+              "roi_swing_pct": -68.8,
+              "spearman_r": -0.336
+            },
+            {
+              "category": "Quality Check",
+              "driver": "Cleanup & Fact-Checking Time",
+              "npv_high_driver_usd": 480607.0,
+              "npv_low_driver_usd": 935265.0,
+              "npv_swing_usd": -454658.0,
+              "roi_high_driver_pct": 54.0,
+              "roi_low_driver_pct": 95.0,
+              "roi_swing_pct": -41.0,
+              "spearman_r": -0.289
+            },
+            {
+              "category": "Rollout Speed",
+              "driver": "How Fast Staff Adopt AI",
+              "npv_high_driver_usd": 958431.0,
+              "npv_low_driver_usd": 514616.0,
+              "npv_swing_usd": 443815.0,
+              "roi_high_driver_pct": 91.3,
+              "roi_low_driver_pct": 60.7,
+              "roi_swing_pct": 30.6,
+              "spearman_r": 0.272
+            },
+            {
+              "category": "Business Impact",
+              "driver": "Turning Saved Time into Profit",
+              "npv_high_driver_usd": 936006.0,
+              "npv_low_driver_usd": 531568.0,
+              "npv_swing_usd": 404438.0,
+              "roi_high_driver_pct": 95.5,
+              "roi_low_driver_pct": 57.9,
+              "roi_swing_pct": 37.5,
+              "spearman_r": 0.256
+            },
+            {
+              "category": "Ongoing Cost",
+              "driver": "Monthly Seat & Usage Bill Creep",
+              "npv_high_driver_usd": 658556.0,
+              "npv_low_driver_usd": 774080.0,
+              "npv_swing_usd": -115524.0,
+              "roi_high_driver_pct": 65.3,
+              "roi_low_driver_pct": 85.2,
+              "roi_swing_pct": -19.9,
+              "spearman_r": -0.087
+            }
+          ],
+          "teams": [
+            {
+              "ai_addressable_task_share_pct": 55.0,
+              "avg_monthly_hours_saved_per_fte": {
+                "mean": 4.8,
+                "p05": 1.7,
+                "p10": 2.3,
+                "p25": 3.4,
+                "p50": 4.6,
+                "p75": 6.1,
+                "p90": 7.4,
+                "p95": 8.2,
+                "std": 2.0
+              },
+              "cost_per_seat_monthly_usd": {
+                "mean": 122.0,
+                "p05": 92.1,
+                "p10": 97.5,
+                "p25": 107.5,
+                "p50": 119.9,
+                "p75": 134.2,
+                "p90": 148.9,
+                "p95": 158.8,
+                "std": 20.5
+              },
+              "fully_loaded_annual_cost_usd": 185000.0,
+              "headcount": 120,
+              "id": "software_eng",
+              "month36_net_productivity_uplift_pct": {
+                "mean": 5.04,
+                "p05": 1.96,
+                "p10": 2.55,
+                "p25": 3.67,
+                "p50": 4.97,
+                "p75": 6.35,
+                "p90": 7.64,
+                "p95": 8.42,
+                "std": 1.94
+              },
+              "name": "Product & Software Engineering",
+              "net_benefit_36m_usd": {
+                "mean": 1.225388e6,
+                "p05": 427895.0,
+                "p10": 569516.0,
+                "p25": 845647.0,
+                "p50": 1.180248e6,
+                "p75": 1.564524e6,
+                "p90": 1.940039e6,
+                "p95": 2.183861e6,
+                "std": 533577.0
+              },
+              "net_benefit_per_seat_36m_usd": {
+                "mean": 5820.0,
+                "p05": -832.0,
+                "p10": 353.0,
+                "p25": 2671.0,
+                "p50": 5449.0,
+                "p75": 8679.0,
+                "p90": 11709.0,
+                "p95": 13739.0,
+                "std": 4430.0
+              },
+              "prob_positive_roi_pct": 91.8,
+              "roi_pct": {
+                "mean": 137.1,
+                "p05": -18.7,
+                "p10": 8.0,
+                "p25": 60.5,
+                "p50": 125.7,
+                "p75": 202.8,
+                "p90": 280.2,
+                "p95": 329.1,
+                "std": 107.2
+              },
+              "total_cost_36m_usd": {
+                "mean": 527022.0,
+                "p05": 398036.0,
+                "p10": 421274.0,
+                "p25": 464516.0,
+                "p50": 518064.0,
+                "p75": 579692.0,
+                "p90": 643186.0,
+                "p95": 685855.0,
+                "std": 88570.0
+              }
+            },
+            {
+              "ai_addressable_task_share_pct": 65.0,
+              "avg_monthly_hours_saved_per_fte": {
+                "mean": 8.5,
+                "p05": 4.6,
+                "p10": 5.3,
+                "p25": 6.6,
+                "p50": 8.3,
+                "p75": 10.1,
+                "p90": 11.8,
+                "p95": 12.8,
+                "std": 2.5
+              },
+              "cost_per_seat_monthly_usd": {
+                "mean": 107.6,
+                "p05": 80.0,
+                "p10": 85.2,
+                "p25": 94.3,
+                "p50": 105.9,
+                "p75": 118.8,
+                "p90": 132.4,
+                "p95": 141.5,
+                "std": 19.0
+              },
+              "fully_loaded_annual_cost_usd": 78000.0,
+              "headcount": 90,
+              "id": "customer_ops",
+              "month36_net_productivity_uplift_pct": {
+                "mean": 8.8,
+                "p05": 4.97,
+                "p10": 5.68,
+                "p25": 7.05,
+                "p50": 8.7,
+                "p75": 10.44,
+                "p90": 12.03,
+                "p95": 12.95,
+                "std": 2.41
+              },
+              "name": "Customer Support & Success",
+              "net_benefit_36m_usd": {
+                "mean": 809769.0,
+                "p05": 436274.0,
+                "p10": 500206.0,
+                "p25": 629794.0,
+                "p50": 792430.0,
+                "p75": 967156.0,
+                "p90": 1.140562e6,
+                "p95": 1.253761e6,
+                "std": 248621.0
+              },
+              "net_benefit_per_seat_36m_usd": {
+                "mean": 5122.0,
+                "p05": 863.0,
+                "p10": 1657.0,
+                "p25": 3160.0,
+                "p50": 4940.0,
+                "p75": 6901.0,
+                "p90": 8806.0,
+                "p95": 10001.0,
+                "std": 2783.0
+              },
+              "prob_positive_roi_pct": 98.1,
+              "roi_pct": {
+                "mean": 138.0,
+                "p05": 20.8,
+                "p10": 41.0,
+                "p25": 80.1,
+                "p50": 130.5,
+                "p75": 185.3,
+                "p90": 245.6,
+                "p95": 282.5,
+                "std": 80.6
+              },
+              "total_cost_36m_usd": {
+                "mean": 348745.0,
+                "p05": 259170.0,
+                "p10": 276069.0,
+                "p25": 305486.0,
+                "p50": 343201.0,
+                "p75": 384827.0,
+                "p90": 428874.0,
+                "p95": 458309.0,
+                "std": 61465.0
+              }
+            },
+            {
+              "ai_addressable_task_share_pct": 42.0,
+              "avg_monthly_hours_saved_per_fte": {
+                "mean": 2.5,
+                "p05": 0.7,
+                "p10": 1.0,
+                "p25": 1.6,
+                "p50": 2.4,
+                "p75": 3.2,
+                "p90": 4.1,
+                "p95": 4.5,
+                "std": 1.2
+              },
+              "cost_per_seat_monthly_usd": {
+                "mean": 114.5,
+                "p05": 85.7,
+                "p10": 90.9,
+                "p25": 100.7,
+                "p50": 112.7,
+                "p75": 126.3,
+                "p90": 140.1,
+                "p95": 148.9,
+                "std": 19.6
+              },
+              "fully_loaded_annual_cost_usd": 142000.0,
+              "headcount": 75,
+              "id": "sales_gtm",
+              "month36_net_productivity_uplift_pct": {
+                "mean": 2.73,
+                "p05": 0.91,
+                "p10": 1.26,
+                "p25": 1.88,
+                "p50": 2.66,
+                "p75": 3.53,
+                "p90": 4.31,
+                "p95": 4.76,
+                "std": 1.17
+              },
+              "name": "Sales, Account Teams & Marketing",
+              "net_benefit_36m_usd": {
+                "mean": 258950.0,
+                "p05": 68903.0,
+                "p10": 101797.0,
+                "p25": 164523.0,
+                "p50": 246292.0,
+                "p75": 339623.0,
+                "p90": 434733.0,
+                "p95": 494763.0,
+                "std": 130198.0
+              },
+              "net_benefit_per_seat_36m_usd": {
+                "mean": -668.0,
+                "p05": -3470.0,
+                "p10": -2915.0,
+                "p25": -1934.0,
+                "p50": -774.0,
+                "p75": 507.0,
+                "p90": 1753.0,
+                "p95": 2490.0,
+                "std": 1818.0
+              },
+              "prob_positive_roi_pct": 33.4,
+              "roi_pct": {
+                "mean": -14.4,
+                "p05": -78.0,
+                "p10": -67.1,
+                "p25": -46.5,
+                "p50": -19.4,
+                "p75": 13.0,
+                "p90": 45.6,
+                "p95": 65.3,
+                "std": 44.2
+              },
+              "total_cost_36m_usd": {
+                "mean": 309064.0,
+                "p05": 231292.0,
+                "p10": 245413.0,
+                "p25": 271878.0,
+                "p50": 304282.0,
+                "p75": 340932.0,
+                "p90": 378228.0,
+                "p95": 402151.0,
+                "std": 52908.0
+              }
+            },
+            {
+              "ai_addressable_task_share_pct": 48.0,
+              "avg_monthly_hours_saved_per_fte": {
+                "mean": 1.8,
+                "p05": 0.0,
+                "p10": 0.2,
+                "p25": 0.9,
+                "p50": 1.7,
+                "p75": 2.6,
+                "p90": 3.5,
+                "p95": 4.0,
+                "std": 1.2
+              },
+              "cost_per_seat_monthly_usd": {
+                "mean": 127.1,
+                "p05": 95.7,
+                "p10": 101.4,
+                "p25": 112.0,
+                "p50": 125.1,
+                "p75": 140.5,
+                "p90": 155.4,
+                "p95": 164.7,
+                "std": 21.4
+              },
+              "fully_loaded_annual_cost_usd": 165000.0,
+              "headcount": 40,
+              "id": "legal_finance",
+              "month36_net_productivity_uplift_pct": {
+                "mean": 2.01,
+                "p05": -0.08,
+                "p10": 0.33,
+                "p25": 1.08,
+                "p50": 1.97,
+                "p75": 2.91,
+                "p90": 3.77,
+                "p95": 4.28,
+                "std": 1.32
+              },
+              "name": "Legal, Finance & Compliance",
+              "net_benefit_36m_usd": {
+                "mean": 124896.0,
+                "p05": -20677.0,
+                "p10": 8073.0,
+                "p25": 58317.0,
+                "p50": 119052.0,
+                "p75": 185268.0,
+                "p90": 249258.0,
+                "p95": 290759.0,
+                "std": 94882.0
+              },
+              "net_benefit_per_seat_36m_usd": {
+                "mean": -1454.0,
+                "p05": -5309.0,
+                "p10": -4497.0,
+                "p25": -3143.0,
+                "p50": -1562.0,
+                "p75": 151.0,
+                "p90": 1735.0,
+                "p95": 2747.0,
+                "std": 2451.0
+              },
+              "prob_positive_roi_pct": 26.8,
+              "roi_pct": {
+                "mean": -30.4,
+                "p05": -111.5,
+                "p10": -95.5,
+                "p25": -67.8,
+                "p50": -34.7,
+                "p75": 3.4,
+                "p90": 39.6,
+                "p95": 63.7,
+                "std": 53.7
+              },
+              "total_cost_36m_usd": {
+                "mean": 183036.0,
+                "p05": 137827.0,
+                "p10": 146062.0,
+                "p25": 161243.0,
+                "p50": 180187.0,
+                "p75": 202342.0,
+                "p90": 223708.0,
+                "p95": 237209.0,
+                "std": 30779.0
+              }
+            }
+          ],
+          "trajectories": {
+            "adoption_pct": {
+              "mean": [0.6, 0.8, 1.2, 1.7, 2.4, 3.4, 4.8, 6.6, 9.1, 12.2, 16.1, 20.7, 26.0, 31.6, 37.3, 42.7, 47.8, 52.1, 55.7, 58.6, 60.8, 62.5, 63.7, 64.6, 65.2, 65.7, 66.0, 66.2, 66.4, 66.5, 66.6, 66.6, 66.7, 66.7, 66.7, 66.7],
+              "p10": [0.1, 0.1, 0.2, 0.3, 0.5, 0.7, 1.1, 1.7, 2.6, 3.9, 5.8, 8.4, 11.7, 16.0, 21.0, 26.9, 32.9, 38.6, 43.9, 48.0, 51.0, 53.0, 54.5, 55.5, 56.1, 56.6, 56.9, 57.1, 57.3, 57.4, 57.5, 57.6, 57.6, 57.6, 57.6, 57.6],
+              "p25": [0.2, 0.3, 0.4, 0.6, 0.9, 1.4, 2.1, 3.1, 4.5, 6.6, 9.3, 12.9, 17.4, 22.7, 28.5, 34.6, 40.4, 45.5, 49.8, 53.1, 55.6, 57.5, 58.8, 59.8, 60.5, 61.0, 61.3, 61.5, 61.6, 61.8, 61.8, 61.9, 61.9, 62.0, 62.0, 62.0],
+              "p50": [0.4, 0.6, 0.8, 1.2, 1.8, 2.6, 3.8, 5.5, 7.8, 10.8, 14.8, 19.6, 25.2, 31.3, 37.4, 43.3, 48.4, 52.7, 56.1, 58.9, 61.0, 62.7, 63.9, 64.8, 65.4, 65.9, 66.2, 66.4, 66.6, 66.7, 66.8, 66.9, 66.9, 66.9, 66.9, 67.0],
+              "p75": [0.8, 1.1, 1.6, 2.3, 3.3, 4.7, 6.5, 9.1, 12.4, 16.6, 21.7, 27.5, 33.7, 40.0, 45.8, 51.1, 55.5, 59.1, 62.1, 64.4, 66.2, 67.6, 68.7, 69.5, 70.1, 70.6, 70.8, 71.1, 71.2, 71.3, 71.4, 71.5, 71.5, 71.5, 71.5, 71.5],
+              "p90": [1.4, 1.9, 2.7, 3.7, 5.2, 7.1, 9.8, 13.2, 17.5, 22.7, 28.6, 34.9, 41.2, 47.4, 52.9, 57.5, 61.4, 64.4, 66.9, 68.9, 70.4, 71.7, 72.6, 73.5, 74.0, 74.4, 74.8, 75.0, 75.1, 75.3, 75.3, 75.4, 75.4, 75.5, 75.5, 75.5]
+            },
+            "cumulative_cashflow_usd": {
+              "mean": [-117263.0, -234195.0, -350678.0, -466570.0, -498955.0, -530403.0, -560710.0, -589615.0, -616736.0, -614240.0, -608460.0, -598180.0, -581969.0, -558415.0, -526419.0, -485440.0, -435617.0, -377719.0, -312960.0, -242749.0, -168463.0, -91288.0, -12153.0, 68267.0, 149504.0, 231243.0, 313273.0, 395453.0, 477687.0, 559909.0, 642071.0, 724143.0, 806099.0, 887924.0, 969606.0, 1.051135e6],
+              "p10": [-159790.0, -319228.0, -478141.0, -636211.0, -673126.0, -709028.0, -743199.0, -777249.0, -807760.0, -809334.0, -807325.0, -806206.0, -799875.0, -789118.0, -771275.0, -750146.0, -721666.0, -685090.0, -643885.0, -596672.0, -546486.0, -497115.0, -444460.0, -392404.0, -337538.0, -288379.0, -234955.0, -183193.0, -132568.0, -80355.0, -31270.0, 22614.0, 71753.0, 122427.0, 169882.0, 217668.0],
+              "p25": [-134934.0, -269557.0, -403729.0, -537191.0, -571530.0, -606012.0, -639302.0, -671629.0, -702188.0, -700815.0, -697970.0, -692549.0, -682668.0, -668004.0, -647696.0, -620028.0, -585855.0, -543623.0, -496023.0, -441814.0, -383149.0, -320416.0, -256267.0, -193086.0, -126148.0, -61274.0, 4225.0, 70701.0, 135286.0, 198034.0, 262537.0, 328043.0, 390325.0, 454446.0, 516948.0, 577317.0],
+              "p50": [-112199.0, -224129.0, -335623.0, -446702.0, -478655.0, -510357.0, -541886.0, -571223.0, -598769.0, -596913.0, -592588.0, -583739.0, -570881.0, -551076.0, -523487.0, -488709.0, -443311.0, -390317.0, -328238.0, -259219.0, -189355.0, -114834.0, -37874.0, 42589.0, 122085.0, 200795.0, 282270.0, 364919.0, 445159.0, 525583.0, 605634.0, 687162.0, 768169.0, 848821.0, 928386.0, 1.008542e6],
+              "p75": [-94438.0, -188447.0, -281993.0, -374865.0, -404797.0, -434498.0, -462408.0, -488059.0, -511883.0, -508071.0, -500256.0, -487098.0, -467313.0, -439184.0, -399094.0, -348761.0, -287743.0, -215423.0, -139030.0, -55503.0, 32124.0, 122794.0, 215608.0, 309184.0, 404946.0, 500557.0, 596885.0, 693684.0, 790211.0, 886817.0, 985265.0, 1.084262e6, 1.183568e6, 1.280676e6, 1.378833e6, 1.476643e6],
+              "p90": [-81450.0, -162619.0, -243336.0, -323324.0, -350972.0, -377559.0, -402275.0, -424845.0, -445040.0, -437930.0, -425334.0, -407264.0, -379199.0, -339325.0, -285357.0, -221024.0, -141423.0, -55516.0, 38817.0, 138364.0, 240692.0, 345515.0, 453445.0, 562133.0, 672333.0, 785671.0, 898243.0, 1.015383e6, 1.128658e6, 1.243111e6, 1.357769e6, 1.476005e6, 1.591094e6, 1.708582e6, 1.823035e6, 1.942689e6]
+            },
+            "effective_productivity_uplift_pct": {
+              "mean": [0.05, 0.06, 0.09, 0.12, 0.17, 0.22, 0.3, 0.39, 0.51, 0.67, 0.88, 1.15, 1.5, 1.92, 2.38, 2.87, 3.34, 3.77, 4.14, 4.43, 4.65, 4.81, 4.93, 5.0, 5.06, 5.09, 5.12, 5.14, 5.15, 5.16, 5.16, 5.17, 5.17, 5.17, 5.17, 5.17],
+              "p10": [0.01, 0.01, 0.01, 0.02, 0.03, 0.05, 0.08, 0.11, 0.16, 0.21, 0.28, 0.38, 0.5, 0.69, 0.94, 1.31, 1.74, 2.22, 2.67, 3.01, 3.27, 3.44, 3.56, 3.63, 3.69, 3.72, 3.74, 3.76, 3.77, 3.77, 3.78, 3.78, 3.78, 3.78, 3.78, 3.78],
+              "p25": [0.01, 0.02, 0.03, 0.05, 0.07, 0.1, 0.14, 0.19, 0.26, 0.35, 0.46, 0.6, 0.81, 1.1, 1.49, 1.95, 2.46, 2.93, 3.34, 3.65, 3.88, 4.03, 4.15, 4.22, 4.27, 4.3, 4.33, 4.34, 4.35, 4.36, 4.36, 4.37, 4.37, 4.37, 4.37, 4.37],
+              "p50": [0.03, 0.04, 0.06, 0.09, 0.13, 0.18, 0.25, 0.33, 0.43, 0.56, 0.74, 0.99, 1.32, 1.76, 2.27, 2.8, 3.29, 3.73, 4.09, 4.37, 4.6, 4.77, 4.88, 4.96, 5.01, 5.04, 5.07, 5.09, 5.1, 5.1, 5.11, 5.11, 5.12, 5.12, 5.12, 5.12],
+              "p75": [0.06, 0.09, 0.12, 0.17, 0.23, 0.31, 0.4, 0.52, 0.67, 0.87, 1.15, 1.52, 2.0, 2.55, 3.14, 3.69, 4.17, 4.58, 4.92, 5.18, 5.38, 5.54, 5.65, 5.73, 5.79, 5.83, 5.85, 5.87, 5.88, 5.9, 5.9, 5.9, 5.91, 5.91, 5.91, 5.91],
+              "p90": [0.11, 0.15, 0.2, 0.27, 0.35, 0.46, 0.59, 0.75, 0.98, 1.27, 1.68, 2.2, 2.78, 3.39, 3.98, 4.51, 4.95, 5.31, 5.64, 5.88, 6.08, 6.24, 6.35, 6.44, 6.5, 6.54, 6.57, 6.59, 6.6, 6.62, 6.63, 6.63, 6.63, 6.64, 6.64, 6.64]
+            },
+            "monthly_benefit_usd": {
+              "mean": [1008.0, 1413.0, 1965.0, 2705.0, 3670.0, 4902.0, 6457.0, 8424.0, 10963.0, 14325.0, 18831.0, 24796.0, 32396.0, 41547.0, 51851.0, 62654.0, 73190.0, 82771.0, 90922.0, 97441.0, 102380.0, 105960.0, 108472.0, 110201.0, 111383.0, 112192.0, 112748.0, 113134.0, 113403.0, 113592.0, 113724.0, 113818.0, 113884.0, 113931.0, 113964.0, 113988.0],
+              "p10": [130.0, 201.0, 311.0, 482.0, 742.0, 1117.0, 1639.0, 2340.0, 3237.0, 4312.0, 5715.0, 7557.0, 10136.0, 13903.0, 19605.0, 27052.0, 36424.0, 46321.0, 55586.0, 62995.0, 67942.0, 71670.0, 74283.0, 75759.0, 76726.0, 77316.0, 77784.0, 78104.0, 78258.0, 78401.0, 78549.0, 78592.0, 78642.0, 78670.0, 78684.0, 78710.0],
+              "p25": [285.0, 433.0, 652.0, 980.0, 1452.0, 2108.0, 2968.0, 4070.0, 5444.0, 7154.0, 9350.0, 12349.0, 16671.0, 22637.0, 30893.0, 41049.0, 52060.0, 62262.0, 70999.0, 77710.0, 82763.0, 86329.0, 88645.0, 90269.0, 91279.0, 92093.0, 92655.0, 92951.0, 93180.0, 93336.0, 93420.0, 93505.0, 93555.0, 93591.0, 93617.0, 93646.0],
+              "p50": [634.0, 929.0, 1360.0, 1958.0, 2789.0, 3877.0, 5268.0, 6948.0, 9052.0, 11779.0, 15522.0, 20764.0, 28035.0, 37562.0, 48623.0, 60190.0, 71395.0, 81088.0, 89037.0, 95418.0, 100403.0, 104174.0, 106600.0, 108363.0, 109593.0, 110356.0, 110881.0, 111285.0, 111531.0, 111706.0, 111864.0, 111984.0, 112037.0, 112084.0, 112116.0, 112150.0],
+              "p75": [1320.0, 1873.0, 2618.0, 3634.0, 4931.0, 6579.0, 8601.0, 11070.0, 14395.0, 18690.0, 24669.0, 32763.0, 43287.0, 55742.0, 68676.0, 81155.0, 92323.0, 101750.0, 109262.0, 115570.0, 120358.0, 123923.0, 126413.0, 128287.0, 129485.0, 130324.0, 131025.0, 131441.0, 131701.0, 131888.0, 131984.0, 132061.0, 132172.0, 132243.0, 132296.0, 132297.0],
+              "p90": [2367.0, 3261.0, 4436.0, 5914.0, 7782.0, 10014.0, 12815.0, 16480.0, 21126.0, 27719.0, 36635.0, 48144.0, 61455.0, 75458.0, 88979.0, 101163.0, 112148.0, 121577.0, 128984.0, 134902.0, 139333.0, 143037.0, 145538.0, 147262.0, 148848.0, 149720.0, 150360.0, 150947.0, 151236.0, 151453.0, 151714.0, 151856.0, 151928.0, 151974.0, 152014.0, 152091.0]
+            },
+            "monthly_cost_usd": {
+              "mean": [118271.0, 118344.0, 118448.0, 118597.0, 36054.0, 36351.0, 36764.0, 37329.0, 38083.0, 11829.0, 13052.0, 14515.0, 16184.0, 17994.0, 19855.0, 21674.0, 23368.0, 24874.0, 26162.0, 27230.0, 28094.0, 28785.0, 29337.0, 29781.0, 30146.0, 30453.0, 30718.0, 30954.0, 31169.0, 31370.0, 31562.0, 31747.0, 31927.0, 32106.0, 32282.0, 32459.0],
+              "p10": [82554.0, 82607.0, 82751.0, 82880.0, 27555.0, 27817.0, 28215.0, 28716.0, 29303.0, 8399.0, 9128.0, 10053.0, 11157.0, 12573.0, 14200.0, 16010.0, 17883.0, 19643.0, 21192.0, 22408.0, 23343.0, 24008.0, 24507.0, 24912.0, 25201.0, 25454.0, 25687.0, 25854.0, 26018.0, 26174.0, 26309.0, 26434.0, 26567.0, 26676.0, 26793.0, 26928.0],
+              "p25": [95463.0, 95533.0, 95632.0, 95805.0, 31110.0, 31369.0, 31766.0, 32282.0, 32957.0, 9723.0, 10653.0, 11794.0, 13235.0, 14884.0, 16669.0, 18528.0, 20343.0, 21950.0, 23331.0, 24485.0, 25390.0, 26101.0, 26661.0, 27083.0, 27416.0, 27684.0, 27912.0, 28120.0, 28296.0, 28474.0, 28635.0, 28775.0, 28921.0, 29064.0, 29192.0, 29331.0],
+              "p50": [113102.0, 113184.0, 113264.0, 113376.0, 35786.0, 36074.0, 36493.0, 37044.0, 37821.0, 11469.0, 12666.0, 14144.0, 15893.0, 17794.0, 19738.0, 21617.0, 23308.0, 24792.0, 26013.0, 27031.0, 27886.0, 28552.0, 29128.0, 29545.0, 29915.0, 30218.0, 30482.0, 30720.0, 30935.0, 31116.0, 31305.0, 31486.0, 31665.0, 31837.0, 32015.0, 32178.0],
+              "p75": [135899.0, 135941.0, 136002.0, 136150.0, 40731.0, 41050.0, 41496.0, 42104.0, 42945.0, 13614.0, 15116.0, 16903.0, 18822.0, 20865.0, 22786.0, 24575.0, 26197.0, 27586.0, 28752.0, 29764.0, 30593.0, 31238.0, 31825.0, 32298.0, 32670.0, 33024.0, 33309.0, 33585.0, 33845.0, 34074.0, 34296.0, 34505.0, 34718.0, 34908.0, 35107.0, 35308.0],
+              "p90": [161113.0, 161183.0, 161321.0, 161464.0, 45228.0, 45547.0, 46000.0, 46593.0, 47411.0, 15744.0, 17529.0, 19541.0, 21636.0, 23711.0, 25636.0, 27416.0, 28917.0, 30259.0, 31432.0, 32370.0, 33183.0, 33869.0, 34471.0, 34954.0, 35354.0, 35713.0, 36015.0, 36318.0, 36599.0, 36859.0, 37124.0, 37367.0, 37623.0, 37869.0, 38125.0, 38373.0]
+            },
+            "monthly_net_cashflow_usd": {
+              "mean": [-117263.0, -116931.0, -116483.0, -115892.0, -32385.0, -31449.0, -30307.0, -28905.0, -27121.0, 2496.0, 5779.0, 10281.0, 16211.0, 23553.0, 31996.0, 40979.0, 49823.0, 57898.0, 64759.0, 70211.0, 74286.0, 77175.0, 79135.0, 80420.0, 81237.0, 81739.0, 82030.0, 82180.0, 82234.0, 82221.0, 82163.0, 82071.0, 81957.0, 81825.0, 81682.0, 81529.0],
+              "p10": [-159790.0, -159419.0, -158965.0, -158473.0, -42076.0, -41333.0, -40518.0, -39657.0, -38566.0, -5906.0, -5134.0, -4135.0, -2515.0, -103.0, 3817.0, 9293.0, 16210.0, 24154.0, 31432.0, 37162.0, 41168.0, 44047.0, 45699.0, 46653.0, 47188.0, 47469.0, 47599.0, 47649.0, 47705.0, 47616.0, 47569.0, 47437.0, 47330.0, 47196.0, 47059.0, 46921.0],
+              "p25": [-134934.0, -134595.0, -134125.0, -133594.0, -37344.0, -36578.0, -35638.0, -34597.0, -33469.0, -3377.0, -1980.0, -99.0, 2823.0, 7270.0, 13497.0, 21429.0, 30315.0, 38611.0, 45778.0, 51522.0, 55664.0, 58204.0, 60007.0, 61170.0, 61853.0, 62234.0, 62434.0, 62581.0, 62649.0, 62603.0, 62554.0, 62484.0, 62334.0, 62240.0, 62037.0, 61867.0],
+              "p50": [-112199.0, -111896.0, -111546.0, -111009.0, -32153.0, -31339.0, -30370.0, -29118.0, -27677.0, 455.0, 2955.0, 6617.0, 11978.0, 19379.0, 28460.0, 38184.0, 47457.0, 55872.0, 62832.0, 68346.0, 72493.0, 75403.0, 77476.0, 78773.0, 79542.0, 80019.0, 80271.0, 80374.0, 80430.0, 80443.0, 80384.0, 80263.0, 80155.0, 80054.0, 79910.0, 79750.0],
+              "p75": [-94438.0, -94036.0, -93519.0, -92945.0, -27365.0, -26313.0, -25066.0, -23516.0, -21557.0, 6212.0, 10550.0, 16873.0, 25259.0, 35591.0, 46669.0, 57592.0, 67159.0, 75374.0, 82068.0, 87413.0, 91293.0, 94479.0, 96686.0, 98126.0, 99056.0, 99576.0, 99986.0, 100229.0, 100333.0, 100376.0, 100281.0, 100216.0, 100128.0, 100035.0, 99901.0, 99756.0],
+              "p90": [-81450.0, -81131.0, -80663.0, -79910.0, -23372.0, -22107.0, -20574.0, -18474.0, -15556.0, 13744.0, 20755.0, 30076.0, 41250.0, 53480.0, 65577.0, 76190.0, 85970.0, 94234.0, 101001.0, 105827.0, 109739.0, 112917.0, 115179.0, 116764.0, 117659.0, 118480.0, 118913.0, 119141.0, 119334.0, 119322.0, 119289.0, 119269.0, 119236.0, 119138.0, 118991.0, 118746.0]
+            },
+            "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]
+          }
+        },
+        "system_dynamics": {
+          "causal_loops": [
+            {
+              "id": "Flywheel 1",
+              "impact_summary": "Speeds up team-wide adoption once roughly 1 in 4 employees are using the tool daily.",
+              "name": "Word-of-Mouth & Shared Tips",
+              "pathway": "More Active Users → Better Shared Templates → Easier for Coworkers → Faster Adoption",
+              "type": "Growth Flywheel (+)"
+            },
+            {
+              "id": "Flywheel 2",
+              "impact_summary": "Boosts output per person by 1.04x by Month 36.",
+              "name": "Growing Company Know-How",
+              "pathway": "Daily Practice + Training → Stronger Company Playbooks → Bigger Time Savings & Fewer Mistakes",
+              "type": "Growth Flywheel (+)"
+            },
+            {
+              "id": "Brake 1",
+              "impact_summary": "Costs $1356k in extra cleanup and rework over 36 months.",
+              "name": "Sloppy AI Cleanup Backlog",
+              "pathway": "Rushed AI Output → Pileup of Unchecked Work → Extra Time Fixing Mistakes → Staff Burnout",
+              "type": "Hidden Brake (-)"
+            },
+            {
+              "id": "Brake 2",
+              "impact_summary": "Pushes monthly usage bills to 1.12x per seat by Month 36 without budget guardrails.",
+              "name": "Climbing Monthly AI Usage Bills",
+              "pathway": "Automated Multi-Step Tasks → Higher Cloud Usage per Person → Rising Monthly Bills → Lower Profit",
+              "type": "Hidden Brake (-)"
+            }
+          ],
+          "kpis": {
+            "equilibrium_npv_usd": 1.159943e6,
+            "equilibrium_roi_pct": 110.4,
+            "m36_adopted_workforce_pct": 67.2,
+            "m36_tech_debt_index": 2.2,
+            "m36_token_sprawl_multiplier": 1.12,
+            "m36_workflow_mastery_index": 51.8,
+            "total_cost_36m_usd": 1.358395e6,
+            "total_gross_value_36m_usd": 4.214362e6,
+            "total_tech_debt_drag_36m_usd": 1.356292e6
+          },
+          "paradigm": "system_dynamics",
+          "parameters": {
+            "automation_ambition": 0.24,
+            "governance_damping": 0.42,
+            "horizon_months": 36,
+            "reinvestment_rate": 0.22,
+            "rk4_step_months": 0.25
+          },
+          "scenario_id": "conservative_pilot",
+          "scenario_name": "Cautious Safety-First Pilot",
+          "stocks_and_flows": {
+            "flow_cumulative_cashflow_usd": [-112785.0, -223213.0, -330892.0, -435415.0, -450000.0, -460655.0, -467061.0, -468969.0, -466222.0, -432257.0, -393617.0, -350428.0, -302883.0, -251223.0, -195718.0, -136647.0, -74285.0, -8892.0, 59287.0, 130035.0, 203152.0, 278464.0, 355813.0, 435062.0, 516088.0, 598780.0, 683041.0, 768784.0, 855926.0, 944397.0, 1.034128e6, 1.125058e6, 1.21713e6, 1.310289e6, 1.404487e6, 1.499675e6],
+            "flow_debt_drag_usd": [5725.0, 7350.0, 9244.0, 11417.0, 13868.0, 16571.0, 19484.0, 22541.0, 25664.0, 28763.0, 31754.0, 34561.0, 37125.0, 39408.0, 41394.0, 43084.0, 44494.0, 45648.0, 46576.0, 47311.0, 47882.0, 48319.0, 48646.0, 48885.0, 49055.0, 49170.0, 49243.0, 49284.0, 49301.0, 49299.0, 49284.0, 49259.0, 49228.0, 49192.0, 49152.0, 49111.0],
+            "flow_gross_benefit_usd": [15171.0, 19786.0, 25164.0, 31332.0, 38273.0, 45927.0, 54176.0, 62859.0, 71774.0, 80704.0, 89439.0, 97792.0, 105620.0, 112829.0, 119371.0, 125243.0, 130470.0, 135101.0, 139196.0, 142818.0, 146030.0, 148891.0, 151453.0, 153763.0, 155858.0, 157773.0, 159533.0, 161162.0, 162677.0, 164094.0, 165424.0, 166679.0, 167864.0, 168989.0, 170057.0, 171073.0],
+            "flow_net_cashflow_usd": [-112785.0, -110429.0, -107679.0, -104523.0, -14584.0, -10656.0, -6406.0, -1908.0, 2747.0, 33965.0, 38640.0, 43189.0, 47545.0, 51660.0, 55505.0, 59071.0, 62362.0, 65392.0, 68180.0, 70747.0, 73117.0, 75312.0, 77349.0, 79249.0, 81025.0, 82692.0, 84261.0, 85742.0, 87143.0, 88470.0, 89731.0, 90930.0, 92072.0, 93160.0, 94198.0, 95188.0],
+            "flow_total_cost_usd": [122231.0, 122864.0, 123600.0, 124437.0, 38990.0, 40011.0, 41098.0, 42225.0, 43364.0, 17976.0, 19045.0, 20042.0, 20950.0, 21761.0, 22472.0, 23088.0, 23614.0, 24061.0, 24440.0, 24759.0, 25030.0, 25260.0, 25458.0, 25629.0, 25778.0, 25910.0, 26028.0, 26135.0, 26233.0, 26324.0, 26409.0, 26489.0, 26565.0, 26637.0, 26707.0, 26774.0],
+            "loop_dominance_score": [4.0, 6.2, 8.6, 11.2, 14.0, 17.0, 20.2, 23.5, 26.9, 30.2, 33.4, 36.5, 39.4, 42.0, 44.3, 46.4, 48.3, 49.9, 51.4, 52.7, 53.8, 54.8, 55.7, 56.5, 57.2, 57.9, 58.5, 59.1, 59.6, 60.1, 60.5, 60.9, 61.3, 61.7, 62.1, 62.4],
+            "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36],
+            "stock_adopted_workforce_pct": [8.1, 10.5, 13.3, 16.5, 20.1, 24.0, 28.1, 32.3, 36.6, 40.7, 44.6, 48.2, 51.5, 54.3, 56.7, 58.8, 60.5, 61.9, 63.0, 63.9, 64.6, 65.2, 65.6, 66.0, 66.3, 66.5, 66.7, 66.8, 66.9, 67.0, 67.0, 67.1, 67.1, 67.2, 67.2, 67.2],
+            "stock_tech_debt_index": [1.6, 1.3, 1.1, 1.0, 1.0, 1.0, 1.1, 1.2, 1.3, 1.5, 1.6, 1.8, 1.9, 2.1, 2.2, 2.3, 2.3, 2.4, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.4, 2.4, 2.4, 2.4, 2.3, 2.3, 2.3, 2.2, 2.2, 2.2],
+            "stock_token_sprawl_multiplier": [1.0, 1.0, 1.0, 1.0, 1.01, 1.01, 1.01, 1.01, 1.01, 1.02, 1.02, 1.02, 1.03, 1.03, 1.04, 1.04, 1.04, 1.05, 1.05, 1.06, 1.06, 1.07, 1.07, 1.08, 1.08, 1.08, 1.09, 1.09, 1.1, 1.1, 1.1, 1.11, 1.11, 1.11, 1.12, 1.12],
+            "stock_workflow_mastery_index": [10.1, 10.3, 10.6, 11.1, 11.6, 12.3, 13.2, 14.2, 15.3, 16.6, 17.9, 19.4, 21.0, 22.6, 24.2, 25.9, 27.5, 29.2, 30.8, 32.4, 34.0, 35.5, 36.9, 38.4, 39.7, 41.0, 42.3, 43.5, 44.7, 45.9, 46.9, 48.0, 49.0, 50.0, 50.9, 51.8]
+          }
+        }
+      },
+      "sensitivity": [
+        {
+          "category": "Speed Gain",
+          "driver": "Raw Time Saved per Task (%)",
+          "npv_high_driver_usd": 1.28701e6,
+          "npv_low_driver_usd": 193690.0,
+          "npv_swing_usd": 1.09332e6,
+          "roi_high_driver_pct": 124.9,
+          "roi_low_driver_pct": 26.9,
+          "roi_swing_pct": 98.0,
+          "spearman_r": 0.701
+        },
+        {
+          "category": "Starting Cost",
+          "driver": "Upfront IT Setup & Training Cost",
+          "npv_high_driver_usd": 444283.0,
+          "npv_low_driver_usd": 950150.0,
+          "npv_swing_usd": -505867.0,
+          "roi_high_driver_pct": 42.6,
+          "roi_low_driver_pct": 111.4,
+          "roi_swing_pct": -68.8,
+          "spearman_r": -0.336
+        },
+        {
+          "category": "Quality Check",
+          "driver": "Cleanup & Fact-Checking Time",
+          "npv_high_driver_usd": 480607.0,
+          "npv_low_driver_usd": 935265.0,
+          "npv_swing_usd": -454658.0,
+          "roi_high_driver_pct": 54.0,
+          "roi_low_driver_pct": 95.0,
+          "roi_swing_pct": -41.0,
+          "spearman_r": -0.289
+        },
+        {
+          "category": "Rollout Speed",
+          "driver": "How Fast Staff Adopt AI",
+          "npv_high_driver_usd": 958431.0,
+          "npv_low_driver_usd": 514616.0,
+          "npv_swing_usd": 443815.0,
+          "roi_high_driver_pct": 91.3,
+          "roi_low_driver_pct": 60.7,
+          "roi_swing_pct": 30.6,
+          "spearman_r": 0.272
+        },
+        {
+          "category": "Business Impact",
+          "driver": "Turning Saved Time into Profit",
+          "npv_high_driver_usd": 936006.0,
+          "npv_low_driver_usd": 531568.0,
+          "npv_swing_usd": 404438.0,
+          "roi_high_driver_pct": 95.5,
+          "roi_low_driver_pct": 57.9,
+          "roi_swing_pct": 37.5,
+          "spearman_r": 0.256
+        },
+        {
+          "category": "Ongoing Cost",
+          "driver": "Monthly Seat & Usage Bill Creep",
+          "npv_high_driver_usd": 658556.0,
+          "npv_low_driver_usd": 774080.0,
+          "npv_swing_usd": -115524.0,
+          "roi_high_driver_pct": 65.3,
+          "roi_low_driver_pct": 85.2,
+          "roi_swing_pct": -19.9,
+          "spearman_r": -0.087
+        }
+      ],
+      "tagline": "Strict quality rules, slower rollout, and tight budget caps",
+      "teams": [
+        {
+          "ai_addressable_task_share_pct": 55.0,
+          "avg_monthly_hours_saved_per_fte": {
+            "mean": 4.8,
+            "p05": 1.7,
+            "p10": 2.3,
+            "p25": 3.4,
+            "p50": 4.6,
+            "p75": 6.1,
+            "p90": 7.4,
+            "p95": 8.2,
+            "std": 2.0
+          },
+          "cost_per_seat_monthly_usd": {
+            "mean": 122.0,
+            "p05": 92.1,
+            "p10": 97.5,
+            "p25": 107.5,
+            "p50": 119.9,
+            "p75": 134.2,
+            "p90": 148.9,
+            "p95": 158.8,
+            "std": 20.5
+          },
+          "fully_loaded_annual_cost_usd": 185000.0,
+          "headcount": 120,
+          "id": "software_eng",
+          "month36_net_productivity_uplift_pct": {
+            "mean": 5.04,
+            "p05": 1.96,
+            "p10": 2.55,
+            "p25": 3.67,
+            "p50": 4.97,
+            "p75": 6.35,
+            "p90": 7.64,
+            "p95": 8.42,
+            "std": 1.94
+          },
+          "name": "Product & Software Engineering",
+          "net_benefit_36m_usd": {
+            "mean": 1.225388e6,
+            "p05": 427895.0,
+            "p10": 569516.0,
+            "p25": 845647.0,
+            "p50": 1.180248e6,
+            "p75": 1.564524e6,
+            "p90": 1.940039e6,
+            "p95": 2.183861e6,
+            "std": 533577.0
+          },
+          "net_benefit_per_seat_36m_usd": {
+            "mean": 5820.0,
+            "p05": -832.0,
+            "p10": 353.0,
+            "p25": 2671.0,
+            "p50": 5449.0,
+            "p75": 8679.0,
+            "p90": 11709.0,
+            "p95": 13739.0,
+            "std": 4430.0
+          },
+          "prob_positive_roi_pct": 91.8,
+          "roi_pct": {
+            "mean": 137.1,
+            "p05": -18.7,
+            "p10": 8.0,
+            "p25": 60.5,
+            "p50": 125.7,
+            "p75": 202.8,
+            "p90": 280.2,
+            "p95": 329.1,
+            "std": 107.2
+          },
+          "total_cost_36m_usd": {
+            "mean": 527022.0,
+            "p05": 398036.0,
+            "p10": 421274.0,
+            "p25": 464516.0,
+            "p50": 518064.0,
+            "p75": 579692.0,
+            "p90": 643186.0,
+            "p95": 685855.0,
+            "std": 88570.0
+          }
+        },
+        {
+          "ai_addressable_task_share_pct": 65.0,
+          "avg_monthly_hours_saved_per_fte": {
+            "mean": 8.5,
+            "p05": 4.6,
+            "p10": 5.3,
+            "p25": 6.6,
+            "p50": 8.3,
+            "p75": 10.1,
+            "p90": 11.8,
+            "p95": 12.8,
+            "std": 2.5
+          },
+          "cost_per_seat_monthly_usd": {
+            "mean": 107.6,
+            "p05": 80.0,
+            "p10": 85.2,
+            "p25": 94.3,
+            "p50": 105.9,
+            "p75": 118.8,
+            "p90": 132.4,
+            "p95": 141.5,
+            "std": 19.0
+          },
+          "fully_loaded_annual_cost_usd": 78000.0,
+          "headcount": 90,
+          "id": "customer_ops",
+          "month36_net_productivity_uplift_pct": {
+            "mean": 8.8,
+            "p05": 4.97,
+            "p10": 5.68,
+            "p25": 7.05,
+            "p50": 8.7,
+            "p75": 10.44,
+            "p90": 12.03,
+            "p95": 12.95,
+            "std": 2.41
+          },
+          "name": "Customer Support & Success",
+          "net_benefit_36m_usd": {
+            "mean": 809769.0,
+            "p05": 436274.0,
+            "p10": 500206.0,
+            "p25": 629794.0,
+            "p50": 792430.0,
+            "p75": 967156.0,
+            "p90": 1.140562e6,
+            "p95": 1.253761e6,
+            "std": 248621.0
+          },
+          "net_benefit_per_seat_36m_usd": {
+            "mean": 5122.0,
+            "p05": 863.0,
+            "p10": 1657.0,
+            "p25": 3160.0,
+            "p50": 4940.0,
+            "p75": 6901.0,
+            "p90": 8806.0,
+            "p95": 10001.0,
+            "std": 2783.0
+          },
+          "prob_positive_roi_pct": 98.1,
+          "roi_pct": {
+            "mean": 138.0,
+            "p05": 20.8,
+            "p10": 41.0,
+            "p25": 80.1,
+            "p50": 130.5,
+            "p75": 185.3,
+            "p90": 245.6,
+            "p95": 282.5,
+            "std": 80.6
+          },
+          "total_cost_36m_usd": {
+            "mean": 348745.0,
+            "p05": 259170.0,
+            "p10": 276069.0,
+            "p25": 305486.0,
+            "p50": 343201.0,
+            "p75": 384827.0,
+            "p90": 428874.0,
+            "p95": 458309.0,
+            "std": 61465.0
+          }
+        },
+        {
+          "ai_addressable_task_share_pct": 42.0,
+          "avg_monthly_hours_saved_per_fte": {
+            "mean": 2.5,
+            "p05": 0.7,
+            "p10": 1.0,
+            "p25": 1.6,
+            "p50": 2.4,
+            "p75": 3.2,
+            "p90": 4.1,
+            "p95": 4.5,
+            "std": 1.2
+          },
+          "cost_per_seat_monthly_usd": {
+            "mean": 114.5,
+            "p05": 85.7,
+            "p10": 90.9,
+            "p25": 100.7,
+            "p50": 112.7,
+            "p75": 126.3,
+            "p90": 140.1,
+            "p95": 148.9,
+            "std": 19.6
+          },
+          "fully_loaded_annual_cost_usd": 142000.0,
+          "headcount": 75,
+          "id": "sales_gtm",
+          "month36_net_productivity_uplift_pct": {
+            "mean": 2.73,
+            "p05": 0.91,
+            "p10": 1.26,
+            "p25": 1.88,
+            "p50": 2.66,
+            "p75": 3.53,
+            "p90": 4.31,
+            "p95": 4.76,
+            "std": 1.17
+          },
+          "name": "Sales, Account Teams & Marketing",
+          "net_benefit_36m_usd": {
+            "mean": 258950.0,
+            "p05": 68903.0,
+            "p10": 101797.0,
+            "p25": 164523.0,
+            "p50": 246292.0,
+            "p75": 339623.0,
+            "p90": 434733.0,
+            "p95": 494763.0,
+            "std": 130198.0
+          },
+          "net_benefit_per_seat_36m_usd": {
+            "mean": -668.0,
+            "p05": -3470.0,
+            "p10": -2915.0,
+            "p25": -1934.0,
+            "p50": -774.0,
+            "p75": 507.0,
+            "p90": 1753.0,
+            "p95": 2490.0,
+            "std": 1818.0
+          },
+          "prob_positive_roi_pct": 33.4,
+          "roi_pct": {
+            "mean": -14.4,
+            "p05": -78.0,
+            "p10": -67.1,
+            "p25": -46.5,
+            "p50": -19.4,
+            "p75": 13.0,
+            "p90": 45.6,
+            "p95": 65.3,
+            "std": 44.2
+          },
+          "total_cost_36m_usd": {
+            "mean": 309064.0,
+            "p05": 231292.0,
+            "p10": 245413.0,
+            "p25": 271878.0,
+            "p50": 304282.0,
+            "p75": 340932.0,
+            "p90": 378228.0,
+            "p95": 402151.0,
+            "std": 52908.0
+          }
+        },
+        {
+          "ai_addressable_task_share_pct": 48.0,
+          "avg_monthly_hours_saved_per_fte": {
+            "mean": 1.8,
+            "p05": 0.0,
+            "p10": 0.2,
+            "p25": 0.9,
+            "p50": 1.7,
+            "p75": 2.6,
+            "p90": 3.5,
+            "p95": 4.0,
+            "std": 1.2
+          },
+          "cost_per_seat_monthly_usd": {
+            "mean": 127.1,
+            "p05": 95.7,
+            "p10": 101.4,
+            "p25": 112.0,
+            "p50": 125.1,
+            "p75": 140.5,
+            "p90": 155.4,
+            "p95": 164.7,
+            "std": 21.4
+          },
+          "fully_loaded_annual_cost_usd": 165000.0,
+          "headcount": 40,
+          "id": "legal_finance",
+          "month36_net_productivity_uplift_pct": {
+            "mean": 2.01,
+            "p05": -0.08,
+            "p10": 0.33,
+            "p25": 1.08,
+            "p50": 1.97,
+            "p75": 2.91,
+            "p90": 3.77,
+            "p95": 4.28,
+            "std": 1.32
+          },
+          "name": "Legal, Finance & Compliance",
+          "net_benefit_36m_usd": {
+            "mean": 124896.0,
+            "p05": -20677.0,
+            "p10": 8073.0,
+            "p25": 58317.0,
+            "p50": 119052.0,
+            "p75": 185268.0,
+            "p90": 249258.0,
+            "p95": 290759.0,
+            "std": 94882.0
+          },
+          "net_benefit_per_seat_36m_usd": {
+            "mean": -1454.0,
+            "p05": -5309.0,
+            "p10": -4497.0,
+            "p25": -3143.0,
+            "p50": -1562.0,
+            "p75": 151.0,
+            "p90": 1735.0,
+            "p95": 2747.0,
+            "std": 2451.0
+          },
+          "prob_positive_roi_pct": 26.8,
+          "roi_pct": {
+            "mean": -30.4,
+            "p05": -111.5,
+            "p10": -95.5,
+            "p25": -67.8,
+            "p50": -34.7,
+            "p75": 3.4,
+            "p90": 39.6,
+            "p95": 63.7,
+            "std": 53.7
+          },
+          "total_cost_36m_usd": {
+            "mean": 183036.0,
+            "p05": 137827.0,
+            "p10": 146062.0,
+            "p25": 161243.0,
+            "p50": 180187.0,
+            "p75": 202342.0,
+            "p90": 223708.0,
+            "p95": 237209.0,
+            "std": 30779.0
+          }
+        }
+      ],
+      "trajectories": {
+        "adoption_pct": {
+          "mean": [0.6, 0.8, 1.2, 1.7, 2.4, 3.4, 4.8, 6.6, 9.1, 12.2, 16.1, 20.7, 26.0, 31.6, 37.3, 42.7, 47.8, 52.1, 55.7, 58.6, 60.8, 62.5, 63.7, 64.6, 65.2, 65.7, 66.0, 66.2, 66.4, 66.5, 66.6, 66.6, 66.7, 66.7, 66.7, 66.7],
+          "p10": [0.1, 0.1, 0.2, 0.3, 0.5, 0.7, 1.1, 1.7, 2.6, 3.9, 5.8, 8.4, 11.7, 16.0, 21.0, 26.9, 32.9, 38.6, 43.9, 48.0, 51.0, 53.0, 54.5, 55.5, 56.1, 56.6, 56.9, 57.1, 57.3, 57.4, 57.5, 57.6, 57.6, 57.6, 57.6, 57.6],
+          "p25": [0.2, 0.3, 0.4, 0.6, 0.9, 1.4, 2.1, 3.1, 4.5, 6.6, 9.3, 12.9, 17.4, 22.7, 28.5, 34.6, 40.4, 45.5, 49.8, 53.1, 55.6, 57.5, 58.8, 59.8, 60.5, 61.0, 61.3, 61.5, 61.6, 61.8, 61.8, 61.9, 61.9, 62.0, 62.0, 62.0],
+          "p50": [0.4, 0.6, 0.8, 1.2, 1.8, 2.6, 3.8, 5.5, 7.8, 10.8, 14.8, 19.6, 25.2, 31.3, 37.4, 43.3, 48.4, 52.7, 56.1, 58.9, 61.0, 62.7, 63.9, 64.8, 65.4, 65.9, 66.2, 66.4, 66.6, 66.7, 66.8, 66.9, 66.9, 66.9, 66.9, 67.0],
+          "p75": [0.8, 1.1, 1.6, 2.3, 3.3, 4.7, 6.5, 9.1, 12.4, 16.6, 21.7, 27.5, 33.7, 40.0, 45.8, 51.1, 55.5, 59.1, 62.1, 64.4, 66.2, 67.6, 68.7, 69.5, 70.1, 70.6, 70.8, 71.1, 71.2, 71.3, 71.4, 71.5, 71.5, 71.5, 71.5, 71.5],
+          "p90": [1.4, 1.9, 2.7, 3.7, 5.2, 7.1, 9.8, 13.2, 17.5, 22.7, 28.6, 34.9, 41.2, 47.4, 52.9, 57.5, 61.4, 64.4, 66.9, 68.9, 70.4, 71.7, 72.6, 73.5, 74.0, 74.4, 74.8, 75.0, 75.1, 75.3, 75.3, 75.4, 75.4, 75.5, 75.5, 75.5]
+        },
+        "cumulative_cashflow_usd": {
+          "mean": [-117263.0, -234195.0, -350678.0, -466570.0, -498955.0, -530403.0, -560710.0, -589615.0, -616736.0, -614240.0, -608460.0, -598180.0, -581969.0, -558415.0, -526419.0, -485440.0, -435617.0, -377719.0, -312960.0, -242749.0, -168463.0, -91288.0, -12153.0, 68267.0, 149504.0, 231243.0, 313273.0, 395453.0, 477687.0, 559909.0, 642071.0, 724143.0, 806099.0, 887924.0, 969606.0, 1.051135e6],
+          "p10": [-159790.0, -319228.0, -478141.0, -636211.0, -673126.0, -709028.0, -743199.0, -777249.0, -807760.0, -809334.0, -807325.0, -806206.0, -799875.0, -789118.0, -771275.0, -750146.0, -721666.0, -685090.0, -643885.0, -596672.0, -546486.0, -497115.0, -444460.0, -392404.0, -337538.0, -288379.0, -234955.0, -183193.0, -132568.0, -80355.0, -31270.0, 22614.0, 71753.0, 122427.0, 169882.0, 217668.0],
+          "p25": [-134934.0, -269557.0, -403729.0, -537191.0, -571530.0, -606012.0, -639302.0, -671629.0, -702188.0, -700815.0, -697970.0, -692549.0, -682668.0, -668004.0, -647696.0, -620028.0, -585855.0, -543623.0, -496023.0, -441814.0, -383149.0, -320416.0, -256267.0, -193086.0, -126148.0, -61274.0, 4225.0, 70701.0, 135286.0, 198034.0, 262537.0, 328043.0, 390325.0, 454446.0, 516948.0, 577317.0],
+          "p50": [-112199.0, -224129.0, -335623.0, -446702.0, -478655.0, -510357.0, -541886.0, -571223.0, -598769.0, -596913.0, -592588.0, -583739.0, -570881.0, -551076.0, -523487.0, -488709.0, -443311.0, -390317.0, -328238.0, -259219.0, -189355.0, -114834.0, -37874.0, 42589.0, 122085.0, 200795.0, 282270.0, 364919.0, 445159.0, 525583.0, 605634.0, 687162.0, 768169.0, 848821.0, 928386.0, 1.008542e6],
+          "p75": [-94438.0, -188447.0, -281993.0, -374865.0, -404797.0, -434498.0, -462408.0, -488059.0, -511883.0, -508071.0, -500256.0, -487098.0, -467313.0, -439184.0, -399094.0, -348761.0, -287743.0, -215423.0, -139030.0, -55503.0, 32124.0, 122794.0, 215608.0, 309184.0, 404946.0, 500557.0, 596885.0, 693684.0, 790211.0, 886817.0, 985265.0, 1.084262e6, 1.183568e6, 1.280676e6, 1.378833e6, 1.476643e6],
+          "p90": [-81450.0, -162619.0, -243336.0, -323324.0, -350972.0, -377559.0, -402275.0, -424845.0, -445040.0, -437930.0, -425334.0, -407264.0, -379199.0, -339325.0, -285357.0, -221024.0, -141423.0, -55516.0, 38817.0, 138364.0, 240692.0, 345515.0, 453445.0, 562133.0, 672333.0, 785671.0, 898243.0, 1.015383e6, 1.128658e6, 1.243111e6, 1.357769e6, 1.476005e6, 1.591094e6, 1.708582e6, 1.823035e6, 1.942689e6]
+        },
+        "effective_productivity_uplift_pct": {
+          "mean": [0.05, 0.06, 0.09, 0.12, 0.17, 0.22, 0.3, 0.39, 0.51, 0.67, 0.88, 1.15, 1.5, 1.92, 2.38, 2.87, 3.34, 3.77, 4.14, 4.43, 4.65, 4.81, 4.93, 5.0, 5.06, 5.09, 5.12, 5.14, 5.15, 5.16, 5.16, 5.17, 5.17, 5.17, 5.17, 5.17],
+          "p10": [0.01, 0.01, 0.01, 0.02, 0.03, 0.05, 0.08, 0.11, 0.16, 0.21, 0.28, 0.38, 0.5, 0.69, 0.94, 1.31, 1.74, 2.22, 2.67, 3.01, 3.27, 3.44, 3.56, 3.63, 3.69, 3.72, 3.74, 3.76, 3.77, 3.77, 3.78, 3.78, 3.78, 3.78, 3.78, 3.78],
+          "p25": [0.01, 0.02, 0.03, 0.05, 0.07, 0.1, 0.14, 0.19, 0.26, 0.35, 0.46, 0.6, 0.81, 1.1, 1.49, 1.95, 2.46, 2.93, 3.34, 3.65, 3.88, 4.03, 4.15, 4.22, 4.27, 4.3, 4.33, 4.34, 4.35, 4.36, 4.36, 4.37, 4.37, 4.37, 4.37, 4.37],
+          "p50": [0.03, 0.04, 0.06, 0.09, 0.13, 0.18, 0.25, 0.33, 0.43, 0.56, 0.74, 0.99, 1.32, 1.76, 2.27, 2.8, 3.29, 3.73, 4.09, 4.37, 4.6, 4.77, 4.88, 4.96, 5.01, 5.04, 5.07, 5.09, 5.1, 5.1, 5.11, 5.11, 5.12, 5.12, 5.12, 5.12],
+          "p75": [0.06, 0.09, 0.12, 0.17, 0.23, 0.31, 0.4, 0.52, 0.67, 0.87, 1.15, 1.52, 2.0, 2.55, 3.14, 3.69, 4.17, 4.58, 4.92, 5.18, 5.38, 5.54, 5.65, 5.73, 5.79, 5.83, 5.85, 5.87, 5.88, 5.9, 5.9, 5.9, 5.91, 5.91, 5.91, 5.91],
+          "p90": [0.11, 0.15, 0.2, 0.27, 0.35, 0.46, 0.59, 0.75, 0.98, 1.27, 1.68, 2.2, 2.78, 3.39, 3.98, 4.51, 4.95, 5.31, 5.64, 5.88, 6.08, 6.24, 6.35, 6.44, 6.5, 6.54, 6.57, 6.59, 6.6, 6.62, 6.63, 6.63, 6.63, 6.64, 6.64, 6.64]
+        },
+        "monthly_benefit_usd": {
+          "mean": [1008.0, 1413.0, 1965.0, 2705.0, 3670.0, 4902.0, 6457.0, 8424.0, 10963.0, 14325.0, 18831.0, 24796.0, 32396.0, 41547.0, 51851.0, 62654.0, 73190.0, 82771.0, 90922.0, 97441.0, 102380.0, 105960.0, 108472.0, 110201.0, 111383.0, 112192.0, 112748.0, 113134.0, 113403.0, 113592.0, 113724.0, 113818.0, 113884.0, 113931.0, 113964.0, 113988.0],
+          "p10": [130.0, 201.0, 311.0, 482.0, 742.0, 1117.0, 1639.0, 2340.0, 3237.0, 4312.0, 5715.0, 7557.0, 10136.0, 13903.0, 19605.0, 27052.0, 36424.0, 46321.0, 55586.0, 62995.0, 67942.0, 71670.0, 74283.0, 75759.0, 76726.0, 77316.0, 77784.0, 78104.0, 78258.0, 78401.0, 78549.0, 78592.0, 78642.0, 78670.0, 78684.0, 78710.0],
+          "p25": [285.0, 433.0, 652.0, 980.0, 1452.0, 2108.0, 2968.0, 4070.0, 5444.0, 7154.0, 9350.0, 12349.0, 16671.0, 22637.0, 30893.0, 41049.0, 52060.0, 62262.0, 70999.0, 77710.0, 82763.0, 86329.0, 88645.0, 90269.0, 91279.0, 92093.0, 92655.0, 92951.0, 93180.0, 93336.0, 93420.0, 93505.0, 93555.0, 93591.0, 93617.0, 93646.0],
+          "p50": [634.0, 929.0, 1360.0, 1958.0, 2789.0, 3877.0, 5268.0, 6948.0, 9052.0, 11779.0, 15522.0, 20764.0, 28035.0, 37562.0, 48623.0, 60190.0, 71395.0, 81088.0, 89037.0, 95418.0, 100403.0, 104174.0, 106600.0, 108363.0, 109593.0, 110356.0, 110881.0, 111285.0, 111531.0, 111706.0, 111864.0, 111984.0, 112037.0, 112084.0, 112116.0, 112150.0],
+          "p75": [1320.0, 1873.0, 2618.0, 3634.0, 4931.0, 6579.0, 8601.0, 11070.0, 14395.0, 18690.0, 24669.0, 32763.0, 43287.0, 55742.0, 68676.0, 81155.0, 92323.0, 101750.0, 109262.0, 115570.0, 120358.0, 123923.0, 126413.0, 128287.0, 129485.0, 130324.0, 131025.0, 131441.0, 131701.0, 131888.0, 131984.0, 132061.0, 132172.0, 132243.0, 132296.0, 132297.0],
+          "p90": [2367.0, 3261.0, 4436.0, 5914.0, 7782.0, 10014.0, 12815.0, 16480.0, 21126.0, 27719.0, 36635.0, 48144.0, 61455.0, 75458.0, 88979.0, 101163.0, 112148.0, 121577.0, 128984.0, 134902.0, 139333.0, 143037.0, 145538.0, 147262.0, 148848.0, 149720.0, 150360.0, 150947.0, 151236.0, 151453.0, 151714.0, 151856.0, 151928.0, 151974.0, 152014.0, 152091.0]
+        },
+        "monthly_cost_usd": {
+          "mean": [118271.0, 118344.0, 118448.0, 118597.0, 36054.0, 36351.0, 36764.0, 37329.0, 38083.0, 11829.0, 13052.0, 14515.0, 16184.0, 17994.0, 19855.0, 21674.0, 23368.0, 24874.0, 26162.0, 27230.0, 28094.0, 28785.0, 29337.0, 29781.0, 30146.0, 30453.0, 30718.0, 30954.0, 31169.0, 31370.0, 31562.0, 31747.0, 31927.0, 32106.0, 32282.0, 32459.0],
+          "p10": [82554.0, 82607.0, 82751.0, 82880.0, 27555.0, 27817.0, 28215.0, 28716.0, 29303.0, 8399.0, 9128.0, 10053.0, 11157.0, 12573.0, 14200.0, 16010.0, 17883.0, 19643.0, 21192.0, 22408.0, 23343.0, 24008.0, 24507.0, 24912.0, 25201.0, 25454.0, 25687.0, 25854.0, 26018.0, 26174.0, 26309.0, 26434.0, 26567.0, 26676.0, 26793.0, 26928.0],
+          "p25": [95463.0, 95533.0, 95632.0, 95805.0, 31110.0, 31369.0, 31766.0, 32282.0, 32957.0, 9723.0, 10653.0, 11794.0, 13235.0, 14884.0, 16669.0, 18528.0, 20343.0, 21950.0, 23331.0, 24485.0, 25390.0, 26101.0, 26661.0, 27083.0, 27416.0, 27684.0, 27912.0, 28120.0, 28296.0, 28474.0, 28635.0, 28775.0, 28921.0, 29064.0, 29192.0, 29331.0],
+          "p50": [113102.0, 113184.0, 113264.0, 113376.0, 35786.0, 36074.0, 36493.0, 37044.0, 37821.0, 11469.0, 12666.0, 14144.0, 15893.0, 17794.0, 19738.0, 21617.0, 23308.0, 24792.0, 26013.0, 27031.0, 27886.0, 28552.0, 29128.0, 29545.0, 29915.0, 30218.0, 30482.0, 30720.0, 30935.0, 31116.0, 31305.0, 31486.0, 31665.0, 31837.0, 32015.0, 32178.0],
+          "p75": [135899.0, 135941.0, 136002.0, 136150.0, 40731.0, 41050.0, 41496.0, 42104.0, 42945.0, 13614.0, 15116.0, 16903.0, 18822.0, 20865.0, 22786.0, 24575.0, 26197.0, 27586.0, 28752.0, 29764.0, 30593.0, 31238.0, 31825.0, 32298.0, 32670.0, 33024.0, 33309.0, 33585.0, 33845.0, 34074.0, 34296.0, 34505.0, 34718.0, 34908.0, 35107.0, 35308.0],
+          "p90": [161113.0, 161183.0, 161321.0, 161464.0, 45228.0, 45547.0, 46000.0, 46593.0, 47411.0, 15744.0, 17529.0, 19541.0, 21636.0, 23711.0, 25636.0, 27416.0, 28917.0, 30259.0, 31432.0, 32370.0, 33183.0, 33869.0, 34471.0, 34954.0, 35354.0, 35713.0, 36015.0, 36318.0, 36599.0, 36859.0, 37124.0, 37367.0, 37623.0, 37869.0, 38125.0, 38373.0]
+        },
+        "monthly_net_cashflow_usd": {
+          "mean": [-117263.0, -116931.0, -116483.0, -115892.0, -32385.0, -31449.0, -30307.0, -28905.0, -27121.0, 2496.0, 5779.0, 10281.0, 16211.0, 23553.0, 31996.0, 40979.0, 49823.0, 57898.0, 64759.0, 70211.0, 74286.0, 77175.0, 79135.0, 80420.0, 81237.0, 81739.0, 82030.0, 82180.0, 82234.0, 82221.0, 82163.0, 82071.0, 81957.0, 81825.0, 81682.0, 81529.0],
+          "p10": [-159790.0, -159419.0, -158965.0, -158473.0, -42076.0, -41333.0, -40518.0, -39657.0, -38566.0, -5906.0, -5134.0, -4135.0, -2515.0, -103.0, 3817.0, 9293.0, 16210.0, 24154.0, 31432.0, 37162.0, 41168.0, 44047.0, 45699.0, 46653.0, 47188.0, 47469.0, 47599.0, 47649.0, 47705.0, 47616.0, 47569.0, 47437.0, 47330.0, 47196.0, 47059.0, 46921.0],
+          "p25": [-134934.0, -134595.0, -134125.0, -133594.0, -37344.0, -36578.0, -35638.0, -34597.0, -33469.0, -3377.0, -1980.0, -99.0, 2823.0, 7270.0, 13497.0, 21429.0, 30315.0, 38611.0, 45778.0, 51522.0, 55664.0, 58204.0, 60007.0, 61170.0, 61853.0, 62234.0, 62434.0, 62581.0, 62649.0, 62603.0, 62554.0, 62484.0, 62334.0, 62240.0, 62037.0, 61867.0],
+          "p50": [-112199.0, -111896.0, -111546.0, -111009.0, -32153.0, -31339.0, -30370.0, -29118.0, -27677.0, 455.0, 2955.0, 6617.0, 11978.0, 19379.0, 28460.0, 38184.0, 47457.0, 55872.0, 62832.0, 68346.0, 72493.0, 75403.0, 77476.0, 78773.0, 79542.0, 80019.0, 80271.0, 80374.0, 80430.0, 80443.0, 80384.0, 80263.0, 80155.0, 80054.0, 79910.0, 79750.0],
+          "p75": [-94438.0, -94036.0, -93519.0, -92945.0, -27365.0, -26313.0, -25066.0, -23516.0, -21557.0, 6212.0, 10550.0, 16873.0, 25259.0, 35591.0, 46669.0, 57592.0, 67159.0, 75374.0, 82068.0, 87413.0, 91293.0, 94479.0, 96686.0, 98126.0, 99056.0, 99576.0, 99986.0, 100229.0, 100333.0, 100376.0, 100281.0, 100216.0, 100128.0, 100035.0, 99901.0, 99756.0],
+          "p90": [-81450.0, -81131.0, -80663.0, -79910.0, -23372.0, -22107.0, -20574.0, -18474.0, -15556.0, 13744.0, 20755.0, 30076.0, 41250.0, 53480.0, 65577.0, 76190.0, 85970.0, 94234.0, 101001.0, 105827.0, 109739.0, 112917.0, 115179.0, 116764.0, 117659.0, 118480.0, 118913.0, 119141.0, 119334.0, 119322.0, 119289.0, 119269.0, 119236.0, 119138.0, 118991.0, 118746.0]
+        },
+        "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]
+      }
+    },
+    {
+      "assumptions": {
+        "annual_token_drift_pct": [10.0, 22.0, 38.0],
+        "inflection_month": [7.5, 10.5, 14.5],
+        "j_curve_dip_pct": [3.0, 6.0, 10.0],
+        "rollout_ceiling_pct": [78.0, 90.0, 97.0],
+        "training_per_seat_usd": [650.0, 1100.0, 1650.0],
+        "upfront_platform_p10_p90_usd": [320000.0, 780000.0]
+      },
+      "board_recommendation": "High-Upside Growth Plan: Shows how pairing AI tools with workflow redesign and strong coaching shifts your entire 3-year return higher.",
+      "cross_paradigm_comparison": [
+        {
+          "central_npv_usd": 3.871976e6,
+          "central_roi_pct": 194.6,
+          "downside_roi_pct": 108.3,
+          "mechanism": "Tests 10,000 combinations of adoption speed, time saved, and costs",
+          "paradigm_id": "monte_carlo",
+          "paradigm_name": "1. 10,000 What-If Futures (Monte Carlo)",
+          "primary_insight": "Shows honest Cautious (P10) to Best-Case (P90) profit ranges and breakeven speed.",
+          "upside_roi_pct": 302.2
+        },
+        {
+          "central_npv_usd": 7.224884e6,
+          "central_roi_pct": 335.9,
+          "downside_roi_pct": 211.5,
+          "mechanism": "Follows 325 individual coworkers sharing tips or quitting in frustration",
+          "paradigm_id": "agent_based",
+          "paradigm_name": "2. Team Behavior (Agent-Based)",
+          "primary_insight": "Shows how AI Champions spread good habits while 2.5% of seats risk becoming unused shelfware.",
+          "upside_roi_pct": 468.1
+        },
+        {
+          "central_npv_usd": 5.279688e6,
+          "central_roi_pct": 262.8,
+          "downside_roi_pct": 162.9,
+          "mechanism": "Tracks growing company know-how against cleanup backlog and rising bills",
+          "paradigm_id": "system_dynamics",
+          "paradigm_name": "3. Flywheels & Brakes (System Dynamics)",
+          "primary_insight": "Weighs growing team know-how (71.0 pts) against monthly bill growth (1.52x).",
+          "upside_roi_pct": 362.7
+        },
+        {
+          "central_npv_usd": 3.653939e6,
+          "central_roi_pct": 187.1,
+          "downside_roi_pct": 121.6,
+          "mechanism": "Follows everyday work items from first draft to final human review",
+          "paradigm_id": "discrete_event",
+          "paradigm_name": "4. Workflow Waiting Lines (Discrete Event)",
+          "primary_insight": "Cuts turnaround time by 4.8% while checking if final human review lines back up (0.06h wait).",
+          "upside_roi_pct": 252.6
+        },
+        {
+          "central_npv_usd": 2.774768e6,
+          "central_roi_pct": 177.2,
+          "downside_roi_pct": 38.7,
+          "mechanism": "Updates 3-year profit odds as soon as 6-month pilot results arrive",
+          "paradigm_id": "bayesian_network",
+          "paradigm_name": "5. Pilot Scorecard (Bayesian Network)",
+          "primary_insight": "Next-stage funding call: FIX FIRST (Tighten Quality & Budget Before Scaling).",
+          "upside_roi_pct": 246.8
+        }
+      ],
+      "description": "Invests upfront to rethink how teams work from start to finish rather than just bolting chat tools onto old habits. Costs more in Year 1, but delivers the highest 3-year return.",
+      "distributions": {
+        "npv_k_usd_histogram": {
+          "bin_edges": [-420.5, -57.1, 306.3, 669.7, 1033.0, 1396.4, 1759.8, 2123.2, 2486.6, 2850.0, 3213.4, 3576.8, 3940.1, 4303.5, 4666.9, 5030.3, 5393.7, 5757.1, 6120.5, 6483.9, 6847.3, 7210.6, 7574.0, 7937.4, 8300.8, 8664.2, 9027.6, 9391.0, 9754.4],
+          "bin_midpoints": [-238.8, 124.6, 488.0, 851.3, 1214.7, 1578.1, 1941.5, 2304.9, 2668.3, 3031.7, 3395.1, 3758.5, 4121.8, 4485.2, 4848.6, 5212.0, 5575.4, 5938.8, 6302.2, 6665.6, 7028.9, 7392.3, 7755.7, 8119.1, 8482.5, 8845.9, 9209.3, 9572.7],
+          "counts": [5, 10, 29, 60, 137, 236, 401, 582, 791, 880, 1007, 1056, 984, 933, 768, 615, 472, 329, 282, 184, 98, 69, 30, 21, 11, 6, 2, 2],
+          "pct_of_trials": [0.05, 0.1, 0.29, 0.6, 1.37, 2.36, 4.01, 5.82, 7.91, 8.8, 10.07, 10.56, 9.84, 9.33, 7.68, 6.15, 4.72, 3.29, 2.82, 1.84, 0.98, 0.69, 0.3, 0.21, 0.11, 0.06, 0.02, 0.02]
+        },
+        "roi_pct_histogram": {
+          "bin_edges": [-60.0, -36.3, -12.7, 11.0, 34.7, 58.4, 82.0, 105.7, 129.4, 153.1, 176.7, 200.4, 224.1, 247.8, 271.4, 295.1, 318.8, 342.5, 366.1, 389.8, 413.5, 437.2, 460.8, 484.5, 508.2, 531.8, 555.5, 579.2, 602.9],
+          "bin_midpoints": [-48.2, -24.5, -0.8, 22.9, 46.5, 70.2, 93.9, 117.6, 141.2, 164.9, 188.6, 212.3, 235.9, 259.6, 283.3, 306.9, 330.6, 354.3, 378.0, 401.6, 425.3, 449.0, 472.7, 496.3, 520.0, 543.7, 567.4, 591.0],
+          "counts": [0, 0, 7, 32, 104, 266, 517, 821, 1059, 1252, 1263, 1150, 1024, 764, 592, 422, 298, 177, 112, 58, 50, 14, 6, 5, 3, 3, 0, 1],
+          "pct_of_trials": [0.0, 0.0, 0.07, 0.32, 1.04, 2.66, 5.17, 8.21, 10.59, 12.52, 12.63, 11.5, 10.24, 7.64, 5.92, 4.22, 2.98, 1.77, 1.12, 0.58, 0.5, 0.14, 0.06, 0.05, 0.03, 0.03, 0.0, 0.01]
+        }
+      },
+      "id": "agentic_transformation",
+      "kpis": {
+        "month36_adoption_pct": {
+          "mean": 88.3,
+          "p05": 80.9,
+          "p10": 82.5,
+          "p25": 85.3,
+          "p50": 88.5,
+          "p75": 91.4,
+          "p90": 93.7,
+          "p95": 94.9,
+          "std": 4.2
+        },
+        "month36_net_productivity_uplift_pct": {
+          "mean": 11.05,
+          "p05": 7.98,
+          "p10": 8.64,
+          "p25": 9.75,
+          "p50": 11.03,
+          "p75": 12.34,
+          "p90": 13.49,
+          "p95": 14.2,
+          "std": 1.88
+        },
+        "npv_usd": {
+          "mean": 3.943217e6,
+          "p05": 1.789916e6,
+          "p10": 2.210314e6,
+          "p25": 2.965323e6,
+          "p50": 3.871976e6,
+          "p75": 4.847216e6,
+          "p90": 5.795231e6,
+          "p95": 6.359305e6,
+          "std": 1.390627e6
+        },
+        "payback_months": {
+          "mean": 15.8,
+          "p05": 12.0,
+          "p10": 12.6,
+          "p25": 14.0,
+          "p50": 15.5,
+          "p75": 17.3,
+          "p90": 19.1,
+          "p95": 20.3,
+          "std": 2.7
+        },
+        "prob_breakeven_within_24m_pct": 99.1,
+        "prob_breakeven_within_36m_pct": 100.0,
+        "prob_positive_npv_pct": 99.9,
+        "roi_pct": {
+          "mean": 200.9,
+          "p05": 87.1,
+          "p10": 108.3,
+          "p25": 146.9,
+          "p50": 194.6,
+          "p75": 248.0,
+          "p90": 302.2,
+          "p95": 335.9,
+          "std": 76.2
+        },
+        "total_cost_36m_usd": {
+          "mean": 2.517688e6,
+          "p05": 1.99566e6,
+          "p10": 2.090013e6,
+          "p25": 2.268152e6,
+          "p50": 2.479984e6,
+          "p75": 2.730221e6,
+          "p90": 2.978412e6,
+          "p95": 3.14516e6,
+          "std": 358368.0
+        },
+        "total_gross_benefit_36m_usd": {
+          "mean": 1.0005673e7,
+          "p05": 7.327177e6,
+          "p10": 7.83784e6,
+          "p25": 8.76286e6,
+          "p50": 9.911355e6,
+          "p75": 1.1161266e7,
+          "p90": 1.2289958e7,
+          "p95": 1.3015726e7,
+          "std": 1.7376e6
+        },
+        "total_net_benefit_36m_usd": {
+          "mean": 7.444434e6,
+          "p05": 4.896029e6,
+          "p10": 5.395574e6,
+          "p25": 6.270303e6,
+          "p50": 7.367793e6,
+          "p75": 8.515818e6,
+          "p90": 9.606543e6,
+          "p95": 1.0311143e7,
+          "std": 1.638813e6
+        },
+        "total_rework_drag_36m_usd": {
+          "mean": 2.561238e6,
+          "p05": 1.855792e6,
+          "p10": 1.987551e6,
+          "p25": 2.225449e6,
+          "p50": 2.525838e6,
+          "p75": 2.859998e6,
+          "p90": 3.187572e6,
+          "p95": 3.386671e6,
+          "std": 466268.0
+        }
+      },
+      "metadata": {
+        "annual_discount_rate_pct": 10.0,
+        "horizon_months": 36,
+        "n_trials": 10000,
+        "seed": 20261520,
+        "total_annual_payroll_usd": 4.647e7,
+        "total_headcount": 325
+      },
+      "name": "Full Workflow Redesign",
+      "paradigms": {
+        "agent_based": {
+          "kpis": {
+            "emergent_npv_usd": {
+              "mean": 7.350741e6,
+              "p05": 4.582773e6,
+              "p10": 5.088829e6,
+              "p25": 6.043383e6,
+              "p50": 7.224884e6,
+              "p75": 8.533627e6,
+              "p90": 9.658052e6,
+              "p95": 1.0541593e7,
+              "std": 1.852428e6
+            },
+            "emergent_roi_pct": {
+              "mean": 336.6,
+              "p05": 181.9,
+              "p10": 211.5,
+              "p25": 265.7,
+              "p50": 335.9,
+              "p75": 395.2,
+              "p90": 468.1,
+              "p95": 519.2,
+              "std": 99.9
+            },
+            "m36_active_adopters_pct": {
+              "mean": 95.1,
+              "p05": 89.1,
+              "p10": 91.4,
+              "p25": 93.5,
+              "p50": 96.0,
+              "p75": 97.2,
+              "p90": 97.8,
+              "p95": 98.2,
+              "std": 3.0
+            },
+            "m36_disillusioned_churn_pct": {
+              "mean": 3.3,
+              "p05": 0.6,
+              "p10": 0.9,
+              "p25": 1.5,
+              "p50": 2.5,
+              "p75": 4.7,
+              "p90": 6.8,
+              "p95": 8.3,
+              "std": 2.5
+            }
+          },
+          "network_snapshot": {
+            "edges": [
+              {
+                "source": 3,
+                "target": 24
+              },
+              {
+                "source": 31,
+                "target": 43
+              },
+              {
+                "source": 31,
+                "target": 36
+              },
+              {
+                "source": 32,
+                "target": 47
+              },
+              {
+                "source": 37,
+                "target": 40
+              }
+            ],
+            "nodes": [
+              {
+                "agent_id": 1,
+                "final_state": 4,
+                "id": 1,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 7,
+                "final_state": 4,
+                "id": 2,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 13,
+                "final_state": 4,
+                "id": 3,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 19,
+                "final_state": 4,
+                "id": 4,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 25,
+                "final_state": 4,
+                "id": 5,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 31,
+                "final_state": 3,
+                "id": 6,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 37,
+                "final_state": 3,
+                "id": 7,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 43,
+                "final_state": 3,
+                "id": 8,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 49,
+                "final_state": 3,
+                "id": 9,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 55,
+                "final_state": 4,
+                "id": 10,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 61,
+                "final_state": 3,
+                "id": 11,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 67,
+                "final_state": 5,
+                "id": 12,
+                "skill": 0.66,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 73,
+                "final_state": 3,
+                "id": 13,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 79,
+                "final_state": 4,
+                "id": 14,
+                "skill": 0.85,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 85,
+                "final_state": 3,
+                "id": 15,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 91,
+                "final_state": 4,
+                "id": 16,
+                "skill": 0.99,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 97,
+                "final_state": 3,
+                "id": 17,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 103,
+                "final_state": 4,
+                "id": 18,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 109,
+                "final_state": 4,
+                "id": 19,
+                "skill": 0.85,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 115,
+                "final_state": 3,
+                "id": 20,
+                "skill": 1.0,
+                "team_id": "software_eng",
+                "team_name": "Product & Software Engineering"
+              },
+              {
+                "agent_id": 121,
+                "final_state": 4,
+                "id": 21,
+                "skill": 0.85,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 127,
+                "final_state": 4,
+                "id": 22,
+                "skill": 0.79,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 133,
+                "final_state": 3,
+                "id": 23,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 139,
+                "final_state": 4,
+                "id": 24,
+                "skill": 0.85,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 145,
+                "final_state": 3,
+                "id": 25,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 151,
+                "final_state": 4,
+                "id": 26,
+                "skill": 0.85,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 157,
+                "final_state": 4,
+                "id": 27,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 163,
+                "final_state": 4,
+                "id": 28,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 169,
+                "final_state": 3,
+                "id": 29,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 175,
+                "final_state": 3,
+                "id": 30,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 181,
+                "final_state": 3,
+                "id": 31,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 187,
+                "final_state": 4,
+                "id": 32,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 193,
+                "final_state": 4,
+                "id": 33,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 199,
+                "final_state": 3,
+                "id": 34,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 205,
+                "final_state": 3,
+                "id": 35,
+                "skill": 1.0,
+                "team_id": "customer_ops",
+                "team_name": "Customer Support & Success"
+              },
+              {
+                "agent_id": 211,
+                "final_state": 4,
+                "id": 36,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 217,
+                "final_state": 3,
+                "id": 37,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 223,
+                "final_state": 3,
+                "id": 38,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 229,
+                "final_state": 4,
+                "id": 39,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 235,
+                "final_state": 4,
+                "id": 40,
+                "skill": 0.85,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 241,
+                "final_state": 3,
+                "id": 41,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 247,
+                "final_state": 3,
+                "id": 42,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 253,
+                "final_state": 3,
+                "id": 43,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 259,
+                "final_state": 3,
+                "id": 44,
+                "skill": 0.62,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 265,
+                "final_state": 3,
+                "id": 45,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 271,
+                "final_state": 3,
+                "id": 46,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 277,
+                "final_state": 4,
+                "id": 47,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              },
+              {
+                "agent_id": 283,
+                "final_state": 4,
+                "id": 48,
+                "skill": 1.0,
+                "team_id": "sales_gtm",
+                "team_name": "Sales, Account Teams & Marketing"
+              }
+            ]
+          },
+          "paradigm": "agent_based",
+          "parameters": {
+            "champion_seed_fraction_pct": 9.0,
+            "frustration_sensitivity": 0.04,
+            "n_replications": 160,
+            "peer_contagion_strength": 0.44,
+            "total_agents": 325
+          },
+          "scenario_id": "agentic_transformation",
+          "scenario_name": "Full Workflow Redesign",
+          "state_trajectories": {
+            "active_adoption_pct": {
+              "mean": [14.1, 19.3, 25.1, 31.0, 36.6, 42.1, 47.4, 52.4, 57.0, 61.3, 65.3, 69.0, 72.3, 75.3, 77.7, 80.0, 82.0, 83.6, 85.2, 86.4, 87.4, 88.4, 89.3, 90.0, 90.6, 91.2, 91.8, 92.3, 92.7, 93.1, 93.4, 93.8, 94.2, 94.5, 94.8, 95.1],
+              "p10": [8.3, 16.6, 21.2, 25.8, 31.0, 36.3, 41.5, 45.2, 50.7, 54.5, 58.7, 63.1, 66.1, 69.1, 71.4, 73.8, 76.6, 77.5, 79.4, 80.6, 81.8, 83.0, 84.3, 84.9, 86.1, 86.5, 87.4, 88.0, 88.3, 88.9, 89.2, 89.5, 90.2, 90.7, 91.0, 91.4],
+              "p25": [9.8, 17.8, 23.1, 28.6, 34.2, 39.6, 44.5, 49.5, 53.8, 58.2, 62.4, 65.8, 69.2, 72.2, 75.0, 77.2, 79.4, 81.2, 82.8, 84.3, 85.2, 86.5, 87.4, 88.6, 88.9, 89.5, 90.2, 90.8, 90.8, 91.4, 91.7, 92.3, 92.6, 92.9, 93.5, 93.5],
+              "p50": [14.0, 19.2, 25.1, 31.1, 36.6, 42.2, 47.7, 52.5, 57.1, 61.5, 65.8, 69.7, 72.6, 76.0, 78.5, 80.6, 82.8, 84.3, 85.8, 86.9, 88.0, 89.2, 90.2, 90.8, 91.4, 92.0, 92.6, 93.2, 93.7, 94.0, 94.3, 94.5, 95.1, 95.4, 95.7, 96.0],
+              "p75": [18.2, 20.9, 27.1, 33.5, 39.1, 45.2, 50.5, 55.4, 60.0, 64.9, 68.6, 72.6, 75.8, 78.5, 80.9, 83.2, 85.5, 86.8, 88.3, 89.2, 90.2, 91.2, 92.0, 92.7, 93.0, 93.6, 94.5, 94.8, 95.1, 95.4, 95.7, 96.0, 96.3, 96.6, 96.9, 97.2],
+              "p90": [20.9, 22.2, 28.3, 35.1, 42.2, 47.1, 53.6, 58.8, 63.4, 67.7, 71.7, 75.4, 78.2, 81.2, 83.4, 85.8, 87.4, 89.3, 90.5, 91.7, 92.3, 93.0, 93.5, 94.2, 94.8, 95.1, 95.4, 95.7, 96.0, 96.3, 96.6, 96.9, 97.2, 97.3, 97.5, 97.8]
+            },
+            "champion_pct": {
+              "mean": [8.9, 8.9, 9.0, 9.2, 9.7, 10.2, 11.1, 12.0, 13.0, 14.0, 15.2, 16.5, 17.8, 19.1, 20.6, 21.9, 23.4, 24.7, 26.2, 27.6, 29.0, 30.4, 31.9, 33.3, 34.6, 35.9, 37.2, 38.5, 39.8, 41.0, 42.2, 43.4, 44.6, 45.6, 46.6, 47.7],
+              "p10": [7.1, 7.1, 7.1, 7.4, 8.0, 8.3, 8.6, 8.9, 9.5, 10.2, 11.1, 12.3, 12.9, 13.5, 14.4, 15.1, 15.7, 16.6, 18.2, 19.0, 20.0, 21.2, 22.8, 24.0, 25.2, 26.4, 26.8, 28.0, 28.6, 29.5, 31.6, 32.6, 34.1, 35.0, 35.7, 36.6],
+              "p25": [8.0, 8.0, 8.0, 8.3, 8.5, 8.9, 9.8, 10.8, 11.6, 12.0, 12.9, 14.1, 15.4, 16.6, 17.5, 19.1, 20.0, 21.5, 22.7, 24.0, 24.9, 26.5, 27.7, 29.2, 30.1, 31.3, 32.5, 33.8, 34.8, 36.2, 37.2, 38.8, 40.0, 41.4, 42.3, 43.0],
+              "p50": [8.8, 8.8, 8.9, 9.2, 9.5, 10.2, 11.1, 12.3, 13.2, 14.2, 15.7, 16.9, 17.8, 19.1, 20.9, 22.5, 24.0, 25.4, 27.1, 28.3, 29.5, 30.5, 32.2, 34.0, 35.2, 36.6, 37.8, 38.8, 40.0, 41.2, 42.6, 44.0, 44.9, 45.8, 47.1, 48.0],
+              "p75": [9.8, 9.8, 10.2, 10.2, 10.8, 11.4, 12.3, 13.5, 14.5, 15.7, 17.5, 18.8, 20.3, 22.2, 23.7, 25.2, 26.8, 28.6, 29.8, 32.0, 33.2, 35.2, 36.6, 38.2, 39.8, 41.3, 42.8, 44.0, 45.3, 46.8, 47.7, 49.2, 50.5, 51.4, 52.6, 53.5],
+              "p90": [10.8, 10.8, 11.1, 11.4, 12.0, 12.6, 13.2, 14.5, 15.7, 17.2, 18.5, 20.3, 22.5, 24.3, 25.9, 28.3, 30.2, 31.4, 33.3, 35.1, 36.6, 37.9, 39.4, 41.2, 42.8, 44.3, 46.2, 47.4, 48.9, 50.5, 51.7, 52.7, 53.4, 55.1, 56.3, 57.5]
+            },
+            "cumulative_cashflow_usd": {
+              "mean": [-139286.0, -262296.0, -365026.0, -445685.0, -373526.0, -279292.0, -163292.0, -26550.0, 129130.0, 339221.0, 566905.0, 810988.0, 1.070063e6, 1.343151e6, 1.627491e6, 1.922404e6, 2.227301e6, 2.540291e6, 2.860787e6, 3.187859e6, 3.520367e6, 3.858009e6, 4.200431e6, 4.546343e6, 4.895765e6, 5.248066e6, 5.602947e6, 5.96042e6, 6.320273e6, 6.681817e6, 7.044908e6, 7.409804e6, 7.77624e6, 8.143838e6, 8.512778e6, 8.882806e6],
+              "p10": [-191230.0, -373788.0, -550903.0, -681867.0, -644375.0, -574621.0, -482160.0, -395396.0, -301563.0, -153692.0, 21797.0, 192340.0, 381067.0, 574521.0, 788889.0, 1.032022e6, 1.261258e6, 1.494814e6, 1.731993e6, 1.973684e6, 2.226613e6, 2.468028e6, 2.715163e6, 2.960223e6, 3.227317e6, 3.509171e6, 3.775027e6, 4.050829e6, 4.316295e6, 4.581729e6, 4.848477e6, 5.11676e6, 5.380442e6, 5.659304e6, 5.928812e6, 6.198689e6],
+              "p25": [-168734.0, -316627.0, -447786.0, -555890.0, -504681.0, -420307.0, -327686.0, -219870.0, -89121.0, 85384.0, 277541.0, 484905.0, 708747.0, 930903.0, 1.171409e6, 1.40481e6, 1.676728e6, 1.958964e6, 2.241259e6, 2.5232e6, 2.803041e6, 3.080024e6, 3.361559e6, 3.644813e6, 3.930293e6, 4.223532e6, 4.522986e6, 4.828974e6, 5.140016e6, 5.452506e6, 5.766881e6, 6.08289e6, 6.402806e6, 6.7237e6, 7.044014e6, 7.359577e6],
+              "p50": [-135557.0, -258568.0, -363673.0, -441991.0, -369998.0, -287010.0, -171068.0, -43934.0, 111573.0, 334949.0, 556952.0, 802974.0, 1.050684e6, 1.309708e6, 1.58125e6, 1.87133e6, 2.160859e6, 2.467385e6, 2.791448e6, 3.123965e6, 3.461973e6, 3.803379e6, 4.144106e6, 4.477678e6, 4.81784e6, 5.160259e6, 5.50574e6, 5.859393e6, 6.226842e6, 6.580058e6, 6.936468e6, 7.284345e6, 7.632168e6, 7.983077e6, 8.334752e6, 8.682027e6],
+              "p75": [-107434.0, -191735.0, -261938.0, -307900.0, -217577.0, -115047.0, 11081.0, 163698.0, 329401.0, 572188.0, 818618.0, 1.0766e6, 1.36657e6, 1.690461e6, 2.015467e6, 2.357421e6, 2.732297e6, 3.074954e6, 3.450907e6, 3.836463e6, 4.225471e6, 4.619392e6, 5.018438e6, 5.398315e6, 5.776571e6, 6.182438e6, 6.577326e6, 6.97316e6, 7.392274e6, 7.795942e6, 8.191353e6, 8.596791e6, 9.016017e6, 9.44292e6, 9.869923e6, 1.0287295e7],
+              "p90": [-77029.0, -139284.0, -178553.0, -187690.0, -93832.0, 20517.0, 178511.0, 376912.0, 591301.0, 866193.0, 1.179536e6, 1.508297e6, 1.853127e6, 2.210793e6, 2.583568e6, 2.96301e6, 3.354974e6, 3.753484e6, 4.1529e6, 4.555996e6, 4.963511e6, 5.372945e6, 5.786017e6, 6.215023e6, 6.661289e6, 7.111501e6, 7.56278e6, 8.015731e6, 8.458682e6, 8.887982e6, 9.319649e6, 9.750935e6, 1.0191408e7, 1.0687801e7, 1.1188449e7, 1.1690035e7]
+            },
+            "disillusioned_pct": {
+              "mean": [0.3, 0.7, 1.3, 1.8, 2.2, 2.5, 2.9, 3.3, 3.6, 3.9, 4.2, 4.4, 4.6, 4.7, 4.8, 4.9, 5.0, 5.0, 5.0, 5.0, 5.0, 4.9, 4.9, 4.8, 4.6, 4.5, 4.4, 4.3, 4.2, 4.1, 4.0, 3.8, 3.7, 3.5, 3.4, 3.3],
+              "p10": [0.0, 0.0, 0.3, 0.9, 1.2, 1.2, 1.5, 1.8, 1.8, 2.2, 2.4, 2.5, 2.5, 2.5, 2.4, 2.5, 2.5, 2.5, 2.4, 2.5, 2.5, 2.5, 2.2, 2.2, 2.1, 1.8, 1.8, 1.5, 1.5, 1.5, 1.5, 1.2, 1.2, 1.2, 1.2, 0.9],
+              "p25": [0.0, 0.3, 0.9, 1.2, 1.5, 1.8, 2.2, 2.4, 2.5, 2.8, 3.0, 3.1, 3.4, 3.4, 3.4, 3.4, 3.3, 3.1, 3.1, 3.1, 3.1, 3.1, 3.1, 3.1, 3.1, 2.8, 2.8, 2.5, 2.5, 2.2, 2.2, 2.2, 1.8, 1.5, 1.5, 1.5],
+              "p50": [0.3, 0.6, 1.2, 1.8, 2.2, 2.5, 2.8, 3.1, 3.4, 3.7, 4.0, 4.0, 4.3, 4.3, 4.3, 4.3, 4.5, 4.6, 4.6, 4.5, 4.3, 4.2, 4.0, 4.0, 3.7, 3.7, 3.7, 3.7, 3.4, 3.4, 3.4, 3.1, 3.1, 2.8, 2.8, 2.5],
+              "p75": [0.3, 1.0, 1.8, 2.2, 2.8, 3.1, 3.7, 4.0, 4.3, 4.6, 5.2, 5.2, 5.6, 5.8, 6.2, 6.2, 6.2, 6.2, 6.2, 6.2, 6.3, 6.2, 6.2, 5.8, 5.8, 5.8, 5.5, 5.5, 5.5, 5.2, 5.2, 4.9, 4.9, 4.6, 4.9, 4.7],
+              "p90": [0.6, 1.5, 2.2, 2.8, 3.4, 4.0, 4.3, 4.9, 5.3, 5.9, 6.5, 7.1, 7.7, 7.7, 8.0, 8.0, 8.3, 8.3, 8.3, 8.6, 8.6, 8.6, 8.6, 8.6, 8.3, 8.1, 8.0, 8.3, 7.7, 7.7, 7.7, 7.4, 7.1, 7.1, 7.1, 6.8]
+            },
+            "exploring_pct": {
+              "mean": [11.8, 12.6, 12.3, 11.8, 11.6, 11.0, 10.3, 9.5, 9.0, 8.3, 7.5, 6.7, 5.7, 5.0, 4.5, 3.9, 3.3, 2.9, 2.5, 2.1, 1.9, 1.6, 1.3, 1.3, 1.1, 1.0, 0.9, 0.7, 0.6, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.3],
+              "p10": [6.1, 9.8, 9.8, 9.5, 9.2, 8.9, 8.3, 7.7, 7.1, 6.5, 5.5, 4.6, 4.0, 3.4, 2.8, 2.5, 1.8, 1.5, 1.5, 0.9, 0.9, 0.6, 0.6, 0.6, 0.3, 0.3, 0.3, 0.3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+              "p25": [7.7, 11.1, 10.8, 10.8, 10.2, 9.5, 9.5, 8.3, 8.0, 7.4, 6.4, 5.8, 4.9, 4.3, 3.4, 3.1, 2.5, 2.2, 1.8, 1.5, 1.2, 1.2, 0.9, 0.9, 0.6, 0.6, 0.6, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.0, 0.0],
+              "p50": [12.2, 12.6, 12.0, 11.8, 11.5, 11.1, 10.5, 9.2, 8.9, 8.3, 7.4, 6.6, 5.7, 4.9, 4.3, 3.7, 3.4, 2.8, 2.2, 1.8, 1.8, 1.5, 1.2, 1.2, 0.9, 0.9, 0.9, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.3, 0.3, 0.3],
+              "p75": [15.4, 14.2, 13.5, 13.2, 12.9, 12.3, 11.1, 10.5, 9.8, 9.2, 8.6, 7.7, 6.8, 5.8, 5.5, 4.6, 4.0, 3.7, 3.1, 2.8, 2.5, 1.9, 1.8, 1.5, 1.5, 1.5, 1.2, 0.9, 0.9, 0.9, 0.9, 0.9, 0.6, 0.6, 0.6, 0.6],
+              "p90": [17.3, 15.4, 15.1, 14.2, 14.2, 13.2, 12.0, 12.0, 11.1, 10.2, 9.5, 8.9, 7.4, 6.8, 6.5, 5.2, 4.6, 4.3, 3.7, 3.4, 2.8, 2.5, 2.2, 2.2, 2.2, 1.8, 1.6, 1.2, 1.2, 1.2, 1.2, 1.2, 0.9, 0.9, 0.9, 0.6]
+            },
+            "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36],
+            "net_productivity_uplift_pct": {
+              "mean": [1.88, 2.55, 3.37, 4.23, 5.08, 5.96, 6.81, 7.62, 8.37, 9.09, 9.78, 10.42, 11.01, 11.56, 12.01, 12.44, 12.84, 13.18, 13.49, 13.76, 13.99, 14.21, 14.42, 14.59, 14.75, 14.9, 15.03, 15.17, 15.29, 15.39, 15.49, 15.59, 15.69, 15.78, 15.86, 15.95],
+              "p10": [0.86, 1.72, 2.4, 3.17, 3.78, 4.38, 5.06, 5.7, 6.3, 6.92, 7.44, 7.98, 8.64, 8.95, 9.45, 9.86, 10.22, 10.57, 10.85, 11.04, 11.27, 11.47, 11.71, 11.77, 11.9, 12.06, 12.14, 12.18, 12.32, 12.4, 12.47, 12.57, 12.67, 12.7, 12.8, 12.92],
+              "p25": [1.28, 2.11, 2.83, 3.56, 4.42, 5.12, 5.84, 6.6, 7.34, 7.96, 8.64, 9.15, 9.8, 10.24, 10.63, 11.04, 11.41, 11.68, 11.98, 12.18, 12.42, 12.6, 12.91, 13.04, 13.23, 13.27, 13.38, 13.51, 13.65, 13.73, 13.85, 13.95, 14.03, 14.07, 14.18, 14.21],
+              "p50": [1.65, 2.52, 3.34, 4.15, 5.01, 5.83, 6.68, 7.47, 8.31, 8.97, 9.67, 10.32, 10.9, 11.4, 11.83, 12.28, 12.62, 12.96, 13.29, 13.58, 13.76, 14.01, 14.19, 14.39, 14.57, 14.7, 14.83, 14.94, 15.12, 15.19, 15.34, 15.41, 15.48, 15.59, 15.65, 15.73],
+              "p75": [2.45, 2.94, 3.76, 4.66, 5.67, 6.67, 7.55, 8.4, 9.3, 10.08, 11.01, 11.73, 12.29, 12.93, 13.4, 13.79, 14.22, 14.65, 14.92, 15.22, 15.49, 15.64, 15.85, 16.16, 16.37, 16.5, 16.71, 16.82, 16.92, 17.03, 17.1, 17.26, 17.38, 17.47, 17.58, 17.67],
+              "p90": [3.05, 3.42, 4.41, 5.46, 6.56, 7.68, 8.94, 9.92, 10.59, 11.53, 12.17, 12.82, 13.45, 14.06, 14.44, 15.02, 15.37, 15.76, 16.06, 16.33, 16.66, 16.95, 17.22, 17.48, 17.61, 17.85, 18.0, 18.17, 18.25, 18.36, 18.41, 18.57, 18.71, 18.87, 18.94, 19.11]
+            },
+            "proficient_pct": {
+              "mean": [5.2, 10.4, 16.1, 21.7, 26.9, 31.9, 36.4, 40.4, 43.9, 47.3, 50.1, 52.6, 54.5, 56.2, 57.2, 58.0, 58.6, 58.9, 59.0, 58.8, 58.4, 58.0, 57.4, 56.7, 56.0, 55.3, 54.6, 53.8, 52.9, 52.1, 51.2, 50.4, 49.6, 48.9, 48.1, 47.4],
+              "p10": [0.0, 8.3, 13.2, 17.8, 22.8, 27.7, 31.7, 35.7, 39.7, 42.7, 45.8, 48.6, 50.7, 52.3, 53.2, 54.2, 54.5, 55.1, 54.8, 54.5, 54.2, 52.9, 52.3, 51.4, 50.4, 49.5, 48.6, 47.4, 46.4, 45.2, 44.3, 43.4, 42.7, 41.5, 40.6, 39.7],
+              "p25": [0.6, 9.2, 14.8, 20.0, 24.8, 29.8, 34.2, 38.1, 41.8, 44.8, 47.7, 50.5, 52.9, 54.8, 55.4, 56.0, 56.6, 56.6, 56.8, 56.5, 56.0, 55.4, 54.7, 53.8, 53.2, 51.7, 51.3, 50.5, 49.2, 48.2, 48.0, 47.0, 46.1, 45.2, 44.3, 43.7],
+              "p50": [4.6, 10.5, 16.3, 21.8, 26.8, 32.0, 36.6, 40.6, 44.2, 47.4, 50.5, 52.6, 54.8, 56.0, 57.2, 57.8, 58.8, 59.1, 59.1, 58.8, 58.5, 58.2, 57.5, 57.2, 56.3, 56.0, 54.9, 54.2, 53.2, 52.3, 51.4, 50.5, 49.8, 49.1, 48.3, 47.4],
+              "p75": [9.0, 11.7, 17.5, 23.7, 29.0, 34.2, 38.8, 42.8, 46.2, 49.5, 52.3, 54.8, 56.3, 58.2, 58.8, 60.3, 60.9, 61.2, 61.2, 61.2, 60.9, 60.6, 60.1, 59.7, 59.1, 58.5, 57.8, 57.3, 56.9, 56.1, 55.1, 54.5, 53.6, 53.2, 52.3, 51.7],
+              "p90": [11.4, 12.6, 18.5, 24.9, 31.1, 36.3, 40.6, 44.6, 48.0, 51.4, 54.2, 57.0, 58.2, 59.7, 60.6, 61.9, 62.5, 62.8, 63.1, 63.1, 62.8, 62.8, 61.6, 61.3, 60.7, 60.3, 60.3, 60.0, 58.8, 58.2, 57.5, 56.6, 56.3, 55.4, 55.1, 54.5]
+            },
+            "skeptical_pct": {
+              "mean": [73.8, 67.4, 61.4, 55.4, 49.7, 44.3, 39.4, 34.8, 30.5, 26.5, 23.0, 19.9, 17.4, 15.0, 12.9, 11.2, 9.7, 8.5, 7.4, 6.5, 5.7, 5.1, 4.5, 4.0, 3.6, 3.2, 2.9, 2.6, 2.4, 2.2, 2.0, 1.8, 1.6, 1.5, 1.4, 1.3],
+              "p10": [70.4, 63.1, 56.3, 50.5, 43.7, 38.8, 33.8, 29.5, 25.5, 20.9, 18.4, 15.1, 12.9, 11.0, 9.2, 7.4, 6.5, 5.2, 4.6, 4.3, 3.4, 3.1, 2.7, 2.4, 2.2, 1.8, 1.5, 1.5, 1.2, 1.2, 0.9, 0.9, 0.6, 0.6, 0.6, 0.3],
+              "p25": [71.9, 65.2, 58.8, 52.2, 46.5, 41.5, 36.3, 31.3, 27.4, 23.6, 20.0, 17.5, 15.1, 12.9, 10.8, 9.5, 8.0, 7.0, 6.2, 5.2, 4.6, 4.0, 3.7, 3.1, 2.8, 2.5, 2.2, 1.8, 1.8, 1.5, 1.2, 1.2, 0.9, 0.9, 0.9, 0.9],
+              "p50": [73.5, 67.1, 61.2, 55.4, 49.5, 44.2, 39.2, 34.5, 29.8, 26.2, 22.8, 19.5, 17.2, 14.8, 12.6, 11.1, 9.7, 8.6, 7.1, 6.5, 5.5, 4.9, 4.3, 4.0, 3.5, 3.1, 2.8, 2.5, 2.5, 2.2, 1.8, 1.5, 1.5, 1.2, 1.2, 1.2],
+              "p75": [75.7, 70.2, 64.0, 58.5, 52.9, 47.4, 42.8, 37.9, 33.9, 29.6, 25.9, 22.8, 19.7, 17.2, 14.8, 12.6, 11.1, 9.8, 8.6, 7.7, 6.8, 6.2, 5.2, 4.9, 4.3, 3.7, 3.4, 3.1, 3.1, 2.8, 2.5, 2.5, 2.2, 1.8, 1.8, 1.8],
+              "p90": [77.6, 72.3, 66.8, 60.6, 55.1, 50.5, 45.5, 41.2, 36.9, 32.0, 28.3, 24.9, 21.8, 18.8, 16.6, 14.8, 13.0, 11.1, 9.8, 8.9, 7.7, 6.8, 6.5, 5.5, 5.2, 4.6, 4.3, 4.0, 3.7, 3.4, 3.1, 2.8, 2.8, 2.5, 2.5, 2.2]
+            }
+          },
+          "teams": [
+            {
+              "active_adopters_m36_pct": {
+                "mean": 95.0,
+                "p05": 87.5,
+                "p10": 90.0,
+                "p25": 93.3,
+                "p50": 95.8,
+                "p75": 97.5,
+                "p90": 98.3,
+                "p95": 99.2,
+                "std": 3.7
+              },
+              "champions_m36_pct": {
+                "mean": 47.4,
+                "p05": 31.7,
+                "p10": 35.0,
+                "p25": 40.8,
+                "p50": 47.5,
+                "p75": 54.2,
+                "p90": 59.2,
+                "p95": 60.0,
+                "std": 8.9
+              },
+              "disillusioned_churn_m36_pct": {
+                "mean": 3.4,
+                "p05": 0.0,
+                "p10": 0.8,
+                "p25": 1.7,
+                "p50": 2.5,
+                "p75": 5.0,
+                "p90": 7.5,
+                "p95": 9.2,
+                "std": 3.0
+              },
+              "emergent_roi_pct": {
+                "mean": 472.1,
+                "p05": 199.0,
+                "p10": 225.1,
+                "p25": 321.4,
+                "p50": 452.9,
+                "p75": 595.8,
+                "p90": 757.9,
+                "p95": 831.6,
+                "std": 201.4
+              },
+              "headcount": 120,
+              "id": "software_eng",
+              "name": "Product & Software Engineering"
+            },
+            {
+              "active_adopters_m36_pct": {
+                "mean": 95.3,
+                "p05": 88.9,
+                "p10": 91.1,
+                "p25": 93.3,
+                "p50": 95.6,
+                "p75": 97.8,
+                "p90": 98.9,
+                "p95": 98.9,
+                "std": 3.5
+              },
+              "champions_m36_pct": {
+                "mean": 47.9,
+                "p05": 32.2,
+                "p10": 36.7,
+                "p25": 42.2,
+                "p50": 47.8,
+                "p75": 53.3,
+                "p90": 60.0,
+                "p95": 62.2,
+                "std": 8.9
+              },
+              "disillusioned_churn_m36_pct": {
+                "mean": 2.9,
+                "p05": 0.0,
+                "p10": 0.0,
+                "p25": 1.1,
+                "p50": 2.2,
+                "p75": 4.4,
+                "p90": 6.7,
+                "p95": 7.8,
+                "std": 2.6
+              },
+              "emergent_roi_pct": {
+                "mean": 437.5,
+                "p05": 190.0,
+                "p10": 246.5,
+                "p25": 325.9,
+                "p50": 417.8,
+                "p75": 530.2,
+                "p90": 654.6,
+                "p95": 759.7,
+                "std": 162.3
+              },
+              "headcount": 90,
+              "id": "customer_ops",
+              "name": "Customer Support & Success"
+            },
+            {
+              "active_adopters_m36_pct": {
+                "mean": 95.3,
+                "p05": 88.0,
+                "p10": 90.5,
+                "p25": 94.7,
+                "p50": 96.0,
+                "p75": 97.3,
+                "p90": 98.7,
+                "p95": 100.0,
+                "std": 3.9
+              },
+              "champions_m36_pct": {
+                "mean": 47.8,
+                "p05": 30.7,
+                "p10": 34.7,
+                "p25": 41.3,
+                "p50": 48.0,
+                "p75": 54.7,
+                "p90": 60.0,
+                "p95": 62.7,
+                "std": 9.8
+              },
+              "disillusioned_churn_m36_pct": {
+                "mean": 3.2,
+                "p05": 0.0,
+                "p10": 0.0,
+                "p25": 1.3,
+                "p50": 2.7,
+                "p75": 4.0,
+                "p90": 8.0,
+                "p95": 10.7,
+                "std": 3.2
+              },
+              "emergent_roi_pct": {
+                "mean": 129.1,
+                "p05": 4.7,
+                "p10": 23.3,
+                "p25": 68.5,
+                "p50": 118.4,
+                "p75": 180.4,
+                "p90": 232.2,
+                "p95": 259.6,
+                "std": 85.3
+              },
+              "headcount": 75,
+              "id": "sales_gtm",
+              "name": "Sales, Account Teams & Marketing"
+            },
+            {
+              "active_adopters_m36_pct": {
+                "mean": 94.2,
+                "p05": 82.5,
+                "p10": 87.5,
+                "p25": 92.5,
+                "p50": 95.0,
+                "p75": 97.5,
+                "p90": 100.0,
+                "p95": 100.0,
+                "std": 5.3
+              },
+              "champions_m36_pct": {
+                "mean": 48.0,
+                "p05": 27.4,
+                "p10": 32.5,
+                "p25": 40.0,
+                "p50": 47.5,
+                "p75": 55.0,
+                "p90": 62.5,
+                "p95": 65.0,
+                "std": 11.6
+              },
+              "disillusioned_churn_m36_pct": {
+                "mean": 4.2,
+                "p05": 0.0,
+                "p10": 0.0,
+                "p25": 0.0,
+                "p50": 2.5,
+                "p75": 5.0,
+                "p90": 10.0,
+                "p95": 12.6,
+                "std": 4.5
+              },
+              "emergent_roi_pct": {
+                "mean": 133.1,
+                "p05": 5.5,
+                "p10": 26.2,
+                "p25": 63.0,
+                "p50": 123.7,
+                "p75": 197.4,
+                "p90": 245.9,
+                "p95": 303.7,
+                "std": 95.6
+              },
+              "headcount": 40,
+              "id": "legal_finance",
+              "name": "Legal, Finance & Compliance"
+            }
+          ]
+        },
+        "bayesian_network": {
+          "active_posterior": {
+            "expected_npv_usd": 2.774768e6,
+            "expected_roi_pct": 177.2,
+            "node_posteriors_pct": {
+              "exec_support": [8.0, 32.0, 60.0],
+              "governance": [10.0, 35.0, 55.0],
+              "pilot_adoption": [14.4, 40.8, 44.8],
+              "rework_signal": [14.8, 37.0, 48.2],
+              "roi_regime": [10.1, 24.4, 35.6, 29.9],
+              "sustained_realization": [13.9, 40.1, 46.0],
+              "token_discipline": [16.3, 40.2, 43.5]
+            },
+            "prob_positive_npv_pct": 89.9,
+            "prob_strong_or_outsized_roi_pct": 65.5,
+            "regime_probabilities_pct": {
+              "loss_below_0_pct": 10.1,
+              "modest_0_to_80_pct": 24.4,
+              "outsized_above_160_pct": 29.9,
+              "strong_80_to_160_pct": 35.6
+            },
+            "stage_gate_decision": "FIX FIRST (Tighten Quality & Budget Before Scaling)"
+          },
+          "dag_structure": {
+            "edges": [
+              {
+                "from": "exec_support",
+                "to": "pilot_adoption"
+              },
+              {
+                "from": "exec_support",
+                "to": "sustained_realization"
+              },
+              {
+                "from": "governance",
+                "to": "rework_signal"
+              },
+              {
+                "from": "governance",
+                "to": "token_discipline"
+              },
+              {
+                "from": "pilot_adoption",
+                "to": "sustained_realization"
+              },
+              {
+                "from": "rework_signal",
+                "to": "sustained_realization"
+              },
+              {
+                "from": "sustained_realization",
+                "to": "roi_regime"
+              },
+              {
+                "from": "rework_signal",
+                "to": "roi_regime"
+              },
+              {
+                "from": "token_discipline",
+                "to": "roi_regime"
+              }
+            ],
+            "nodes": [
+              {
+                "id": "exec_support",
+                "label": "Executive & Change Support",
+                "layer": 1,
+                "states": [
+                  "Weak",
+                  "Moderate",
+                  "Strong"
+                ]
+              },
+              {
+                "id": "governance",
+                "label": "AI Governance & Guardrails",
+                "layer": 1,
+                "states": [
+                  "Ad-Hoc",
+                  "Managed",
+                  "Automated"
+                ]
+              },
+              {
+                "id": "pilot_adoption",
+                "label": "M6 Pilot Adoption Signal",
+                "layer": 2,
+                "states": [
+                  "Low (<45%)",
+                  "Target (45-75%)",
+                  "High (>75%)"
+                ]
+              },
+              {
+                "id": "rework_signal",
+                "label": "QA Verification & Rework",
+                "layer": 2,
+                "states": [
+                  "High (>10%)",
+                  "Moderate (5-10%)",
+                  "Low (<5%)"
+                ]
+              },
+              {
+                "id": "token_discipline",
+                "label": "FinOps Token Discipline",
+                "layer": 2,
+                "states": [
+                  "Overrun",
+                  "On-Budget",
+                  "Optimized"
+                ]
+              },
+              {
+                "id": "sustained_realization",
+                "label": "Operating-Model Realization",
+                "layer": 3,
+                "states": [
+                  "Low",
+                  "Medium",
+                  "High"
+                ]
+              },
+              {
+                "id": "roi_regime",
+                "label": "3-Year Net ROI Regime",
+                "layer": 4,
+                "states": [
+                  "Loss (<0%)",
+                  "Modest (0-80%)",
+                  "Strong (80-160%)",
+                  "Outsized (>160%)"
+                ]
+              }
+            ]
+          },
+          "evidence_presets": [
+            {
+              "evidence": {
+                "adoption": 0,
+                "rework": 0,
+                "token_discipline": 0
+              },
+              "id": "prior_unobserved",
+              "label": "Day-1 Estimate (Before Any Pilot Results)",
+              "summary": {
+                "expected_npv_usd": 2.774768e6,
+                "expected_roi_pct": 177.2,
+                "node_posteriors_pct": {
+                  "exec_support": [8.0, 32.0, 60.0],
+                  "governance": [10.0, 35.0, 55.0],
+                  "pilot_adoption": [14.4, 40.8, 44.8],
+                  "rework_signal": [14.8, 37.0, 48.2],
+                  "roi_regime": [10.1, 24.4, 35.6, 29.9],
+                  "sustained_realization": [13.9, 40.1, 46.0],
+                  "token_discipline": [16.3, 40.2, 43.5]
+                },
+                "prob_positive_npv_pct": 89.9,
+                "prob_strong_or_outsized_roi_pct": 65.5,
+                "regime_probabilities_pct": {
+                  "loss_below_0_pct": 10.1,
+                  "modest_0_to_80_pct": 24.4,
+                  "outsized_above_160_pct": 29.9,
+                  "strong_80_to_160_pct": 35.6
+                },
+                "stage_gate_decision": "FIX FIRST (Tighten Quality & Budget Before Scaling)"
+              }
+            },
+            {
+              "evidence": {
+                "adoption": 3,
+                "rework": 3,
+                "token_discipline": 3
+              },
+              "id": "strong_pilot",
+              "label": "Great 6-Month Pilot (High Usage + Low Cleanup + On-Budget)",
+              "summary": {
+                "expected_npv_usd": 4.018436e6,
+                "expected_roi_pct": 246.8,
+                "node_posteriors_pct": {
+                  "exec_support": [1.8, 17.9, 80.4],
+                  "governance": [0.4, 9.2, 90.4],
+                  "pilot_adoption": [0.0, 0.0, 100.0],
+                  "rework_signal": [0.0, 0.0, 100.0],
+                  "roi_regime": [1.6, 9.8, 35.6, 53.0],
+                  "sustained_realization": [4.2, 26.6, 69.1],
+                  "token_discipline": [0.0, 0.0, 100.0]
+                },
+                "prob_positive_npv_pct": 98.4,
+                "prob_strong_or_outsized_roi_pct": 88.6,
+                "regime_probabilities_pct": {
+                  "loss_below_0_pct": 1.6,
+                  "modest_0_to_80_pct": 9.8,
+                  "outsized_above_160_pct": 53.0,
+                  "strong_80_to_160_pct": 35.6
+                },
+                "stage_gate_decision": "GREEN LIGHT (Release Next-Stage Funding)"
+              }
+            },
+            {
+              "evidence": {
+                "adoption": 2,
+                "rework": 2,
+                "token_discipline": 2
+              },
+              "id": "mixed_pilot",
+              "label": "Average 6-Month Pilot (Moderate Usage + Moderate Cleanup + On-Budget)",
+              "summary": {
+                "expected_npv_usd": 1.540537e6,
+                "expected_roi_pct": 107.2,
+                "node_posteriors_pct": {
+                  "exec_support": [6.9, 43.1, 50.0],
+                  "governance": [5.9, 64.9, 29.2],
+                  "pilot_adoption": [0.0, 100.0, 0.0],
+                  "rework_signal": [0.0, 100.0, 0.0],
+                  "roi_regime": [19.4, 41.3, 29.8, 9.5],
+                  "sustained_realization": [16.0, 62.0, 22.0],
+                  "token_discipline": [0.0, 100.0, 0.0]
+                },
+                "prob_positive_npv_pct": 80.6,
+                "prob_strong_or_outsized_roi_pct": 39.3,
+                "regime_probabilities_pct": {
+                  "loss_below_0_pct": 19.4,
+                  "modest_0_to_80_pct": 41.3,
+                  "outsized_above_160_pct": 9.5,
+                  "strong_80_to_160_pct": 29.8
+                },
+                "stage_gate_decision": "FIX FIRST (Tighten Quality & Budget Before Scaling)"
+              }
+            },
+            {
+              "evidence": {
+                "adoption": 3,
+                "rework": 1,
+                "token_discipline": 1
+              },
+              "id": "sprawl_warning",
+              "label": "Busy But Messy Pilot (High Usage + Heavy Cleanup + Over-Budget)",
+              "summary": {
+                "expected_npv_usd": 972819.0,
+                "expected_roi_pct": 73.4,
+                "node_posteriors_pct": {
+                  "exec_support": [1.8, 17.9, 80.4],
+                  "governance": [70.9, 25.7, 3.4],
+                  "pilot_adoption": [0.0, 0.0, 100.0],
+                  "rework_signal": [100.0, 0.0, 0.0],
+                  "roi_regime": [31.0, 43.7, 20.3, 5.0],
+                  "sustained_realization": [6.4, 33.1, 60.6],
+                  "token_discipline": [100.0, 0.0, 0.0]
+                },
+                "prob_positive_npv_pct": 69.0,
+                "prob_strong_or_outsized_roi_pct": 25.3,
+                "regime_probabilities_pct": {
+                  "loss_below_0_pct": 31.0,
+                  "modest_0_to_80_pct": 43.7,
+                  "outsized_above_160_pct": 5.0,
+                  "strong_80_to_160_pct": 20.3
+                },
+                "stage_gate_decision": "HOLD / PAUSE (Freeze New Seats & Fix Workflows)"
+              }
+            },
+            {
+              "evidence": {
+                "adoption": 1,
+                "rework": 1,
+                "token_discipline": 1
+              },
+              "id": "stalled_pilot",
+              "label": "Struggling Pilot (Low Usage + Heavy Cleanup + Over-Budget)",
+              "summary": {
+                "expected_npv_usd": 402050.0,
+                "expected_roi_pct": 38.7,
+                "node_posteriors_pct": {
+                  "exec_support": [30.6, 44.4, 25.0],
+                  "governance": [70.9, 25.7, 3.4],
+                  "pilot_adoption": [100.0, 0.0, 0.0],
+                  "rework_signal": [100.0, 0.0, 0.0],
+                  "roi_regime": [50.2, 35.6, 11.7, 2.5],
+                  "sustained_realization": [55.0, 35.0, 10.0],
+                  "token_discipline": [100.0, 0.0, 0.0]
+                },
+                "prob_positive_npv_pct": 49.8,
+                "prob_strong_or_outsized_roi_pct": 14.2,
+                "regime_probabilities_pct": {
+                  "loss_below_0_pct": 50.2,
+                  "modest_0_to_80_pct": 35.6,
+                  "outsized_above_160_pct": 2.5,
+                  "strong_80_to_160_pct": 11.7
+                },
+                "stage_gate_decision": "HOLD / PAUSE (Freeze New Seats & Fix Workflows)"
+              }
+            }
+          ],
+          "paradigm": "bayesian_network",
+          "prior_baseline": {
+            "expected_npv_usd": 2.774768e6,
+            "expected_roi_pct": 177.2,
+            "node_posteriors_pct": {
+              "exec_support": [8.0, 32.0, 60.0],
+              "governance": [10.0, 35.0, 55.0],
+              "pilot_adoption": [14.4, 40.8, 44.8],
+              "rework_signal": [14.8, 37.0, 48.2],
+              "roi_regime": [10.1, 24.4, 35.6, 29.9],
+              "sustained_realization": [13.9, 40.1, 46.0],
+              "token_discipline": [16.3, 40.2, 43.5]
+            },
+            "prob_positive_npv_pct": 89.9,
+            "prob_strong_or_outsized_roi_pct": 65.5,
+            "regime_probabilities_pct": {
+              "loss_below_0_pct": 10.1,
+              "modest_0_to_80_pct": 24.4,
+              "outsized_above_160_pct": 29.9,
+              "strong_80_to_160_pct": 35.6
+            },
+            "stage_gate_decision": "FIX FIRST (Tighten Quality & Budget Before Scaling)"
+          },
+          "priors": {
+            "exec_support": [0.08, 0.32, 0.6],
+            "governance": [0.1, 0.35, 0.55]
+          },
+          "scenario_id": "agentic_transformation",
+          "scenario_name": "Full Workflow Redesign"
+        },
+        "discrete_event": {
+          "kpis": {
+            "baseline_avg_cycle_time_hrs": 6.68,
+            "cycle_time_reduction_pct": 4.8,
+            "m36_avg_cycle_time_hrs": 6.36,
+            "m36_qa_queue_wait_hrs": 0.06,
+            "process_npv_usd": 3.653939e6,
+            "process_roi_pct": 187.1,
+            "total_hours_saved_36m": 132108.0
+          },
+          "paradigm": "discrete_event",
+          "parameters": {
+            "ai_triage_deflection_boost": 1.0,
+            "horizon_months": 36,
+            "qa_capacity_reallocation_pct": 7.0
+          },
+          "scenario_id": "agentic_transformation",
+          "scenario_name": "Full Workflow Redesign",
+          "trajectories": {
+            "ai_cycle_time_hrs": [6.97, 6.65, 6.85, 7.17, 6.81, 6.78, 6.78, 6.6, 6.58, 6.49, 6.35, 6.21, 6.2, 6.23, 6.21, 6.24, 6.14, 6.12, 6.12, 6.07, 6.27, 6.05, 6.39, 6.14, 6.4, 6.2, 6.19, 6.19, 6.11, 6.12, 6.4, 6.11, 6.04, 6.07, 6.19, 6.36],
+            "baseline_cycle_time_hrs": [6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68, 6.68],
+            "cumulative_cashflow_usd": [-163093.0, -302024.0, -478483.0, -650439.0, -676098.0, -708953.0, -744253.0, -748936.0, -739161.0, -651244.0, -541646.0, -363536.0, -171544.0, 33588.0, 231105.0, 400569.0, 613321.0, 815308.0, 1.028086e6, 1.251236e6, 1.44882e6, 1.665975e6, 1.873735e6, 2.06898e6, 2.258753e6, 2.455519e6, 2.656677e6, 2.840492e6, 3.075386e6, 3.290247e6, 3.464702e6, 3.65836e6, 3.868123e6, 4.107691e6, 4.310745e6, 4.533366e6],
+            "draft_stage_wait_hrs": [0.27, 0.11, 0.09, 0.4, 0.13, 0.1, 0.07, 0.05, 0.05, 0.09, 0.05, 0.08, 0.12, 0.18, 0.09, 0.07, 0.06, 0.05, 0.1, 0.08, 0.17, 0.07, 0.32, 0.05, 0.26, 0.16, 0.17, 0.09, 0.18, 0.1, 0.2, 0.03, 0.07, 0.15, 0.17, 0.39],
+            "monthly_hours_saved": [198.0, 697.0, 20.0, 120.0, 429.0, 312.0, 417.0, 941.0, 1374.0, 2222.0, 2715.0, 3981.0, 4417.0, 4680.0, 4718.0, 4402.0, 5039.0, 4894.0, 4996.0, 5303.0, 4795.0, 5135.0, 5020.0, 4805.0, 4680.0, 4887.0, 4935.0, 4600.0, 5431.0, 5141.0, 4664.0, 4935.0, 5162.0, 5607.0, 5040.0, 5398.0],
+            "monthly_throughput_items": [11322.0, 11325.0, 11329.0, 11336.0, 11349.0, 11372.0, 11409.0, 11468.0, 11555.0, 11666.0, 11787.0, 11900.0, 11986.0, 12047.0, 12083.0, 12106.0, 12119.0, 12127.0, 12130.0, 12133.0, 12134.0, 12134.0, 12134.0, 12135.0, 12135.0, 12135.0, 12135.0, 12135.0, 12135.0, 12135.0, 12135.0, 12135.0, 12135.0, 12135.0, 12135.0, 12135.0],
+            "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36],
+            "qa_review_stage_wait_hrs": [0.13, 0.07, 0.08, 0.11, 0.11, 0.13, 0.1, 0.08, 0.1, 0.09, 0.04, 0.07, 0.06, 0.05, 0.1, 0.07, 0.12, 0.06, 0.05, 0.05, 0.08, 0.04, 0.09, 0.07, 0.11, 0.04, 0.03, 0.07, 0.04, 0.09, 0.14, 0.09, 0.03, 0.06, 0.06, 0.06]
+          },
+          "workflows": [
+            {
+              "baseline_cycle_time_hrs": 9.1,
+              "baseline_draft_utilization_pct": 70.6,
+              "baseline_qa_utilization_pct": 74.1,
+              "baseline_qa_wait_hrs": 0.02,
+              "bottleneck_diagnosis": "Smooth Flow (Short Wait Lines)",
+              "cycle_time_reduction_pct": 11.8,
+              "m36_cycle_time_hrs": 8.1,
+              "m36_draft_utilization_pct": 70.1,
+              "m36_hours_saved_monthly": 2088.0,
+              "m36_qa_utilization_pct": 69.8,
+              "m36_qa_wait_hrs": 0.0,
+              "m36_sla_compliance_pct": 99.5,
+              "team_id": "software_eng",
+              "team_name": "Product & Software Engineering",
+              "work_unit_name": "Pull Requests & Feature Specs"
+            },
+            {
+              "baseline_cycle_time_hrs": 1.6,
+              "baseline_draft_utilization_pct": 84.3,
+              "baseline_qa_utilization_pct": 83.9,
+              "baseline_qa_wait_hrs": 0.02,
+              "bottleneck_diagnosis": "Moderate Line at Final Review",
+              "cycle_time_reduction_pct": 22.9,
+              "m36_cycle_time_hrs": 1.3,
+              "m36_draft_utilization_pct": 68.4,
+              "m36_hours_saved_monthly": 2584.0,
+              "m36_qa_utilization_pct": 76.7,
+              "m36_qa_wait_hrs": 0.01,
+              "m36_sla_compliance_pct": 99.5,
+              "team_id": "customer_ops",
+              "team_name": "Customer Support & Success",
+              "work_unit_name": "Tier-2/3 Escalation Cases"
+            },
+            {
+              "baseline_cycle_time_hrs": 7.0,
+              "baseline_draft_utilization_pct": 71.4,
+              "baseline_qa_utilization_pct": 78.3,
+              "baseline_qa_wait_hrs": 0.08,
+              "bottleneck_diagnosis": "Smooth Flow (Short Wait Lines)",
+              "cycle_time_reduction_pct": 3.4,
+              "m36_cycle_time_hrs": 6.8,
+              "m36_draft_utilization_pct": 77.5,
+              "m36_hours_saved_monthly": 580.0,
+              "m36_qa_utilization_pct": 72.8,
+              "m36_qa_wait_hrs": 0.08,
+              "m36_sla_compliance_pct": 99.5,
+              "team_id": "sales_gtm",
+              "team_name": "Sales, Account Teams & Marketing",
+              "work_unit_name": "RFPs & Custom Deal Proposals"
+            },
+            {
+              "baseline_cycle_time_hrs": 10.0,
+              "baseline_draft_utilization_pct": 90.5,
+              "baseline_qa_utilization_pct": 76.8,
+              "baseline_qa_wait_hrs": 0.14,
+              "bottleneck_diagnosis": "Moderate Line at Final Review",
+              "cycle_time_reduction_pct": -18.9,
+              "m36_cycle_time_hrs": 11.9,
+              "m36_draft_utilization_pct": 92.0,
+              "m36_hours_saved_monthly": 146.0,
+              "m36_qa_utilization_pct": 79.0,
+              "m36_qa_wait_hrs": 0.3,
+              "m36_sla_compliance_pct": 99.5,
+              "team_id": "legal_finance",
+              "team_name": "Legal, Finance & Compliance",
+              "work_unit_name": "Contract Redlines & Audit Memos"
+            }
+          ]
+        },
+        "monte_carlo": {
+          "distributions": {
+            "npv_k_usd_histogram": {
+              "bin_edges": [-420.5, -57.1, 306.3, 669.7, 1033.0, 1396.4, 1759.8, 2123.2, 2486.6, 2850.0, 3213.4, 3576.8, 3940.1, 4303.5, 4666.9, 5030.3, 5393.7, 5757.1, 6120.5, 6483.9, 6847.3, 7210.6, 7574.0, 7937.4, 8300.8, 8664.2, 9027.6, 9391.0, 9754.4],
+              "bin_midpoints": [-238.8, 124.6, 488.0, 851.3, 1214.7, 1578.1, 1941.5, 2304.9, 2668.3, 3031.7, 3395.1, 3758.5, 4121.8, 4485.2, 4848.6, 5212.0, 5575.4, 5938.8, 6302.2, 6665.6, 7028.9, 7392.3, 7755.7, 8119.1, 8482.5, 8845.9, 9209.3, 9572.7],
+              "counts": [5, 10, 29, 60, 137, 236, 401, 582, 791, 880, 1007, 1056, 984, 933, 768, 615, 472, 329, 282, 184, 98, 69, 30, 21, 11, 6, 2, 2],
+              "pct_of_trials": [0.05, 0.1, 0.29, 0.6, 1.37, 2.36, 4.01, 5.82, 7.91, 8.8, 10.07, 10.56, 9.84, 9.33, 7.68, 6.15, 4.72, 3.29, 2.82, 1.84, 0.98, 0.69, 0.3, 0.21, 0.11, 0.06, 0.02, 0.02]
+            },
+            "roi_pct_histogram": {
+              "bin_edges": [-60.0, -36.3, -12.7, 11.0, 34.7, 58.4, 82.0, 105.7, 129.4, 153.1, 176.7, 200.4, 224.1, 247.8, 271.4, 295.1, 318.8, 342.5, 366.1, 389.8, 413.5, 437.2, 460.8, 484.5, 508.2, 531.8, 555.5, 579.2, 602.9],
+              "bin_midpoints": [-48.2, -24.5, -0.8, 22.9, 46.5, 70.2, 93.9, 117.6, 141.2, 164.9, 188.6, 212.3, 235.9, 259.6, 283.3, 306.9, 330.6, 354.3, 378.0, 401.6, 425.3, 449.0, 472.7, 496.3, 520.0, 543.7, 567.4, 591.0],
+              "counts": [0, 0, 7, 32, 104, 266, 517, 821, 1059, 1252, 1263, 1150, 1024, 764, 592, 422, 298, 177, 112, 58, 50, 14, 6, 5, 3, 3, 0, 1],
+              "pct_of_trials": [0.0, 0.0, 0.07, 0.32, 1.04, 2.66, 5.17, 8.21, 10.59, 12.52, 12.63, 11.5, 10.24, 7.64, 5.92, 4.22, 2.98, 1.77, 1.12, 0.58, 0.5, 0.14, 0.06, 0.05, 0.03, 0.03, 0.0, 0.01]
+            }
+          },
+          "kpis": {
+            "month36_adoption_pct": {
+              "mean": 88.3,
+              "p05": 80.9,
+              "p10": 82.5,
+              "p25": 85.3,
+              "p50": 88.5,
+              "p75": 91.4,
+              "p90": 93.7,
+              "p95": 94.9,
+              "std": 4.2
+            },
+            "month36_net_productivity_uplift_pct": {
+              "mean": 11.05,
+              "p05": 7.98,
+              "p10": 8.64,
+              "p25": 9.75,
+              "p50": 11.03,
+              "p75": 12.34,
+              "p90": 13.49,
+              "p95": 14.2,
+              "std": 1.88
+            },
+            "npv_usd": {
+              "mean": 3.943217e6,
+              "p05": 1.789916e6,
+              "p10": 2.210314e6,
+              "p25": 2.965323e6,
+              "p50": 3.871976e6,
+              "p75": 4.847216e6,
+              "p90": 5.795231e6,
+              "p95": 6.359305e6,
+              "std": 1.390627e6
+            },
+            "payback_months": {
+              "mean": 15.8,
+              "p05": 12.0,
+              "p10": 12.6,
+              "p25": 14.0,
+              "p50": 15.5,
+              "p75": 17.3,
+              "p90": 19.1,
+              "p95": 20.3,
+              "std": 2.7
+            },
+            "prob_breakeven_within_24m_pct": 99.1,
+            "prob_breakeven_within_36m_pct": 100.0,
+            "prob_positive_npv_pct": 99.9,
+            "roi_pct": {
+              "mean": 200.9,
+              "p05": 87.1,
+              "p10": 108.3,
+              "p25": 146.9,
+              "p50": 194.6,
+              "p75": 248.0,
+              "p90": 302.2,
+              "p95": 335.9,
+              "std": 76.2
+            },
+            "total_cost_36m_usd": {
+              "mean": 2.517688e6,
+              "p05": 1.99566e6,
+              "p10": 2.090013e6,
+              "p25": 2.268152e6,
+              "p50": 2.479984e6,
+              "p75": 2.730221e6,
+              "p90": 2.978412e6,
+              "p95": 3.14516e6,
+              "std": 358368.0
+            },
+            "total_gross_benefit_36m_usd": {
+              "mean": 1.0005673e7,
+              "p05": 7.327177e6,
+              "p10": 7.83784e6,
+              "p25": 8.76286e6,
+              "p50": 9.911355e6,
+              "p75": 1.1161266e7,
+              "p90": 1.2289958e7,
+              "p95": 1.3015726e7,
+              "std": 1.7376e6
+            },
+            "total_net_benefit_36m_usd": {
+              "mean": 7.444434e6,
+              "p05": 4.896029e6,
+              "p10": 5.395574e6,
+              "p25": 6.270303e6,
+              "p50": 7.367793e6,
+              "p75": 8.515818e6,
+              "p90": 9.606543e6,
+              "p95": 1.0311143e7,
+              "std": 1.638813e6
+            },
+            "total_rework_drag_36m_usd": {
+              "mean": 2.561238e6,
+              "p05": 1.855792e6,
+              "p10": 1.987551e6,
+              "p25": 2.225449e6,
+              "p50": 2.525838e6,
+              "p75": 2.859998e6,
+              "p90": 3.187572e6,
+              "p95": 3.386671e6,
+              "std": 466268.0
+            }
+          },
+          "sensitivity": [
+            {
+              "category": "Speed Gain",
+              "driver": "Raw Time Saved per Task (%)",
+              "npv_high_driver_usd": 5.44626e6,
+              "npv_low_driver_usd": 2.430438e6,
+              "npv_swing_usd": 3.015822e6,
+              "roi_high_driver_pct": 271.5,
+              "roi_low_driver_pct": 123.4,
+              "roi_swing_pct": 148.1,
+              "spearman_r": 0.78
+            },
+            {
+              "category": "Business Impact",
+              "driver": "Turning Saved Time into Profit",
+              "npv_high_driver_usd": 4.466926e6,
+              "npv_low_driver_usd": 3.322583e6,
+              "npv_swing_usd": 1.144344e6,
+              "roi_high_driver_pct": 224.5,
+              "roi_low_driver_pct": 166.9,
+              "roi_swing_pct": 57.5,
+              "spearman_r": 0.298
+            },
+            {
+              "category": "Rollout Speed",
+              "driver": "How Fast Staff Adopt AI",
+              "npv_high_driver_usd": 4.373778e6,
+              "npv_low_driver_usd": 3.4031e6,
+              "npv_swing_usd": 970677.0,
+              "roi_high_driver_pct": 211.3,
+              "roi_low_driver_pct": 179.5,
+              "roi_swing_pct": 31.8,
+              "spearman_r": 0.254
+            },
+            {
+              "category": "Quality Check",
+              "driver": "Cleanup & Fact-Checking Time",
+              "npv_high_driver_usd": 3.479928e6,
+              "npv_low_driver_usd": 4.248548e6,
+              "npv_swing_usd": -768621.0,
+              "roi_high_driver_pct": 174.0,
+              "roi_low_driver_pct": 212.7,
+              "roi_swing_pct": -38.7,
+              "spearman_r": -0.206
+            },
+            {
+              "category": "Starting Cost",
+              "driver": "Upfront IT Setup & Training Cost",
+              "npv_high_driver_usd": 3.474293e6,
+              "npv_low_driver_usd": 4.205395e6,
+              "npv_swing_usd": -731101.0,
+              "roi_high_driver_pct": 149.7,
+              "roi_low_driver_pct": 241.8,
+              "roi_swing_pct": -92.1,
+              "spearman_r": -0.2
+            },
+            {
+              "category": "Ongoing Cost",
+              "driver": "Monthly Seat & Usage Bill Creep",
+              "npv_high_driver_usd": 3.639573e6,
+              "npv_low_driver_usd": 4.071677e6,
+              "npv_swing_usd": -432104.0,
+              "roi_high_driver_pct": 165.7,
+              "roi_low_driver_pct": 224.8,
+              "roi_swing_pct": -59.1,
+              "spearman_r": -0.113
+            }
+          ],
+          "teams": [
+            {
+              "ai_addressable_task_share_pct": 55.0,
+              "avg_monthly_hours_saved_per_fte": {
+                "mean": 11.9,
+                "p05": 5.4,
+                "p10": 6.6,
+                "p25": 8.9,
+                "p50": 11.7,
+                "p75": 14.7,
+                "p90": 17.4,
+                "p95": 18.9,
+                "std": 4.1
+              },
+              "cost_per_seat_monthly_usd": {
+                "mean": 227.6,
+                "p05": 171.5,
+                "p10": 181.6,
+                "p25": 200.8,
+                "p50": 224.4,
+                "p75": 251.0,
+                "p90": 276.0,
+                "p95": 293.0,
+                "std": 37.5
+              },
+              "fully_loaded_annual_cost_usd": 185000.0,
+              "headcount": 120,
+              "id": "software_eng",
+              "month36_net_productivity_uplift_pct": {
+                "mean": 10.88,
+                "p05": 5.24,
+                "p10": 6.29,
+                "p25": 8.34,
+                "p50": 10.78,
+                "p75": 13.32,
+                "p90": 15.59,
+                "p95": 16.82,
+                "std": 3.5
+              },
+              "name": "Product & Software Engineering",
+              "net_benefit_36m_usd": {
+                "mean": 3.781313e6,
+                "p05": 1.64994e6,
+                "p10": 2.032047e6,
+                "p25": 2.780911e6,
+                "p50": 3.685371e6,
+                "p75": 4.686875e6,
+                "p90": 5.635515e6,
+                "p95": 6.204753e6,
+                "std": 1.386685e6
+              },
+              "net_benefit_per_seat_36m_usd": {
+                "mean": 23319.0,
+                "p05": 5515.0,
+                "p10": 8754.0,
+                "p25": 14990.0,
+                "p50": 22559.0,
+                "p75": 30792.0,
+                "p90": 38910.0,
+                "p95": 43629.0,
+                "std": 11578.0
+              },
+              "prob_positive_roi_pct": 99.3,
+              "roi_pct": {
+                "mean": 294.1,
+                "p05": 64.7,
+                "p10": 103.4,
+                "p25": 180.8,
+                "p50": 278.3,
+                "p75": 390.8,
+                "p90": 503.7,
+                "p95": 577.5,
+                "std": 156.8
+              },
+              "total_cost_36m_usd": {
+                "mean": 983039.0,
+                "p05": 740963.0,
+                "p10": 784342.0,
+                "p25": 867359.0,
+                "p50": 969544.0,
+                "p75": 1.084229e6,
+                "p90": 1.192315e6,
+                "p95": 1.265593e6,
+                "std": 161968.0
+              }
+            },
+            {
+              "ai_addressable_task_share_pct": 65.0,
+              "avg_monthly_hours_saved_per_fte": {
+                "mean": 20.0,
+                "p05": 11.9,
+                "p10": 13.5,
+                "p25": 16.4,
+                "p50": 19.9,
+                "p75": 23.5,
+                "p90": 26.8,
+                "p95": 28.6,
+                "std": 5.0
+              },
+              "cost_per_seat_monthly_usd": {
+                "mean": 192.9,
+                "p05": 144.3,
+                "p10": 153.6,
+                "p25": 169.6,
+                "p50": 190.0,
+                "p75": 213.5,
+                "p90": 235.4,
+                "p95": 250.7,
+                "std": 32.9
+              },
+              "fully_loaded_annual_cost_usd": 78000.0,
+              "headcount": 90,
+              "id": "customer_ops",
+              "month36_net_productivity_uplift_pct": {
+                "mean": 18.05,
+                "p05": 11.05,
+                "p10": 12.47,
+                "p25": 14.99,
+                "p50": 17.91,
+                "p75": 21.03,
+                "p90": 23.86,
+                "p95": 25.29,
+                "std": 4.27
+              },
+              "name": "Customer Support & Success",
+              "net_benefit_36m_usd": {
+                "mean": 2.368749e6,
+                "p05": 1.378589e6,
+                "p10": 1.569252e6,
+                "p25": 1.930185e6,
+                "p50": 2.340449e6,
+                "p75": 2.783357e6,
+                "p90": 3.196417e6,
+                "p95": 3.445285e6,
+                "std": 621975.0
+              },
+              "net_benefit_per_seat_36m_usd": {
+                "mean": 19374.0,
+                "p05": 8380.0,
+                "p10": 10527.0,
+                "p25": 14428.0,
+                "p50": 19035.0,
+                "p75": 24036.0,
+                "p90": 28628.0,
+                "p95": 31287.0,
+                "std": 6961.0
+              },
+              "prob_positive_roi_pct": 100.0,
+              "roi_pct": {
+                "mean": 289.0,
+                "p05": 113.0,
+                "p10": 145.8,
+                "p25": 202.9,
+                "p50": 276.7,
+                "p75": 363.4,
+                "p90": 448.3,
+                "p95": 503.6,
+                "std": 119.5
+              },
+              "total_cost_36m_usd": {
+                "mean": 625128.0,
+                "p05": 467581.0,
+                "p10": 497711.0,
+                "p25": 549432.0,
+                "p50": 615652.0,
+                "p75": 691789.0,
+                "p90": 762752.0,
+                "p95": 812147.0,
+                "std": 106524.0
+              }
+            },
+            {
+              "ai_addressable_task_share_pct": 42.0,
+              "avg_monthly_hours_saved_per_fte": {
+                "mean": 6.4,
+                "p05": 2.7,
+                "p10": 3.4,
+                "p25": 4.6,
+                "p50": 6.2,
+                "p75": 8.0,
+                "p90": 9.7,
+                "p95": 10.6,
+                "std": 2.4
+              },
+              "cost_per_seat_monthly_usd": {
+                "mean": 209.1,
+                "p05": 158.6,
+                "p10": 168.1,
+                "p25": 185.2,
+                "p50": 206.0,
+                "p75": 229.7,
+                "p90": 252.8,
+                "p95": 268.4,
+                "std": 33.9
+              },
+              "fully_loaded_annual_cost_usd": 142000.0,
+              "headcount": 75,
+              "id": "sales_gtm",
+              "month36_net_productivity_uplift_pct": {
+                "mean": 6.06,
+                "p05": 2.77,
+                "p10": 3.38,
+                "p25": 4.52,
+                "p50": 5.93,
+                "p75": 7.5,
+                "p90": 8.95,
+                "p95": 9.74,
+                "std": 2.1
+              },
+              "name": "Sales, Account Teams & Marketing",
+              "net_benefit_36m_usd": {
+                "mean": 824348.0,
+                "p05": 318960.0,
+                "p10": 404742.0,
+                "p25": 573634.0,
+                "p50": 790665.0,
+                "p75": 1.040247e6,
+                "p90": 1.28729e6,
+                "p95": 1.449687e6,
+                "std": 343856.0
+              },
+              "net_benefit_per_seat_36m_usd": {
+                "mean": 3466.0,
+                "p05": -3538.0,
+                "p10": -2280.0,
+                "p25": 21.0,
+                "p50": 3071.0,
+                "p75": 6503.0,
+                "p90": 9789.0,
+                "p95": 11912.0,
+                "std": 4719.0
+              },
+              "prob_positive_roi_pct": 75.1,
+              "roi_pct": {
+                "mean": 49.6,
+                "p05": -44.7,
+                "p10": -29.4,
+                "p25": 0.3,
+                "p50": 41.0,
+                "p75": 90.2,
+                "p90": 140.1,
+                "p95": 172.7,
+                "std": 66.9
+              },
+              "total_cost_36m_usd": {
+                "mean": 564435.0,
+                "p05": 428103.0,
+                "p10": 453760.0,
+                "p25": 500143.0,
+                "p50": 556283.0,
+                "p75": 620289.0,
+                "p90": 682547.0,
+                "p95": 724700.0,
+                "std": 91565.0
+              }
+            },
+            {
+              "ai_addressable_task_share_pct": 48.0,
+              "avg_monthly_hours_saved_per_fte": {
+                "mean": 5.4,
+                "p05": 1.4,
+                "p10": 2.1,
+                "p25": 3.5,
+                "p50": 5.2,
+                "p75": 7.2,
+                "p90": 9.0,
+                "p95": 10.0,
+                "std": 2.6
+              },
+              "cost_per_seat_monthly_usd": {
+                "mean": 239.6,
+                "p05": 181.5,
+                "p10": 192.0,
+                "p25": 211.6,
+                "p50": 236.8,
+                "p75": 263.8,
+                "p90": 291.1,
+                "p95": 307.9,
+                "std": 39.0
+              },
+              "fully_loaded_annual_cost_usd": 165000.0,
+              "headcount": 40,
+              "id": "legal_finance",
+              "month36_net_productivity_uplift_pct": {
+                "mean": 5.18,
+                "p05": 1.51,
+                "p10": 2.17,
+                "p25": 3.54,
+                "p50": 5.08,
+                "p75": 6.78,
+                "p90": 8.31,
+                "p95": 9.22,
+                "std": 2.33
+              },
+              "name": "Legal, Finance & Compliance",
+              "net_benefit_36m_usd": {
+                "mean": 470024.0,
+                "p05": 97517.0,
+                "p10": 163355.0,
+                "p25": 294351.0,
+                "p50": 451878.0,
+                "p75": 625211.0,
+                "p90": 804849.0,
+                "p95": 910363.0,
+                "std": 247214.0
+              },
+              "net_benefit_per_seat_36m_usd": {
+                "mean": 3123.0,
+                "p05": -6396.0,
+                "p10": -4649.0,
+                "p25": -1290.0,
+                "p50": 2730.0,
+                "p75": 7093.0,
+                "p90": 11626.0,
+                "p95": 14195.0,
+                "std": 6268.0
+              },
+              "prob_positive_roi_pct": 67.2,
+              "roi_pct": {
+                "mean": 39.2,
+                "p05": -72.1,
+                "p10": -53.0,
+                "p25": -14.9,
+                "p50": 32.0,
+                "p75": 85.1,
+                "p90": 142.6,
+                "p95": 177.1,
+                "std": 76.1
+              },
+              "total_cost_36m_usd": {
+                "mean": 345085.0,
+                "p05": 261291.0,
+                "p10": 276448.0,
+                "p25": 304690.0,
+                "p50": 340948.0,
+                "p75": 379839.0,
+                "p90": 419190.0,
+                "p95": 443445.0,
+                "std": 56142.0
+              }
+            }
+          ],
+          "trajectories": {
+            "adoption_pct": {
+              "mean": [0.4, 0.8, 1.3, 2.3, 3.9, 6.6, 10.9, 17.1, 25.4, 35.5, 46.5, 57.2, 66.5, 73.9, 79.2, 82.8, 85.0, 86.4, 87.2, 87.6, 87.9, 88.0, 88.1, 88.2, 88.2, 88.2, 88.2, 88.3, 88.3, 88.3, 88.3, 88.3, 88.3, 88.3, 88.3, 88.3],
+              "p10": [0.0, 0.1, 0.2, 0.3, 0.7, 1.3, 2.4, 4.4, 7.9, 13.8, 22.3, 33.2, 45.8, 57.6, 67.5, 74.2, 78.0, 80.2, 81.3, 81.9, 82.2, 82.3, 82.4, 82.5, 82.5, 82.5, 82.5, 82.5, 82.5, 82.5, 82.5, 82.5, 82.5, 82.5, 82.5, 82.5],
+              "p25": [0.1, 0.2, 0.4, 0.7, 1.3, 2.5, 4.6, 8.1, 13.9, 22.3, 33.4, 45.8, 57.9, 67.7, 74.7, 79.0, 81.6, 83.2, 84.1, 84.7, 85.0, 85.1, 85.2, 85.3, 85.3, 85.3, 85.3, 85.3, 85.3, 85.3, 85.3, 85.3, 85.3, 85.3, 85.3, 85.3],
+              "p50": [0.3, 0.5, 0.9, 1.6, 2.8, 5.0, 8.8, 14.9, 23.6, 34.8, 47.3, 59.4, 69.1, 76.1, 80.7, 83.6, 85.4, 86.6, 87.4, 87.8, 88.1, 88.3, 88.4, 88.4, 88.5, 88.5, 88.5, 88.5, 88.5, 88.5, 88.5, 88.5, 88.5, 88.5, 88.5, 88.5],
+              "p75": [0.6, 1.0, 1.8, 3.1, 5.4, 9.3, 15.1, 23.8, 34.9, 47.6, 59.9, 69.9, 77.1, 82.0, 85.2, 87.4, 88.8, 89.7, 90.3, 90.7, 91.0, 91.2, 91.2, 91.3, 91.3, 91.3, 91.3, 91.4, 91.4, 91.4, 91.4, 91.4, 91.4, 91.4, 91.4, 91.4],
+              "p90": [1.1, 1.8, 3.1, 5.2, 8.8, 14.4, 22.7, 33.7, 46.1, 58.5, 69.2, 77.1, 82.5, 86.1, 88.5, 90.2, 91.4, 92.2, 92.8, 93.1, 93.3, 93.5, 93.5, 93.6, 93.6, 93.6, 93.6, 93.6, 93.6, 93.7, 93.7, 93.7, 93.7, 93.7, 93.7, 93.7]
+            },
+            "cumulative_cashflow_usd": {
+              "mean": [-172730.0, -344769.0, -515801.0, -685398.0, -728729.0, -768872.0, -803691.0, -829349.0, -839966.0, -791958.0, -714559.0, -603237.0, -457436.0, -280582.0, -78757.0, 141119.0, 372791.0, 611440.0, 853789.0, 1.097814e6, 1.342355e6, 1.586781e6, 1.830756e6, 2.0741e6, 2.316712e6, 2.558529e6, 2.79951e6, 3.039625e6, 3.278849e6, 3.51716e6, 3.754537e6, 3.990961e6, 4.226413e6, 4.460874e6, 4.694325e6, 4.926747e6],
+              "p10": [-236551.0, -472235.0, -707420.0, -941156.0, -990873.0, -1.039586e6, -1.07997e6, -1.116145e6, -1.143089e6, -1.119621e6, -1.076949e6, -1.019023e6, -938580.0, -831127.0, -701413.0, -547030.0, -376539.0, -192876.0, -11449.0, 174141.0, 354989.0, 529440.0, 710826.0, 882090.0, 1.054728e6, 1.227468e6, 1.398074e6, 1.570318e6, 1.734533e6, 1.895831e6, 2.060235e6, 2.230557e6, 2.39429e6, 2.547728e6, 2.706448e6, 2.862102e6],
+              "p25": [-199164.0, -397588.0, -594844.0, -790411.0, -837326.0, -879921.0, -919435.0, -952439.0, -975987.0, -946493.0, -895746.0, -824638.0, -727720.0, -597436.0, -442287.0, -262905.0, -66239.0, 135475.0, 348795.0, 559900.0, 768917.0, 978298.0, 1.187268e6, 1.391675e6, 1.594473e6, 1.796665e6, 1.997042e6, 2.201257e6, 2.396304e6, 2.59519e6, 2.79533e6, 2.987298e6, 3.18195e6, 3.377585e6, 3.567191e6, 3.759285e6],
+              "p50": [-165108.0, -329611.0, -493300.0, -655466.0, -699594.0, -738664.0, -775251.0, -802779.0, -818809.0, -779693.0, -715560.0, -621363.0, -486525.0, -316257.0, -115889.0, 101264.0, 331083.0, 565223.0, 806236.0, 1.048469e6, 1.289164e6, 1.53012e6, 1.771376e6, 2.014027e6, 2.254302e6, 2.49862e6, 2.738546e6, 2.976938e6, 3.212846e6, 3.450253e6, 3.679375e6, 3.917515e6, 4.149946e6, 4.379459e6, 4.612169e6, 4.838296e6],
+              "p75": [-138062.0, -275447.0, -411903.0, -546629.0, -586619.0, -623643.0, -656540.0, -678003.0, -684505.0, -630208.0, -538628.0, -396590.0, -213250.0, 7283.0, 248851.0, 504127.0, 767363.0, 1.040391e6, 1.311203e6, 1.584037e6, 1.860109e6, 2.135654e6, 2.411225e6, 2.689142e6, 2.97072e6, 3.252928e6, 3.534037e6, 3.810152e6, 4.08587e6, 4.361358e6, 4.638472e6, 4.911285e6, 5.185963e6, 5.46246e6, 5.734656e6, 6.002328e6],
+              "p90": [-118919.0, -236892.0, -353861.0, -468987.0, -505671.0, -539203.0, -565022.0, -580641.0, -568633.0, -479806.0, -335041.0, -147035.0, 80425.0, 333816.0, 610752.0, 892938.0, 1.182566e6, 1.483469e6, 1.786668e6, 2.092622e6, 2.407773e6, 2.722953e6, 3.035627e6, 3.354141e6, 3.663744e6, 3.979964e6, 4.301557e6, 4.619049e6, 4.936382e6, 5.250542e6, 5.556331e6, 5.872209e6, 6.192814e6, 6.506696e6, 6.814591e6, 7.119484e6]
+            },
+            "effective_productivity_uplift_pct": {
+              "mean": [0.05, 0.08, 0.13, 0.19, 0.3, 0.46, 0.74, 1.18, 1.88, 2.87, 4.13, 5.55, 6.96, 8.21, 9.21, 9.93, 10.4, 10.69, 10.86, 10.95, 11.0, 11.02, 11.04, 11.04, 11.05, 11.05, 11.05, 11.05, 11.05, 11.05, 11.05, 11.05, 11.05, 11.05, 11.05, 11.05],
+              "p10": [0.0, 0.01, 0.02, 0.03, 0.06, 0.09, 0.15, 0.24, 0.4, 0.7, 1.25, 2.16, 3.42, 4.92, 6.28, 7.28, 7.9, 8.27, 8.45, 8.53, 8.58, 8.61, 8.63, 8.63, 8.63, 8.63, 8.63, 8.64, 8.64, 8.64, 8.64, 8.64, 8.64, 8.64, 8.64, 8.64],
+              "p25": [0.01, 0.02, 0.04, 0.07, 0.11, 0.18, 0.28, 0.45, 0.75, 1.31, 2.23, 3.55, 5.08, 6.55, 7.72, 8.53, 9.05, 9.37, 9.54, 9.63, 9.69, 9.72, 9.73, 9.73, 9.74, 9.74, 9.74, 9.74, 9.74, 9.74, 9.74, 9.74, 9.74, 9.74, 9.74, 9.75],
+              "p50": [0.03, 0.05, 0.09, 0.14, 0.22, 0.34, 0.54, 0.88, 1.46, 2.44, 3.83, 5.45, 7.01, 8.31, 9.26, 9.93, 10.39, 10.67, 10.84, 10.93, 10.98, 11.0, 11.01, 11.02, 11.02, 11.02, 11.03, 11.03, 11.03, 11.03, 11.03, 11.03, 11.03, 11.03, 11.03, 11.03],
+              "p75": [0.06, 0.11, 0.17, 0.26, 0.4, 0.62, 0.99, 1.62, 2.64, 4.07, 5.75, 7.38, 8.82, 9.92, 10.74, 11.31, 11.72, 11.98, 12.14, 12.23, 12.27, 12.3, 12.32, 12.32, 12.33, 12.33, 12.33, 12.33, 12.33, 12.33, 12.33, 12.34, 12.34, 12.34, 12.34, 12.34],
+              "p90": [0.12, 0.19, 0.29, 0.43, 0.65, 1.0, 1.61, 2.61, 4.01, 5.73, 7.49, 9.08, 10.33, 11.33, 12.04, 12.55, 12.92, 13.16, 13.3, 13.38, 13.42, 13.45, 13.46, 13.48, 13.48, 13.48, 13.48, 13.49, 13.49, 13.49, 13.49, 13.49, 13.49, 13.49, 13.49, 13.49]
+            },
+            "monthly_benefit_usd": {
+              "mean": [1355.0, 2169.0, 3393.0, 5206.0, 7929.0, 12215.0, 19298.0, 31091.0, 49751.0, 76623.0, 111061.0, 150064.0, 189160.0, 224042.0, 251953.0, 272156.0, 285520.0, 293697.0, 298388.0, 300952.0, 302312.0, 303025.0, 303401.0, 303604.0, 303716.0, 303780.0, 303817.0, 303839.0, 303852.0, 303859.0, 303864.0, 303867.0, 303868.0, 303869.0, 303870.0, 303871.0],
+              "p10": [132.0, 254.0, 480.0, 867.0, 1491.0, 2319.0, 3597.0, 5713.0, 9495.0, 16790.0, 30882.0, 54197.0, 87542.0, 127805.0, 164422.0, 191913.0, 207533.0, 216927.0, 221281.0, 223554.0, 224786.0, 225262.0, 225718.0, 225894.0, 225958.0, 225975.0, 225996.0, 226001.0, 226004.0, 226006.0, 226006.0, 226007.0, 226007.0, 226007.0, 226007.0, 226007.0],
+              "p25": [308.0, 571.0, 1026.0, 1769.0, 2866.0, 4451.0, 6959.0, 11224.0, 18885.0, 33141.0, 57081.0, 91908.0, 133604.0, 173307.0, 204470.0, 226862.0, 241343.0, 250176.0, 254902.0, 257231.0, 258890.0, 259477.0, 259849.0, 259982.0, 260133.0, 260135.0, 260167.0, 260172.0, 260182.0, 260201.0, 260201.0, 260201.0, 260201.0, 260201.0, 260201.0, 260201.0],
+              "p50": [785.0, 1364.0, 2288.0, 3700.0, 5762.0, 8875.0, 13750.0, 22460.0, 37547.0, 63398.0, 100870.0, 145141.0, 188659.0, 224670.0, 251026.0, 270938.0, 283456.0, 291181.0, 295749.0, 298475.0, 299676.0, 300381.0, 300821.0, 300949.0, 301082.0, 301155.0, 301196.0, 301212.0, 301233.0, 301246.0, 301254.0, 301255.0, 301256.0, 301256.0, 301256.0, 301256.0],
+              "p75": [1755.0, 2859.0, 4546.0, 6951.0, 10488.0, 16185.0, 25717.0, 42525.0, 70037.0, 108883.0, 155046.0, 201529.0, 242292.0, 273931.0, 297724.0, 314274.0, 326255.0, 334026.0, 338741.0, 341122.0, 342630.0, 343433.0, 343864.0, 344012.0, 344077.0, 344162.0, 344207.0, 344213.0, 344218.0, 344220.0, 344226.0, 344227.0, 344227.0, 344227.0, 344227.0, 344227.0],
+              "p90": [3250.0, 5060.0, 7633.0, 11320.0, 17067.0, 26557.0, 42667.0, 69330.0, 108216.0, 155638.0, 204984.0, 250472.0, 287924.0, 317916.0, 340535.0, 356474.0, 367041.0, 374583.0, 379516.0, 382249.0, 384015.0, 384883.0, 385314.0, 385485.0, 385581.0, 385608.0, 385656.0, 385705.0, 385723.0, 385739.0, 385748.0, 385752.0, 385755.0, 385757.0, 385758.0, 385758.0]
+            },
+            "monthly_cost_usd": {
+              "mean": [174085.0, 174208.0, 174424.0, 174803.0, 51260.0, 52358.0, 54117.0, 56749.0, 60368.0, 28616.0, 33662.0, 38742.0, 43360.0, 47187.0, 50127.0, 52280.0, 53849.0, 55047.0, 56039.0, 56927.0, 57771.0, 58598.0, 59426.0, 60260.0, 61105.0, 61963.0, 62836.0, 63724.0, 64628.0, 65549.0, 66487.0, 67443.0, 68416.0, 69408.0, 70419.0, 71449.0],
+              "p10": [120371.0, 120534.0, 120779.0, 121002.0, 40657.0, 41586.0, 42912.0, 44808.0, 47525.0, 18485.0, 22365.0, 27292.0, 32731.0, 37863.0, 41711.0, 44289.0, 45932.0, 47057.0, 47905.0, 48622.0, 49254.0, 49856.0, 50468.0, 51054.0, 51641.0, 52212.0, 52761.0, 53327.0, 53913.0, 54513.0, 55070.0, 55691.0, 56284.0, 56912.0, 57538.0, 58180.0],
+              "p25": [139314.0, 139386.0, 139548.0, 139888.0, 45322.0, 46297.0, 47820.0, 50043.0, 52943.0, 22495.0, 27339.0, 32792.0, 38063.0, 42396.0, 45607.0, 47874.0, 49349.0, 50474.0, 51370.0, 52137.0, 52859.0, 53573.0, 54260.0, 54948.0, 55646.0, 56346.0, 57072.0, 57760.0, 58509.0, 59241.0, 59977.0, 60725.0, 61501.0, 62281.0, 63066.0, 63858.0],
+              "p50": [166716.0, 166845.0, 167078.0, 167477.0, 50930.0, 52001.0, 53737.0, 56410.0, 59918.0, 28070.0, 33563.0, 38994.0, 43663.0, 47333.0, 50029.0, 52025.0, 53563.0, 54791.0, 55741.0, 56608.0, 57399.0, 58214.0, 59025.0, 59856.0, 60677.0, 61497.0, 62346.0, 63195.0, 64058.0, 64933.0, 65819.0, 66725.0, 67666.0, 68595.0, 69605.0, 70621.0],
+              "p75": [200378.0, 200497.0, 200737.0, 201076.0, 56999.0, 58229.0, 60181.0, 63151.0, 67170.0, 34117.0, 39725.0, 44726.0, 48826.0, 52012.0, 54458.0, 56427.0, 57932.0, 59181.0, 60291.0, 61283.0, 62262.0, 63225.0, 64166.0, 65114.0, 66104.0, 67103.0, 68125.0, 69168.0, 70224.0, 71328.0, 72414.0, 73558.0, 74714.0, 75904.0, 77130.0, 78369.0],
+              "p90": [238043.0, 238109.0, 238312.0, 238588.0, 62284.0, 63497.0, 65601.0, 69077.0, 73875.0, 39511.0, 44840.0, 49488.0, 53232.0, 56144.0, 58600.0, 60384.0, 61967.0, 63280.0, 64501.0, 65622.0, 66715.0, 67768.0, 68856.0, 69967.0, 71117.0, 72357.0, 73486.0, 74617.0, 75822.0, 77070.0, 78334.0, 79709.0, 81093.0, 82590.0, 84102.0, 85608.0]
+            },
+            "monthly_net_cashflow_usd": {
+              "mean": [-172730.0, -172039.0, -171031.0, -169598.0, -43331.0, -40143.0, -34819.0, -25659.0, -10616.0, 48007.0, 77399.0, 111322.0, 145800.0, 176854.0, 201825.0, 219876.0, 231672.0, 238649.0, 242349.0, 244025.0, 244541.0, 244426.0, 243975.0, 243344.0, 242611.0, 241817.0, 240981.0, 240115.0, 239224.0, 238310.0, 237377.0, 236424.0, 235452.0, 234461.0, 233451.0, 232422.0],
+              "p10": [-236551.0, -235863.0, -234946.0, -233889.0, -55954.0, -54595.0, -52630.0, -50418.0, -46972.0, -3867.0, 6081.0, 24534.0, 52115.0, 85492.0, 117782.0, 140311.0, 154297.0, 161638.0, 165208.0, 166459.0, 166662.0, 166415.0, 166008.0, 165287.0, 164325.0, 163543.0, 162607.0, 161719.0, 160911.0, 159813.0, 158899.0, 157772.0, 156725.0, 155739.0, 154654.0, 153610.0],
+              "p25": [-199164.0, -198361.0, -197399.0, -195893.0, -50234.0, -48446.0, -45969.0, -42394.0, -36660.0, 9639.0, 28326.0, 57296.0, 92995.0, 127357.0, 154875.0, 175274.0, 187731.0, 194842.0, 198912.0, 200263.0, 200839.0, 200700.0, 200170.0, 199570.0, 198868.0, 198039.0, 197168.0, 196265.0, 195348.0, 194453.0, 193416.0, 192583.0, 191713.0, 190610.0, 189632.0, 188556.0],
+              "p50": [-165108.0, -164552.0, -163604.0, -162297.0, -43620.0, -41365.0, -37961.0, -31937.0, -20942.0, 35628.0, 67158.0, 105322.0, 143921.0, 175978.0, 200555.0, 217893.0, 229078.0, 235981.0, 239692.0, 241251.0, 242019.0, 241822.0, 241435.0, 240762.0, 239931.0, 239191.0, 238407.0, 237428.0, 236537.0, 235639.0, 234732.0, 233707.0, 232800.0, 231696.0, 230705.0, 229817.0],
+              "p75": [-138062.0, -137397.0, -136385.0, -134951.0, -37119.0, -33743.0, -27609.0, -15681.0, 6760.0, 75848.0, 115972.0, 158066.0, 195130.0, 224166.0, 246165.0, 261712.0, 272023.0, 278721.0, 282664.0, 284293.0, 284897.0, 284842.0, 284527.0, 283929.0, 283239.0, 282490.0, 281582.0, 280789.0, 279983.0, 278988.0, 278073.0, 277133.0, 276238.0, 275277.0, 274294.0, 273289.0],
+              "p90": [-118919.0, -118081.0, -116836.0, -115147.0, -30755.0, -24663.0, -13153.0, 8019.0, 41216.0, 119074.0, 163753.0, 204865.0, 239373.0, 267835.0, 288303.0, 303555.0, 314118.0, 319744.0, 323659.0, 325907.0, 326750.0, 326795.0, 326600.0, 325976.0, 325333.0, 324537.0, 323642.0, 322878.0, 321858.0, 321031.0, 320092.0, 319025.0, 318000.0, 317140.0, 316045.0, 315251.0]
+            },
+            "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]
+          }
+        },
+        "system_dynamics": {
+          "causal_loops": [
+            {
+              "id": "Flywheel 1",
+              "impact_summary": "Speeds up team-wide adoption once roughly 1 in 4 employees are using the tool daily.",
+              "name": "Word-of-Mouth & Shared Tips",
+              "pathway": "More Active Users → Better Shared Templates → Easier for Coworkers → Faster Adoption",
+              "type": "Growth Flywheel (+)"
+            },
+            {
+              "id": "Flywheel 2",
+              "impact_summary": "Boosts output per person by 1.16x by Month 36.",
+              "name": "Growing Company Know-How",
+              "pathway": "Daily Practice + Training → Stronger Company Playbooks → Bigger Time Savings & Fewer Mistakes",
+              "type": "Growth Flywheel (+)"
+            },
+            {
+              "id": "Brake 1",
+              "impact_summary": "Costs $2983k in extra cleanup and rework over 36 months.",
+              "name": "Sloppy AI Cleanup Backlog",
+              "pathway": "Rushed AI Output → Pileup of Unchecked Work → Extra Time Fixing Mistakes → Staff Burnout",
+              "type": "Hidden Brake (-)"
+            },
+            {
+              "id": "Brake 2",
+              "impact_summary": "Pushes monthly usage bills to 1.52x per seat by Month 36 without budget guardrails.",
+              "name": "Climbing Monthly AI Usage Bills",
+              "pathway": "Automated Multi-Step Tasks → Higher Cloud Usage per Person → Rising Monthly Bills → Lower Profit",
+              "type": "Hidden Brake (-)"
+            }
+          ],
+          "kpis": {
+            "equilibrium_npv_usd": 5.279688e6,
+            "equilibrium_roi_pct": 262.8,
+            "m36_adopted_workforce_pct": 88.2,
+            "m36_tech_debt_index": 5.7,
+            "m36_token_sprawl_multiplier": 1.52,
+            "m36_workflow_mastery_index": 71.0,
+            "total_cost_36m_usd": 2.453909e6,
+            "total_gross_value_36m_usd": 1.1884672e7,
+            "total_tech_debt_drag_36m_usd": 2.982973e6
+          },
+          "paradigm": "system_dynamics",
+          "parameters": {
+            "automation_ambition": 0.55,
+            "governance_damping": 0.35,
+            "horizon_months": 36,
+            "reinvestment_rate": 0.38,
+            "rk4_step_months": 0.25
+          },
+          "scenario_id": "agentic_transformation",
+          "scenario_name": "Full Workflow Redesign",
+          "stocks_and_flows": {
+            "flow_cumulative_cashflow_usd": [-155423.0, -299605.0, -430318.0, -545483.0, -515095.0, -466453.0, -399293.0, -314110.0, -211999.0, -60363.0, 105139.0, 282957.0, 471696.0, 670163.0, 877366.0, 1.09249e6, 1.314864e6, 1.543934e6, 1.779228e6, 2.020339e6, 2.266981e6, 2.518827e6, 2.775565e6, 3.036908e6, 3.302589e6, 3.572355e6, 3.845969e6, 4.123204e6, 4.403847e6, 4.687692e6, 4.974545e6, 5.264222e6, 5.556547e6, 5.851355e6, 6.148486e6, 6.447791e6],
+            "flow_debt_drag_usd": [9510.0, 14317.0, 20193.0, 27178.0, 35187.0, 43978.0, 53165.0, 62279.0, 70850.0, 78503.0, 85009.0, 90288.0, 94388.0, 97435.0, 99594.0, 101038.0, 101925.0, 102394.0, 102555.0, 102497.0, 102288.0, 101979.0, 101607.0, 101198.0, 100772.0, 100342.0, 99917.0, 99502.0, 99102.0, 98719.0, 98353.0, 98006.0, 97677.0, 97365.0, 97071.0, 96792.0],
+            "flow_gross_benefit_usd": [34692.0, 52467.0, 73879.0, 98796.0, 126659.0, 156485.0, 186986.0, 216807.0, 244777.0, 270090.0, 292360.0, 311570.0, 327957.0, 341891.0, 353780.0, 364012.0, 372924.0, 380791.0, 387831.0, 394209.0, 400050.0, 405448.0, 410469.0, 415167.0, 419578.0, 423732.0, 427651.0, 431354.0, 434855.0, 438167.0, 441300.0, 444266.0, 447074.0, 449730.0, 452244.0, 454624.0],
+            "flow_net_cashflow_usd": [-155423.0, -144182.0, -130713.0, -115165.0, 30388.0, 48642.0, 67159.0, 85183.0, 102111.0, 151637.0, 165502.0, 177818.0, 188739.0, 198467.0, 207203.0, 215124.0, 222375.0, 229070.0, 235294.0, 241111.0, 246642.0, 251846.0, 256738.0, 261343.0, 265681.0, 269766.0, 273614.0, 277235.0, 280642.0, 283845.0, 286853.0, 289677.0, 292325.0, 294807.0, 297131.0, 299305.0],
+            "flow_total_cost_usd": [180605.0, 182332.0, 184399.0, 186783.0, 61084.0, 63864.0, 66661.0, 69346.0, 71817.0, 39950.0, 41849.0, 43464.0, 44830.0, 45988.0, 46982.0, 47850.0, 48624.0, 49328.0, 49983.0, 50601.0, 51120.0, 51623.0, 52125.0, 52626.0, 53125.0, 53624.0, 54121.0, 54616.0, 55110.0, 55603.0, 56094.0, 56583.0, 57071.0, 57558.0, 58043.0, 58526.0],
+            "loop_dominance_score": [5.3, 9.2, 13.7, 18.6, 24.0, 29.6, 35.2, 40.5, 45.4, 49.7, 53.5, 56.6, 59.3, 61.5, 63.4, 65.0, 66.3, 67.6, 68.7, 69.6, 70.5, 71.3, 72.0, 72.7, 73.3, 73.8, 74.3, 74.7, 75.1, 75.4, 75.7, 75.9, 76.1, 76.2, 76.3, 76.4],
+            "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36],
+            "stock_adopted_workforce_pct": [10.2, 15.4, 21.5, 28.5, 36.1, 44.0, 51.7, 58.9, 65.2, 70.6, 74.9, 78.2, 80.7, 82.6, 84.0, 85.0, 85.7, 86.3, 86.6, 86.9, 87.1, 87.3, 87.4, 87.5, 87.6, 87.7, 87.8, 87.9, 87.9, 88.0, 88.0, 88.1, 88.1, 88.2, 88.2, 88.2],
+            "stock_tech_debt_index": [1.8, 1.8, 1.9, 2.3, 2.8, 3.4, 4.1, 4.8, 5.4, 6.1, 6.6, 7.1, 7.4, 7.7, 7.8, 7.9, 7.9, 7.9, 7.8, 7.7, 7.5, 7.4, 7.3, 7.1, 7.0, 6.8, 6.7, 6.6, 6.4, 6.3, 6.2, 6.1, 6.0, 5.9, 5.8, 5.7],
+            "stock_token_sprawl_multiplier": [1.0, 1.0, 1.01, 1.01, 1.02, 1.03, 1.04, 1.05, 1.06, 1.08, 1.09, 1.11, 1.12, 1.14, 1.16, 1.17, 1.19, 1.21, 1.23, 1.24, 1.26, 1.28, 1.3, 1.31, 1.33, 1.35, 1.37, 1.38, 1.4, 1.42, 1.43, 1.45, 1.47, 1.48, 1.5, 1.52],
+            "stock_workflow_mastery_index": [10.2, 10.7, 11.5, 12.5, 13.9, 15.6, 17.7, 20.0, 22.5, 25.1, 27.8, 30.5, 33.2, 35.8, 38.4, 40.9, 43.2, 45.5, 47.6, 49.6, 51.6, 53.4, 55.2, 56.8, 58.4, 59.9, 61.3, 62.6, 63.9, 65.1, 66.2, 67.3, 68.3, 69.3, 70.2, 71.0]
+          }
+        }
+      },
+      "sensitivity": [
+        {
+          "category": "Speed Gain",
+          "driver": "Raw Time Saved per Task (%)",
+          "npv_high_driver_usd": 5.44626e6,
+          "npv_low_driver_usd": 2.430438e6,
+          "npv_swing_usd": 3.015822e6,
+          "roi_high_driver_pct": 271.5,
+          "roi_low_driver_pct": 123.4,
+          "roi_swing_pct": 148.1,
+          "spearman_r": 0.78
+        },
+        {
+          "category": "Business Impact",
+          "driver": "Turning Saved Time into Profit",
+          "npv_high_driver_usd": 4.466926e6,
+          "npv_low_driver_usd": 3.322583e6,
+          "npv_swing_usd": 1.144344e6,
+          "roi_high_driver_pct": 224.5,
+          "roi_low_driver_pct": 166.9,
+          "roi_swing_pct": 57.5,
+          "spearman_r": 0.298
+        },
+        {
+          "category": "Rollout Speed",
+          "driver": "How Fast Staff Adopt AI",
+          "npv_high_driver_usd": 4.373778e6,
+          "npv_low_driver_usd": 3.4031e6,
+          "npv_swing_usd": 970677.0,
+          "roi_high_driver_pct": 211.3,
+          "roi_low_driver_pct": 179.5,
+          "roi_swing_pct": 31.8,
+          "spearman_r": 0.254
+        },
+        {
+          "category": "Quality Check",
+          "driver": "Cleanup & Fact-Checking Time",
+          "npv_high_driver_usd": 3.479928e6,
+          "npv_low_driver_usd": 4.248548e6,
+          "npv_swing_usd": -768621.0,
+          "roi_high_driver_pct": 174.0,
+          "roi_low_driver_pct": 212.7,
+          "roi_swing_pct": -38.7,
+          "spearman_r": -0.206
+        },
+        {
+          "category": "Starting Cost",
+          "driver": "Upfront IT Setup & Training Cost",
+          "npv_high_driver_usd": 3.474293e6,
+          "npv_low_driver_usd": 4.205395e6,
+          "npv_swing_usd": -731101.0,
+          "roi_high_driver_pct": 149.7,
+          "roi_low_driver_pct": 241.8,
+          "roi_swing_pct": -92.1,
+          "spearman_r": -0.2
+        },
+        {
+          "category": "Ongoing Cost",
+          "driver": "Monthly Seat & Usage Bill Creep",
+          "npv_high_driver_usd": 3.639573e6,
+          "npv_low_driver_usd": 4.071677e6,
+          "npv_swing_usd": -432104.0,
+          "roi_high_driver_pct": 165.7,
+          "roi_low_driver_pct": 224.8,
+          "roi_swing_pct": -59.1,
+          "spearman_r": -0.113
+        }
+      ],
+      "tagline": "Higher upfront investment in training and workflows for bigger Year 2–3 gains",
+      "teams": [
+        {
+          "ai_addressable_task_share_pct": 55.0,
+          "avg_monthly_hours_saved_per_fte": {
+            "mean": 11.9,
+            "p05": 5.4,
+            "p10": 6.6,
+            "p25": 8.9,
+            "p50": 11.7,
+            "p75": 14.7,
+            "p90": 17.4,
+            "p95": 18.9,
+            "std": 4.1
+          },
+          "cost_per_seat_monthly_usd": {
+            "mean": 227.6,
+            "p05": 171.5,
+            "p10": 181.6,
+            "p25": 200.8,
+            "p50": 224.4,
+            "p75": 251.0,
+            "p90": 276.0,
+            "p95": 293.0,
+            "std": 37.5
+          },
+          "fully_loaded_annual_cost_usd": 185000.0,
+          "headcount": 120,
+          "id": "software_eng",
+          "month36_net_productivity_uplift_pct": {
+            "mean": 10.88,
+            "p05": 5.24,
+            "p10": 6.29,
+            "p25": 8.34,
+            "p50": 10.78,
+            "p75": 13.32,
+            "p90": 15.59,
+            "p95": 16.82,
+            "std": 3.5
+          },
+          "name": "Product & Software Engineering",
+          "net_benefit_36m_usd": {
+            "mean": 3.781313e6,
+            "p05": 1.64994e6,
+            "p10": 2.032047e6,
+            "p25": 2.780911e6,
+            "p50": 3.685371e6,
+            "p75": 4.686875e6,
+            "p90": 5.635515e6,
+            "p95": 6.204753e6,
+            "std": 1.386685e6
+          },
+          "net_benefit_per_seat_36m_usd": {
+            "mean": 23319.0,
+            "p05": 5515.0,
+            "p10": 8754.0,
+            "p25": 14990.0,
+            "p50": 22559.0,
+            "p75": 30792.0,
+            "p90": 38910.0,
+            "p95": 43629.0,
+            "std": 11578.0
+          },
+          "prob_positive_roi_pct": 99.3,
+          "roi_pct": {
+            "mean": 294.1,
+            "p05": 64.7,
+            "p10": 103.4,
+            "p25": 180.8,
+            "p50": 278.3,
+            "p75": 390.8,
+            "p90": 503.7,
+            "p95": 577.5,
+            "std": 156.8
+          },
+          "total_cost_36m_usd": {
+            "mean": 983039.0,
+            "p05": 740963.0,
+            "p10": 784342.0,
+            "p25": 867359.0,
+            "p50": 969544.0,
+            "p75": 1.084229e6,
+            "p90": 1.192315e6,
+            "p95": 1.265593e6,
+            "std": 161968.0
+          }
+        },
+        {
+          "ai_addressable_task_share_pct": 65.0,
+          "avg_monthly_hours_saved_per_fte": {
+            "mean": 20.0,
+            "p05": 11.9,
+            "p10": 13.5,
+            "p25": 16.4,
+            "p50": 19.9,
+            "p75": 23.5,
+            "p90": 26.8,
+            "p95": 28.6,
+            "std": 5.0
+          },
+          "cost_per_seat_monthly_usd": {
+            "mean": 192.9,
+            "p05": 144.3,
+            "p10": 153.6,
+            "p25": 169.6,
+            "p50": 190.0,
+            "p75": 213.5,
+            "p90": 235.4,
+            "p95": 250.7,
+            "std": 32.9
+          },
+          "fully_loaded_annual_cost_usd": 78000.0,
+          "headcount": 90,
+          "id": "customer_ops",
+          "month36_net_productivity_uplift_pct": {
+            "mean": 18.05,
+            "p05": 11.05,
+            "p10": 12.47,
+            "p25": 14.99,
+            "p50": 17.91,
+            "p75": 21.03,
+            "p90": 23.86,
+            "p95": 25.29,
+            "std": 4.27
+          },
+          "name": "Customer Support & Success",
+          "net_benefit_36m_usd": {
+            "mean": 2.368749e6,
+            "p05": 1.378589e6,
+            "p10": 1.569252e6,
+            "p25": 1.930185e6,
+            "p50": 2.340449e6,
+            "p75": 2.783357e6,
+            "p90": 3.196417e6,
+            "p95": 3.445285e6,
+            "std": 621975.0
+          },
+          "net_benefit_per_seat_36m_usd": {
+            "mean": 19374.0,
+            "p05": 8380.0,
+            "p10": 10527.0,
+            "p25": 14428.0,
+            "p50": 19035.0,
+            "p75": 24036.0,
+            "p90": 28628.0,
+            "p95": 31287.0,
+            "std": 6961.0
+          },
+          "prob_positive_roi_pct": 100.0,
+          "roi_pct": {
+            "mean": 289.0,
+            "p05": 113.0,
+            "p10": 145.8,
+            "p25": 202.9,
+            "p50": 276.7,
+            "p75": 363.4,
+            "p90": 448.3,
+            "p95": 503.6,
+            "std": 119.5
+          },
+          "total_cost_36m_usd": {
+            "mean": 625128.0,
+            "p05": 467581.0,
+            "p10": 497711.0,
+            "p25": 549432.0,
+            "p50": 615652.0,
+            "p75": 691789.0,
+            "p90": 762752.0,
+            "p95": 812147.0,
+            "std": 106524.0
+          }
+        },
+        {
+          "ai_addressable_task_share_pct": 42.0,
+          "avg_monthly_hours_saved_per_fte": {
+            "mean": 6.4,
+            "p05": 2.7,
+            "p10": 3.4,
+            "p25": 4.6,
+            "p50": 6.2,
+            "p75": 8.0,
+            "p90": 9.7,
+            "p95": 10.6,
+            "std": 2.4
+          },
+          "cost_per_seat_monthly_usd": {
+            "mean": 209.1,
+            "p05": 158.6,
+            "p10": 168.1,
+            "p25": 185.2,
+            "p50": 206.0,
+            "p75": 229.7,
+            "p90": 252.8,
+            "p95": 268.4,
+            "std": 33.9
+          },
+          "fully_loaded_annual_cost_usd": 142000.0,
+          "headcount": 75,
+          "id": "sales_gtm",
+          "month36_net_productivity_uplift_pct": {
+            "mean": 6.06,
+            "p05": 2.77,
+            "p10": 3.38,
+            "p25": 4.52,
+            "p50": 5.93,
+            "p75": 7.5,
+            "p90": 8.95,
+            "p95": 9.74,
+            "std": 2.1
+          },
+          "name": "Sales, Account Teams & Marketing",
+          "net_benefit_36m_usd": {
+            "mean": 824348.0,
+            "p05": 318960.0,
+            "p10": 404742.0,
+            "p25": 573634.0,
+            "p50": 790665.0,
+            "p75": 1.040247e6,
+            "p90": 1.28729e6,
+            "p95": 1.449687e6,
+            "std": 343856.0
+          },
+          "net_benefit_per_seat_36m_usd": {
+            "mean": 3466.0,
+            "p05": -3538.0,
+            "p10": -2280.0,
+            "p25": 21.0,
+            "p50": 3071.0,
+            "p75": 6503.0,
+            "p90": 9789.0,
+            "p95": 11912.0,
+            "std": 4719.0
+          },
+          "prob_positive_roi_pct": 75.1,
+          "roi_pct": {
+            "mean": 49.6,
+            "p05": -44.7,
+            "p10": -29.4,
+            "p25": 0.3,
+            "p50": 41.0,
+            "p75": 90.2,
+            "p90": 140.1,
+            "p95": 172.7,
+            "std": 66.9
+          },
+          "total_cost_36m_usd": {
+            "mean": 564435.0,
+            "p05": 428103.0,
+            "p10": 453760.0,
+            "p25": 500143.0,
+            "p50": 556283.0,
+            "p75": 620289.0,
+            "p90": 682547.0,
+            "p95": 724700.0,
+            "std": 91565.0
+          }
+        },
+        {
+          "ai_addressable_task_share_pct": 48.0,
+          "avg_monthly_hours_saved_per_fte": {
+            "mean": 5.4,
+            "p05": 1.4,
+            "p10": 2.1,
+            "p25": 3.5,
+            "p50": 5.2,
+            "p75": 7.2,
+            "p90": 9.0,
+            "p95": 10.0,
+            "std": 2.6
+          },
+          "cost_per_seat_monthly_usd": {
+            "mean": 239.6,
+            "p05": 181.5,
+            "p10": 192.0,
+            "p25": 211.6,
+            "p50": 236.8,
+            "p75": 263.8,
+            "p90": 291.1,
+            "p95": 307.9,
+            "std": 39.0
+          },
+          "fully_loaded_annual_cost_usd": 165000.0,
+          "headcount": 40,
+          "id": "legal_finance",
+          "month36_net_productivity_uplift_pct": {
+            "mean": 5.18,
+            "p05": 1.51,
+            "p10": 2.17,
+            "p25": 3.54,
+            "p50": 5.08,
+            "p75": 6.78,
+            "p90": 8.31,
+            "p95": 9.22,
+            "std": 2.33
+          },
+          "name": "Legal, Finance & Compliance",
+          "net_benefit_36m_usd": {
+            "mean": 470024.0,
+            "p05": 97517.0,
+            "p10": 163355.0,
+            "p25": 294351.0,
+            "p50": 451878.0,
+            "p75": 625211.0,
+            "p90": 804849.0,
+            "p95": 910363.0,
+            "std": 247214.0
+          },
+          "net_benefit_per_seat_36m_usd": {
+            "mean": 3123.0,
+            "p05": -6396.0,
+            "p10": -4649.0,
+            "p25": -1290.0,
+            "p50": 2730.0,
+            "p75": 7093.0,
+            "p90": 11626.0,
+            "p95": 14195.0,
+            "std": 6268.0
+          },
+          "prob_positive_roi_pct": 67.2,
+          "roi_pct": {
+            "mean": 39.2,
+            "p05": -72.1,
+            "p10": -53.0,
+            "p25": -14.9,
+            "p50": 32.0,
+            "p75": 85.1,
+            "p90": 142.6,
+            "p95": 177.1,
+            "std": 76.1
+          },
+          "total_cost_36m_usd": {
+            "mean": 345085.0,
+            "p05": 261291.0,
+            "p10": 276448.0,
+            "p25": 304690.0,
+            "p50": 340948.0,
+            "p75": 379839.0,
+            "p90": 419190.0,
+            "p95": 443445.0,
+            "std": 56142.0
+          }
+        }
+      ],
+      "trajectories": {
+        "adoption_pct": {
+          "mean": [0.4, 0.8, 1.3, 2.3, 3.9, 6.6, 10.9, 17.1, 25.4, 35.5, 46.5, 57.2, 66.5, 73.9, 79.2, 82.8, 85.0, 86.4, 87.2, 87.6, 87.9, 88.0, 88.1, 88.2, 88.2, 88.2, 88.2, 88.3, 88.3, 88.3, 88.3, 88.3, 88.3, 88.3, 88.3, 88.3],
+          "p10": [0.0, 0.1, 0.2, 0.3, 0.7, 1.3, 2.4, 4.4, 7.9, 13.8, 22.3, 33.2, 45.8, 57.6, 67.5, 74.2, 78.0, 80.2, 81.3, 81.9, 82.2, 82.3, 82.4, 82.5, 82.5, 82.5, 82.5, 82.5, 82.5, 82.5, 82.5, 82.5, 82.5, 82.5, 82.5, 82.5],
+          "p25": [0.1, 0.2, 0.4, 0.7, 1.3, 2.5, 4.6, 8.1, 13.9, 22.3, 33.4, 45.8, 57.9, 67.7, 74.7, 79.0, 81.6, 83.2, 84.1, 84.7, 85.0, 85.1, 85.2, 85.3, 85.3, 85.3, 85.3, 85.3, 85.3, 85.3, 85.3, 85.3, 85.3, 85.3, 85.3, 85.3],
+          "p50": [0.3, 0.5, 0.9, 1.6, 2.8, 5.0, 8.8, 14.9, 23.6, 34.8, 47.3, 59.4, 69.1, 76.1, 80.7, 83.6, 85.4, 86.6, 87.4, 87.8, 88.1, 88.3, 88.4, 88.4, 88.5, 88.5, 88.5, 88.5, 88.5, 88.5, 88.5, 88.5, 88.5, 88.5, 88.5, 88.5],
+          "p75": [0.6, 1.0, 1.8, 3.1, 5.4, 9.3, 15.1, 23.8, 34.9, 47.6, 59.9, 69.9, 77.1, 82.0, 85.2, 87.4, 88.8, 89.7, 90.3, 90.7, 91.0, 91.2, 91.2, 91.3, 91.3, 91.3, 91.3, 91.4, 91.4, 91.4, 91.4, 91.4, 91.4, 91.4, 91.4, 91.4],
+          "p90": [1.1, 1.8, 3.1, 5.2, 8.8, 14.4, 22.7, 33.7, 46.1, 58.5, 69.2, 77.1, 82.5, 86.1, 88.5, 90.2, 91.4, 92.2, 92.8, 93.1, 93.3, 93.5, 93.5, 93.6, 93.6, 93.6, 93.6, 93.6, 93.6, 93.7, 93.7, 93.7, 93.7, 93.7, 93.7, 93.7]
+        },
+        "cumulative_cashflow_usd": {
+          "mean": [-172730.0, -344769.0, -515801.0, -685398.0, -728729.0, -768872.0, -803691.0, -829349.0, -839966.0, -791958.0, -714559.0, -603237.0, -457436.0, -280582.0, -78757.0, 141119.0, 372791.0, 611440.0, 853789.0, 1.097814e6, 1.342355e6, 1.586781e6, 1.830756e6, 2.0741e6, 2.316712e6, 2.558529e6, 2.79951e6, 3.039625e6, 3.278849e6, 3.51716e6, 3.754537e6, 3.990961e6, 4.226413e6, 4.460874e6, 4.694325e6, 4.926747e6],
+          "p10": [-236551.0, -472235.0, -707420.0, -941156.0, -990873.0, -1.039586e6, -1.07997e6, -1.116145e6, -1.143089e6, -1.119621e6, -1.076949e6, -1.019023e6, -938580.0, -831127.0, -701413.0, -547030.0, -376539.0, -192876.0, -11449.0, 174141.0, 354989.0, 529440.0, 710826.0, 882090.0, 1.054728e6, 1.227468e6, 1.398074e6, 1.570318e6, 1.734533e6, 1.895831e6, 2.060235e6, 2.230557e6, 2.39429e6, 2.547728e6, 2.706448e6, 2.862102e6],
+          "p25": [-199164.0, -397588.0, -594844.0, -790411.0, -837326.0, -879921.0, -919435.0, -952439.0, -975987.0, -946493.0, -895746.0, -824638.0, -727720.0, -597436.0, -442287.0, -262905.0, -66239.0, 135475.0, 348795.0, 559900.0, 768917.0, 978298.0, 1.187268e6, 1.391675e6, 1.594473e6, 1.796665e6, 1.997042e6, 2.201257e6, 2.396304e6, 2.59519e6, 2.79533e6, 2.987298e6, 3.18195e6, 3.377585e6, 3.567191e6, 3.759285e6],
+          "p50": [-165108.0, -329611.0, -493300.0, -655466.0, -699594.0, -738664.0, -775251.0, -802779.0, -818809.0, -779693.0, -715560.0, -621363.0, -486525.0, -316257.0, -115889.0, 101264.0, 331083.0, 565223.0, 806236.0, 1.048469e6, 1.289164e6, 1.53012e6, 1.771376e6, 2.014027e6, 2.254302e6, 2.49862e6, 2.738546e6, 2.976938e6, 3.212846e6, 3.450253e6, 3.679375e6, 3.917515e6, 4.149946e6, 4.379459e6, 4.612169e6, 4.838296e6],
+          "p75": [-138062.0, -275447.0, -411903.0, -546629.0, -586619.0, -623643.0, -656540.0, -678003.0, -684505.0, -630208.0, -538628.0, -396590.0, -213250.0, 7283.0, 248851.0, 504127.0, 767363.0, 1.040391e6, 1.311203e6, 1.584037e6, 1.860109e6, 2.135654e6, 2.411225e6, 2.689142e6, 2.97072e6, 3.252928e6, 3.534037e6, 3.810152e6, 4.08587e6, 4.361358e6, 4.638472e6, 4.911285e6, 5.185963e6, 5.46246e6, 5.734656e6, 6.002328e6],
+          "p90": [-118919.0, -236892.0, -353861.0, -468987.0, -505671.0, -539203.0, -565022.0, -580641.0, -568633.0, -479806.0, -335041.0, -147035.0, 80425.0, 333816.0, 610752.0, 892938.0, 1.182566e6, 1.483469e6, 1.786668e6, 2.092622e6, 2.407773e6, 2.722953e6, 3.035627e6, 3.354141e6, 3.663744e6, 3.979964e6, 4.301557e6, 4.619049e6, 4.936382e6, 5.250542e6, 5.556331e6, 5.872209e6, 6.192814e6, 6.506696e6, 6.814591e6, 7.119484e6]
+        },
+        "effective_productivity_uplift_pct": {
+          "mean": [0.05, 0.08, 0.13, 0.19, 0.3, 0.46, 0.74, 1.18, 1.88, 2.87, 4.13, 5.55, 6.96, 8.21, 9.21, 9.93, 10.4, 10.69, 10.86, 10.95, 11.0, 11.02, 11.04, 11.04, 11.05, 11.05, 11.05, 11.05, 11.05, 11.05, 11.05, 11.05, 11.05, 11.05, 11.05, 11.05],
+          "p10": [0.0, 0.01, 0.02, 0.03, 0.06, 0.09, 0.15, 0.24, 0.4, 0.7, 1.25, 2.16, 3.42, 4.92, 6.28, 7.28, 7.9, 8.27, 8.45, 8.53, 8.58, 8.61, 8.63, 8.63, 8.63, 8.63, 8.63, 8.64, 8.64, 8.64, 8.64, 8.64, 8.64, 8.64, 8.64, 8.64],
+          "p25": [0.01, 0.02, 0.04, 0.07, 0.11, 0.18, 0.28, 0.45, 0.75, 1.31, 2.23, 3.55, 5.08, 6.55, 7.72, 8.53, 9.05, 9.37, 9.54, 9.63, 9.69, 9.72, 9.73, 9.73, 9.74, 9.74, 9.74, 9.74, 9.74, 9.74, 9.74, 9.74, 9.74, 9.74, 9.74, 9.75],
+          "p50": [0.03, 0.05, 0.09, 0.14, 0.22, 0.34, 0.54, 0.88, 1.46, 2.44, 3.83, 5.45, 7.01, 8.31, 9.26, 9.93, 10.39, 10.67, 10.84, 10.93, 10.98, 11.0, 11.01, 11.02, 11.02, 11.02, 11.03, 11.03, 11.03, 11.03, 11.03, 11.03, 11.03, 11.03, 11.03, 11.03],
+          "p75": [0.06, 0.11, 0.17, 0.26, 0.4, 0.62, 0.99, 1.62, 2.64, 4.07, 5.75, 7.38, 8.82, 9.92, 10.74, 11.31, 11.72, 11.98, 12.14, 12.23, 12.27, 12.3, 12.32, 12.32, 12.33, 12.33, 12.33, 12.33, 12.33, 12.33, 12.33, 12.34, 12.34, 12.34, 12.34, 12.34],
+          "p90": [0.12, 0.19, 0.29, 0.43, 0.65, 1.0, 1.61, 2.61, 4.01, 5.73, 7.49, 9.08, 10.33, 11.33, 12.04, 12.55, 12.92, 13.16, 13.3, 13.38, 13.42, 13.45, 13.46, 13.48, 13.48, 13.48, 13.48, 13.49, 13.49, 13.49, 13.49, 13.49, 13.49, 13.49, 13.49, 13.49]
+        },
+        "monthly_benefit_usd": {
+          "mean": [1355.0, 2169.0, 3393.0, 5206.0, 7929.0, 12215.0, 19298.0, 31091.0, 49751.0, 76623.0, 111061.0, 150064.0, 189160.0, 224042.0, 251953.0, 272156.0, 285520.0, 293697.0, 298388.0, 300952.0, 302312.0, 303025.0, 303401.0, 303604.0, 303716.0, 303780.0, 303817.0, 303839.0, 303852.0, 303859.0, 303864.0, 303867.0, 303868.0, 303869.0, 303870.0, 303871.0],
+          "p10": [132.0, 254.0, 480.0, 867.0, 1491.0, 2319.0, 3597.0, 5713.0, 9495.0, 16790.0, 30882.0, 54197.0, 87542.0, 127805.0, 164422.0, 191913.0, 207533.0, 216927.0, 221281.0, 223554.0, 224786.0, 225262.0, 225718.0, 225894.0, 225958.0, 225975.0, 225996.0, 226001.0, 226004.0, 226006.0, 226006.0, 226007.0, 226007.0, 226007.0, 226007.0, 226007.0],
+          "p25": [308.0, 571.0, 1026.0, 1769.0, 2866.0, 4451.0, 6959.0, 11224.0, 18885.0, 33141.0, 57081.0, 91908.0, 133604.0, 173307.0, 204470.0, 226862.0, 241343.0, 250176.0, 254902.0, 257231.0, 258890.0, 259477.0, 259849.0, 259982.0, 260133.0, 260135.0, 260167.0, 260172.0, 260182.0, 260201.0, 260201.0, 260201.0, 260201.0, 260201.0, 260201.0, 260201.0],
+          "p50": [785.0, 1364.0, 2288.0, 3700.0, 5762.0, 8875.0, 13750.0, 22460.0, 37547.0, 63398.0, 100870.0, 145141.0, 188659.0, 224670.0, 251026.0, 270938.0, 283456.0, 291181.0, 295749.0, 298475.0, 299676.0, 300381.0, 300821.0, 300949.0, 301082.0, 301155.0, 301196.0, 301212.0, 301233.0, 301246.0, 301254.0, 301255.0, 301256.0, 301256.0, 301256.0, 301256.0],
+          "p75": [1755.0, 2859.0, 4546.0, 6951.0, 10488.0, 16185.0, 25717.0, 42525.0, 70037.0, 108883.0, 155046.0, 201529.0, 242292.0, 273931.0, 297724.0, 314274.0, 326255.0, 334026.0, 338741.0, 341122.0, 342630.0, 343433.0, 343864.0, 344012.0, 344077.0, 344162.0, 344207.0, 344213.0, 344218.0, 344220.0, 344226.0, 344227.0, 344227.0, 344227.0, 344227.0, 344227.0],
+          "p90": [3250.0, 5060.0, 7633.0, 11320.0, 17067.0, 26557.0, 42667.0, 69330.0, 108216.0, 155638.0, 204984.0, 250472.0, 287924.0, 317916.0, 340535.0, 356474.0, 367041.0, 374583.0, 379516.0, 382249.0, 384015.0, 384883.0, 385314.0, 385485.0, 385581.0, 385608.0, 385656.0, 385705.0, 385723.0, 385739.0, 385748.0, 385752.0, 385755.0, 385757.0, 385758.0, 385758.0]
+        },
+        "monthly_cost_usd": {
+          "mean": [174085.0, 174208.0, 174424.0, 174803.0, 51260.0, 52358.0, 54117.0, 56749.0, 60368.0, 28616.0, 33662.0, 38742.0, 43360.0, 47187.0, 50127.0, 52280.0, 53849.0, 55047.0, 56039.0, 56927.0, 57771.0, 58598.0, 59426.0, 60260.0, 61105.0, 61963.0, 62836.0, 63724.0, 64628.0, 65549.0, 66487.0, 67443.0, 68416.0, 69408.0, 70419.0, 71449.0],
+          "p10": [120371.0, 120534.0, 120779.0, 121002.0, 40657.0, 41586.0, 42912.0, 44808.0, 47525.0, 18485.0, 22365.0, 27292.0, 32731.0, 37863.0, 41711.0, 44289.0, 45932.0, 47057.0, 47905.0, 48622.0, 49254.0, 49856.0, 50468.0, 51054.0, 51641.0, 52212.0, 52761.0, 53327.0, 53913.0, 54513.0, 55070.0, 55691.0, 56284.0, 56912.0, 57538.0, 58180.0],
+          "p25": [139314.0, 139386.0, 139548.0, 139888.0, 45322.0, 46297.0, 47820.0, 50043.0, 52943.0, 22495.0, 27339.0, 32792.0, 38063.0, 42396.0, 45607.0, 47874.0, 49349.0, 50474.0, 51370.0, 52137.0, 52859.0, 53573.0, 54260.0, 54948.0, 55646.0, 56346.0, 57072.0, 57760.0, 58509.0, 59241.0, 59977.0, 60725.0, 61501.0, 62281.0, 63066.0, 63858.0],
+          "p50": [166716.0, 166845.0, 167078.0, 167477.0, 50930.0, 52001.0, 53737.0, 56410.0, 59918.0, 28070.0, 33563.0, 38994.0, 43663.0, 47333.0, 50029.0, 52025.0, 53563.0, 54791.0, 55741.0, 56608.0, 57399.0, 58214.0, 59025.0, 59856.0, 60677.0, 61497.0, 62346.0, 63195.0, 64058.0, 64933.0, 65819.0, 66725.0, 67666.0, 68595.0, 69605.0, 70621.0],
+          "p75": [200378.0, 200497.0, 200737.0, 201076.0, 56999.0, 58229.0, 60181.0, 63151.0, 67170.0, 34117.0, 39725.0, 44726.0, 48826.0, 52012.0, 54458.0, 56427.0, 57932.0, 59181.0, 60291.0, 61283.0, 62262.0, 63225.0, 64166.0, 65114.0, 66104.0, 67103.0, 68125.0, 69168.0, 70224.0, 71328.0, 72414.0, 73558.0, 74714.0, 75904.0, 77130.0, 78369.0],
+          "p90": [238043.0, 238109.0, 238312.0, 238588.0, 62284.0, 63497.0, 65601.0, 69077.0, 73875.0, 39511.0, 44840.0, 49488.0, 53232.0, 56144.0, 58600.0, 60384.0, 61967.0, 63280.0, 64501.0, 65622.0, 66715.0, 67768.0, 68856.0, 69967.0, 71117.0, 72357.0, 73486.0, 74617.0, 75822.0, 77070.0, 78334.0, 79709.0, 81093.0, 82590.0, 84102.0, 85608.0]
+        },
+        "monthly_net_cashflow_usd": {
+          "mean": [-172730.0, -172039.0, -171031.0, -169598.0, -43331.0, -40143.0, -34819.0, -25659.0, -10616.0, 48007.0, 77399.0, 111322.0, 145800.0, 176854.0, 201825.0, 219876.0, 231672.0, 238649.0, 242349.0, 244025.0, 244541.0, 244426.0, 243975.0, 243344.0, 242611.0, 241817.0, 240981.0, 240115.0, 239224.0, 238310.0, 237377.0, 236424.0, 235452.0, 234461.0, 233451.0, 232422.0],
+          "p10": [-236551.0, -235863.0, -234946.0, -233889.0, -55954.0, -54595.0, -52630.0, -50418.0, -46972.0, -3867.0, 6081.0, 24534.0, 52115.0, 85492.0, 117782.0, 140311.0, 154297.0, 161638.0, 165208.0, 166459.0, 166662.0, 166415.0, 166008.0, 165287.0, 164325.0, 163543.0, 162607.0, 161719.0, 160911.0, 159813.0, 158899.0, 157772.0, 156725.0, 155739.0, 154654.0, 153610.0],
+          "p25": [-199164.0, -198361.0, -197399.0, -195893.0, -50234.0, -48446.0, -45969.0, -42394.0, -36660.0, 9639.0, 28326.0, 57296.0, 92995.0, 127357.0, 154875.0, 175274.0, 187731.0, 194842.0, 198912.0, 200263.0, 200839.0, 200700.0, 200170.0, 199570.0, 198868.0, 198039.0, 197168.0, 196265.0, 195348.0, 194453.0, 193416.0, 192583.0, 191713.0, 190610.0, 189632.0, 188556.0],
+          "p50": [-165108.0, -164552.0, -163604.0, -162297.0, -43620.0, -41365.0, -37961.0, -31937.0, -20942.0, 35628.0, 67158.0, 105322.0, 143921.0, 175978.0, 200555.0, 217893.0, 229078.0, 235981.0, 239692.0, 241251.0, 242019.0, 241822.0, 241435.0, 240762.0, 239931.0, 239191.0, 238407.0, 237428.0, 236537.0, 235639.0, 234732.0, 233707.0, 232800.0, 231696.0, 230705.0, 229817.0],
+          "p75": [-138062.0, -137397.0, -136385.0, -134951.0, -37119.0, -33743.0, -27609.0, -15681.0, 6760.0, 75848.0, 115972.0, 158066.0, 195130.0, 224166.0, 246165.0, 261712.0, 272023.0, 278721.0, 282664.0, 284293.0, 284897.0, 284842.0, 284527.0, 283929.0, 283239.0, 282490.0, 281582.0, 280789.0, 279983.0, 278988.0, 278073.0, 277133.0, 276238.0, 275277.0, 274294.0, 273289.0],
+          "p90": [-118919.0, -118081.0, -116836.0, -115147.0, -30755.0, -24663.0, -13153.0, 8019.0, 41216.0, 119074.0, 163753.0, 204865.0, 239373.0, 267835.0, 288303.0, 303555.0, 314118.0, 319744.0, 323659.0, 325907.0, 326750.0, 326795.0, 326600.0, 325976.0, 325333.0, 324537.0, 323642.0, 322878.0, 321858.0, 321031.0, 320092.0, 319025.0, 318000.0, 317140.0, 316045.0, 315251.0]
+        },
+        "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]
+      }
+    }
+  ],
+  "schema_version": "2.0.0"
+}
+;

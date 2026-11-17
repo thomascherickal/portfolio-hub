@@ -1,0 +1,1 @@
+fn gid(g: vec3<u32>) -> u32 { return g.y * 4194240u + g.x; }

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Go AI Gateway (live, in your browser)</title>
+<style>body{margin:0;background:#0b0b0e;color:#e7e5ef;font:16px system-ui,sans-serif;display:grid;place-items:center;min-height:100vh}p{max-width:46ch;text-align:center}</style>
+</head><body><p id="s">Starting the Go gateway (WebAssembly)&hellip;</p>
+<script src="wasm_exec.js"></script>
+<script>
+// The Go gateway runs as WebAssembly. Same-origin /v1, /admin and /healthz calls made by the
+// dashboard are routed into it, so the unmodified dashboard works with no server.
+(async function () {
+  var s = document.getElementById("s");
+  try {
+    var go = new Go();
+    var r = await WebAssembly.instantiateStreaming(fetch("gateway.wasm"), go.importObject);
+    go.run(r.instance);
+    for (var i = 0; i < 100 && !window.gatewayReady; i++) await new Promise(function (ok) { setTimeout(ok, 20); });
+    var realFetch = window.fetch.bind(window);
+    window.fetch = async function (input, init) {
+      init = init || {};
+      var url = new URL(typeof input === "string" ? input : input.url, location.href);
+      var p = url.pathname.replace(/^.*\/demos\/go-ai-gateway/, "");
+      if (url.origin !== location.origin || !/^\/(v1|v1beta|admin|healthz)/.test(p)) return realFetch(input, init);
+      var h = {}; new Headers(init.headers || {}).forEach(function (v, k) { h[k] = v; });
+      var res = await gatewayFetch(init.method || "GET", p + url.search, h, typeof init.body === "string" ? init.body : "");
+      return new Response(res.body, { status: res.status, headers: res.headers });
+    };
+    var page = await gatewayFetch("GET", "/", {}, "");
+    document.open(); document.write(page.body); document.close();
+    // demo convenience: the built-in dev admin token is public, so fill it in and load the data
+    document.getElementById("adminToken").value = "gw_admin_dev";
+    if (window.loadDashboard) loadDashboard();
+  } catch (e) { s.textContent = "Could not start the gateway: " + e.message; }
+})();
+</script></body></html>

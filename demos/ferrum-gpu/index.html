@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ferrum SLM Studio (GPU), live in your browser</title>
+<style>
+body{margin:0;background:#0b0b0e;color:#e7e5ef;font:15px/1.5 system-ui,sans-serif}main{max-width:760px;margin:0 auto;padding:22px}
+h1{font-size:1.3rem;margin:0 0 4px}.muted{color:#9a9cb0}textarea,input{background:#111;color:#e7e5ef;border:1px solid #333;border-radius:6px;padding:6px;font:inherit}
+textarea{width:100%;box-sizing:border-box}button{background:#d4af37;color:#000;border:0;border-radius:999px;padding:8px 20px;font-weight:600;cursor:pointer}button:disabled{opacity:.5;cursor:default}
+.row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:10px 0}label{display:flex;gap:6px;align-items:center}input[type=number]{width:80px}
+pre{background:#000;border:1px solid #23232f;border-radius:8px;padding:12px;white-space:pre-wrap;min-height:90px}#bad{color:#f472b6}
+</style></head><body><main>
+<h1>Ferrum SLM Studio (GPU)</h1>
+<p class="muted">A 39 KB byte-level model (35,000 parameters, trained on a 60 KB TinyStories sample from HuggingFace) is preloaded and runs on your GPU through WebGPU. Output is rough at this size.</p>
+<p id="dev" class="muted" role="status">Looking for a WebGPU adapter&hellip;</p>
+<label>Prompt<textarea id="prompt" rows="2">Once upon a time</textarea></label>
+<div class="row"><label>Max new <input id="max" type="number" value="120" min="1" max="500"></label>
+<label>Temperature <input id="temp" type="number" value="0.8" step="0.1" min="0"></label>
+<label>Seed <input id="seed" type="number" value="1"></label>
+<button id="go" disabled>Generate on my GPU</button></div>
+<p id="bad" role="alert"></p><pre id="out" aria-live="polite"></pre><p id="stats" class="muted"></p>
+<script type="module">
+import { Gpu } from './webgpu.js';
+import { BrowserLlama, sample, mulberry32 } from './llama.js';
+const $ = (i) => document.getElementById(i);
+let gpu, model;
+(async () => {
+  try {
+    if (!navigator.gpu) throw new Error('WebGPU is not available in this browser. Use a recent Chrome or Edge on a computer with a GPU.');
+    gpu = await Gpu.create();
+    const d = gpu.describe ? gpu.describe() : {};
+    $('dev').textContent = 'GPU: ' + ([d.name, d.vendor, d.architecture].filter(Boolean).join(' ') || 'WebGPU adapter ready');
+    const t = performance.now();
+    model = await BrowserLlama.load(gpu, await (await fetch('demo-model.gguf')).arrayBuffer());
+    $('dev').textContent += ' | model ready in ' + ((performance.now() - t) / 1000).toFixed(1) + ' s';
+    $('go').disabled = false;
+  } catch (e) { $('bad').textContent = e.message; $('dev').textContent = 'No GPU path available.'; }
+})();
+$('go').onclick = async () => {
+  $('go').disabled = true; $('bad').textContent = ''; $('out').textContent = ''; const t0 = performance.now();
+  try {
+    const prompt = new TextEncoder().encode($('prompt').value);
+    if (!prompt.length || prompt.length >= model.cfg.ctx) throw new Error('the prompt must be 1 to ' + (model.cfg.ctx - 1) + ' bytes');
+    model.reset(); let logits; for (const t of prompt) logits = await model.feed(t);
+    const rand = mulberry32(Number($('seed').value) >>> 0), out = [], max = Number($('max').value);
+    while (out.length < max && prompt.length + out.length < model.cfg.ctx) {
+      const next = sample(logits, Number($('temp').value), 0, rand); out.push(next);
+      $('out').textContent = new TextDecoder().decode(new Uint8Array(out));
+      if (prompt.length + out.length < model.cfg.ctx && out.length < max) logits = await model.feed(next);
+    }
+    $('out').textContent = $('prompt').value + new TextDecoder().decode(new Uint8Array(out));
+    $('stats').textContent = out.length + ' tokens in ' + ((performance.now() - t0) / 1000).toFixed(2) + ' s (context limit ' + model.cfg.ctx + ')';
+  } catch (e) { $('bad').textContent = e.message; }
+  $('go').disabled = false;
+};
+</script></main></body></html>
