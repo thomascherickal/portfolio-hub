@@ -19,6 +19,10 @@
   - links.poster optional still image for the video (e.g. "media/pr-review.jpg")
   - links.source GitHub repo URL
   - links.writeup optional article URL
+  - run         optional live GUI: { src: "demos/x/index.html", note: "one-line limitation", height: 640 }
+                shows a Run Project button that loads src in an iframe on click
+  - extension   optional info block: { title, text, points: [], download, source }
+  - license     SPDX id shown as a badge linking to /LICENSE (all projects are MIT)
   - icon        optional small image shown on the card next to its area name (e.g. "assets/ferrum/ferrum-icon.png")
   - images      optional screenshot carousel shown on the card, in order:
                 [{ src: "assets/x/1.jpg", alt: "what the image shows", caption: "short label" }]
@@ -32,26 +36,15 @@ window.PORTFOLIO = {
     brand: "The Digital Futurist",
     headline: "The Future is Now.",
     intro:
-      "Live demos and recorded runs of the systems I build for engineering teams moving to AI-first delivery: Claude agent automations, RAG, local LLMs and the Rust, Go, C++ and Julia underneath them.",
-    links: {
-      book: "https://topmate.io/thomascherickal",
-      site: "https://thomascherickal.com",
-      consulting: "https://thedigitalfuturist.com",
-      linkedin: "https://www.linkedin.com/in/thomascherickal",
-      x: "https://x.com/thomazcherickal",
-      patreon: "https://www.patreon.com/thomascherickal",
-      newsletter: "https://thomascherickal.kit.com",
-      github: "https://github.com/thomascherickal",
-      brain: "https://skills.thedigitalfuturist.com"
-    }
+      "Live demos and recorded runs of the systems I build for engineering teams moving to AI-first delivery: Claude Automations, Gen AI Studios, System Tools, PWAs, and the Rust, Go, Python, C++, and Julia underneath them built with AI.",
   },
 
   lanes: {
-    claude: { label: "Automations", tone: "gold" },
+    claude: { label: "Automations", tone: "cyan" },
     genai: { label: "Gen AI", tone: "magenta" },
-    rag: { label: "RAG", tone: "magenta" },
-    systems: { label: "Systems", tone: "cyan" },
-    science: { label: "Scientific", tone: "violet" },
+    rag: { label: "PWAs", tone: "orange" },
+    systems: { label: "Systems", tone: "green" },
+    science: { label: "Scientific", tone: "blue" },
     knowledge: { label: "Knowledge", tone: "violet" }
   },
 
@@ -61,6 +54,7 @@ window.PORTFOLIO = {
       id: "ferrum-cpu",
       lane: "systems",
       status: "complete",
+      license: "MIT",
       title: "Ferrum SLM Studio (CPU)",
       icon: "assets/ferrum/ferrum-icon.png",
       problem: "Teams need fast, private inference for small models without a GPU bill.",
@@ -76,6 +70,7 @@ window.PORTFOLIO = {
         { src: "assets/ferrum/ferrum-cpu/screenshots/app-serve.jpg", alt: "Serve tab for running the model behind an HTTP server", caption: "7. Serve it over HTTP" },
         { src: "assets/ferrum/ferrum-cpu/github.jpg", alt: "The ferrum-cpu repository page on GitHub", caption: "The code is open source on GitHub" }
       ],
+      run: { src: "demos/ferrum-cpu-studio/index.html", height: 760, note: "The real Ferrum SLM Studio UI running on a preloaded 620 KB model (507K params, 10 minutes of CPU training on TinyStories) via WebAssembly; Generate, Models, GGUF info, Datasets and System work, while training, fine-tuning, export and serving need the desktop app." },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/ferrum-cpu", writeup: "" },
       useCases: "Use cases: air-gapped enterprise environments, privacy-first local document Q&A, edge/workstation inference without GPUs, and deterministic CPU benchmarking.",
       updated: "2026-11-15"
@@ -84,6 +79,7 @@ window.PORTFOLIO = {
       id: "ferrum-gpu",
       lane: "systems",
       status: "building",
+      license: "MIT",
       title: "Ferrum SLM Studio (GPU)",
       icon: "assets/ferrum/ferrum-icon.png",
       problem: "When larger SLMs need to be deployed, teams face challenges with resource allocation and performance.",
@@ -96,6 +92,7 @@ window.PORTFOLIO = {
         { src: "assets/ferrum/ferrum-gpu/app-generate.jpg", alt: "Generate tab running on the server device or in this browser", caption: "4. Generate on the server or in the browser" },
         { src: "assets/ferrum/ferrum-gpu/github.jpg", alt: "The ferrum-gpu repository page on GitHub", caption: "The code is open source on GitHub" }
       ],
+      run: { src: "demos/ferrum-gpu/index.html", height: 560, note: "Runs a preloaded 39 KB model on your GPU through WebGPU (Chrome or Edge); training and the server-side GPU engine need the desktop app." },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/ferrum-gpu", writeup: "" },
       useCases: "Use cases: high-throughput on-prem LLM serving, private batch inference and code-generation pipelines, and GPU-accelerated local RAG without cloud API costs.",
       updated: "2026-11-15"
@@ -104,6 +101,7 @@ window.PORTFOLIO = {
       id: "go-ai-gateway",
       lane: "systems",
       status: "complete",
+      license: "MIT",
       title: "Go AI Gateway — AI Traffic Control Plane",
       problem: "Every team calls LLMs its own way, so spend, data leaks, and audit are invisible.",
       summary: "A single Go gateway compiled with TinyGo to Cloudflare Workers, backed by D1 and Workers AI with native routing across Anthropic, Gemini, Grok, Llama, DeepSeek, Qwen, OpenAI, and Mistral. Enforces per-team micro-dollar budgets, PII/secret redaction, and immutable audit logs.",
@@ -113,6 +111,7 @@ window.PORTFOLIO = {
         { src: "assets/go-ai-gateway/go-ai-gateway-explorer.jpg", alt: "Go AI Gateway interactive API explorer and multi-provider request tester", caption: "2. Interactive API Explorer" },
         { src: "assets/go-ai-gateway/github.jpg", alt: "The go-ai-gateway repository page on GitHub", caption: "3. Open source on GitHub" }
       ],
+      run: { src: "demos/go-ai-gateway/index.html", height: 900, note: "The real Go gateway runs as WebAssembly in this tab with mock providers and demo teams; live vendor calls, D1 storage and Cloudflare deployment need your own keys." },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/go-ai-gateway", writeup: "" },
       useCases: "Use cases: centralized multi-vendor LLM routing with fallbacks, per-team micro-dollar budget enforcement, automatic PII and secret redaction before prompts leave your network, and immutable compliance audit logging.",
       updated: "2026-11-16"
@@ -123,6 +122,7 @@ window.PORTFOLIO = {
       id: "claude-pr-review-test-gaps",
       lane: "claude",
       status: "video",
+      license: "MIT",
       title: "PR review that writes missing unit tests",
       problem: "Pull requests often land without tests for new edge cases.",
       summary: "Claude reads the diff on a pull request, spots untested branches, writes unit tests and pushes them to the branch.",
@@ -134,6 +134,7 @@ window.PORTFOLIO = {
       id: "claude-commit-changelog",
       lane: "claude",
       status: "video",
+      license: "MIT",
       title: "Automated changelog & release notes",
       problem: "Writing release notes from dozens of commits before a tag is tedious.",
       summary: "Claude reads the commits since the last tag, groups changes into fixes and features, and updates CHANGELOG.md.",
@@ -145,6 +146,7 @@ window.PORTFOLIO = {
       id: "claude-readme-sync",
       lane: "claude",
       status: "video",
+      license: "MIT",
       title: "Keep README & API docs in sync with code",
       problem: "CLI flags and endpoints change in code while READMEs stay outdated.",
       summary: "Claude compares the latest code changes against README.md and opens a PR with updated examples and flags.",
@@ -156,6 +158,7 @@ window.PORTFOLIO = {
       id: "claude-lint-type-fix",
       lane: "claude",
       status: "video",
+      license: "MIT",
       title: "Auto-fix lint and type errors on push",
       problem: "Small lint or type errors break CI and slow down merges.",
       summary: "When CI fails on lint or type checks, Claude runs the linter locally, applies minimal fixes and pushes a clean commit.",
@@ -167,6 +170,7 @@ window.PORTFOLIO = {
       id: "claude-bug-repro-test",
       lane: "claude",
       status: "video",
+      license: "MIT",
       title: "Turn a GitHub issue into a failing repro test",
       problem: "Developers spend time reproducing bug reports before they can fix them.",
       summary: "Claude reads a new bug issue, writes a minimal failing test that reproduces it and attaches it to a draft PR.",
@@ -178,6 +182,7 @@ window.PORTFOLIO = {
       id: "claude-dep-bump-check",
       lane: "claude",
       status: "video",
+      license: "MIT",
       title: "Dependency update & smoke-test check",
       problem: "Routine dependency bumps pile up because nobody wants to verify them.",
       summary: "Claude updates minor dependencies, runs the test suite, fixes any small breaking import and reports the result.",
@@ -190,29 +195,60 @@ window.PORTFOLIO = {
       id: "cpp-enterprise-data-guard",
       lane: "systems",
       status: "complete",
+      license: "MIT",
       title: "Enterprise Data Guard",
       problem: "Developers and employees routinely paste stack traces, config files, database URIs and customer records into AI assistants.",
-      summary: "Client-side C++17 / WebAssembly secret and personal-data scanner (Emscripten data_guard.wasm) with a native GTK+ 3 Admin Control Centre and zero-trust web dashboard that redacts API keys, JWTs, credit cards, SSNs and IBANs before a single byte leaves the browser.",
-      stack: ["C++17", "Emscripten", "WebAssembly", "GTK+ 3", "Docker"],
+      summary: "Client-side C++17 / WebAssembly secret and personal-data scanner (Emscripten data_guard.wasm) with a native GTK+ 3 Admin Control Centre, a zero-trust web dashboard and a Chrome extension that redact API keys, JWTs, credit cards, SSNs and IBANs before a single byte leaves the browser.",
+      stack: ["C++17", "Emscripten", "WebAssembly", "GTK+ 3", "Chrome Extension (MV3)", "Docker"],
       images: [
         { src: "assets/cpp-enterprise-data-guard/Enterprise Data Guard UI.jpg", alt: "Enterprise Data Guard web dashboard scanning and redacting secrets and PII in the browser", caption: "1. Zero-Trust Web Dashboard" },
         { src: "assets/cpp-enterprise-data-guard/GUI-Admin.jpg", alt: "Native C++ GTK+ 3 Admin Control Centre for configuring policies, allowlists and custom rules", caption: "2. C++ Admin Control Centre" },
         { src: "assets/cpp-enterprise-data-guard/github.jpg", alt: "The cpp-enterprise-data-guard repository page on GitHub", caption: "3. Open source on GitHub" }
       ],
+      run: { src: "demos/data-guard/index.html", height: 720, note: "Runs the real C++ scanner as WebAssembly in this tab; the native GTK+ 3 Admin app and the Chrome extension need a local install." },
+      extension: {
+        title: "Chrome extension (Manifest V3)",
+        text: "Brings the same C++ WebAssembly scanner into the AI chat sites you already use, so secrets and personal data are caught before a prompt is sent.",
+        points: [
+          "Active on ChatGPT, Claude, Gemini, Copilot, Perplexity and Poe.",
+          "Scans on send and on paste. A warning offers Cancel, Send Anyway or Replace with Safe Redacted Prompt.",
+          "Toolbar popup: on/off switch, live scan counters, quick pre-flight scan, policy toggles and policy.json import.",
+          "Only the storage permission; all scanning runs locally in the extension's service worker. Nothing is uploaded.",
+          "Install: unzip, open chrome://extensions, turn on Developer mode, choose Load unpacked."
+        ],
+        download: "assets/cpp-enterprise-data-guard/enterprise-data-guard-extension.zip",
+        source: "https://github.com/thomascherickal/cpp-enterprise-data-guard/tree/main/extension"
+      },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/cpp-enterprise-data-guard", writeup: "" },
-      useCases: "Use cases: zero-trust browser prompt interception before data reaches external LLMs, centralized security policy & allowlist management via native GTK3 GUI, and 100% client-side secret/PII redaction for regulated enterprises.",
+      useCases: "Use cases: zero-trust browser prompt interception before data reaches external LLMs, centralized security policy & allowlist management via native GTK3 GUI, a Chrome extension that guards ChatGPT, Claude and Gemini prompts, and 100% client-side secret/PII redaction for regulated enterprises.",
       updated: "2026-11-16"
     },
     {
-      id: "julia-ai-roi-simulator",
+      id: "julia-ai-roi-simulation",
       lane: "science",
-      status: "building",
-      title: "AI adoption ROI simulator",
-      problem: "Boards want an AI business case with honest ranges, not a single optimistic number.",
-      summary: "A Julia Monte Carlo model of rollout speed, productivity change and cost per team, published as precomputed scenarios you can explore.",
-      stack: ["Julia", "GitHub Actions", "Static JSON"],
-      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-14"
+      status: "complete",
+      license: "MIT",
+      title: "AI Adoption Business Case Simulator",
+      problem: "Boards want an AI business case with honest ranges (Cautious P10, Typical P50, Best-Case P90) — not a single optimistic number.",
+      summary: "Models a 325-employee AI rollout across 4 departments over 36 months using 5 forecasting lenses in Julia (Monte Carlo, Agent-Based, System Dynamics, Queueing/Bottlenecks, and Bayesian Pilot Scorecard), published as Static JSON via GitHub Actions with a 5-tab web app and interactive What-If Sliders lab.",
+      stack: ["Julia", "GitHub Actions", "Static JSON", "Monte Carlo", "Agent-Based"],
+      images: [
+        { src: "assets/julia-ai-roi-simulation/01-executive-overview-and-scenarios.png", alt: "Executive overview and scenario comparison", caption: "1. Executive Overview & Scenarios" },
+        { src: "assets/julia-ai-roi-simulation/02-tab1-monte-carlo-charts.png", alt: "10,000 What-If Futures Monte Carlo P10/P50/P90 charts", caption: "2. Monte Carlo What-If Futures" },
+        { src: "assets/julia-ai-roi-simulation/03-tab1-risk-drivers-and-markdown-guide.png", alt: "Risk drivers and plain-English Markdown guide", caption: "3. Risk Drivers & Guide" },
+        { src: "assets/julia-ai-roi-simulation/04-tab2-team-behavior-network.png", alt: "Agent-based team behavior and AI champion network", caption: "4. Team Behavior Network" },
+        { src: "assets/julia-ai-roi-simulation/05-tab3-flywheels-and-brakes.png", alt: "System dynamics flywheels and hidden brakes", caption: "5. Flywheels & Brakes" },
+        { src: "assets/julia-ai-roi-simulation/06-tab4-workflow-waiting-lines.png", alt: "Workflow waiting lines and bottleneck analysis", caption: "6. Workflow Waiting Lines" },
+        { src: "assets/julia-ai-roi-simulation/07-tab5-pilot-scorecard-bayesian.png", alt: "6-month Bayesian pilot scorecard", caption: "7. Bayesian Pilot Scorecard" },
+        { src: "assets/julia-ai-roi-simulation/08-cross-lens-and-strategy-comparison.png", alt: "Cross-lens and strategy comparison", caption: "8. Cross-Lens Comparison" },
+        { src: "assets/julia-ai-roi-simulation/09-interactive-what-if-sliders-lab.png", alt: "Interactive What-If Sliders lab", caption: "9. Interactive What-If Lab" },
+        { src: "assets/julia-ai-roi-simulation/10-markdown-guide-modal-and-mermaid.png", alt: "In-UI Markdown guide modal and Mermaid diagram", caption: "10. In-UI Markdown Guide" },
+        { src: "assets/julia-ai-roi-simulation/github.jpg", alt: "The julia-ai-roi-simulation repository page on GitHub", caption: "11. Open source on GitHub" }
+      ],
+      run: { src: "demos/julia-roi/index.html", height: 760, note: "Runs on the pre-computed simulation results (static JSON); re-running the Julia models themselves needs a local Julia install." },
+      links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/julia-ai-roi-simulation", writeup: "" },
+      useCases: "Use cases: board-ready AI ROI business cases with P10/P50/P90 confidence bands, modeling AI champion adoption vs. shelfware risk, and 6-month Bayesian pilot checkpoint forecasting.",
+      updated: "2026-11-17"
     }
   ],
 
