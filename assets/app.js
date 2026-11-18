@@ -145,6 +145,11 @@
   function licenseBadge(p) {
     return p.license ? '<p class="license"><a href="LICENSE" rel="license">' + esc(p.license) + " License</a></p>" : "";
   }
+  function aiPoints(p) {
+    var pts = p.aiPoints || [];
+    if (!pts.length) return "";
+    return '<ul class="ai-points">' + pts.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>";
+  }
   function pill(p) { return '<span class="pill pill-' + esc(p.status) + '">' + esc(STATUS[p.status] || p.status) + "</span>"; }
 
   /* ---------- automations ---------- */
@@ -156,7 +161,7 @@
       "<h3>" + esc(p.title) + "</h3>" +
       '<p class="problem"><strong>Problem:</strong> ' + esc(p.problem) + "</p>" +
       '<p class="summary">' + esc(p.summary) + "</p>" +
-      stackList(p) + licenseBadge(p) + linksRow(p) +
+      stackList(p) + licenseBadge(p) + linksRow(p) + aiPoints(p) +
       '<p class="updated">Updated ' + esc(p.updated) + "</p></div></article>";
   }).join("");
 
@@ -261,7 +266,7 @@
         '<p class="problem"><strong>Problem:</strong> ' + esc(p.problem) + "</p>" +
         '<p class="summary">' + esc(p.summary) + "</p>" +
         (hasVideo ? frame(p) : "") + carousel(p) + runPanel(p) +
-        stackList(p) + licenseBadge(p) + linksRow(p) + extensionBlock(p) +
+        stackList(p) + licenseBadge(p) + linksRow(p) + aiPoints(p) + extensionBlock(p) +
         '<p class="updated">Updated ' + esc(p.updated) + "</p></article>";
     }).join("") : '<p class="empty">Nothing in this area yet.</p>';
   }
@@ -342,7 +347,7 @@
       "<h3>" + esc(a.name) + "</h3>" +
       '<p class="pwa-purpose">' + esc(a.purpose) + "</p>" +
       '<a class="pwa-card-link" href="' + esc(a.url) + '" rel="noopener"><span class="pwa-icon" aria-hidden="true">' + icon + "</span></a>" +
-      sourceHtml + "</li>";
+      sourceHtml + aiPoints(a) + "</li>";
   }).join("");
 
   /* ---------- dynamic footer ---------- */

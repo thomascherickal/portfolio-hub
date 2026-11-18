@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Valkyrie AI Agent Studio — 12 Roles / 120 Agents Browser Demo</title>
+<style>
+  :root {
+    --bg: #08090d; --surface: #11131b; --panel: #0b0d13; --border: #262938;
+    --ink: #f4f1ea; --muted: #a0a4b8; --gold: #d4af37; --cyan: #6ed6f0; --green: #7fe3a4; --warn: #f59e0b;
+  }
+  body.light {
+    --bg: #f6f7fb; --surface: #ffffff; --panel: #eef0f6; --border: #d5d9e5;
+    --ink: #11131b; --muted: #4c5268; --gold: #9a7409; --cyan: #0284c7; --green: #15803d; --warn: #b45309;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.5; }
+  header { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; padding: 14px 24px; border-bottom: 1px solid var(--border); background: var(--panel); }
+  header h1 { margin: 0; font-size: 1.15rem; color: var(--gold); }
+  .controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .badge { font-size: .78rem; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--green); color: var(--green); font-weight: 600; }
+  .notice { padding: 10px 24px; background: rgba(245, 158, 11, 0.1); border-bottom: 1px solid var(--border); font-size: .86rem; color: var(--ink); }
+  .notice strong { color: var(--warn); }
+  .layout { display: grid; grid-template-columns: 280px 1fr; min-height: calc(100vh - 104px); }
+  @media (max-width: 820px) { .layout { grid-template-columns: 1fr; } }
+  aside { border-right: 1px solid var(--border); padding: 16px; background: var(--panel); }
+  aside h2 { font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 0 0 10px; }
+  .search { width: 100%; padding: 8px 10px; margin-bottom: 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); font: inherit; font-size: .88rem; }
+  .role-btn { display: flex; justify-content: space-between; align-items: center; width: 100%; text-align: left; padding: 8px 10px; margin-bottom: 5px; border-radius: 8px; border: 1px solid transparent; background: transparent; color: var(--ink); cursor: pointer; font: inherit; font-size: .88rem; }
+  .role-btn:hover { background: var(--surface); }
+  .role-btn[aria-current="true"] { border-color: var(--gold); background: rgba(212,175,55,.12); color: var(--gold); font-weight: 600; }
+  .count { font-size: .75rem; color: var(--muted); }
+  main { padding: 22px; display: grid; gap: 18px; align-content: start; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .agents { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
+  .agent-chip { padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--panel); color: var(--ink); text-align: left; cursor: pointer; font: inherit; font-size: .86rem; }
+  .agent-chip[aria-pressed="true"] { border-color: var(--cyan); color: var(--cyan); font-weight: 600; }
+  textarea, pre { width: 100%; background: var(--panel); color: var(--ink); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-family: ui-monospace, SFMono-Regular, monospace; font-size: .84rem; overflow-x: auto; }
+  .btn { padding: 9px 18px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); font-weight: 600; cursor: pointer; font-size: .86rem; }
+  .btn-gold { background: var(--gold); color: #000; border-color: var(--gold); font-weight: 700; }
+  .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 12px 0; }
+  .note { font-size: .84rem; color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Valkyrie AI Agent Studio &mdash; 120-Agent Browser Sandbox</h1>
+  <div class="controls">
+    <span class="badge" id="totals-badge">12 Roles &bull; 120 Agents</span>
+    <select id="mode-select" class="btn" aria-label="Experience mode">
+      <option value="beginner">Beginner Mode</option>
+      <option value="intermediate" selected>Intermediate Mode</option>
+      <option value="advanced">Advanced Mode</option>
+    </select>
+    <button type="button" class="btn" id="theme-btn">Toggle Light / Dark</button>
+  </div>
+</header>
+<div class="notice">
+  <strong>Browser vs. Desktop Limitations:</strong> Browser Sandbox supports browsing all 12 roles &amp; 120 agents, inspecting <code>sample_data.json</code> contracts, and deterministic sample runs. <strong>Cannot run in browser:</strong> live FastAPI server, local Ollama / free-tier LLM API routing, <code>pymoo</code> Genetic Algorithm optimization, and 121-crate Tauri/Rust compilation (desktop app required).
+</div>
+<div class="layout">
+  <aside>
+    <input type="search" id="search" class="search" placeholder="Filter 120 agents..." aria-label="Filter agents">
+    <h2>12 Tech Company Roles</h2>
+    <div id="roles"></div>
+  </aside>
+  <main>
+    <div class="card">
+      <h2 id="role-title" style="margin:0 0 6px;color:var(--gold)"></h2>
+      <p class="note" id="role-sub" style="margin:0 0 14px"></p>
+      <div id="agents" class="agents"></div>
+    </div>
+    <div class="card">
+      <h3 id="agent-title" style="margin:0 0 6px"></h3>
+      <p class="note" id="agent-desc" style="margin:0 0 12px"></p>
+      <label class="note" for="input-json">Typed Input (<code>sample_data.json</code>)</label>
+      <textarea id="input-json" rows="6"></textarea>
+      <div class="row">
+        <button class="btn btn-gold" id="run-btn" type="button">&#9654; Run Agent (Browser Deterministic Mode)</button>
+        <span class="note" id="route-note"></span>
+      </div>
+      <label class="note" for="output-json">Typed Output</label>
+      <pre id="output-json">Click "Run Agent" to execute deterministic sample output.</pre>
+    </div>
+  </main>
+</div>
+<script src="agents-data.js"></script>
+<script>
+const ROLES = window.VALKYRIE_ROLES || [];
+let activeRole = ROLES[0];
+let activeAgent = activeRole && activeRole.agents[0];
+let query = "";
+
+const rolesEl = document.getElementById("roles");
+const agentsEl = document.getElementById("agents");
+const roleTitle = document.getElementById("role-title");
+const roleSub = document.getElementById("role-sub");
+const agentTitle = document.getElementById("agent-title");
+const agentDesc = document.getElementById("agent-desc");
+const inEl = document.getElementById("input-json");
+const outEl = document.getElementById("output-json");
+const routeNote = document.getElementById("route-note");
+const modeSelect = document.getElementById("mode-select");
+
+function filteredAgents(role) {
+  if (!role) return [];
+  if (!query) return role.agents;
+  return role.agents.filter(a => a.name.toLowerCase().includes(query) || a.desc.toLowerCase().includes(query));
+}
+
+function render() {
+  const totalAgents = ROLES.reduce((n, r) => n + r.agents.length, 0);
+  document.getElementById("totals-badge").textContent = `${ROLES.length} Roles \u2022 ${totalAgents} Agents`;
+
+  rolesEl.innerHTML = ROLES.map((r, i) => {
+    const count = filteredAgents(r).length;
+    return `<button class="role-btn" data-r="${i}" aria-current="${r === activeRole}"><span>${r.name}</span><span class="count">${count}</span></button>`;
+  }).join("");
+
+  const list = filteredAgents(activeRole);
+  if (!list.includes(activeAgent)) activeAgent = list[0] || activeRole.agents[0];
+
+  roleTitle.textContent = activeRole ? activeRole.name : "";
+  roleSub.textContent = `${list.length} agent(s) shown in ${activeRole ? activeRole.name : ""} (${modeSelect.value} view).`;
+  agentsEl.innerHTML = list.map(a => `<button class="agent-chip" data-id="${a.id}" aria-pressed="${a === activeAgent}">${a.name}</button>`).join("");
+
+  if (activeAgent) {
+    agentTitle.textContent = `${activeAgent.name} (${activeAgent.id})`;
+    agentDesc.textContent = activeAgent.desc;
+    inEl.value = JSON.stringify(activeAgent.sample, null, 2);
+    routeNote.textContent = `Mode: ${modeSelect.value} | Desktop LLM: gemini-4-hydrogen (low) -> opencode_free -> openrouter_free`;
+    outEl.textContent = 'Click "Run Agent" to execute deterministic sample output.';
+  }
+}
+
+rolesEl.onclick = (e) => {
+  const b = e.target.closest("[data-r]");
+  if (!b) return;
+  activeRole = ROLES[+b.dataset.r];
+  activeAgent = activeRole.agents[0];
+  render();
+};
+
+agentsEl.onclick = (e) => {
+  const b = e.target.closest("[data-id]");
+  if (!b) return;
+  activeAgent = activeRole.agents.find(a => a.id === b.dataset.id) || activeAgent;
+  render();
+};
+
+document.getElementById("search").oninput = (e) => {
+  query = e.target.value.trim().toLowerCase();
+  render();
+};
+
+modeSelect.onchange = render;
+document.getElementById("theme-btn").onclick = () => document.body.classList.toggle("light");
+
+document.getElementById("run-btn").onclick = () => {
+  if (!activeAgent) return;
+  let parsed;
+  try { parsed = JSON.parse(inEl.value || "{}"); }
+  catch (err) { outEl.textContent = "Invalid JSON input: " + err.message; return; }
+  outEl.textContent = JSON.stringify({
+    role: activeRole.name,
+    agent: activeAgent.id,
+    execution_mode: "browser-deterministic-sandbox",
+    experience_mode: modeSelect.value,
+    input_keys: Object.keys(parsed),
+    status: "ok",
+    summary: `Validated typed contract for ${activeAgent.name} (${Object.keys(parsed).length} input fields).`,
+    desktop_only_features: ["FastAPI live route", "Free-tier / Ollama LLM inference", "pymoo GA optimization", "121-crate Cargo/Tauri Rust build"]
+  }, null, 2);
+};
+
+render();
+</script>
+</body>
+</html>
