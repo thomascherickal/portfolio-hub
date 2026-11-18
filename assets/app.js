@@ -130,7 +130,7 @@
 
   function linksRow(p) {
     var l = p.links || {}, out = [];
-    if (l.demo) out.push('<a href="' + esc(l.demo) + '" rel="noopener">Open the demo</a>');
+    if (l.demo) out.push('<a href="' + esc(l.demo) + '" target="_blank" rel="noopener">Open the demo</a>');
     if (l.source) out.push('<a href="' + esc(l.source) + '" rel="noopener">Source code</a>');
     if (l.writeup) out.push('<a href="' + esc(l.writeup) + '" rel="noopener">Read the write-up</a>');
     if (!out.length) return "";
@@ -214,11 +214,9 @@
         '<button type="button" class="btn btn-gold btn-disabled" disabled aria-disabled="true">&#9654; Run Project</button>' +
         '<p class="run-note">Live Systems demos only work on laptops and PCs.</p></div></div>';
     }
-    return '<div class="run" data-height="' + esc(r.height || 640) + '">' +
-      '<div class="run-bar"><button type="button" class="btn btn-gold" data-run="' + esc(r.src) +
-      '" data-title="' + esc(p.title) + '" aria-expanded="false">&#9654; Run Project</button>' +
-      '<p class="run-note">' + esc(r.note || "") + "</p></div>" +
-      '<div class="run-stage"></div></div>';
+    return '<div class="run">' +
+      '<div class="run-bar"><a class="btn btn-gold" href="' + esc(r.src) + '" target="_blank" rel="noopener">&#9654; Run Project</a>' +
+      '<p class="run-note">' + esc(r.note || "") + "</p></div></div>";
   }
   function extensionBlock(p) {
     var x = p.extension;

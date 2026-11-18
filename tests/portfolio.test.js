@@ -220,7 +220,7 @@ describe("assets/app.js", () => {
     assert.match(ytParent.innerHTML, /youtube-nocookie\.com\/embed\/abc123/);
 
     // Run Project: real HTML carries the button and extension block
-    assert.match(dom.elements.get("demo-grid").innerHTML, /data-run="demos\/data-guard-admin\/index\.html"/);
+    assert.match(dom.elements.get("demo-grid").innerHTML, /href="demos\/data-guard-admin\/index\.html" target="_blank"/);
     assert.match(dom.elements.get("demo-grid").innerHTML, /Chrome extension/);
     const stage = { innerHTML: "" };
     const runBtn = {
