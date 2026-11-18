@@ -244,10 +244,7 @@ window.PORTFOLIO = {
       ],
       updated: "2026-11-17"
     },
-
-  ],
-  /* ---------- Claude automations (recorded runs) ---------- */
-  claude: [
+    /* ---------- Claude automations (recorded runs) ---------- */
     {
       id: "claude-pr-review-test-gaps",
       lane: "claude",
@@ -255,7 +252,7 @@ window.PORTFOLIO = {
       license: "MIT",
       title: "PR review that writes missing unit tests",
       problem: "Pull requests often land without tests for new edge cases.",
-      summary: "Claude reads the diff on a pull request, spots untested branches, writes unit tests and pushes them to the branch.",
+      summary: "Claude reads the diff on a pull request, spots untested branches, wri tes unit tests and pushes them to the branch.",
       stack: ["Claude Code", "GitHub Actions", "pytest"],
       links: { demo: "", video: "", poster: "", source: "", writeup: "" },
       updated: "2026-11-16"
