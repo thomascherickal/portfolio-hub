@@ -206,19 +206,11 @@
     });
   }, true);
 
-  /* ---------- Run Project: live GUI in the page ---------- */
-  var ua = (window.navigator && window.navigator.userAgent) || "";
-  var isMobileOrTablet = /Android|iPhone|iPad|iPod/i.test(ua) ||
-    (/Macintosh/i.test(ua) && window.navigator && window.navigator.maxTouchPoints > 1);
+  /* ---------- Run Project: opens dedicated demo screen in a new window ---------- */
   function safeSrc(u) { return /^(https:\/\/|[a-z0-9_\-][a-z0-9_\-\/.]*$)/i.test(u || ""); }
   function runPanel(p) {
     var r = p.run;
     if (!r || !safeSrc(r.src)) return "";
-    if (isMobileOrTablet && p.lane === "systems") {
-      return '<div class="run"><div class="run-bar">' +
-        '<button type="button" class="btn btn-gold btn-disabled" disabled aria-disabled="true">&#9654; Run Project</button>' +
-        '<p class="run-note">Live Systems demos only work on laptops and PCs.</p></div></div>';
-    }
     return '<div class="run">' +
       '<div class="run-bar"><a class="btn btn-gold" href="' + esc(r.src) + '" target="_blank" rel="noopener">&#9654; Run Project</a>' +
       '<p class="run-note">' + esc(r.note || "") + "</p></div></div>";
@@ -339,16 +331,37 @@
   document.getElementById("pwa-list").innerHTML = (data.pwas || []).map(function (a) {
     var icon = a.icon ? '<img src="' + esc(a.icon) + '" alt="' + esc(a.name) + ' preview">' : esc((a.name || "?").charAt(0));
     var sourceHtml = a.source
-      ? '<div class="pwa-source"><div class="links"><a href="' + esc(a.url) + '" rel="noopener">Open app</a><a href="' + esc(a.source) + '" rel="noopener">Source code</a></div>' +
+      ? '<div class="pwa-source"><div class="links"><a href="' + esc(a.url) + '" target="_blank" rel="noopener">Open app</a><a href="' + esc(a.source) + '" target="_blank" rel="noopener">Source code</a></div>' +
       (a.sourceDesc ? '<p class="source-uses">' + esc(a.sourceDesc) + "</p>" : "") + "</div>"
       : "";
     return '<li class="pwa-card">' +
       '<div class="demo-top"><span class="demo-lane tone-cyan">Web App</span><span class="pill pill-live">Live</span></div>' +
       "<h3>" + esc(a.name) + "</h3>" +
       '<p class="pwa-purpose">' + esc(a.purpose) + "</p>" +
-      '<a class="pwa-card-link" href="' + esc(a.url) + '" rel="noopener"><span class="pwa-icon" aria-hidden="true">' + icon + "</span></a>" +
+      '<a class="pwa-card-link" href="' + esc(a.url) + '" target="_blank" rel="noopener"><span class="pwa-icon" aria-hidden="true">' + icon + "</span></a>" +
+      '<div class="run"><div class="run-bar"><a class="btn btn-gold" href="' + esc(a.url) + '" target="_blank" rel="noopener">&#9654; Run Project</a></div></div>' +
       sourceHtml + aiPoints(a) + "</li>";
   }).join("");
+
+  /* ---------- light / dark mode toggle ---------- */
+  var themeBtn = document.getElementById("theme-toggle");
+  if (themeBtn && document.documentElement) {
+    function applyTheme(mode) {
+      var isLight = mode === "light";
+      if (isLight) document.documentElement.setAttribute("data-theme", "light");
+      else document.documentElement.removeAttribute("data-theme");
+      themeBtn.textContent = isLight ? "\u263E Dark" : "\u2600 Light";
+      themeBtn.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
+    }
+    var savedTheme = "";
+    try { savedTheme = window.localStorage ? window.localStorage.getItem("portfolio-theme") || "" : ""; } catch (e) {}
+    applyTheme(savedTheme === "light" ? "light" : "dark");
+    themeBtn.addEventListener("click", function () {
+      var next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+      applyTheme(next);
+      try { if (window.localStorage) window.localStorage.setItem("portfolio-theme", next); } catch (e) {}
+    });
+  }
 
   /* ---------- dynamic footer ---------- */
   var contactFooter = document.getElementById("contact");

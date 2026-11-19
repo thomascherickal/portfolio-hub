@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Go AI Gateway (live, in your browser)</title>
 <style>body{margin:0;background:#0b0b0e;color:#e7e5ef;font:16px system-ui,sans-serif;display:grid;place-items:center;min-height:100vh}p{max-width:46ch;text-align:center}</style>
-</head><body><p id="s">Starting the Go gateway (WebAssembly)&hellip;</p>
+</head><body><p id="s">Downloading &amp; starting Go AI Gateway (8.1 MB WebAssembly)&hellip;<br><small style="opacity:.75">Runs 100% locally in your browser with mock providers. Initial download may take a few seconds on mobile networks.</small></p>
 <script src="wasm_exec.js"></script>
 <script>
 // The Go gateway runs as WebAssembly. Same-origin /v1, /admin and /healthz calls made by the
@@ -26,6 +26,10 @@
     };
     var page = await gatewayFetch("GET", "/", {}, "");
     document.open(); document.write(page.body); document.close();
+    document.body.insertAdjacentHTML("afterbegin",
+      '<div style="padding:10px 16px;background:rgba(245,158,11,0.12);border-bottom:1px solid rgba(245,158,11,0.35);color:#f4f1ea;font:13px/1.45 system-ui,sans-serif;">' +
+      '<strong style="color:#f59e0b;">Browser &amp; Mobile Limitations:</strong> Running the Go gateway in-memory via WebAssembly with mock providers &amp; demo teams. Live vendor API calls, persistent Cloudflare D1 storage, and state persistence across reloads require deploying with your own keys.</div>'
+    );
     // demo convenience: the built-in dev admin token is public, so fill it in and load the data
     document.getElementById("adminToken").value = "gw_admin_dev";
     if (window.loadDashboard) loadDashboard();

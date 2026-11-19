@@ -36,7 +36,7 @@ window.PORTFOLIO = {
     brand: "The Digital Futurist",
     headline: "The Future is Now.",
     intro:
-      "Live demos and recorded runs of the systems I build for engineering teams moving to AI-first delivery: Claude agent automations, RAG, local LLMs and the Rust, Go, C++ and Julia underneath them.",
+      "Live demos and recorded runs of the systems I build for engineering teams moving to AI-first delivery: Claude agent automations, AI-first projects, and the Rust, Go, C++ and Julia underneath them.",
     links: {
       site: "https://thomascherickal.com",
       consulting: "https://thedigitalfuturist.com",
@@ -72,14 +72,17 @@ window.PORTFOLIO = {
       images: [
         { src: "assets/ferrum/ferrum-cpu/screenshots/app-datasets.jpg", alt: "Datasets tab for fetching and cleaning a training corpus", caption: "1. Fetch and clean a corpus" },
         { src: "assets/ferrum/ferrum-cpu/screenshots/app-prepare.jpg", alt: "Prepare tab for turning raw text into training data", caption: "2. Prepare the training data" },
-        { src: "assets/ferrum/ferrum-cpu/screenshots/app-train.jpg", alt: "Train tab with corpus, model output and model shape settings", caption: "3. Train a transformer from scratch" },
-        { src: "assets/ferrum/ferrum-cpu/screenshots/app-generate.jpg", alt: "Generate tab with seed text, sampling settings and live streaming", caption: "4. Generate with live streaming" },
-        { src: "assets/ferrum/ferrum-cpu/screenshots/app-gguf.jpg", alt: "GGUF tab for importing and running a Llama or Qwen checkpoint", caption: "5. Import and run Llama and Qwen GGUF" },
-        { src: "assets/ferrum/ferrum-cpu/screenshots/app-export.jpg", alt: "Export tab for writing a GGUF that runs in llama.cpp, Ollama and LM Studio", caption: "6. Export GGUF for llama.cpp, Ollama and LM Studio" },
-        { src: "assets/ferrum/ferrum-cpu/screenshots/app-serve.jpg", alt: "Serve tab for running the model behind an HTTP server", caption: "7. Serve it over HTTP" },
-        { src: "assets/ferrum/ferrum-cpu/github.jpg", alt: "The ferrum-cpu repository page on GitHub", caption: "The code is open source on GitHub" }
+        { src: "assets/ferrum/ferrum-cpu/screenshots/app-models.jpg", alt: "Models tab for browsing and managing local SLM checkpoints", caption: "3. Browse and manage models" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/app-train.jpg", alt: "Train tab with corpus, model output and model shape settings", caption: "4. Train a transformer from scratch" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/app-finetune.jpg", alt: "Fine-tune tab for adapting a model to domain data on CPU", caption: "5. Fine-tune on domain data" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/app-evaluate.jpg", alt: "Evaluate tab for measuring perplexity and benchmark metrics", caption: "6. Evaluate model quality" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/app-generate.jpg", alt: "Generate tab with seed text, sampling settings and live streaming", caption: "7. Generate with live streaming" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/app-gguf.jpg", alt: "GGUF tab for importing and running a Llama or Qwen checkpoint", caption: "8. Import and run Llama and Qwen GGUF" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/app-export.jpg", alt: "Export tab for writing a GGUF that runs in llama.cpp, Ollama and LM Studio", caption: "9. Export GGUF for llama.cpp, Ollama and LM Studio" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/app-serve.jpg", alt: "Serve tab for running the model behind an HTTP server", caption: "10. Serve it over HTTP" },
+        { src: "assets/ferrum/ferrum-cpu/github.jpg", alt: "The ferrum-cpu repository page on GitHub", caption: "11. The code is open source on GitHub" }
       ],
-      run: { src: "demos/ferrum-cpu-studio/index.html", height: 760, note: "The real Ferrum SLM Studio UI running on a preloaded 620 KB model (507K params, 10 minutes of CPU training on TinyStories) via WebAssembly; Generate, Models, GGUF info, Datasets and System work, while training, fine-tuning, export and serving need the desktop app." },
+      run: { src: "demos/ferrum-cpu-studio/index.html", height: 760, note: "Runs the Ferrum SLM Studio UI on a preloaded 620 KB model via WebAssembly. Generate, Models, GGUF info, Datasets, and System work in the browser; training, fine-tuning, GGUF export, and HTTP serving require the desktop app. On mobiles and tablets, token streaming is slower and large GGUF uploads may hit browser memory limits." },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/ferrum-cpu", writeup: "" },
       useCases: "Built in Rust for air-gapped enterprise environments, privacy-first local document Q&A, and edge or developer workstation inference without GPUs. Teams can prepare datasets, train small transformer models from scratch, run deterministic CPU benchmarks, export standard GGUF checkpoints for llama.cpp or Ollama, and serve models over HTTP or WebAssembly.",
       aiPoints: [
@@ -102,12 +105,18 @@ window.PORTFOLIO = {
       stack: ["Rust", "wgpu", "WGSL", "WebGPU", "GGUF"],
       images: [
         { src: "assets/ferrum/ferrum-gpu/app-device.jpg", alt: "Device tab listing the GPU adapters and WebGPU support in the browser", caption: "1. See every GPU adapter" },
-        { src: "assets/ferrum/ferrum-gpu/app-model.jpg", alt: "Model tab for creating or loading a model", caption: "2. Create or load a model" },
-        { src: "assets/ferrum/ferrum-gpu/app-train.jpg", alt: "Train tab with a live loss curve", caption: "3. Train with a live loss curve" },
-        { src: "assets/ferrum/ferrum-gpu/app-generate.jpg", alt: "Generate tab running on the server device or in this browser", caption: "4. Generate on the server or in the browser" },
-        { src: "assets/ferrum/ferrum-gpu/github.jpg", alt: "The ferrum-gpu repository page on GitHub", caption: "The code is open source on GitHub" }
+        { src: "assets/ferrum/ferrum-gpu/app-capable.jpg", alt: "Capable tab checking hardware and WebGPU shader capabilities", caption: "2. Check GPU & WebGPU capabilities" },
+        { src: "assets/ferrum/ferrum-gpu/app-datasets.jpg", alt: "Datasets tab for selecting and fetching a training corpus", caption: "3. Fetch and manage datasets" },
+        { src: "assets/ferrum/ferrum-gpu/app-prepare.jpg", alt: "Prepare tab for tokenizing and formatting training data", caption: "4. Prepare training data" },
+        { src: "assets/ferrum/ferrum-gpu/app-model.jpg", alt: "Model tab for creating or loading a model", caption: "5. Create or load a model" },
+        { src: "assets/ferrum/ferrum-gpu/app-train.jpg", alt: "Train tab with a live loss curve", caption: "6. Train with a live loss curve" },
+        { src: "assets/ferrum/ferrum-gpu/app-evaluate.jpg", alt: "Evaluate tab showing validation loss and perplexity metrics", caption: "7. Evaluate model performance" },
+        { src: "assets/ferrum/ferrum-gpu/app-generate.jpg", alt: "Generate tab running on the server device or in this browser", caption: "8. Generate on the server or in the browser" },
+        { src: "assets/ferrum/ferrum-gpu/app-export.jpg", alt: "Export tab for saving GGUF checkpoints from GPU training", caption: "9. Export GGUF checkpoints" },
+        { src: "assets/ferrum/ferrum-gpu/app-serve.jpg", alt: "Serve tab for exposing the GPU model over HTTP", caption: "10. Serve over HTTP" },
+        { src: "assets/ferrum/ferrum-gpu/github.jpg", alt: "The ferrum-gpu repository page on GitHub", caption: "11. The code is open source on GitHub" }
       ],
-      run: { src: "demos/ferrum-gpu-studio/index.html", height: 760, note: "The real Ferrum GPU GUI on a preloaded 285 KB byte-level model (171K params, trained on TinyStories) with generation on this tab's WebGPU; model load/download and GGUF upload work, while training needs the desktop app." },
+      run: { src: "demos/ferrum-gpu-studio/index.html", height: 760, note: "Runs the Ferrum GPU GUI on a preloaded 285 KB model via WebGPU; generation, model inspection, and GGUF upload work in WebGPU-capable browsers, while training requires the desktop app. On mobiles and tablets without WebGPU (older iOS Safari / Android browsers), GPU inference will not work and a link to the CPU WebAssembly edition is provided." },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/ferrum-gpu", writeup: "" },
       useCases: "Built in safe Rust with wgpu and WGSL for high-throughput on-prem LLM serving, private batch inference, code-generation pipelines, and GPU-accelerated local RAG without recurring cloud API costs. Every custom GPU shader kernel is verified against a CPU reference, supporting GGUF import/export and zero-setup browser inference via WebGPU.",
       aiPoints: [
@@ -136,7 +145,7 @@ window.PORTFOLIO = {
         { src: "assets/python-valkyrie-ai-agent-studio/Valkyrie Studio Light Mode - Python Edit - Dependencies.jpg", alt: "Valkyrie Studio editing Python dependencies agent", caption: "6. Python Agent — Dependency Graph" },
         { src: "assets/python-valkyrie-ai-agent-studio/github.jpg", alt: "The valkyrie-ai-agent-studio repository page on GitHub", caption: "7. Open source on GitHub" }
       ],
-      run: { src: "demos/valkyrie-agent-studio/index.html", height: 760, note: "Browser Sandbox runs role exploration, typed input/output contracts, and deterministic sample-data agent runs. Live FastAPI execution, free-tier LLM routing, pymoo GA optimization, and 121-crate Tauri/Rust compilation require the desktop app." },
+      run: { src: "demos/valkyrie-agent-studio/index.html", height: 760, note: "Browser Sandbox covers all 12 roles and 120 agents with editable sample_data.json contracts and deterministic runs. Live FastAPI execution, local Ollama / free-tier LLM routing, pymoo GA optimization, and 121-crate Tauri/Rust compilation will not work in browsers, mobiles, or tablets and require the desktop app." },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/valkyrie-ai-agent-studio", writeup: "" },
       useCases: "Built with Tauri, Rust, React, and FastAPI for engineering teams deploying 120 role-specific AI agents with typed YAML contracts, free-first multi-provider LLM routing, local pymoo genetic-algorithm tuning, 100% TDD enforcement, and one-click transpilation into async tokio Rust crates.",
       aiPoints: [
@@ -161,7 +170,7 @@ window.PORTFOLIO = {
         { src: "assets/go-ai-gateway/go-ai-gateway-explorer.jpg", alt: "Go AI Gateway interactive API explorer and multi-provider request tester", caption: "2. Interactive API Explorer" },
         { src: "assets/go-ai-gateway/github.jpg", alt: "The go-ai-gateway repository page on GitHub", caption: "3. Open source on GitHub" }
       ],
-      run: { src: "demos/go-ai-gateway/index.html", height: 900, note: "The real Go gateway runs as WebAssembly in this tab with mock providers and demo teams; live vendor calls, D1 storage and Cloudflare deployment need your own keys." },
+      run: { src: "demos/go-ai-gateway/index.html", height: 900, note: "Runs the real Go gateway as WebAssembly (8.1 MB) in-memory with mock providers and demo teams. Live vendor API calls, persistent Cloudflare D1 storage, and Cloudflare Workers deployment require your own keys; on mobiles and tablets, initial WASM download is heavier on cellular networks and state resets on reload." },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/go-ai-gateway", writeup: "" },
       useCases: "Compiled with TinyGo for Cloudflare Workers to provide centralized multi-vendor LLM routing with automatic fallbacks, per-team micro-dollar budget enforcement in D1, and real-time PII and secret redaction before prompts leave your network. Compatible with OpenAI, Anthropic, and Gemini SDKs while recording immutable compliance audit logs and cost reconciliation.",
       aiPoints: [
@@ -187,7 +196,7 @@ window.PORTFOLIO = {
         { src: "assets/cpp-enterprise-data-guard/GUI-Admin.jpg", alt: "Native C++ GTK+ 3 Admin Control Centre for configuring policies, allowlists and custom rules", caption: "2. C++ Admin Control Centre" },
         { src: "assets/cpp-enterprise-data-guard/github.jpg", alt: "The cpp-enterprise-data-guard repository page on GitHub", caption: "3. Open source on GitHub" }
       ],
-      run: { src: "demos/data-guard-admin/index.html", height: 780, note: "The Admin Control Centre (the C++ AdminController compiled to WebAssembly, GTK window redrawn in HTML); the web dashboard is linked below it, and the Chrome extension needs a local install." },
+      run: { src: "demos/data-guard-admin/index.html", height: 780, note: "Runs the C++ AdminController compiled to WebAssembly with the web dashboard linked inside. Native GTK3 file dialogs map to browser file pickers; the Chrome prompt-interception extension (.zip) will not install on Android or iOS browsers and requires desktop Chrome/Chromium." },
       extension: {
         title: "Chrome extension (Manifest V3)",
         text: "Brings the same C++ WebAssembly scanner into the AI chat sites you already use, so secrets and personal data are caught before a prompt is sent.",
@@ -233,7 +242,7 @@ window.PORTFOLIO = {
         { src: "assets/julia-ai-roi-simulation/10-markdown-guide-modal-and-mermaid.png", alt: "In-UI Markdown guide modal and Mermaid diagram", caption: "10. In-UI Markdown Guide" },
         { src: "assets/julia-ai-roi-simulation/github.jpg", alt: "The julia-ai-roi-simulation repository page on GitHub", caption: "11. Open source on GitHub" }
       ],
-      run: { src: "demos/julia-roi/index.html", height: 760, note: "Runs on the pre-computed simulation results (static JSON); re-running the Julia models themselves needs a local Julia install." },
+      run: { src: "demos/julia-roi/index.html", height: 760, note: "Runs on pre-computed simulation results (static JSON) with all 5 forecasting tabs and interactive What-If sliders. Re-running the Julia Monte Carlo and Agent-Based models themselves will not work in browsers, mobiles, or tablets and requires a local Julia installation." },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/julia-ai-roi-simulation", writeup: "" },
       useCases: "Written in Julia to model board-ready AI adoption business cases with honest P10, P50, and P90 confidence bands instead of single-point guesses. Simulates 325 employees across four departments over 36 months using Monte Carlo, agent-based, system dynamics, queueing, and Bayesian pilot checkpoint lenses exported to an interactive web lab.",
       aiPoints: [

@@ -244,3 +244,10 @@ body[data-mode="beginner"] .adv-only { display: none !important; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+@media (max-width: 768px) {
+  #topbar { flex-wrap: wrap; height: auto; padding: 10px 12px; gap: 8px; }
+  #tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
+  .mini-stats { flex-wrap: wrap; gap: 6px; }
+  main, .panel { padding: 12px !important; }
+}

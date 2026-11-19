@@ -12,6 +12,12 @@
   <p id="device-badge" class="badge" role="status" aria-live="polite">connecting…</p>
 </header>
 
+<div id="gpu-limits" style="padding:10px 16px;background:rgba(245,158,11,0.12);border-bottom:1px solid rgba(245,158,11,0.35);font-size:13px;line-height:1.45;">
+  <strong style="color:#f59e0b;">Browser &amp; Mobile Limitations:</strong> Runs via WebGPU on a preloaded 285 KB model. Training requires the desktop app. On mobiles and tablets without WebGPU support (older iOS Safari / Android browsers), GPU inference will not work.
+  <span id="no-webgpu-fallback" hidden> <strong>WebGPU not detected in this browser</strong> &mdash; <a href="../ferrum-cpu-studio/index.html" style="color:#6ed6f0;">open Ferrum CPU (WebAssembly) instead</a>.</span>
+</div>
+<script>if (!navigator.gpu) { var f = document.getElementById("no-webgpu-fallback"); if (f) f.hidden = false; }</script>
+
 <nav role="tablist" aria-label="Sections">
   <button role="tab" id="tab-device" aria-controls="panel-device" aria-selected="true">Device</button>
   <button role="tab" id="tab-model" aria-controls="panel-model" aria-selected="false">Model</button>
