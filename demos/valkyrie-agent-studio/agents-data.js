@@ -82,6 +82,86 @@ window.VALKYRIE_ROLES = [
         "sample": {
           "weekly_updates": "Shipped v2.1 API; p99 latency down 38%; 2 blockers on SSO"
         }
+      },
+      {
+        "id": "11-persona-builder",
+        "name": "Persona Builder",
+        "desc": "**Role:** Product Management",
+        "sample": {
+          "research_notes": "12 interviews: admins spend Mondays on access requests; 9 of 12 use spreadsheets to track licences"
+        }
+      },
+      {
+        "id": "12-jtbd-mapper",
+        "name": "Jtbd Mapper",
+        "desc": "**Role:** Product Management",
+        "sample": {
+          "interview_notes": "Switched from spreadsheets after the audit failed; needs proof of access reviews in under an hour"
+        }
+      },
+      {
+        "id": "13-kano-classifier",
+        "name": "Kano Classifier",
+        "desc": "**Role:** Product Management",
+        "sample": {
+          "survey_results": "SSO: 72% would be happy with it, 55% unhappy without it; dark mode: 40% happy, 6% unhappy without"
+        }
+      },
+      {
+        "id": "14-north-star-designer",
+        "name": "North Star Designer",
+        "desc": "**Role:** Product Management",
+        "sample": {
+          "product_goals": "Goal: help teams ship reviewed releases faster; users create pull requests, reviewers approve"
+        }
+      },
+      {
+        "id": "15-opportunity-tree-builder",
+        "name": "Opportunity Tree Builder",
+        "desc": "**Role:** Product Management",
+        "sample": {
+          "desired_outcome": "Outcome: raise week-4 retention from 31% to 40%; customers say setup is long and reports are hard to share"
+        }
+      },
+      {
+        "id": "16-beta-program-manager",
+        "name": "Beta Program Manager",
+        "desc": "**Role:** Product Management",
+        "sample": {
+          "beta_plan_brief": "Beta of the new reporting module for 40 accounts over 6 weeks; need a go or no-go by the end"
+        }
+      },
+      {
+        "id": "17-sunset-planner",
+        "name": "Sunset Planner",
+        "desc": "**Role:** Product Management",
+        "sample": {
+          "feature_usage": "Legacy CSV exporter: 3% of accounts, 180 weekly runs, replaced by the scheduled-reports API"
+        }
+      },
+      {
+        "id": "18-pmf-survey-analyst",
+        "name": "Pmf Survey Analyst",
+        "desc": "**Role:** Product Management",
+        "sample": {
+          "survey_counts": "150 responses: 54 very disappointed, 63 somewhat, 33 not disappointed; strongest in agencies"
+        }
+      },
+      {
+        "id": "19-build-buy-evaluator",
+        "name": "Build Buy Evaluator",
+        "desc": "**Role:** Product Management",
+        "sample": {
+          "capability_request": "Need in-app e-signature within 2 quarters; vendor quotes 45k per year, in-house estimate 5 engineer-months"
+        }
+      },
+      {
+        "id": "20-product-ops-cadence-planner",
+        "name": "Product Ops Cadence Planner",
+        "desc": "**Role:** Product Management",
+        "sample": {
+          "team_rituals": "6 squads, weekly product reviews run long, roadmap changes surprise sales, metrics reviewed ad hoc"
+        }
       }
     ]
   },
@@ -167,6 +247,86 @@ window.VALKYRIE_ROLES = [
         "desc": "**Role:** Software Engineering",
         "sample": {
           "profile_stats": "json_validator.py: 68% CPU time, 42ms p99"
+        }
+      },
+      {
+        "id": "11-error-handling-auditor",
+        "name": "Error Handling Auditor",
+        "desc": "**Role:** Software Engineering",
+        "sample": {
+          "code_excerpt": "try: charge(card) except Exception: pass  # then marks the order paid"
+        }
+      },
+      {
+        "id": "12-api-sunset-planner",
+        "name": "Api Sunset Planner",
+        "desc": "**Role:** Software Engineering",
+        "sample": {
+          "api_usage": "v1 receives 2.1M calls a day from 140 clients; top 5 clients are 70% of traffic; v2 is stable"
+        }
+      },
+      {
+        "id": "13-feature-flag-cleaner",
+        "name": "Feature Flag Cleaner",
+        "desc": "**Role:** Software Engineering",
+        "sample": {
+          "flag_inventory": "214 flags, 88 older than 6 months, 31 at 100% rollout for over 90 days, owners missing on 40"
+        }
+      },
+      {
+        "id": "14-module-boundary-checker",
+        "name": "Module Boundary Checker",
+        "desc": "**Role:** Software Engineering",
+        "sample": {
+          "dependency_graph": "billing imports orders; orders imports billing; reports reads the orders table directly"
+        }
+      },
+      {
+        "id": "15-logging-quality-reviewer",
+        "name": "Logging Quality Reviewer",
+        "desc": "**Role:** Software Engineering",
+        "sample": {
+          "log_samples": "logger.info(\"user \" + email + \" paid \" + card_number); logger.debug(\"here\")"
+        }
+      },
+      {
+        "id": "16-cache-strategy-advisor",
+        "name": "Cache Strategy Advisor",
+        "desc": "**Role:** Software Engineering",
+        "sample": {
+          "access_pattern": "Product pages: 800 reads/s, 2 writes/s, 95% of reads hit 5% of products, stale up to 60s is fine"
+        }
+      },
+      {
+        "id": "17-type-safety-planner",
+        "name": "Type Safety Planner",
+        "desc": "**Role:** Software Engineering",
+        "sample": {
+          "codebase_stats": "TypeScript 180k lines, strict off, 1,900 uses of any, 22% of bugs last quarter were undefined errors"
+        }
+      },
+      {
+        "id": "18-idempotency-reviewer",
+        "name": "Idempotency Reviewer",
+        "desc": "**Role:** Software Engineering",
+        "sample": {
+          "endpoint_spec": "POST /payments creates a charge; mobile app retries on timeout; webhook consumer processes events"
+        }
+      },
+      {
+        "id": "19-code-owner-mapper",
+        "name": "Code Owner Mapper",
+        "desc": "**Role:** Software Engineering",
+        "sample": {
+          "commit_history": "payments/ last 12 months: 3 authors left, 1 remaining (62% of commits); search/ has no commits in 9 months"
+        }
+      },
+      {
+        "id": "20-codebase-onboarding-guide",
+        "name": "Codebase Onboarding Guide",
+        "desc": "**Role:** Software Engineering",
+        "sample": {
+          "repo_overview": "Monorepo with 3 services and a web app; setup takes a day; tests flaky on the first run"
         }
       }
     ]
@@ -254,6 +414,86 @@ window.VALKYRIE_ROLES = [
         "sample": {
           "canary_stats": "Canary p99: 420ms vs Baseline p99: 95ms"
         }
+      },
+      {
+        "id": "11-oncall-load-analyzer",
+        "name": "Oncall Load Analyzer",
+        "desc": "**Role:** DevOps & SRE",
+        "sample": {
+          "pager_stats": "Last 4 weeks: 212 pages, 61 outside working hours, 9 engineers in rotation, top service 74 pages"
+        }
+      },
+      {
+        "id": "12-alert-noise-reducer",
+        "name": "Alert Noise Reducer",
+        "desc": "**Role:** DevOps & SRE",
+        "sample": {
+          "alert_history": "CPUHigh fired 310 times, 4 led to action; DiskSlow 95 times, 60 actioned; QueueLag 40 times, 38 actioned"
+        }
+      },
+      {
+        "id": "13-dr-plan-reviewer",
+        "name": "Dr Plan Reviewer",
+        "desc": "**Role:** DevOps & SRE",
+        "sample": {
+          "dr_plan": "Primary region us-east-1, nightly backups to the same region, restore never tested, RTO 4h, RPO 1h"
+        }
+      },
+      {
+        "id": "14-helm-chart-reviewer",
+        "name": "Helm Chart Reviewer",
+        "desc": "**Role:** DevOps & SRE",
+        "sample": {
+          "helm_values": "replicaCount: 1; image.tag: latest; resources: {}; ingress.enabled: true; no podDisruptionBudget"
+        }
+      },
+      {
+        "id": "15-secret-rotation-planner",
+        "name": "Secret Rotation Planner",
+        "desc": "**Role:** DevOps & SRE",
+        "sample": {
+          "secret_inventory": "86 secrets: 23 older than 1 year, 9 shared by several services, 14 database passwords, no owner on 11"
+        }
+      },
+      {
+        "id": "16-blast-radius-mapper",
+        "name": "Blast Radius Mapper",
+        "desc": "**Role:** DevOps & SRE",
+        "sample": {
+          "service_map": "auth-service is called by 14 services; 6 have no cache or fallback; it runs in one region"
+        }
+      },
+      {
+        "id": "17-deploy-freeze-advisor",
+        "name": "Deploy Freeze Advisor",
+        "desc": "**Role:** DevOps & SRE",
+        "sample": {
+          "change_calendar": "Black Friday week, 31 changes queued, error budget 38% left, two incidents last week"
+        }
+      },
+      {
+        "id": "18-log-retention-tuner",
+        "name": "Log Retention Tuner",
+        "desc": "**Role:** DevOps & SRE",
+        "sample": {
+          "log_volumes": "Audit logs 2 TB/month kept 7 years, app logs 40 TB/month kept 90 days, debug 25 TB/month kept 30 days"
+        }
+      },
+      {
+        "id": "19-dns-change-verifier",
+        "name": "Dns Change Verifier",
+        "desc": "**Role:** DevOps & SRE",
+        "sample": {
+          "dns_change": "Move api.example.com from the old load balancer to the new one; current TTL 3600; mail records unchanged"
+        }
+      },
+      {
+        "id": "20-error-budget-policy-writer",
+        "name": "Error Budget Policy Writer",
+        "desc": "**Role:** DevOps & SRE",
+        "sample": {
+          "slo_context": "Checkout API SLO 99.9% over 30 days; product wants weekly releases; last month used 80% of budget"
+        }
       }
     ]
   },
@@ -339,6 +579,86 @@ window.VALKYRIE_ROLES = [
         "desc": "**Role:** QA & Test Automation",
         "sample": {
           "bug_thread": "App crashes when switching from dark mode while dialog open"
+        }
+      },
+      {
+        "id": "11-contract-test-designer",
+        "name": "Contract Test Designer",
+        "desc": "**Role:** QA & Test Automation",
+        "sample": {
+          "api_contract": "Orders service consumes GET /customers/{id} (fields id, email, tier) from Customers; 3 other consumers"
+        }
+      },
+      {
+        "id": "12-test-data-synthesizer",
+        "name": "Test Data Synthesizer",
+        "desc": "**Role:** QA & Test Automation",
+        "sample": {
+          "schema_rules": "users(id, email unique, country, plan), orders(user_id FK, amount > 0); production has 2M users, 9M orders"
+        }
+      },
+      {
+        "id": "13-mutation-test-reviewer",
+        "name": "Mutation Test Reviewer",
+        "desc": "**Role:** QA & Test Automation",
+        "sample": {
+          "mutation_report": "pricing.py: 240 mutants, 168 killed, 72 survived; survivors mostly in boundary checks and rounding"
+        }
+      },
+      {
+        "id": "14-visual-regression-triager",
+        "name": "Visual Regression Triager",
+        "desc": "**Role:** QA & Test Automation",
+        "sample": {
+          "screenshot_diffs": "48 diffs on checkout: 30 are 1px font anti-aliasing, 12 show the new button colour, 6 show a missing icon"
+        }
+      },
+      {
+        "id": "15-device-matrix-planner",
+        "name": "Device Matrix Planner",
+        "desc": "**Role:** QA & Test Automation",
+        "sample": {
+          "usage_analytics": "iOS 62% (17, 16), Android 38% (14, 13, 12); top 5 devices cover 41%; 4 devices in the lab"
+        }
+      },
+      {
+        "id": "16-test-pyramid-auditor",
+        "name": "Test Pyramid Auditor",
+        "desc": "**Role:** QA & Test Automation",
+        "sample": {
+          "test_counts": "Unit 1,800 (3 min), integration 240 (14 min), end-to-end 160 (52 min, 9% flaky)"
+        }
+      },
+      {
+        "id": "17-exploratory-charter-writer",
+        "name": "Exploratory Charter Writer",
+        "desc": "**Role:** QA & Test Automation",
+        "sample": {
+          "feature_summary": "New bulk-import feature: CSV up to 50k rows, duplicate detection, email report on completion"
+        }
+      },
+      {
+        "id": "18-qa-release-checklist-builder",
+        "name": "Qa Release Checklist Builder",
+        "desc": "**Role:** QA & Test Automation",
+        "sample": {
+          "release_scope": "Release 4.12: new payment provider, 14 tickets, database migration, mobile app update on the same day"
+        }
+      },
+      {
+        "id": "19-l10n-test-planner",
+        "name": "L10N Test Planner",
+        "desc": "**Role:** QA & Test Automation",
+        "sample": {
+          "locale_list": "Launching in German, Japanese, Arabic and Brazilian Portuguese; currency, dates and addresses vary"
+        }
+      },
+      {
+        "id": "20-security-test-case-writer",
+        "name": "Security Test Case Writer",
+        "desc": "**Role:** QA & Test Automation",
+        "sample": {
+          "feature_flow": "Password reset by email link; link valid 1 hour; any user can request unlimited resets"
         }
       }
     ]
@@ -426,6 +746,86 @@ window.VALKYRIE_ROLES = [
         "sample": {
           "kpi_request": "Net Revenue Retention trailing 12 months by cohort"
         }
+      },
+      {
+        "id": "11-cdc-pipeline-designer",
+        "name": "Cdc Pipeline Designer",
+        "desc": "**Role:** Data Engineering",
+        "sample": {
+          "source_tables": "Postgres orders (4M rows, 300 updates/s peak), customers, payments; target warehouse within 5 minutes"
+        }
+      },
+      {
+        "id": "12-data-contract-author",
+        "name": "Data Contract Author",
+        "desc": "**Role:** Data Engineering",
+        "sample": {
+          "dataset_spec": "orders_daily: one row per order, order_id unique, amount in cents, refreshed by 06:00 UTC, owner Payments"
+        }
+      },
+      {
+        "id": "13-partition-strategy-advisor",
+        "name": "Partition Strategy Advisor",
+        "desc": "**Role:** Data Engineering",
+        "sample": {
+          "table_profile": "events: 6 TB, 2.1B rows, 90% of queries filter on the last 7 days and customer_id"
+        }
+      },
+      {
+        "id": "14-dedup-strategy-designer",
+        "name": "Dedup Strategy Designer",
+        "desc": "**Role:** Data Engineering",
+        "sample": {
+          "duplicate_report": "Events table: 3.4% duplicate event_ids from client retries; customers: 11% near-duplicate names and emails"
+        }
+      },
+      {
+        "id": "15-scd-modeler",
+        "name": "Scd Modeler",
+        "desc": "**Role:** Data Engineering",
+        "sample": {
+          "dimension_changes": "Customer tier changes ~8% of customers a month; reports need revenue by the tier at the time of sale"
+        }
+      },
+      {
+        "id": "16-dag-migration-planner",
+        "name": "Dag Migration Planner",
+        "desc": "**Role:** Data Engineering",
+        "sample": {
+          "legacy_jobs": "420 cron jobs on 6 servers, 60 with hidden dependencies, nightly batch window 5 hours, moving to Airflow"
+        }
+      },
+      {
+        "id": "17-feature-store-reviewer",
+        "name": "Feature Store Reviewer",
+        "desc": "**Role:** Data Engineering",
+        "sample": {
+          "feature_specs": "user_30d_spend computed in SQL for training, recomputed in the service for serving; refreshed nightly"
+        }
+      },
+      {
+        "id": "18-data-retention-planner",
+        "name": "Data Retention Planner",
+        "desc": "**Role:** Data Engineering",
+        "sample": {
+          "dataset_catalog": "Clickstream 80 TB/yr kept forever, invoices 7 yrs required, support chats with personal data kept forever"
+        }
+      },
+      {
+        "id": "19-sql-style-reviewer",
+        "name": "Sql Style Reviewer",
+        "desc": "**Role:** Data Engineering",
+        "sample": {
+          "sql_excerpt": "SELECT * FROM orders o, customers c WHERE o.cid = c.id AND created > '2025-01-01' ORDER BY 1"
+        }
+      },
+      {
+        "id": "20-catalog-documenter",
+        "name": "Catalog Documenter",
+        "desc": "**Role:** Data Engineering",
+        "sample": {
+          "table_metadata": "fct_subscriptions: one row per subscription per month, columns mrr, plan_id, started_at, churned_at"
+        }
       }
     ]
   },
@@ -511,6 +911,86 @@ window.VALKYRIE_ROLES = [
         "desc": "**Role:** Security & AppSec",
         "sample": {
           "advisory_input": "Patched path traversal in export endpoint in v1.4.2"
+        }
+      },
+      {
+        "id": "11-api-security-reviewer",
+        "name": "Api Security Reviewer",
+        "desc": "**Role:** Security & AppSec",
+        "sample": {
+          "api_spec": "GET /invoices/{id} returns any invoice for any logged-in user; list endpoint has no pagination limit"
+        }
+      },
+      {
+        "id": "12-supply-chain-assessor",
+        "name": "Supply Chain Assessor",
+        "desc": "**Role:** Security & AppSec",
+        "sample": {
+          "dependency_notes": "1,240 transitive packages, 36 maintained by one person, builds pull unpinned actions, images unsigned"
+        }
+      },
+      {
+        "id": "13-forensics-guide",
+        "name": "Forensics Guide",
+        "desc": "**Role:** Security & AppSec",
+        "sample": {
+          "incident_summary": "Suspected credential theft on 3 production hosts, first alert 02:10 UTC, logs kept 14 days"
+        }
+      },
+      {
+        "id": "14-data-classification-advisor",
+        "name": "Data Classification Advisor",
+        "desc": "**Role:** Security & AppSec",
+        "sample": {
+          "data_inventory": "Customer DB with emails and payment tokens; analytics warehouse with pseudonymous IDs; public marketing site"
+        }
+      },
+      {
+        "id": "15-vendor-security-reviewer",
+        "name": "Vendor Security Reviewer",
+        "desc": "**Role:** Security & AppSec",
+        "sample": {
+          "vendor_answers": "Vendor stores customer emails, SOC 2 Type I only, no pen test in 2 years, subprocessors listed, 99.5% SLA"
+        }
+      },
+      {
+        "id": "16-phishing-report-triager",
+        "name": "Phishing Report Triager",
+        "desc": "**Role:** Security & AppSec",
+        "sample": {
+          "reported_email": "Subject Urgent payroll update; link to payr0ll-portal.example; sent to 240 staff; 12 clicked, 3 entered passwords"
+        }
+      },
+      {
+        "id": "17-cloud-posture-reviewer",
+        "name": "Cloud Posture Reviewer",
+        "desc": "**Role:** Security & AppSec",
+        "sample": {
+          "cloud_config": "3 public storage buckets, 14 security groups open to 0.0.0.0/0, CloudTrail off in 2 regions, root has no MFA"
+        }
+      },
+      {
+        "id": "18-security-training-planner",
+        "name": "Security Training Planner",
+        "desc": "**Role:** Security & AppSec",
+        "sample": {
+          "team_profile": "420 staff: 90 engineers, 40 support with customer data access, 20 finance; phishing click rate 11%"
+        }
+      },
+      {
+        "id": "19-crypto-usage-reviewer",
+        "name": "Crypto Usage Reviewer",
+        "desc": "**Role:** Security & AppSec",
+        "sample": {
+          "code_snippet": "hash = md5(password); key = 'hardcoded-secret'; token = random.randint(100000, 999999); AES in ECB mode"
+        }
+      },
+      {
+        "id": "20-bug-bounty-triager",
+        "name": "Bug Bounty Triager",
+        "desc": "**Role:** Security & AppSec",
+        "sample": {
+          "bounty_report": "Researcher reports stored XSS in the profile bio field on app.example.com, proof of concept attached"
         }
       }
     ]
@@ -598,6 +1078,86 @@ window.VALKYRIE_ROLES = [
         "sample": {
           "incident_state": "Investigating elevated latency on US-West inference router"
         }
+      },
+      {
+        "id": "11-refund-policy-checker",
+        "name": "Refund Policy Checker",
+        "desc": "**Role:** Technical Support",
+        "sample": {
+          "refund_request": "Annual plan bought 41 days ago, 3 logins, customer says the integration never worked; asks for full refund"
+        }
+      },
+      {
+        "id": "12-support-reply-drafter",
+        "name": "Support Reply Drafter",
+        "desc": "**Role:** Technical Support",
+        "sample": {
+          "ticket_thread": "Customer: webhooks stopped arriving since Tuesday, production orders are stuck. Second message, no reply for 6 hours"
+        }
+      },
+      {
+        "id": "13-duplicate-ticket-merger",
+        "name": "Duplicate Ticket Merger",
+        "desc": "**Role:** Technical Support",
+        "sample": {
+          "ticket_list": "9 tickets about login loops on iOS 17.4 since the 2.8 release; 4 from the same company; 2 mention the same error code"
+        }
+      },
+      {
+        "id": "14-outage-comms-writer",
+        "name": "Outage Comms Writer",
+        "desc": "**Role:** Technical Support",
+        "sample": {
+          "outage_facts": "Payments API errors for 22% of requests since 14:05 UTC; cause under investigation; card checkout affected"
+        }
+      },
+      {
+        "id": "15-macro-curator",
+        "name": "Macro Curator",
+        "desc": "**Role:** Technical Support",
+        "sample": {
+          "macro_usage": "312 macros; 40 used 80% of the time; 120 not used in a year; CSAT 3 points lower when macro 'Reset steps' is used"
+        }
+      },
+      {
+        "id": "16-csat-feedback-analyst",
+        "name": "Csat Feedback Analyst",
+        "desc": "**Role:** Technical Support",
+        "sample": {
+          "csat_comments": "Responses 620, score 4.1; low scores cite slow replies and repeated questions; praise for clear steps"
+        }
+      },
+      {
+        "id": "17-known-issue-matcher",
+        "name": "Known Issue Matcher",
+        "desc": "**Role:** Technical Support",
+        "sample": {
+          "symptom_report": "Export to PDF hangs at 95% for reports over 5,000 rows on Safari; started after the 3.2 release"
+        }
+      },
+      {
+        "id": "18-enterprise-response-planner",
+        "name": "Enterprise Response Planner",
+        "desc": "**Role:** Technical Support",
+        "sample": {
+          "account_issue": "Acme (ARR 480k, renewal in 60 days): 3 severity-2 tickets in 2 weeks; exec sponsor emailed the CEO"
+        }
+      },
+      {
+        "id": "19-support-capacity-planner",
+        "name": "Support Capacity Planner",
+        "desc": "**Role:** Technical Support",
+        "sample": {
+          "ticket_volume": "2,400 tickets a week, 14 min average handling, 30% shrinkage, volume growing 6% a month"
+        }
+      },
+      {
+        "id": "20-bug-report-qualifier",
+        "name": "Bug Report Qualifier",
+        "desc": "**Role:** Technical Support",
+        "sample": {
+          "customer_report": "Invoice PDF shows wrong tax for Canadian customers since March; two accounts affected; screenshot attached"
+        }
       }
     ]
   },
@@ -683,6 +1243,86 @@ window.VALKYRIE_ROLES = [
         "desc": "**Role:** Developer Relations & Docs",
         "sample": {
           "survey_responses": "Top pain: setting up Rust toolchain; Top delight: 1-click deploy"
+        }
+      },
+      {
+        "id": "11-migration-guide-writer",
+        "name": "Migration Guide Writer",
+        "desc": "**Role:** Developer Relations & Docs",
+        "sample": {
+          "breaking_changes": "v3 renames client.send() to client.request(), drops Python 3.8, and changes retries to opt-in"
+        }
+      },
+      {
+        "id": "12-error-reference-writer",
+        "name": "Error Reference Writer",
+        "desc": "**Role:** Developer Relations & Docs",
+        "sample": {
+          "error_catalog": "E1042 rate_limit_exceeded: 429 when more than 600 requests per minute; E2001 invalid_signature: webhook hash mismatch"
+        }
+      },
+      {
+        "id": "13-api-example-tester",
+        "name": "Api Example Tester",
+        "desc": "**Role:** Developer Relations & Docs",
+        "sample": {
+          "code_examples": "140 examples in 6 languages, 31 reported broken last quarter, SDK v4 released with renamed methods"
+        }
+      },
+      {
+        "id": "14-docs-ia-reviewer",
+        "name": "Docs Ia Reviewer",
+        "desc": "**Role:** Developer Relations & Docs",
+        "sample": {
+          "site_map": "410 pages, 9 top-level sections, 3 pages named Overview, quickstart is 4 clicks from the home page"
+        }
+      },
+      {
+        "id": "15-devrel-metrics-reporter",
+        "name": "Devrel Metrics Reporter",
+        "desc": "**Role:** Developer Relations & Docs",
+        "sample": {
+          "community_stats": "Docs visits 180k, new API keys 2.1k, 38% reach first call, Discord 6.4k members, 14 talks given"
+        }
+      },
+      {
+        "id": "16-tech-blog-outliner",
+        "name": "Tech Blog Outliner",
+        "desc": "**Role:** Developer Relations & Docs",
+        "sample": {
+          "topic_brief": "How we cut p99 latency 40% by moving session lookups from Postgres to a read-through cache"
+        }
+      },
+      {
+        "id": "17-webinar-planner",
+        "name": "Webinar Planner",
+        "desc": "**Role:** Developer Relations & Docs",
+        "sample": {
+          "webinar_brief": "Live build of a webhook-driven workflow, 45 minutes, target 400 registrants, 2 speakers, recording afterwards"
+        }
+      },
+      {
+        "id": "18-sample-app-reviewer",
+        "name": "Sample App Reviewer",
+        "desc": "**Role:** Developer Relations & Docs",
+        "sample": {
+          "sample_readme": "README: clone, npm install, add .env with API key, npm start; hard-coded test key in config.js; no tests"
+        }
+      },
+      {
+        "id": "19-contributing-guide-writer",
+        "name": "Contributing Guide Writer",
+        "desc": "**Role:** Developer Relations & Docs",
+        "sample": {
+          "project_facts": "Rust CLI, 40 contributors, tests run with cargo test, PRs reviewed by 3 maintainers, weekly triage"
+        }
+      },
+      {
+        "id": "20-developer-journey-mapper",
+        "name": "Developer Journey Mapper",
+        "desc": "**Role:** Developer Relations & Docs",
+        "sample": {
+          "journey_notes": "Finds us via search, 4 doc pages to first call, key approval takes a day, production needs a security review"
         }
       }
     ]
@@ -770,6 +1410,86 @@ window.VALKYRIE_ROLES = [
         "sample": {
           "kpi_table": "WAU +14% WoW, Free-to-Paid 4.8%, Median Time-to-First-Deploy 6m"
         }
+      },
+      {
+        "id": "11-lifecycle-email-planner",
+        "name": "Lifecycle Email Planner",
+        "desc": "**Role:** Growth & Product Analytics",
+        "sample": {
+          "lifecycle_goals": "Goal: lift week-1 activation; 38% finish setup; users who invite a teammate retain 2x; trial lasts 14 days"
+        }
+      },
+      {
+        "id": "12-ltv-cac-modeler",
+        "name": "Ltv Cac Modeler",
+        "desc": "**Role:** Growth & Product Analytics",
+        "sample": {
+          "unit_inputs": "ARPA 120 per month, gross margin 78%, monthly churn 2.5%, CAC 1,400 blended, 9 months payback goal"
+        }
+      },
+      {
+        "id": "13-experiment-backlog-ranker",
+        "name": "Experiment Backlog Ranker",
+        "desc": "**Role:** Growth & Product Analytics",
+        "sample": {
+          "experiment_ideas": "Ideas: shorter signup form, annual plan banner, onboarding checklist, referral prompt; 40k visitors a week"
+        }
+      },
+      {
+        "id": "14-referral-program-designer",
+        "name": "Referral Program Designer",
+        "desc": "**Role:** Growth & Product Analytics",
+        "sample": {
+          "referral_brief": "B2B SaaS, 5k active accounts, wants teams to refer peers; CAC 1,200; considering a 100 credit on both sides"
+        }
+      },
+      {
+        "id": "15-onboarding-funnel-auditor",
+        "name": "Onboarding Funnel Auditor",
+        "desc": "**Role:** Growth & Product Analytics",
+        "sample": {
+          "onboarding_steps": "Signup, verify email, create workspace, invite team, connect data, first report; 61% drop at connect data"
+        }
+      },
+      {
+        "id": "16-segment-discovery-analyst",
+        "name": "Segment Discovery Analyst",
+        "desc": "**Role:** Growth & Product Analytics",
+        "sample": {
+          "usage_summary": "4 clusters by usage: heavy API users, dashboard-only viewers, occasional exporters, trial tourists"
+        }
+      },
+      {
+        "id": "17-pricing-page-reviewer",
+        "name": "Pricing Page Reviewer",
+        "desc": "**Role:** Growth & Product Analytics",
+        "sample": {
+          "page_copy": "3 plans (Starter 19, Team 59, Business 199), usage limits hidden behind a tooltip, no annual toggle, no FAQ"
+        }
+      },
+      {
+        "id": "18-pipeline-forecaster",
+        "name": "Pipeline Forecaster",
+        "desc": "**Role:** Growth & Product Analytics",
+        "sample": {
+          "pipeline_snapshot": "Q4 pipeline: 80 deals, 24 in proposal, 9 in negotiation; average deal 38k; 3 deals older than 120 days"
+        }
+      },
+      {
+        "id": "19-event-taxonomy-auditor",
+        "name": "Event Taxonomy Auditor",
+        "desc": "**Role:** Growth & Product Analytics",
+        "sample": {
+          "event_list": "signup, Sign_Up, user_signed_up, click_btn, ButtonClicked, plan_upgraded, upgrade; 340 events, 60 unused"
+        }
+      },
+      {
+        "id": "20-win-loss-analyst",
+        "name": "Win Loss Analyst",
+        "desc": "**Role:** Growth & Product Analytics",
+        "sample": {
+          "deal_notes": "Lost 14 of 30 mid-market deals; reasons: price vs incumbent 6, missing SSO 5, slow security review 3"
+        }
       }
     ]
   },
@@ -855,6 +1575,86 @@ window.VALKYRIE_ROLES = [
         "desc": "**Role:** FinOps & Cloud Cost",
         "sample": {
           "monthly_ledger": "Total $24.5k (-9% MoM), Savings realized $4.2k"
+        }
+      },
+      {
+        "id": "11-commitment-coverage-checker",
+        "name": "Commitment Coverage Checker",
+        "desc": "**Role:** FinOps & Cloud Cost",
+        "sample": {
+          "usage_summary": "Compute 410k a month on demand; commitments cover 52%, utilization 97%; baseline steady 70% of spend"
+        }
+      },
+      {
+        "id": "12-spot-instance-advisor",
+        "name": "Spot Instance Advisor",
+        "desc": "**Role:** FinOps & Cloud Cost",
+        "sample": {
+          "workload_profile": "Batch ETL 120 vCPU nightly, CI runners 60 vCPU, stateless API 200 vCPU; interruptions tolerated for batch and CI"
+        }
+      },
+      {
+        "id": "13-cross-az-traffic-analyst",
+        "name": "Cross Az Traffic Analyst",
+        "desc": "**Role:** FinOps & Cloud Cost",
+        "sample": {
+          "traffic_matrix": "Service mesh sends 62% of traffic across zones; Kafka replication 140 TB/month; one analytics job crosses regions"
+        }
+      },
+      {
+        "id": "14-tagging-policy-auditor",
+        "name": "Tagging Policy Auditor",
+        "desc": "**Role:** FinOps & Cloud Cost",
+        "sample": {
+          "resource_tags": "12,400 resources: 71% have owner, 58% have cost-center, 9 spellings of environment, 3.1k untagged by spend"
+        }
+      },
+      {
+        "id": "15-chargeback-allocator",
+        "name": "Chargeback Allocator",
+        "desc": "**Role:** FinOps & Cloud Cost",
+        "sample": {
+          "shared_costs": "Shared Kubernetes 84k, networking 31k, observability 52k, support 19k a month; 6 product teams"
+        }
+      },
+      {
+        "id": "16-database-cost-tuner",
+        "name": "Database Cost Tuner",
+        "desc": "**Role:** FinOps & Cloud Cost",
+        "sample": {
+          "db_usage": "3 production clusters at 18% CPU, provisioned IOPS 4x used, 9 dev databases running 24/7, backups kept 90 days"
+        }
+      },
+      {
+        "id": "17-observability-cost-reducer",
+        "name": "Observability Cost Reducer",
+        "desc": "**Role:** FinOps & Cloud Cost",
+        "sample": {
+          "telemetry_volumes": "Logs 38 TB/month, 2.4M active metric series (40% unused), traces sampled at 100%, vendor bill 96k a month"
+        }
+      },
+      {
+        "id": "18-forecast-variance-explainer",
+        "name": "Forecast Variance Explainer",
+        "desc": "**Role:** FinOps & Cloud Cost",
+        "sample": {
+          "actual_vs_forecast": "Forecast 1.20M, actual 1.38M (+15%); traffic +9%, new region launch, one-off 40k migration; reservation discount lower than planned"
+        }
+      },
+      {
+        "id": "19-saas-license-optimizer",
+        "name": "Saas License Optimizer",
+        "desc": "**Role:** FinOps & Cloud Cost",
+        "sample": {
+          "license_usage": "CRM 480 seats, 61% active in 90 days; design tool 120 seats, 38 never opened; renewal in 70 days"
+        }
+      },
+      {
+        "id": "20-gpu-utilization-analyst",
+        "name": "Gpu Utilization Analyst",
+        "desc": "**Role:** FinOps & Cloud Cost",
+        "sample": {
+          "gpu_metrics": "64 GPUs, average utilization 31%, jobs queue for 3 hours at peak, 22% of GPU-hours are idle between jobs"
         }
       }
     ]
@@ -942,6 +1742,86 @@ window.VALKYRIE_ROLES = [
         "sample": {
           "qbr_inputs": "Q4: 9/10 milestones on track; Rust CLI 1 week behind"
         }
+      },
+      {
+        "id": "11-delegation-coach",
+        "name": "Delegation Coach",
+        "desc": "**Role:** Engineering & Product Management",
+        "sample": {
+          "task_list": "My tasks: weekly metrics report, vendor negotiation, hiring screens, incident reviews, roadmap draft"
+        }
+      },
+      {
+        "id": "12-promotion-packet-builder",
+        "name": "Promotion Packet Builder",
+        "desc": "**Role:** Engineering & Product Management",
+        "sample": {
+          "impact_notes": "Led billing migration (zero downtime, 3 teams), mentored 2 engineers, cut invoice errors 70%, wrote the pricing RFC"
+        }
+      },
+      {
+        "id": "13-conflict-mediation-guide",
+        "name": "Conflict Mediation Guide",
+        "desc": "**Role:** Engineering & Product Management",
+        "sample": {
+          "conflict_summary": "Two senior engineers disagree on ownership of the auth service; reviews have turned sharp; 3 teammates raised concerns"
+        }
+      },
+      {
+        "id": "14-retro-facilitator",
+        "name": "Retro Facilitator",
+        "desc": "**Role:** Engineering & Product Management",
+        "sample": {
+          "retro_notes": "Sprint 42: 3 incidents, review wait 2 days, good pairing, unclear priorities; last retro's 4 actions: 1 done"
+        }
+      },
+      {
+        "id": "15-headcount-justifier",
+        "name": "Headcount Justifier",
+        "desc": "**Role:** Engineering & Product Management",
+        "sample": {
+          "workload_data": "On-call load 1.8x target, 3 roadmap items slipped a quarter, team of 8, requesting 2 engineers"
+        }
+      },
+      {
+        "id": "16-first-90-days-planner",
+        "name": "First 90 Days Planner",
+        "desc": "**Role:** Engineering & Product Management",
+        "sample": {
+          "role_context": "New engineering manager for a 9-person platform team, two open incidents, roadmap behind, one low-morale report"
+        }
+      },
+      {
+        "id": "17-tradeoff-advisor",
+        "name": "Tradeoff Advisor",
+        "desc": "**Role:** Engineering & Product Management",
+        "sample": {
+          "competing_asks": "Sales wants a custom export for a 300k deal; support wants fixes for 40 tickets; platform wants a 3-week upgrade"
+        }
+      },
+      {
+        "id": "18-skip-level-prep-assistant",
+        "name": "Skip Level Prep Assistant",
+        "desc": "**Role:** Engineering & Product Management",
+        "sample": {
+          "team_signals": "Team of 14 under 2 managers; engagement dip in the survey; reports mention unclear priorities and slow decisions"
+        }
+      },
+      {
+        "id": "19-blameless-review-facilitator",
+        "name": "Blameless Review Facilitator",
+        "desc": "**Role:** Engineering & Product Management",
+        "sample": {
+          "incident_timeline": "Checkout down 47 minutes after a config push at 14:05; rollback delayed by missing runbook; alert fired 9 minutes late"
+        }
+      },
+      {
+        "id": "20-feedback-writer",
+        "name": "Feedback Writer",
+        "desc": "**Role:** Engineering & Product Management",
+        "sample": {
+          "observed_behavior": "In Tuesday's design review you interrupted two juniors; they stopped presenting; the design missed two edge cases"
+        }
       }
     ]
   },
@@ -1027,6 +1907,86 @@ window.VALKYRIE_ROLES = [
         "desc": "**Role:** C-Suite & Executives (CxOs)",
         "sample": {
           "exec_inputs": "Pipeline $1.4M, Uptime 99.98%, 2 senior offers accepted"
+        }
+      },
+      {
+        "id": "11-cash-runway-analyst",
+        "name": "Cash Runway Analyst",
+        "desc": "**Role:** C-Suite & Executives (CxOs)",
+        "sample": {
+          "cash_position": "Cash 14.2M, net burn 780k a month, 9% monthly growth in revenue, 2 enterprise deals pending, hiring plan adds 600k"
+        }
+      },
+      {
+        "id": "12-fundraising-narrative-builder",
+        "name": "Fundraising Narrative Builder",
+        "desc": "**Role:** C-Suite & Executives (CxOs)",
+        "sample": {
+          "company_facts": "B2B workflow SaaS, 4.1M ARR growing 160% a year, 118% net retention, raising 20M Series B, 24 months of runway wanted"
+        }
+      },
+      {
+        "id": "13-board-risk-register-keeper",
+        "name": "Board Risk Register Keeper",
+        "desc": "**Role:** C-Suite & Executives (CxOs)",
+        "sample": {
+          "risk_list": "Top risks: key customer concentration, regulatory change in EU, cloud outage, loss of CTO, pricing pressure"
+        }
+      },
+      {
+        "id": "14-executive-pricing-strategist",
+        "name": "Executive Pricing Strategist",
+        "desc": "**Role:** C-Suite & Executives (CxOs)",
+        "sample": {
+          "pricing_context": "Considering a 12% price rise on the Team plan; competitors flat; 4% monthly churn risk if the rise lands badly"
+        }
+      },
+      {
+        "id": "15-partnership-evaluator",
+        "name": "Partnership Evaluator",
+        "desc": "**Role:** C-Suite & Executives (CxOs)",
+        "sample": {
+          "partnership_terms": "Channel partner offers access to 800 mid-market accounts for 25% revenue share; exclusivity 2 years; co-marketing"
+        }
+      },
+      {
+        "id": "16-exec-search-planner",
+        "name": "Exec Search Planner",
+        "desc": "**Role:** C-Suite & Executives (CxOs)",
+        "sample": {
+          "role_need": "Need a VP Sales for a 6M to 25M ARR journey; enterprise motion new; current head of sales leaving in 3 months"
+        }
+      },
+      {
+        "id": "17-earnings-call-prep-coach",
+        "name": "Earnings Call Prep Coach",
+        "desc": "**Role:** C-Suite & Executives (CxOs)",
+        "sample": {
+          "quarter_results": "Revenue +22% (guide +25%), gross margin down 1.8 points, guidance cut for next quarter, one-time charge"
+        }
+      },
+      {
+        "id": "18-cyber-risk-briefer",
+        "name": "Cyber Risk Briefer",
+        "desc": "**Role:** C-Suite & Executives (CxOs)",
+        "sample": {
+          "security_summary": "3 critical findings open, MFA on 91% of staff, last restore test 14 months ago, ransomware drill planned"
+        }
+      },
+      {
+        "id": "19-esg-metrics-reporter",
+        "name": "Esg Metrics Reporter",
+        "desc": "**Role:** C-Suite & Executives (CxOs)",
+        "sample": {
+          "esg_inputs": "Cloud 1,900 MWh, offices 420 MWh, travel 310 tCO2e; 58% renewable power; target net zero by 2040"
+        }
+      },
+      {
+        "id": "20-strategic-bet-reviewer",
+        "name": "Strategic Bet Reviewer",
+        "desc": "**Role:** C-Suite & Executives (CxOs)",
+        "sample": {
+          "bet_proposal": "Enter the healthcare vertical: 4M investment over 18 months, new compliance burden, 3 design partners signed"
         }
       }
     ]

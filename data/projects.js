@@ -134,27 +134,31 @@ window.PORTFOLIO = {
       license: "MIT",
       title: "Valkyrie AI Agent Studio",
       problem: "Teams struggle to design, test, optimize, and ship reliable AI agents across roles without vendor lock-in or brittle scripts.",
-      summary: "Standalone desktop platform (Tauri Rust Shell, TypeScript, React, FastAPI, and 121-crate Cargo Workspace) with 120 focused agents across 12 tech company roles, free-first LLM routing, local pymoo genetic-algorithm prompt optimization, and one-click IR-to-Rust compilation.",
+      summary: "Standalone desktop platform (Tauri Rust Shell, TypeScript, React, FastAPI, and 242-crate Cargo Workspace) with 240 focused agents across 12 tech company roles (20 per role), free-first LLM routing, local pymoo genetic-algorithm prompt optimization, and one-click IR-to-Rust compilation.",
       stack: ["Rust", "Tauri", "TypeScript", "React", "FastAPI", "Python"],
       images: [
-        { src: "assets/python-valkyrie-ai-agent-studio/Valkyrie Studio Dark Mode - Developers.jpg", alt: "Valkyrie AI Agent Studio Dark Mode Developers view", caption: "1. Dark Mode — Developers Role" },
-        { src: "assets/python-valkyrie-ai-agent-studio/Valkyrie Studio Dark Mode - Python Edit Concurrency.jpg", alt: "Valkyrie Studio editing Python concurrency agent", caption: "2. Python Agent — Concurrency Audit" },
-        { src: "assets/python-valkyrie-ai-agent-studio/Valkyrie Studio Dark Mode - Python Edit Security.jpg", alt: "Valkyrie Studio editing Python security agent", caption: "3. Python Agent — Security Scan" },
-        { src: "assets/python-valkyrie-ai-agent-studio/Valkyrie Studio Light Mode - CXOs.jpg", alt: "Valkyrie AI Agent Studio Light Mode CXOs view", caption: "4. Light Mode — CXOs Role" },
-        { src: "assets/python-valkyrie-ai-agent-studio/Valkyrie Studio Light Mode - Developers.jpg", alt: "Valkyrie AI Agent Studio Light Mode Developers view", caption: "5. Light Mode — Developers Role" },
-        { src: "assets/python-valkyrie-ai-agent-studio/Valkyrie Studio Light Mode - Python Edit - Dependencies.jpg", alt: "Valkyrie Studio editing Python dependencies agent", caption: "6. Python Agent — Dependency Graph" },
-        { src: "assets/python-valkyrie-ai-agent-studio/github.jpg", alt: "The valkyrie-ai-agent-studio repository page on GitHub", caption: "7. Open source on GitHub" }
+        { src: "assets/python-valkyrie-ai-agent-studio/dark-01-run-product-management.jpg", lightSrc: "assets/python-valkyrie-ai-agent-studio/light-01-run-product-management.jpg", alt: "Valkyrie Studio Advanced Run tab — Product Management", caption: "1. Advanced Mode — Run Tab (Product Management)" },
+        { src: "assets/python-valkyrie-ai-agent-studio/dark-02-about-agent.jpg", lightSrc: "assets/python-valkyrie-ai-agent-studio/light-02-about-agent.jpg", alt: "Valkyrie Studio About this agent tab", caption: "2. Advanced Mode — About Agent" },
+        { src: "assets/python-valkyrie-ai-agent-studio/dark-03-create-agent.jpg", lightSrc: "assets/python-valkyrie-ai-agent-studio/light-03-create-agent.jpg", alt: "Valkyrie Studio Create agent tab", caption: "3. Advanced Mode — Create Agent" },
+        { src: "assets/python-valkyrie-ai-agent-studio/dark-04-design-studio.jpg", lightSrc: "assets/python-valkyrie-ai-agent-studio/light-04-design-studio.jpg", alt: "Valkyrie Studio Design tab", caption: "4. Advanced Mode — Design Studio" },
+        { src: "assets/python-valkyrie-ai-agent-studio/dark-05-python-code.jpg", lightSrc: "assets/python-valkyrie-ai-agent-studio/light-05-python-code.jpg", alt: "Valkyrie Studio Python code editor tab", caption: "5. Advanced Mode — Python Editor" },
+        { src: "assets/python-valkyrie-ai-agent-studio/dark-06-secrets-vault.jpg", lightSrc: "assets/python-valkyrie-ai-agent-studio/light-06-secrets-vault.jpg", alt: "Valkyrie Studio Secrets tab", caption: "6. Advanced Mode — Secrets & Routing" },
+        { src: "assets/python-valkyrie-ai-agent-studio/dark-07-software-engineering-run.jpg", lightSrc: "assets/python-valkyrie-ai-agent-studio/light-07-software-engineering-run.jpg", alt: "Valkyrie Studio Software Engineering role", caption: "7. Advanced Mode — Software Engineering" },
+        { src: "assets/python-valkyrie-ai-agent-studio/dark-08-devops-sre-design.jpg", lightSrc: "assets/python-valkyrie-ai-agent-studio/light-08-devops-sre-design.jpg", alt: "Valkyrie Studio DevOps SRE Design tab", caption: "8. Advanced Mode — DevOps & SRE Design" },
+        { src: "assets/python-valkyrie-ai-agent-studio/dark-09-security-appsec-python.jpg", lightSrc: "assets/python-valkyrie-ai-agent-studio/light-09-security-appsec-python.jpg", alt: "Valkyrie Studio Security AppSec Python tab", caption: "9. Advanced Mode — Security & AppSec" },
+        { src: "assets/python-valkyrie-ai-agent-studio/dark-10-cxos-run.jpg", lightSrc: "assets/python-valkyrie-ai-agent-studio/light-10-cxos-run.jpg", alt: "Valkyrie Studio CXOs role", caption: "10. Advanced Mode — CXOs & Leadership" },
+        { src: "assets/python-valkyrie-ai-agent-studio/github.jpg", alt: "The valkyrie-ai-agent-studio repository page on GitHub", caption: "11. Open source on GitHub" }
       ],
-      run: { src: "demos/valkyrie-agent-studio/index.html", height: 760, note: "Browser Sandbox covers all 12 roles and 120 agents with editable sample_data.json contracts and deterministic runs. Live FastAPI execution, local Ollama / free-tier LLM routing, pymoo GA optimization, and 121-crate Tauri/Rust compilation will not work in browsers, mobiles, or tablets and require the desktop app." },
+      run: { src: "demos/valkyrie-agent-studio/index.html", height: 760, note: "Browser Sandbox covers all 12 roles and 240 agents with editable sample_data.json contracts and deterministic runs. Live FastAPI execution, local Ollama / free-tier LLM routing, pymoo GA optimization, and 242-crate Tauri/Rust compilation will not work in browsers, mobiles, or tablets and require the desktop app." },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/valkyrie-ai-agent-studio", writeup: "" },
-      useCases: "Built with Tauri, Rust, React, and FastAPI for engineering teams deploying 120 role-specific AI agents with typed YAML contracts, free-first multi-provider LLM routing, local pymoo genetic-algorithm tuning, 100% TDD enforcement, and one-click transpilation into async tokio Rust crates.",
+      useCases: "Built with Tauri, Rust, React, and FastAPI for engineering teams deploying 240 role-specific AI agents with typed YAML contracts, free-first multi-provider LLM routing, local pymoo genetic-algorithm tuning, 100% TDD enforcement, and one-click transpilation into async tokio Rust crates.",
       aiPoints: [
-        "Role-Aligned Agentic Workflows: Standardizes 120 specialized agents across 12 enterprise functions—from DevOps and AppSec to FinOps and Product—replacing ad-hoc prompt scripts with typed IR contracts.",
+        "Role-Aligned Agentic Workflows: Standardizes 240 specialized agents across 12 enterprise functions—from DevOps and AppSec to FinOps and Product—replacing ad-hoc prompt scripts with typed IR contracts.",
         "Cost-Aware Free-First Routing: Automatically prioritizes free-tier cloud endpoints and local Ollama models before falling back to paid subscriptions, cutting enterprise experimentation bills.",
         "Evolutionary Prompt & Parameter Tuning: Applies local pymoo genetic algorithms to optimize temperature and token scaling across repeated runs without manual trial-and-error.",
-        "Python-to-Rust Production Path: Transpiles validated agent definitions into standalone async tokio Rust crates for high-concurrency deployment."
+        "Python-to-Rust Production Path: Transpiles validated agent definitions into standalone async tokio Rust crates across a 242-crate Cargo workspace for high-concurrency deployment."
       ],
-      updated: "2026-11-18"
+      updated: "2026-11-19"
     },
     {
       id: "go-ai-gateway",

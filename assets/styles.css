@@ -84,14 +84,31 @@ a:hover { color: var(--gold-hi); }
 .hero-link-btn:hover { background: rgba(212,175,55,.18); border-color: var(--gold-hi); color: var(--gold-hi); }
 .hero-link-btn svg { flex: none; }
 .bar nav a:hover { color: var(--gold); }
-.theme-toggle {
-  margin-left: 12px; padding: 6px 12px; border-radius: 999px; cursor: pointer;
-  border: 1px solid rgba(212,175,55,.45); background: rgba(212,175,55,.08);
-  color: var(--gold); font: inherit; font-size: .8rem; font-weight: 600;
-  letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap;
-  transition: background-color .15s, border-color .15s;
+.theme-slider {
+  margin-left: auto; display: inline-flex; align-items: center; gap: 8px;
+  cursor: pointer; user-select: none; padding: 4px 10px; border-radius: 999px;
+  border: 1px solid rgba(212,175,55,.35); background: rgba(212,175,55,.07);
 }
-.theme-toggle:hover { background: rgba(212,175,55,.2); border-color: var(--gold-hi); }
+.theme-slider input { position: absolute; opacity: 0; width: 0; height: 0; }
+.theme-slider-label { font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--gold); }
+.theme-slider-track {
+  position: relative; width: 42px; height: 22px; border-radius: 999px;
+  background: rgba(212,175,55,.18); border: 1px solid var(--gold);
+  transition: background-color .2s ease;
+}
+.theme-slider-thumb {
+  position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%;
+  background: var(--gold); transition: transform .2s ease, background-color .2s ease;
+}
+.theme-slider input:checked + .theme-slider-track .theme-slider-thumb { transform: translateX(20px); }
+.theme-slider input:focus-visible + .theme-slider-track { outline: 2px solid var(--gold-hi); outline-offset: 2px; }
+html[data-theme="light"] .theme-slider {
+  border-color: rgba(30, 64, 175, 0.35); background: rgba(30, 64, 175, 0.08);
+}
+html[data-theme="light"] .theme-slider-track {
+  background: rgba(30, 64, 175, 0.16); border-color: #1e40af;
+}
+html[data-theme="light"] .theme-slider-thumb { background: #1e40af; }
 
 /* ---------- soft darkish-blue light mode (eye-friendly, low glare) ---------- */
 html[data-theme="light"] {

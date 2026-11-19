@@ -169,10 +169,13 @@
   function carousel(p) {
     var imgs = p.images || [];
     if (!imgs.length) return "";
+    var isLightNow = document.documentElement && document.documentElement.getAttribute("data-theme") === "light";
     var slides = imgs.map(function (im, i) {
+      var activeSrc = (isLightNow && im.lightSrc) ? im.lightSrc : im.src;
+      var themeAttrs = im.lightSrc ? ' data-dark-src="' + esc(im.src) + '" data-light-src="' + esc(im.lightSrc) + '"' : "";
       return '<figure class="car-slide" aria-label="' + (i + 1) + " of " + imgs.length + '">' +
-        '<a href="' + esc(im.src) + '" target="_blank" rel="noopener" class="car-zoom" aria-label="Open full image: ' + esc(im.alt || im.caption || "screenshot") + '">' +
-        '<img src="' + esc(im.src) + '" alt="' + esc(im.alt || "") + '" loading="lazy"></a>' +
+        '<a href="' + esc(activeSrc) + '" target="_blank" rel="noopener" class="car-zoom"' + themeAttrs + ' aria-label="Open full image: ' + esc(im.alt || im.caption || "screenshot") + '">' +
+        '<img src="' + esc(activeSrc) + '"' + themeAttrs + ' alt="' + esc(im.alt || "") + '" loading="lazy"></a>' +
         (im.caption ? "<figcaption>" + esc(im.caption) + "</figcaption>" : "") + "</figure>";
     }).join("");
     var controls = imgs.length < 2 ? "" :
@@ -343,21 +346,28 @@
       sourceHtml + aiPoints(a) + "</li>";
   }).join("");
 
-  /* ---------- light / dark mode toggle ---------- */
+  /* ---------- light / dark mode slider ---------- */
   var themeBtn = document.getElementById("theme-toggle");
   if (themeBtn && document.documentElement) {
     function applyTheme(mode) {
       var isLight = mode === "light";
       if (isLight) document.documentElement.setAttribute("data-theme", "light");
       else document.documentElement.removeAttribute("data-theme");
-      themeBtn.textContent = isLight ? "\u263E Dark" : "\u2600 Light";
-      themeBtn.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
+      themeBtn.checked = isLight;
+      themeBtn.setAttribute("aria-checked", String(isLight));
+      if (document.querySelectorAll) {
+        Array.prototype.forEach.call(document.querySelectorAll("[data-dark-src][data-light-src]"), function (el) {
+          var src = el.getAttribute(isLight ? "data-light-src" : "data-dark-src");
+          if (el.tagName === "IMG") el.src = src;
+          else if (el.tagName === "A") el.href = src;
+        });
+      }
     }
     var savedTheme = "";
     try { savedTheme = window.localStorage ? window.localStorage.getItem("portfolio-theme") || "" : ""; } catch (e) {}
     applyTheme(savedTheme === "light" ? "light" : "dark");
-    themeBtn.addEventListener("click", function () {
-      var next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+    themeBtn.addEventListener("change", function () {
+      var next = themeBtn.checked ? "light" : "dark";
       applyTheme(next);
       try { if (window.localStorage) window.localStorage.setItem("portfolio-theme", next); } catch (e) {}
     });

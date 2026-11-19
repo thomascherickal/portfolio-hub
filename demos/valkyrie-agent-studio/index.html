@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Valkyrie AI Agent Studio — 12 Roles / 120 Agents Browser Demo</title>
+<title>Valkyrie AI Agent Studio — 12 Roles / 240 Agents Browser Demo</title>
 <style>
   :root {
     --bg: #08090d; --surface: #11131b; --panel: #0b0d13; --border: #262938;
     --ink: #f4f1ea; --muted: #a0a4b8; --gold: #d4af37; --cyan: #6ed6f0; --green: #7fe3a4; --warn: #f59e0b;
   }
   body.light {
-    --bg: #f6f7fb; --surface: #ffffff; --panel: #eef0f6; --border: #d5d9e5;
-    --ink: #11131b; --muted: #4c5268; --gold: #9a7409; --cyan: #0284c7; --green: #15803d; --warn: #b45309;
+    --bg: #eef2f7; --surface: #ffffff; --panel: #e4eaf2; --border: #cbd5e1;
+    --ink: #162a45; --muted: #3b5170; --gold: #1e40af; --cyan: #0e7490; --green: #15803d; --warn: #b45309;
   }
   * { box-sizing: border-box; }
   body { margin: 0; font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.5; }
@@ -32,63 +32,67 @@
   .count { font-size: .75rem; color: var(--muted); }
   main { padding: 22px; display: grid; gap: 18px; align-content: start; }
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
-  .agents { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
-  .agent-chip { padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--panel); color: var(--ink); text-align: left; cursor: pointer; font: inherit; font-size: .86rem; }
+  .agents { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; max-height: 220px; overflow-y: auto; }
+  .agent-chip { padding: 9px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--panel); color: var(--ink); text-align: left; cursor: pointer; font: inherit; font-size: .85rem; }
   .agent-chip[aria-pressed="true"] { border-color: var(--cyan); color: var(--cyan); font-weight: 600; }
-  textarea, pre { width: 100%; background: var(--panel); color: var(--ink); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-family: ui-monospace, SFMono-Regular, monospace; font-size: .84rem; overflow-x: auto; }
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 14px; }
+  .tab-btn { padding: 7px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--panel); color: var(--ink); cursor: pointer; font: inherit; font-size: .86rem; font-weight: 600; }
+  .tab-btn[aria-selected="true"] { border-color: var(--gold); background: var(--gold); color: #000; }
+  body.light .tab-btn[aria-selected="true"] { color: #fff; }
+  textarea, pre, input.field { width: 100%; background: var(--panel); color: var(--ink); border: 1px solid var(--border); border-radius: 8px; padding: 11px; font-family: ui-monospace, SFMono-Regular, monospace; font-size: .84rem; overflow-x: auto; }
   .btn { padding: 9px 18px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); font-weight: 600; cursor: pointer; font-size: .86rem; }
   .btn-gold { background: var(--gold); color: #000; border-color: var(--gold); font-weight: 700; }
+  body.light .btn-gold { color: #fff; }
   .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 12px 0; }
   .note { font-size: .84rem; color: var(--muted); }
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
 </style>
 </head>
 <body>
 <header>
-  <h1>Valkyrie AI Agent Studio &mdash; 120-Agent Browser Sandbox</h1>
+  <h1>Valkyrie AI Agent Studio &mdash; 240-Agent Browser Sandbox</h1>
   <div class="controls">
-    <span class="badge" id="totals-badge">12 Roles &bull; 120 Agents</span>
+    <span class="badge" id="totals-badge">12 Roles &bull; 240 Agents</span>
     <select id="mode-select" class="btn" aria-label="Experience mode">
       <option value="beginner">Beginner Mode</option>
-      <option value="intermediate" selected>Intermediate Mode</option>
-      <option value="advanced">Advanced Mode</option>
+      <option value="advanced" selected>Advanced Mode</option>
     </select>
     <button type="button" class="btn" id="theme-btn">Toggle Light / Dark</button>
   </div>
 </header>
 <div class="notice">
-  <strong>Browser vs. Desktop Limitations:</strong> Browser Sandbox supports browsing all 12 roles &amp; 120 agents, inspecting <code>sample_data.json</code> contracts, and deterministic sample runs. <strong>Cannot run in browser:</strong> live FastAPI server, local Ollama / free-tier LLM API routing, <code>pymoo</code> Genetic Algorithm optimization, and 121-crate Tauri/Rust compilation (desktop app required).
+  <strong>Browser vs. Desktop Limitations:</strong> Browser Sandbox supports browsing all 12 roles &amp; 240 agents, Beginner/Advanced tabs (Run, About, Create, Design, Python, Secrets), inspecting <code>sample_data.json</code> contracts, and deterministic sample runs. <strong>Cannot run in browser:</strong> live FastAPI server, local Ollama / free-tier LLM API routing, <code>pymoo</code> Genetic Algorithm optimization, and 242-crate Tauri/Rust compilation (desktop app required).
 </div>
 <div class="layout">
   <aside>
-    <input type="search" id="search" class="search" placeholder="Filter 120 agents..." aria-label="Filter agents">
+    <input type="search" id="search" class="search" placeholder="Filter 240 agents..." aria-label="Filter agents">
     <h2>12 Tech Company Roles</h2>
     <div id="roles"></div>
   </aside>
   <main>
     <div class="card">
       <h2 id="role-title" style="margin:0 0 6px;color:var(--gold)"></h2>
-      <p class="note" id="role-sub" style="margin:0 0 14px"></p>
+      <p class="note" id="role-sub" style="margin:0 0 12px"></p>
       <div id="agents" class="agents"></div>
     </div>
     <div class="card">
       <h3 id="agent-title" style="margin:0 0 6px"></h3>
       <p class="note" id="agent-desc" style="margin:0 0 12px"></p>
-      <label class="note" for="input-json">Typed Input (<code>sample_data.json</code>)</label>
-      <textarea id="input-json" rows="6"></textarea>
-      <div class="row">
-        <button class="btn btn-gold" id="run-btn" type="button">&#9654; Run Agent (Browser Deterministic Mode)</button>
-        <span class="note" id="route-note"></span>
-      </div>
-      <label class="note" for="output-json">Typed Output</label>
-      <pre id="output-json">Click "Run Agent" to execute deterministic sample output.</pre>
+      <div class="tabs" role="tablist" id="studio-tabs"></div>
+      <div id="tab-content"></div>
     </div>
   </main>
 </div>
 <script src="agents-data.js"></script>
 <script>
 const ROLES = window.VALKYRIE_ROLES || [];
+const MODE_TABS = {
+  beginner: [["run", "Run"], ["about", "About this agent"], ["create", "Create agent"]],
+  advanced: [["run", "Run"], ["about", "About this agent"], ["create", "Create agent"], ["design", "Design"], ["code", "Python"], ["secrets", "Secrets"]]
+};
 let activeRole = ROLES[0];
 let activeAgent = activeRole && activeRole.agents[0];
+let activeTab = "run";
 let query = "";
 
 const rolesEl = document.getElementById("roles");
@@ -97,15 +101,87 @@ const roleTitle = document.getElementById("role-title");
 const roleSub = document.getElementById("role-sub");
 const agentTitle = document.getElementById("agent-title");
 const agentDesc = document.getElementById("agent-desc");
-const inEl = document.getElementById("input-json");
-const outEl = document.getElementById("output-json");
-const routeNote = document.getElementById("route-note");
+const tabsEl = document.getElementById("studio-tabs");
+const tabContent = document.getElementById("tab-content");
 const modeSelect = document.getElementById("mode-select");
 
+function esc(s) { return String(s || "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
 function filteredAgents(role) {
   if (!role) return [];
   if (!query) return role.agents;
   return role.agents.filter(a => a.name.toLowerCase().includes(query) || a.desc.toLowerCase().includes(query));
+}
+
+function renderTab() {
+  if (!activeAgent) return;
+  const sampleStr = JSON.stringify(activeAgent.sample, null, 2);
+  if (activeTab === "run") {
+    tabContent.innerHTML = `
+      <label class="note" for="input-json">Typed Input (<code>sample_data.json</code>)</label>
+      <textarea id="input-json" rows="6">${esc(sampleStr)}</textarea>
+      <div class="row">
+        <button class="btn btn-gold" id="run-btn" type="button">&#9654; Run Agent (Browser Deterministic Mode)</button>
+        <span class="note">Desktop LLM routing: gemini-4-hydrogen (low) &rarr; opencode_free &rarr; openrouter_free</span>
+      </div>
+      <label class="note" for="output-json">Typed Output</label>
+      <pre id="output-json">Click "Run Agent" to execute deterministic contract validation.</pre>`;
+    document.getElementById("run-btn").onclick = () => {
+      const outEl = document.getElementById("output-json");
+      let parsed;
+      try { parsed = JSON.parse(document.getElementById("input-json").value || "{}"); }
+      catch (err) { outEl.textContent = "Invalid JSON input: " + err.message; return; }
+      outEl.textContent = JSON.stringify({
+        role: activeRole.name,
+        agent: activeAgent.id,
+        execution_mode: "browser-deterministic-sandbox",
+        experience_mode: modeSelect.value,
+        input_keys: Object.keys(parsed),
+        status: "ok",
+        summary: `Validated typed contract for ${activeAgent.name} (${Object.keys(parsed).length} input fields).`,
+        desktop_only_features: ["FastAPI live route", "Free-tier / Ollama LLM inference", "pymoo GA optimization", "242-crate Cargo/Tauri Rust build"]
+      }, null, 2);
+    };
+  } else if (activeTab === "about") {
+    tabContent.innerHTML = `
+      <p>${esc(activeAgent.desc)}</p>
+      <div class="grid2">
+        <div class="card"><div class="note">Role</div><strong>${esc(activeRole.name)}</strong></div>
+        <div class="card"><div class="note">Agent ID</div><code>${esc(activeAgent.id)}</code></div>
+        <div class="card"><div class="note">Contract Files</div><code>agent.ir.yaml, agent.py, sample_data.json, rust/</code></div>
+      </div>`;
+  } else if (activeTab === "create") {
+    tabContent.innerHTML = `
+      <p class="note">Preview the custom agent scaffold generator. Saving new verified agents to disk and compiling Rust crates requires the desktop app.</p>
+      <div class="grid2">
+        <div><label class="note">Agent Name</label><input class="field" id="new-name" value="Custom ${esc(activeRole.name)} Agent"></div>
+        <div><label class="note">Tool Name</label><input class="field" id="new-tool" value="custom_analyzer"></div>
+      </div>
+      <div class="row"><button class="btn btn-gold" id="gen-ir" type="button">Preview agent.ir.yaml</button></div>
+      <pre id="ir-out">Click "Preview agent.ir.yaml" to generate a typed contract.</pre>`;
+    document.getElementById("gen-ir").onclick = () => {
+      const n = document.getElementById("new-name").value.trim() || "Custom Agent";
+      const t = document.getElementById("new-tool").value.trim() || "custom_tool";
+      document.getElementById("ir-out").textContent = `id: ${n.toLowerCase().replace(/[^a-z0-9]+/g, "-")}\nname: "${n}"\nrole: "${activeRole.name}"\ntool: "${t}"\nmodel: "gemini-4-hydrogen"\nthinking_level: "low"\nrust_target: "tokio + serde"`;
+    };
+  } else if (activeTab === "design") {
+    tabContent.innerHTML = `
+      <p class="note">Advanced Mode prompt &amp; parameter preview (local <code>pymoo</code> Genetic Algorithm tuning runs every 3rd execution in the desktop app).</p>
+      <label class="note">System Prompt</label>
+      <textarea rows="4">You are ${esc(activeAgent.name)} for ${esc(activeRole.name)}. ${esc(activeAgent.desc)} Always return strict typed JSON.</textarea>
+      <div class="grid2" style="margin-top:12px;">
+        <div class="card"><div class="note">Temperature</div><strong>0.25</strong></div>
+        <div class="card"><div class="note">Max Tokens Scale</div><strong>1.0x</strong></div>
+        <div class="card"><div class="note">Optimizer</div><strong>pymoo GA (Desktop)</strong></div>
+      </div>`;
+  } else if (activeTab === "code") {
+    tabContent.innerHTML = `
+      <p class="note">Deterministic Python handler preview (<code>agents/${esc(activeRole.id)}/${esc(activeAgent.id)}/agent.py</code>):</p>
+      <pre>def run(payload: dict) -&gt; dict:\n    """${esc(activeAgent.name)} (${esc(activeRole.name)})"""\n    return {\n        "agent": "${esc(activeAgent.id)}",\n        "status": "ok",\n        "received_keys": sorted(payload.keys()),\n    }</pre>`;
+  } else if (activeTab === "secrets") {
+    tabContent.innerHTML = `
+      <p class="note">Free-First LLM Provider Routing &amp; Vault (API keys are never stored in the browser demo; configure keys locally in the desktop app):</p>
+      <pre>1. gemini_free       (default: gemini-4-hydrogen · low thinking)\n2. opencode_free     (automatic fallback)\n3. openrouter_free   (automatic fallback)\n4. ollama            (local qwen3.5:latest)</pre>`;
+  }
 }
 
 function render() {
@@ -114,64 +190,33 @@ function render() {
 
   rolesEl.innerHTML = ROLES.map((r, i) => {
     const count = filteredAgents(r).length;
-    return `<button class="role-btn" data-r="${i}" aria-current="${r === activeRole}"><span>${r.name}</span><span class="count">${count}</span></button>`;
+    return `<button class="role-btn" data-r="${i}" aria-current="${r === activeRole}"><span>${esc(r.name)}</span><span class="count">${count}</span></button>`;
   }).join("");
 
   const list = filteredAgents(activeRole);
   if (!list.includes(activeAgent)) activeAgent = list[0] || activeRole.agents[0];
 
   roleTitle.textContent = activeRole ? activeRole.name : "";
-  roleSub.textContent = `${list.length} agent(s) shown in ${activeRole ? activeRole.name : ""} (${modeSelect.value} view).`;
-  agentsEl.innerHTML = list.map(a => `<button class="agent-chip" data-id="${a.id}" aria-pressed="${a === activeAgent}">${a.name}</button>`).join("");
+  roleSub.textContent = `${list.length} agent(s) shown in ${activeRole ? activeRole.name : ""} (${modeSelect.value} mode).`;
+  agentsEl.innerHTML = list.map(a => `<button class="agent-chip" data-id="${esc(a.id)}" aria-pressed="${a === activeAgent}">${esc(a.name)}</button>`).join("");
+
+  const tabs = MODE_TABS[modeSelect.value] || MODE_TABS.advanced;
+  if (!tabs.some(([id]) => id === activeTab)) activeTab = "run";
+  tabsEl.innerHTML = tabs.map(([id, label]) => `<button class="tab-btn" role="tab" data-tab="${id}" aria-selected="${id === activeTab}">${label}</button>`).join("");
 
   if (activeAgent) {
     agentTitle.textContent = `${activeAgent.name} (${activeAgent.id})`;
     agentDesc.textContent = activeAgent.desc;
-    inEl.value = JSON.stringify(activeAgent.sample, null, 2);
-    routeNote.textContent = `Mode: ${modeSelect.value} | Desktop LLM: gemini-4-hydrogen (low) -> opencode_free -> openrouter_free`;
-    outEl.textContent = 'Click "Run Agent" to execute deterministic sample output.';
+    renderTab();
   }
 }
 
-rolesEl.onclick = (e) => {
-  const b = e.target.closest("[data-r]");
-  if (!b) return;
-  activeRole = ROLES[+b.dataset.r];
-  activeAgent = activeRole.agents[0];
-  render();
-};
-
-agentsEl.onclick = (e) => {
-  const b = e.target.closest("[data-id]");
-  if (!b) return;
-  activeAgent = activeRole.agents.find(a => a.id === b.dataset.id) || activeAgent;
-  render();
-};
-
-document.getElementById("search").oninput = (e) => {
-  query = e.target.value.trim().toLowerCase();
-  render();
-};
-
+rolesEl.onclick = (e) => { const b = e.target.closest("[data-r]"); if (!b) return; activeRole = ROLES[+b.dataset.r]; activeAgent = activeRole.agents[0]; render(); };
+agentsEl.onclick = (e) => { const b = e.target.closest("[data-id]"); if (!b) return; activeAgent = activeRole.agents.find(a => a.id === b.dataset.id) || activeAgent; render(); };
+tabsEl.onclick = (e) => { const b = e.target.closest("[data-tab]"); if (!b) return; activeTab = b.dataset.tab; render(); };
+document.getElementById("search").oninput = (e) => { query = e.target.value.trim().toLowerCase(); render(); };
 modeSelect.onchange = render;
 document.getElementById("theme-btn").onclick = () => document.body.classList.toggle("light");
-
-document.getElementById("run-btn").onclick = () => {
-  if (!activeAgent) return;
-  let parsed;
-  try { parsed = JSON.parse(inEl.value || "{}"); }
-  catch (err) { outEl.textContent = "Invalid JSON input: " + err.message; return; }
-  outEl.textContent = JSON.stringify({
-    role: activeRole.name,
-    agent: activeAgent.id,
-    execution_mode: "browser-deterministic-sandbox",
-    experience_mode: modeSelect.value,
-    input_keys: Object.keys(parsed),
-    status: "ok",
-    summary: `Validated typed contract for ${activeAgent.name} (${Object.keys(parsed).length} input fields).`,
-    desktop_only_features: ["FastAPI live route", "Free-tier / Ollama LLM inference", "pymoo GA optimization", "121-crate Cargo/Tauri Rust build"]
-  }, null, 2);
-};
 
 render();
 </script>
