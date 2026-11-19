@@ -70,17 +70,19 @@ window.PORTFOLIO = {
       summary: "A Rust studio to create, train, fine-tune and run small Transformer language models on the CPU, no GPU needed. Its GGUF exports run in llama.cpp, Ollama and LM Studio, and the engine compiles to WebAssembly for the browser.",
       stack: ["Rust", "WebAssembly", "GGUF", "Tauri"],
       images: [
-        { src: "assets/ferrum/ferrum-cpu/screenshots/app-datasets.jpg", alt: "Datasets tab for fetching and cleaning a training corpus", caption: "1. Fetch and clean a corpus" },
-        { src: "assets/ferrum/ferrum-cpu/screenshots/app-prepare.jpg", alt: "Prepare tab for turning raw text into training data", caption: "2. Prepare the training data" },
-        { src: "assets/ferrum/ferrum-cpu/screenshots/app-models.jpg", alt: "Models tab for browsing and managing local SLM checkpoints", caption: "3. Browse and manage models" },
-        { src: "assets/ferrum/ferrum-cpu/screenshots/app-train.jpg", alt: "Train tab with corpus, model output and model shape settings", caption: "4. Train a transformer from scratch" },
-        { src: "assets/ferrum/ferrum-cpu/screenshots/app-finetune.jpg", alt: "Fine-tune tab for adapting a model to domain data on CPU", caption: "5. Fine-tune on domain data" },
-        { src: "assets/ferrum/ferrum-cpu/screenshots/app-evaluate.jpg", alt: "Evaluate tab for measuring perplexity and benchmark metrics", caption: "6. Evaluate model quality" },
-        { src: "assets/ferrum/ferrum-cpu/screenshots/app-generate.jpg", alt: "Generate tab with seed text, sampling settings and live streaming", caption: "7. Generate with live streaming" },
-        { src: "assets/ferrum/ferrum-cpu/screenshots/app-gguf.jpg", alt: "GGUF tab for importing and running a Llama or Qwen checkpoint", caption: "8. Import and run Llama and Qwen GGUF" },
-        { src: "assets/ferrum/ferrum-cpu/screenshots/app-export.jpg", alt: "Export tab for writing a GGUF that runs in llama.cpp, Ollama and LM Studio", caption: "9. Export GGUF for llama.cpp, Ollama and LM Studio" },
-        { src: "assets/ferrum/ferrum-cpu/screenshots/app-serve.jpg", alt: "Serve tab for running the model behind an HTTP server", caption: "10. Serve it over HTTP" },
-        { src: "assets/ferrum/ferrum-cpu/github.jpg", alt: "The ferrum-cpu repository page on GitHub", caption: "11. The code is open source on GitHub" }
+        { src: "assets/ferrum/ferrum-cpu/screenshots/dark-app-datasets.jpg", lightSrc: "assets/ferrum/ferrum-cpu/screenshots/light-app-datasets.jpg", alt: "Datasets tab for fetching and cleaning a training corpus", caption: "1. Fetch and clean a corpus" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/dark-app-prepare.jpg", lightSrc: "assets/ferrum/ferrum-cpu/screenshots/light-app-prepare.jpg", alt: "Prepare tab for turning raw text into training data", caption: "2. Prepare the training data" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/dark-app-models.jpg", lightSrc: "assets/ferrum/ferrum-cpu/screenshots/light-app-models.jpg", alt: "Models tab for browsing and managing local SLM checkpoints", caption: "3. Browse and manage models" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/dark-app-train.jpg", lightSrc: "assets/ferrum/ferrum-cpu/screenshots/light-app-train.jpg", alt: "Train tab with corpus, model output and model shape settings", caption: "4. Train a transformer from scratch" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/dark-app-finetune.jpg", lightSrc: "assets/ferrum/ferrum-cpu/screenshots/light-app-finetune.jpg", alt: "Fine-tune tab for adapting a model to domain data on CPU", caption: "5. Fine-tune on domain data" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/dark-app-evaluate.jpg", lightSrc: "assets/ferrum/ferrum-cpu/screenshots/light-app-evaluate.jpg", alt: "Evaluate tab for measuring perplexity and benchmark metrics", caption: "6. Evaluate model quality" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/dark-app-generate.jpg", lightSrc: "assets/ferrum/ferrum-cpu/screenshots/light-app-generate.jpg", alt: "Generate tab with seed text, sampling settings and live streaming", caption: "7. Generate with live streaming" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/dark-app-gguf.jpg", lightSrc: "assets/ferrum/ferrum-cpu/screenshots/light-app-gguf.jpg", alt: "GGUF tab for importing and running a Llama or Qwen checkpoint", caption: "8. Import and run Llama and Qwen GGUF" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/dark-app-export.jpg", lightSrc: "assets/ferrum/ferrum-cpu/screenshots/light-app-export.jpg", alt: "Export tab for writing a GGUF that runs in llama.cpp, Ollama and LM Studio", caption: "9. Export GGUF for llama.cpp, Ollama and LM Studio" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/dark-app-serve.jpg", lightSrc: "assets/ferrum/ferrum-cpu/screenshots/light-app-serve.jpg", alt: "Serve tab for running the model behind an HTTP server", caption: "10. Serve it over HTTP" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/dark-app-system.jpg", lightSrc: "assets/ferrum/ferrum-cpu/screenshots/light-app-system.jpg", alt: "System tab showing CPU threads, memory and live resource telemetry", caption: "11. System telemetry & threads" },
+        { src: "assets/ferrum/ferrum-cpu/screenshots/dark-app-capable.jpg", lightSrc: "assets/ferrum/ferrum-cpu/screenshots/light-app-capable.jpg", alt: "Capable tab checking CPU and WebAssembly capabilities", caption: "12. Hardware capability check" },
+        { src: "assets/ferrum/ferrum-cpu/github.jpg", lightSrc: "assets/ferrum/ferrum-cpu/github-light.jpg", alt: "The ferrum-cpu repository page on GitHub", caption: "13. The code is open source on GitHub" }
       ],
       run: { src: "demos/ferrum-cpu-studio/index.html", height: 760, note: "Runs the Ferrum SLM Studio UI on a preloaded 620 KB model via WebAssembly. Generate, Models, GGUF info, Datasets, and System work in the browser; training, fine-tuning, GGUF export, and HTTP serving require the desktop app. On mobiles and tablets, token streaming is slower and large GGUF uploads may hit browser memory limits." },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/ferrum-cpu", writeup: "" },
@@ -104,17 +106,22 @@ window.PORTFOLIO = {
       summary: "Train, fine-tune and run small Transformer language models on any GPU in safe Rust with wgpu and WGSL. GGUF goes in and out, every kernel is checked against a CPU reference, and inference also runs in the browser on WebGPU.",
       stack: ["Rust", "wgpu", "WGSL", "WebGPU", "GGUF"],
       images: [
-        { src: "assets/ferrum/ferrum-gpu/app-device.jpg", alt: "Device tab listing the GPU adapters and WebGPU support in the browser", caption: "1. See every GPU adapter" },
-        { src: "assets/ferrum/ferrum-gpu/app-capable.jpg", alt: "Capable tab checking hardware and WebGPU shader capabilities", caption: "2. Check GPU & WebGPU capabilities" },
-        { src: "assets/ferrum/ferrum-gpu/app-datasets.jpg", alt: "Datasets tab for selecting and fetching a training corpus", caption: "3. Fetch and manage datasets" },
-        { src: "assets/ferrum/ferrum-gpu/app-prepare.jpg", alt: "Prepare tab for tokenizing and formatting training data", caption: "4. Prepare training data" },
-        { src: "assets/ferrum/ferrum-gpu/app-model.jpg", alt: "Model tab for creating or loading a model", caption: "5. Create or load a model" },
-        { src: "assets/ferrum/ferrum-gpu/app-train.jpg", alt: "Train tab with a live loss curve", caption: "6. Train with a live loss curve" },
-        { src: "assets/ferrum/ferrum-gpu/app-evaluate.jpg", alt: "Evaluate tab showing validation loss and perplexity metrics", caption: "7. Evaluate model performance" },
-        { src: "assets/ferrum/ferrum-gpu/app-generate.jpg", alt: "Generate tab running on the server device or in this browser", caption: "8. Generate on the server or in the browser" },
-        { src: "assets/ferrum/ferrum-gpu/app-export.jpg", alt: "Export tab for saving GGUF checkpoints from GPU training", caption: "9. Export GGUF checkpoints" },
-        { src: "assets/ferrum/ferrum-gpu/app-serve.jpg", alt: "Serve tab for exposing the GPU model over HTTP", caption: "10. Serve over HTTP" },
-        { src: "assets/ferrum/ferrum-gpu/github.jpg", alt: "The ferrum-gpu repository page on GitHub", caption: "11. The code is open source on GitHub" }
+        { src: "assets/ferrum/ferrum-gpu/dark-app-datasets.jpg", lightSrc: "assets/ferrum/ferrum-gpu/light-app-datasets.jpg", alt: "Datasets tab for selecting and fetching a training corpus", caption: "1. Datasets" },
+        { src: "assets/ferrum/ferrum-gpu/dark-app-prepare.jpg", lightSrc: "assets/ferrum/ferrum-gpu/light-app-prepare.jpg", alt: "Prepare tab for tokenizing and formatting training data", caption: "2. Prepare training data" },
+        { src: "assets/ferrum/ferrum-gpu/dark-app-gtrain.jpg", lightSrc: "assets/ferrum/ferrum-gpu/light-app-gtrain.jpg", alt: "Train tab for GPU training runs", caption: "3. GPU Train" },
+        { src: "assets/ferrum/ferrum-gpu/dark-app-models.jpg", lightSrc: "assets/ferrum/ferrum-gpu/light-app-models.jpg", alt: "Models tab for managing local GPU checkpoints", caption: "4. Models" },
+        { src: "assets/ferrum/ferrum-gpu/dark-app-finetune.jpg", lightSrc: "assets/ferrum/ferrum-gpu/light-app-finetune.jpg", alt: "Fine-tune tab for adapting models on GPU", caption: "5. Fine-tune" },
+        { src: "assets/ferrum/ferrum-gpu/dark-app-evaluate.jpg", lightSrc: "assets/ferrum/ferrum-gpu/light-app-evaluate.jpg", alt: "Evaluate tab showing validation loss and perplexity metrics", caption: "6. Evaluate" },
+        { src: "assets/ferrum/ferrum-gpu/dark-app-ggen.jpg", lightSrc: "assets/ferrum/ferrum-gpu/light-app-ggen.jpg", alt: "Generate tab for GPU text generation", caption: "7. Generate" },
+        { src: "assets/ferrum/ferrum-gpu/dark-app-export.jpg", lightSrc: "assets/ferrum/ferrum-gpu/light-app-export.jpg", alt: "Export tab for saving GGUF checkpoints", caption: "8. Export GGUF" },
+        { src: "assets/ferrum/ferrum-gpu/dark-app-serve.jpg", lightSrc: "assets/ferrum/ferrum-gpu/light-app-serve.jpg", alt: "Serve tab for exposing the GPU model over HTTP", caption: "9. Serve over HTTP" },
+        { src: "assets/ferrum/ferrum-gpu/dark-app-capable.jpg", lightSrc: "assets/ferrum/ferrum-gpu/light-app-capable.jpg", alt: "Capable tab checking GPU and WebGPU shader capabilities", caption: "10. Hardware capabilities" },
+        { src: "assets/ferrum/ferrum-gpu/dark-app-gpulab.jpg", lightSrc: "assets/ferrum/ferrum-gpu/light-app-gpulab.jpg", alt: "GPU Lab overview for shader benchmarking and inspection", caption: "11. GPU Lab" },
+        { src: "assets/ferrum/ferrum-gpu/dark-app-device.jpg", lightSrc: "assets/ferrum/ferrum-gpu/light-app-device.jpg", alt: "Device tab listing GPU adapters and WebGPU support", caption: "12. GPU Adapters & WebGPU" },
+        { src: "assets/ferrum/ferrum-gpu/dark-app-model.jpg", lightSrc: "assets/ferrum/ferrum-gpu/light-app-model.jpg", alt: "Lab: model tab for creating or loading a model", caption: "13. Lab: Model" },
+        { src: "assets/ferrum/ferrum-gpu/dark-app-train.jpg", lightSrc: "assets/ferrum/ferrum-gpu/light-app-train.jpg", alt: "Lab: train tab with live loss curve", caption: "14. Lab: Train" },
+        { src: "assets/ferrum/ferrum-gpu/dark-app-generate.jpg", lightSrc: "assets/ferrum/ferrum-gpu/light-app-generate.jpg", alt: "Lab: generate tab running on server or browser WebGPU", caption: "15. Lab: Generate" },
+        { src: "assets/ferrum/ferrum-gpu/github.jpg", lightSrc: "assets/ferrum/ferrum-gpu/github-light.jpg", alt: "The ferrum-gpu repository page on GitHub", caption: "16. The code is open source on GitHub" }
       ],
       run: { src: "demos/ferrum-gpu-studio/index.html", height: 760, note: "Runs the Ferrum GPU GUI on a preloaded 285 KB model via WebGPU; generation, model inspection, and GGUF upload work in WebGPU-capable browsers, while training requires the desktop app. On mobiles and tablets without WebGPU (older iOS Safari / Android browsers), GPU inference will not work and a link to the CPU WebAssembly edition is provided." },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/ferrum-gpu", writeup: "" },
@@ -147,7 +154,7 @@ window.PORTFOLIO = {
         { src: "assets/python-valkyrie-ai-agent-studio/dark-08-devops-sre-design.jpg", lightSrc: "assets/python-valkyrie-ai-agent-studio/light-08-devops-sre-design.jpg", alt: "Valkyrie Studio DevOps SRE Design tab", caption: "8. Advanced Mode — DevOps & SRE Design" },
         { src: "assets/python-valkyrie-ai-agent-studio/dark-09-security-appsec-python.jpg", lightSrc: "assets/python-valkyrie-ai-agent-studio/light-09-security-appsec-python.jpg", alt: "Valkyrie Studio Security AppSec Python tab", caption: "9. Advanced Mode — Security & AppSec" },
         { src: "assets/python-valkyrie-ai-agent-studio/dark-10-cxos-run.jpg", lightSrc: "assets/python-valkyrie-ai-agent-studio/light-10-cxos-run.jpg", alt: "Valkyrie Studio CXOs role", caption: "10. Advanced Mode — CXOs & Leadership" },
-        { src: "assets/python-valkyrie-ai-agent-studio/github.jpg", alt: "The valkyrie-ai-agent-studio repository page on GitHub", caption: "11. Open source on GitHub" }
+        { src: "assets/python-valkyrie-ai-agent-studio/github.jpg", lightSrc: "assets/python-valkyrie-ai-agent-studio/github-light.jpg", alt: "The valkyrie-ai-agent-studio repository page on GitHub", caption: "11. Open source on GitHub" }
       ],
       run: { src: "demos/valkyrie-agent-studio/index.html", height: 760, note: "Browser Sandbox covers all 12 roles and 240 agents with editable sample_data.json contracts and deterministic runs. Live FastAPI execution, local Ollama / free-tier LLM routing, pymoo GA optimization, and 242-crate Tauri/Rust compilation will not work in browsers, mobiles, or tablets and require the desktop app." },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/valkyrie-ai-agent-studio", writeup: "" },
@@ -170,9 +177,12 @@ window.PORTFOLIO = {
       summary: "A single Go gateway compiled with TinyGo to Cloudflare Workers, backed by D1 and Workers AI with native routing across Anthropic, Gemini, Grok, Llama, DeepSeek, Qwen, OpenAI, and Mistral. Enforces per-team micro-dollar budgets, PII/secret redaction, and immutable audit logs.",
       stack: ["Go", "TinyGo", "Cloudflare Workers", "Cloudflare D1", "Workers AI"],
       images: [
-        { src: "assets/go-ai-gateway/go-ai-gateway-dashboard.jpg", alt: "Go AI Gateway Control Plane Dashboard showing team budgets, model routing, and audit logs", caption: "1. Control Plane Dashboard" },
-        { src: "assets/go-ai-gateway/go-ai-gateway-explorer.jpg", alt: "Go AI Gateway interactive API explorer and multi-provider request tester", caption: "2. Interactive API Explorer" },
-        { src: "assets/go-ai-gateway/github.jpg", alt: "The go-ai-gateway repository page on GitHub", caption: "3. Open source on GitHub" }
+        { src: "assets/go-ai-gateway/dark-01-overview.jpg", lightSrc: "assets/go-ai-gateway/light-01-overview.jpg", alt: "Go AI Gateway Control Plane Overview and KPIs", caption: "1. Control Plane Overview" },
+        { src: "assets/go-ai-gateway/dark-02-teams-budgets.jpg", lightSrc: "assets/go-ai-gateway/light-02-teams-budgets.jpg", alt: "Go AI Gateway per-team budgets and keys", caption: "2. Per-Team Budgets & Keys" },
+        { src: "assets/go-ai-gateway/dark-03-audit-logs.jpg", lightSrc: "assets/go-ai-gateway/light-03-audit-logs.jpg", alt: "Go AI Gateway immutable audit logs and redaction counts", caption: "3. Immutable Audit Logs" },
+        { src: "assets/go-ai-gateway/dark-04-explorer.jpg", lightSrc: "assets/go-ai-gateway/light-04-explorer.jpg", alt: "Go AI Gateway interactive API explorer", caption: "4. Interactive API Explorer" },
+        { src: "assets/go-ai-gateway/dark-05-bottom.jpg", lightSrc: "assets/go-ai-gateway/light-05-bottom.jpg", alt: "Go AI Gateway routing and response inspection", caption: "5. Multi-Provider Routing & Response" },
+        { src: "assets/go-ai-gateway/github.jpg", lightSrc: "assets/go-ai-gateway/github-light.jpg", alt: "The go-ai-gateway repository page on GitHub", caption: "6. Open source on GitHub" }
       ],
       run: { src: "demos/go-ai-gateway/index.html", height: 900, note: "Runs the real Go gateway as WebAssembly (8.1 MB) in-memory with mock providers and demo teams. Live vendor API calls, persistent Cloudflare D1 storage, and Cloudflare Workers deployment require your own keys; on mobiles and tablets, initial WASM download is heavier on cellular networks and state resets on reload." },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/go-ai-gateway", writeup: "" },
@@ -196,9 +206,12 @@ window.PORTFOLIO = {
       summary: "Client-side C++17 / WebAssembly secret and personal-data scanner (Emscripten data_guard.wasm) with a native GTK+ 3 Admin Control Centre, a zero-trust web dashboard and a Chrome extension that redact API keys, JWTs, credit cards, SSNs and IBANs before a single byte leaves the browser.",
       stack: ["C++17", "Emscripten", "WebAssembly", "GTK+ 3", "Chrome Extension (MV3)", "Docker"],
       images: [
-        { src: "assets/cpp-enterprise-data-guard/Enterprise Data Guard UI.jpg", alt: "Enterprise Data Guard web dashboard scanning and redacting secrets and PII in the browser", caption: "1. Zero-Trust Web Dashboard" },
-        { src: "assets/cpp-enterprise-data-guard/GUI-Admin.jpg", alt: "Native C++ GTK+ 3 Admin Control Centre for configuring policies, allowlists and custom rules", caption: "2. C++ Admin Control Centre" },
-        { src: "assets/cpp-enterprise-data-guard/github.jpg", alt: "The cpp-enterprise-data-guard repository page on GitHub", caption: "3. Open source on GitHub" }
+        { src: "assets/cpp-enterprise-data-guard/dark-01-dashboard-top.jpg", lightSrc: "assets/cpp-enterprise-data-guard/light-01-dashboard-top.jpg", alt: "Enterprise Data Guard WebAssembly dashboard overview", caption: "1. Zero-Trust Web Dashboard" },
+        { src: "assets/cpp-enterprise-data-guard/dark-02-scanner-input.jpg", lightSrc: "assets/cpp-enterprise-data-guard/light-02-scanner-input.jpg", alt: "Enterprise Data Guard pre-flight prompt scanner input", caption: "2. Pre-Flight Prompt Scanner" },
+        { src: "assets/cpp-enterprise-data-guard/dark-03-findings-table.jpg", lightSrc: "assets/cpp-enterprise-data-guard/light-03-findings-table.jpg", alt: "Enterprise Data Guard secret and PII findings table", caption: "3. Secret & PII Findings Table" },
+        { src: "assets/cpp-enterprise-data-guard/dark-04-policy-controls.jpg", lightSrc: "assets/cpp-enterprise-data-guard/light-04-policy-controls.jpg", alt: "Enterprise Data Guard policy and redaction controls", caption: "4. Policy & Redaction Controls" },
+        { src: "assets/cpp-enterprise-data-guard/dark-05-bottom.jpg", lightSrc: "assets/cpp-enterprise-data-guard/light-05-bottom.jpg", alt: "Enterprise Data Guard local statistics and export", caption: "5. Local Stats & Policy Export" },
+        { src: "assets/cpp-enterprise-data-guard/github.jpg", lightSrc: "assets/cpp-enterprise-data-guard/github-light.jpg", alt: "The cpp-enterprise-data-guard repository page on GitHub", caption: "6. Open source on GitHub" }
       ],
       run: { src: "demos/data-guard-admin/index.html", height: 780, note: "Runs the C++ AdminController compiled to WebAssembly with the web dashboard linked inside. Native GTK3 file dialogs map to browser file pickers; the Chrome prompt-interception extension (.zip) will not install on Android or iOS browsers and requires desktop Chrome/Chromium." },
       extension: {
@@ -244,7 +257,7 @@ window.PORTFOLIO = {
         { src: "assets/julia-ai-roi-simulation/08-cross-lens-and-strategy-comparison.png", alt: "Cross-lens and strategy comparison", caption: "8. Cross-Lens Comparison" },
         { src: "assets/julia-ai-roi-simulation/09-interactive-what-if-sliders-lab.png", alt: "Interactive What-If Sliders lab", caption: "9. Interactive What-If Lab" },
         { src: "assets/julia-ai-roi-simulation/10-markdown-guide-modal-and-mermaid.png", alt: "In-UI Markdown guide modal and Mermaid diagram", caption: "10. In-UI Markdown Guide" },
-        { src: "assets/julia-ai-roi-simulation/github.jpg", alt: "The julia-ai-roi-simulation repository page on GitHub", caption: "11. Open source on GitHub" }
+        { src: "assets/julia-ai-roi-simulation/github.jpg", lightSrc: "assets/julia-ai-roi-simulation/github-light.jpg", alt: "The julia-ai-roi-simulation repository page on GitHub", caption: "11. Open source on GitHub" }
       ],
       run: { src: "demos/julia-roi/index.html", height: 760, note: "Runs on pre-computed simulation results (static JSON) with all 5 forecasting tabs and interactive What-If sliders. Re-running the Julia Monte Carlo and Agent-Based models themselves will not work in browsers, mobiles, or tablets and requires a local Julia installation." },
       links: { demo: "", video: "", poster: "", source: "https://github.com/thomascherickal/julia-ai-roi-simulation", writeup: "" },

@@ -19,6 +19,25 @@
   --mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
 }
 
+html[data-theme="light"] {
+  color-scheme: light;
+  --bg: #eef2f7;
+  --bg2: #ffffff;
+  --bg3: #e4eaf2;
+  --line: #cbd5e1;
+  --fg: #162a45;
+  --muted: #475569;
+  --accent: #c2410c;
+  --accent2: #ea580c;
+  --accent-strong: #9a3412;
+  --accent-strong-hover: #7c2d12;
+  --field-line: #64748b;
+  --focus: #1e40af;
+  --ok: #15803d;
+  --warn: #b45309;
+  --err: #b91c1c;
+}
+
 * { box-sizing: border-box; }
 html, body { height: 100%; margin: 0; }
 body {
