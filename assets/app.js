@@ -32,8 +32,9 @@
     var el = document.getElementById(id);
     if (el) el.href = site.links.book;
   });
-  document.getElementById("brain-link").href = site.links.brain;
-  document.getElementById("brain-shot").href = site.links.brain;
+  var skillsUrl = site.links.skills || site.links.brain || "https://skills.thedigitalfuturist.com";
+  document.getElementById("brain-link").href = skillsUrl;
+  document.getElementById("brain-shot").href = skillsUrl;
   var brainLane = document.getElementById("brain-lane");
   brainLane.textContent = laneLabel("knowledge");
   brainLane.className = "demo-lane " + toneOf("knowledge");
