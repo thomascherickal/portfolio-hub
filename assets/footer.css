@@ -231,16 +231,22 @@ footer,
   border-radius: var(--radius, 10px);
   text-decoration: none;
   font-family: var(--font-mono, monospace);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.01em;
   color: var(--text-secondary, #e2e8f0);
   border: 2px solid rgba(56, 189, 248, 0.55) !important;
   box-shadow: 0 0 14px rgba(56, 189, 248, 0.35), 0 0 28px rgba(56, 189, 248, 0.18), 0 2px 8px rgba(0, 0, 0, 0.4) !important;
-  min-height: 44px;
+  min-height: 40px;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.6rem 0.85rem !important;
-  font-size: 0.82rem !important;
+  gap: 0.4rem;
+  padding: 0.48rem 0.6rem !important;
+  font-size: 0.76rem !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -269,13 +275,55 @@ footer,
 
 .social-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr));
-  gap: 0.6rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
 }
 
-@media (min-width: 1750px) {
+@media (min-width: 600px) {
   .social-grid {
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .social-link {
+    padding: 0.45rem 0.5rem !important;
+    font-size: 0.74rem !important;
+    gap: 0.35rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .social-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .social-link {
+    padding: 0.46rem 0.55rem !important;
+    font-size: 0.75rem !important;
+    gap: 0.38rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .social-grid {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+
+  .social-link {
+    padding: 0.45rem 0.5rem !important;
+    font-size: 0.74rem !important;
+    gap: 0.35rem;
+  }
+}
+
+@media (min-width: 1680px) {
+  .social-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .social-link {
+    padding: 0.42rem 0.42rem !important;
+    font-size: 0.71rem !important;
+    gap: 0.28rem;
   }
 }
 
