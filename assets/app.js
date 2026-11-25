@@ -153,19 +153,6 @@
   }
   function pill(p) { return '<span class="pill pill-' + esc(p.status) + '">' + esc(STATUS[p.status] || p.status) + "</span>"; }
 
-  /* ---------- automations ---------- */
-  var autos = projects.filter(function (p) { return p.lane === "claude"; });
-  document.getElementById("automation-list").innerHTML = autos.map(function (p) {
-    return '<article class="automation ' + toneOf(p.lane) + '" id="' + esc(p.id) + '">' +
-      frame(p) +
-      "<div>" + pill(p) +
-      "<h3>" + esc(p.title) + "</h3>" +
-      '<p class="problem"><strong>Problem:</strong> ' + esc(p.problem) + "</p>" +
-      '<p class="summary">' + esc(p.summary) + "</p>" +
-      stackList(p) + licenseBadge(p) + linksRow(p) + aiPoints(p) +
-      '<p class="updated">Updated ' + esc(p.updated) + "</p></div></article>";
-  }).join("");
-
   /* ---------- screenshot carousel ---------- */
   function carousel(p) {
     var imgs = p.images || [];
@@ -247,7 +234,7 @@
   });
 
   /* ---------- demos with filters ---------- */
-  var demos = projects.filter(function (p) { return p.lane !== "claude"; });
+  var demos = projects;
   var grid = document.getElementById("demo-grid");
 
   function renderDemos(lane) {
@@ -268,21 +255,19 @@
   }
 
   var demoLanes = Object.keys(lanes).filter(function (k) {
-    return k !== "claude" && demos.some(function (p) { return p.lane === k; });
+    return demos.some(function (p) { return p.lane === k; });
   });
   var filters = document.getElementById("filters");
   var filterButtons = ['<button class="chip" data-lane="all" aria-pressed="true">All</button>']
     .concat(demoLanes.map(function (k) {
       return '<button class="chip" data-lane="' + esc(k) + '" aria-pressed="false">' + esc(laneLabel(k)) + "</button>";
     }));
-  filterButtons.push('<button class="chip" data-lane="claude" aria-pressed="false">Claude</button>');
   filterButtons.push('<button class="chip" data-lane="knowledge" aria-pressed="false">Knowledge</button>');
   if (data.pwas && data.pwas.length) {
     filterButtons.push('<button class="chip" data-lane="apps" aria-pressed="false">Web Apps</button>');
   }
   filters.innerHTML = filterButtons.join("");
 
-  var subAutomations = document.getElementById("automations");
   var subSkills = document.getElementById("skills");
   var subApps = document.getElementById("apps");
 
@@ -291,10 +276,9 @@
       c.setAttribute("aria-pressed", String(c.getAttribute("data-lane") === lane));
     });
     var isAll = lane === "all";
-    var showDemos = isAll || (lane !== "claude" && lane !== "knowledge" && lane !== "apps");
+    var showDemos = isAll || (lane !== "knowledge" && lane !== "apps");
     grid.hidden = !showDemos;
     if (showDemos) renderDemos(lane);
-    if (subAutomations) subAutomations.hidden = !(isAll || lane === "claude");
     if (subSkills) subSkills.hidden = !(isAll || lane === "knowledge");
     if (subApps) subApps.hidden = !(isAll || lane === "apps");
   }
@@ -372,21 +356,5 @@
       applyTheme(next);
       try { if (window.localStorage) window.localStorage.setItem("portfolio-theme", next); } catch (e) {}
     });
-  }
-
-  /* ---------- dynamic footer ---------- */
-  var contactFooter = document.getElementById("contact");
-  if (contactFooter && window.fetch) {
-    fetch("footer.html")
-      .then(function (res) { return res.ok ? res.text() : Promise.reject(res.status); })
-      .then(function (html) {
-        var doc = new DOMParser().parseFromString(html, "text/html");
-        var fetchedFooter = doc.querySelector("footer");
-        if (fetchedFooter) {
-          fetchedFooter.id = "contact";
-          contactFooter.replaceWith(fetchedFooter);
-        }
-      })
-      .catch(function () { /* Keep fallback footer if fetch fails (e.g. file://) */ });
   }
 })();

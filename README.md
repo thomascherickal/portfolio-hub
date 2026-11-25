@@ -11,7 +11,6 @@ Static, zero-build, zero-dependency HTML, CSS, and vanilla JavaScript hosted on 
   - **Go AI Gateway** — TinyGo + Cloudflare Workers AI traffic control plane with per-team budgets and PII redaction
   - **Enterprise Data Guard** — C++17 / Emscripten WebAssembly secret & PII scanner with native GTK+ 3 Admin GUI and Chrome extension
   - **AI Adoption Business Case Simulator** — Julia 5-lens forecasting suite (Monte Carlo, Agent-Based, System Dynamics, Queueing, Bayesian)
-- **Claude Automations** — Developer-focused Claude Code & GitHub Actions workflows
 - **Knowledge** — [The Intelligence Repository](https://skills.thedigitalfuturist.com) (versioned agent skills and prompt-engineering frameworks)
 - **Installable Web Apps (PWAs)** — 6 zero-backend PWAs on GitHub Pages with source code links
 

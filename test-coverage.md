@@ -25,9 +25,8 @@ Observed output from `node --test --experimental-test-coverage tests/portfolio.t
 2. **`assets/app.js`**:
    - Missing `window.PORTFOLIO` error banner and early return.
    - Site metadata, booking links, Intelligence Repository (`#brain-link`, `#brain-shot`, `#brain-lane`), and footer links rendering.
-   - Claude automations rendering, YouTube `yt:` click-to-load facade (with and without poster), MP4 `<video>` rendering (with and without poster), and recording-in-progress fallback.
+   - YouTube `yt:` click-to-load facade (with and without poster), MP4 `<video>` rendering (with and without poster), and recording-in-progress fallback.
    - Screenshot carousels (`.car-zoom`, `.car-prev`, `.car-next`, `.car-dot`, and capture-phase `scroll` dot updates).
-   - Project filtering across `All`, demo lanes, `Claude`, `Knowledge`, `Web Apps`, and empty lanes, plus hero `#lane-index` navigation clicks.
+   - Project filtering across `All`, demo lanes, `Knowledge`, `Web Apps`, and empty lanes, plus hero `#lane-index` navigation clicks.
    - PWA card rendering with `Live` badges and fallback initial letter when `icon` is empty.
-   - Dynamic `footer.html` fetch handling (valid `<footer>`, non-OK status, missing `<footer>`, and missing `#contact`).
 

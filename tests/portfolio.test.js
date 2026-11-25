@@ -29,7 +29,6 @@ function createMockDom(options = {}) {
       },
       listeners: {},
       inserted: [],
-      replacedWith: null,
       addEventListener(type, fn) {
         (el.listeners[type] = el.listeners[type] || []).push(fn);
       },
@@ -51,9 +50,6 @@ function createMockDom(options = {}) {
       },
       scrollIntoView() {
         el.scrolledIntoView = true;
-      },
-      replaceWith(node) {
-        el.replacedWith = node;
       }
     };
     return el;
@@ -62,8 +58,8 @@ function createMockDom(options = {}) {
   const defaultIds = [
     "main", "site-name", "site-role", "site-headline", "site-intro",
     "book-top", "book-hero", "book-foot", "brain-link", "brain-shot",
-    "brain-lane", "foot-links", "hero-links", "automation-list", "demos", "demo-grid", "filters",
-    "automations", "skills", "apps", "lane-index", "pwa-list", "contact"
+    "brain-lane", "foot-links", "hero-links", "demos", "demo-grid", "filters",
+    "skills", "apps", "lane-index", "pwa-list"
   ];
   for (const id of defaultIds) {
     if (options.omitIds && options.omitIds.includes(id)) continue;
@@ -82,21 +78,10 @@ function createMockDom(options = {}) {
   return { elements, document, docListeners, makeEl };
 }
 
-function loadAppFresh({ portfolio, dom, fetchImpl }) {
+function loadAppFresh({ portfolio, dom }) {
   delete require.cache[APP_PATH];
   global.window = { PORTFOLIO: portfolio };
-  if (fetchImpl) global.window.fetch = fetchImpl;
-  global.fetch = fetchImpl;
   global.document = dom.document;
-  global.DOMParser = class {
-    parseFromString(html) {
-      const hasFooter = /<footer\b/i.test(html);
-      const footerNode = hasFooter ? { id: "links", html } : null;
-      return {
-        querySelector: (sel) => (sel === "footer" ? footerNode : null)
-      };
-    }
-  };
   require(APP_PATH);
 }
 
@@ -143,7 +128,7 @@ describe("assets/app.js", () => {
         ...realPortfolio.projects,
         {
           id: "test-yt-poster",
-          lane: "claude",
+          lane: "systems",
           status: "video",
           title: "YT & Poster <test>",
           problem: "Problem & \"quote\"",
@@ -155,7 +140,7 @@ describe("assets/app.js", () => {
         },
         {
           id: "test-yt-no-poster",
-          lane: "claude",
+          lane: "systems",
           status: "live",
           title: "YT No Poster",
           problem: "P",
@@ -193,23 +178,14 @@ describe("assets/app.js", () => {
     };
 
     const dom = createMockDom();
-    let fetchResolve;
-    const fetchPromise = new Promise((r) => { fetchResolve = r; });
-    const fetchImpl = () => fetchPromise;
-
-    loadAppFresh({ portfolio: customPortfolio, dom, fetchImpl });
+    loadAppFresh({ portfolio: customPortfolio, dom });
 
     // Verify site metadata & foot links
     assert.equal(dom.elements.get("site-name").textContent, customPortfolio.site.name);
     assert.match(dom.elements.get("foot-links").innerHTML, /thedigitalfuturist\.com/);
-    assert.match(dom.elements.get("automation-list").innerHTML, /youtube-nocookie|data-yt="abc123"/);
+    assert.match(dom.elements.get("demo-grid").innerHTML, /youtube-nocookie|data-yt="abc123"/);
     assert.match(dom.elements.get("demo-grid").innerHTML, /car-zoom/);
     assert.match(dom.elements.get("pwa-list").innerHTML, /pill-live/);
-
-    // Resolve dynamic footer fetch with valid <footer>
-    fetchResolve({ ok: true, text: async () => '<footer id="links">ok</footer>' });
-    await new Promise((r) => setTimeout(r, 0));
-    assert.equal(dom.elements.get("contact").replacedWith.id, "contact");
 
     // Test document click handlers: YouTube facade
     const ytParent = { innerHTML: "" };
@@ -278,14 +254,13 @@ describe("assets/app.js", () => {
 
     // Test filter chips & lane-index clicks
     const chipAll = dom.makeEl("c-all"); chipAll.setAttribute("data-lane", "all");
-    const chipClaude = dom.makeEl("c-claude"); chipClaude.setAttribute("data-lane", "claude");
     const chipKnowledge = dom.makeEl("c-knowledge"); chipKnowledge.setAttribute("data-lane", "knowledge");
     const chipApps = dom.makeEl("c-apps"); chipApps.setAttribute("data-lane", "apps");
     const chipEmpty = dom.makeEl("c-empty"); chipEmpty.setAttribute("data-lane", "nonexistent");
     const filtersEl = dom.elements.get("filters");
-    filtersEl._chips = [chipAll, chipClaude, chipKnowledge, chipApps, chipEmpty];
+    filtersEl._chips = [chipAll, chipKnowledge, chipApps, chipEmpty];
 
-    for (const chip of [chipClaude, chipKnowledge, chipApps, chipEmpty, chipAll, null]) {
+    for (const chip of [chipKnowledge, chipApps, chipEmpty, chipAll, null]) {
       for (const fn of filtersEl.listeners.click) {
         fn({ target: { closest: () => chip } });
       }
@@ -301,8 +276,8 @@ describe("assets/app.js", () => {
     assert.equal(dom.elements.get("demos").scrolledIntoView, true);
   });
 
-  it("handles empty projects/pwas, missing optional DOM nodes, and failed/non-footer fetch", async () => {
-    const dom = createMockDom({ omitIds: ["book-foot", "foot-links", "automations", "skills", "apps"] });
+  it("handles empty projects/pwas and missing optional DOM nodes", () => {
+    const dom = createMockDom({ omitIds: ["book-foot", "foot-links", "skills", "apps"] });
     const minimalPortfolio = {
       site: { name: "N", role: "R", headline: "H", intro: "I", links: { book: "b", brain: "br" } },
       lanes: { systems: { label: "Systems", tone: "cyan" } },
@@ -310,17 +285,6 @@ describe("assets/app.js", () => {
       pwas: undefined
     };
 
-    // Non-ok fetch
-    loadAppFresh({ portfolio: minimalPortfolio, dom, fetchImpl: () => Promise.resolve({ ok: false, status: 404 }) });
-    await new Promise((r) => setTimeout(r, 0));
-
-    // Fetch returning HTML without <footer>
-    loadAppFresh({ portfolio: minimalPortfolio, dom, fetchImpl: () => Promise.resolve({ ok: true, text: async () => "<div>no footer</div>" }) });
-    await new Promise((r) => setTimeout(r, 0));
-    assert.equal(dom.elements.get("contact").replacedWith, null);
-
-    // Missing #contact element
-    const domNoContact = createMockDom({ omitIds: ["contact"] });
-    loadAppFresh({ portfolio: minimalPortfolio, dom: domNoContact });
+    loadAppFresh({ portfolio: minimalPortfolio, dom });
   });
 });

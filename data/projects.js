@@ -5,8 +5,8 @@
   Cloudflare Pages rebuilds automatically (one build per push; 500 builds/month free).
 
   Field guide
-  - id          unique, lowercase, hyphens only (used for links like #rag-incident-memory)
-  - lane        one of: "claude", "genai", "rag", "systems", "science", "knowledge"
+  - id          unique, lowercase, hyphens only (used for links like #ferrum-cpu)
+  - lane        one of: "genai", "rag", "systems", "science", "knowledge"
   - status      "live"  = working demo link
                 "video" = recorded walkthrough only
                 "building" = shown as in progress
@@ -36,7 +36,7 @@ window.PORTFOLIO = {
     brand: "The Digital Futurist",
     headline: "The Future is Now.",
     intro:
-      "Live demos and recorded runs of the systems I build for engineering teams moving to AI-first delivery: Claude agent automations, AI-first projects, and the Rust, Go, C++ and Julia underneath them.",
+      "Live demos of the systems I build for engineering teams moving to AI-first delivery: AI-first projects, and the Rust, Go, C++ and Julia underneath them.",
     links: {
       site: "https://thomascherickal.com",
       consulting: "https://thedigitalfuturist.com",
@@ -50,7 +50,6 @@ window.PORTFOLIO = {
   },
 
   lanes: {
-    claude: { label: "Automations", tone: "gold" },
     genai: { label: "Gen AI", tone: "gold" },
     systems: { label: "Systems", tone: "gold" },
     science: { label: "Scientific", tone: "gold" },
@@ -282,80 +281,7 @@ window.PORTFOLIO = {
         "Bayesian Pilot Governance: Equips leadership with a 6-month checkpoint scorecard to decide whether to scale, pivot, or pause."
       ],
       updated: "2026-11-17"
-    },
-    /* ---------- Claude automations (recorded runs) ---------- */
-    {
-      id: "claude-pr-review-test-gaps",
-      lane: "claude",
-      status: "video",
-      license: "Dual-License-Open-Commercial",
-      title: "PR review that writes missing unit tests",
-      problem: "Pull requests often land without tests for new edge cases.",
-      summary: "Claude reads the diff on a pull request, spots untested branches, wri tes unit tests and pushes them to the branch.",
-      stack: ["Claude Code", "GitHub Actions", "pytest"],
-      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-16"
-    },
-    {
-      id: "claude-commit-changelog",
-      lane: "claude",
-      status: "video",
-      license: "Dual-License-Open-Commercial",
-      title: "Automated changelog & release notes",
-      problem: "Writing release notes from dozens of commits before a tag is tedious.",
-      summary: "Claude reads the commits since the last tag, groups changes into fixes and features, and updates CHANGELOG.md.",
-      stack: ["Claude Code", "GitHub Actions", "Markdown"],
-      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-16"
-    },
-    {
-      id: "claude-readme-sync",
-      lane: "claude",
-      status: "video",
-      license: "Dual-License-Open-Commercial",
-      title: "Keep README & API docs in sync with code",
-      problem: "CLI flags and endpoints change in code while READMEs stay outdated.",
-      summary: "Claude compares the latest code changes against README.md and opens a PR with updated examples and flags.",
-      stack: ["Claude Code", "GitHub Actions", "Markdown"],
-      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-16"
-    },
-    {
-      id: "claude-lint-type-fix",
-      lane: "claude",
-      status: "video",
-      license: "Dual-License-Open-Commercial",
-      title: "Auto-fix lint and type errors on push",
-      problem: "Small lint or type errors break CI and slow down merges.",
-      summary: "When CI fails on lint or type checks, Claude runs the linter locally, applies minimal fixes and pushes a clean commit.",
-      stack: ["Claude Code", "ESLint", "TypeScript"],
-      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-16"
-    },
-    {
-      id: "claude-bug-repro-test",
-      lane: "claude",
-      status: "video",
-      license: "Dual-License-Open-Commercial",
-      title: "Turn a GitHub issue into a failing repro test",
-      problem: "Developers spend time reproducing bug reports before they can fix them.",
-      summary: "Claude reads a new bug issue, writes a minimal failing test that reproduces it and attaches it to a draft PR.",
-      stack: ["Claude Code", "GitHub Issues", "node:test"],
-      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-16"
-    },
-    {
-      id: "claude-dep-bump-check",
-      lane: "claude",
-      status: "video",
-      license: "Dual-License-Open-Commercial",
-      title: "Dependency update & smoke-test check",
-      problem: "Routine dependency bumps pile up because nobody wants to verify them.",
-      summary: "Claude updates minor dependencies, runs the test suite, fixes any small breaking import and reports the result.",
-      stack: ["Claude Code", "GitHub Actions", "npm"],
-      links: { demo: "", video: "", poster: "", source: "", writeup: "" },
-      updated: "2026-11-16"
-    },
+    }
   ],
   /* ---------- PWA apps on GitHub Pages (already built) ---------- */
   pwas: [
