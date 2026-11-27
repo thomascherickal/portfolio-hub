@@ -184,7 +184,7 @@ window.PORTFOLIO = {
       lane: "systems",
       status: "complete",
       license: "Dual-License-Open-Commercial",
-      title: "Go AI Gateway — AI Traffic Control Plane",
+      title: "Enterprise AI Gateway — AI Traffic Control Plane",
       problem: "Every team calls LLMs its own way, so spend, data leaks, and audit are invisible.",
       summary: "A single Go gateway compiled with TinyGo to Cloudflare Workers, backed by D1 and Workers AI with native routing across Anthropic, Gemini, Grok, Llama, DeepSeek, Qwen, OpenAI, and Mistral. Enforces per-team micro-dollar budgets, PII/secret redaction, and immutable audit logs.",
       stack: ["Go", "TinyGo", "Cloudflare Workers", "Cloudflare D1", "Workers AI"],
