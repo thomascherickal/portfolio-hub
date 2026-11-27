@@ -315,6 +315,18 @@
     document.getElementById("demos").scrollIntoView();
   });
 
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest("a[data-nav-lane]");
+    if (!a) return;
+    var lane = a.getAttribute("data-nav-lane");
+    var first = projects.filter(function (p) { return p.lane === lane; })[0];
+    if (!first) return;
+    e.preventDefault();
+    setFilter("all");
+    var target = document.getElementById(first.id) || document.getElementById("demos");
+    if (target) target.scrollIntoView();
+  });
+
   /* ---------- PWAs ---------- */
   document.getElementById("pwa-list").innerHTML = (data.pwas || []).map(function (a) {
     var icon = a.icon ? '<img src="' + esc(a.icon) + '" alt="' + esc(a.name) + ' preview">' : esc((a.name || "?").charAt(0));
